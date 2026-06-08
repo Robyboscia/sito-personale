@@ -203,47 +203,88 @@
 
     /* NARRATIVE SECTION */
     .narrative {
-      background: var(--navy);
+      padding: 0;
+    }
+
+    /* Blocchi narrativi alternati */
+    .narr-block {
       padding: 5rem 2rem;
     }
-    .narrative-inner {
-      max-width: 760px; margin: 0 auto;
+    .narr-block.bg-navy     { background: var(--navy); }
+    .narr-block.bg-mid      { background: var(--navy-mid); }
+    .narr-block.bg-dark     { background: #060C16; }
+
+    .narr-inner {
+      max-width: 680px; margin: 0 auto;
     }
-    .narrative p {
-      font-size: 1.12rem; line-height: 1.9;
-      color: rgba(248,246,242,.8);
+
+    .narr-block p {
+      font-size: 1.08rem; line-height: 1.92;
+      color: rgba(248,246,242,.78);
+      margin-bottom: 1.3rem;
+    }
+    .narr-block p.small-line {
+      font-size: 1rem; color: var(--gray); margin-bottom: .45rem;
+    }
+    .narr-block p strong { color: var(--off-white); }
+
+    /* Pull quote — frase in grande fuori dal testo */
+    .pull-quote {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .pull-quote.bg-navy  { background: var(--navy); }
+    .pull-quote.bg-mid   { background: var(--navy-mid); }
+    .pull-quote.bg-dark  { background: #060C16; }
+    .pull-quote-inner { max-width: 800px; margin: 0 auto; }
+    .pull-quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--off-white);
       margin-bottom: 1.2rem;
     }
-    .narrative p.lead {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem; font-style: italic;
-      color: var(--off-white); line-height: 1.6;
-      margin-bottom: 1.8rem;
+    .pull-quote-text em {
+      font-style: italic;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .narrative p.small-line {
-      font-size: 1rem; color: var(--gray); margin-bottom: .5rem;
+    .pull-quote cite {
+      font-size: .78rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); font-style: normal;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .narrative .divider {
-      border: none; border-top: 1px solid rgba(201,146,58,.15);
-      margin: 3rem 0;
-    }
-    .quote-block {
+
+    .narr-block .quote-block {
       border-left: 2px solid var(--gold);
       padding: 1.2rem 2rem;
       margin: 2.5rem 0;
       background: rgba(201,146,58,.05);
       border-radius: 0 6px 6px 0;
     }
-    .quote-block p {
+    .narr-block .quote-block p {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem; font-style: italic;
+      font-size: 1.35rem; font-style: italic;
       color: var(--off-white); line-height: 1.55;
       margin-bottom: .5rem !important;
     }
-    .quote-block cite {
-      font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+    .narr-block .quote-block cite {
+      font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
       color: var(--gold); font-style: normal;
       font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .narr-block p.lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-style: italic;
+      color: var(--off-white); line-height: 1.6;
+      margin-bottom: 1.8rem;
+    }
+    .narr-divider {
+      border: none; border-top: 1px solid rgba(201,146,58,.12);
+      margin: 2.5rem 0;
     }
 
     /* SYMPTOMS LIST */
@@ -480,165 +521,139 @@
   </section>
 
   <!-- NARRATIVA: IL PROBLEMA -->
-  <section class="narrative" id="problema">
-    <div class="narrative-inner">
+  <div id="problema">
 
-      <p>Rileggi una mail due volte.<br>
-      Ti sfugge un dettaglio che normalmente avresti colto subito.<br>
-      Apri una finestra. Poi un'altra. Poi ti rendi conto che stai lavorando… ma senza quella lucidità che avevi prima.</p>
+    <!-- BLOCCO 1: la sensazione -->
+    <div class="narr-block bg-navy">
+      <div class="narr-inner">
+        <p>Rileggi una mail due volte. Ti sfugge un dettaglio che normalmente avresti colto subito. Apri una finestra. Poi un'altra. Poi ti rendi conto che stai lavorando… ma senza quella lucidità che avevi prima.</p>
+        <p class="small-line">Non è un crollo improvviso.</p>
+        <p class="small-line">È qualcosa di più sottile.</p>
+        <hr class="narr-divider" />
+        <p>Perché continui a funzionare. Continui a lavorare. Continui a reggere ritmi alti.</p>
+        <p>Eppure senti che tutto ti costa più energia del necessario.</p>
+        <p class="small-line">La sera dormi anche abbastanza.</p>
+        <p class="small-line">Mangi decentemente. Ti alleni.</p>
+        <p class="small-line">Cerchi di fare le cose "come si deve".</p>
+        <p>Ma al mattino ti svegli già senza vero margine.<br>Come se la notte non fosse bastata a ricaricare davvero.</p>
+      </div>
+    </div>
 
-      <p class="small-line">Non è un crollo improvviso.</p>
-      <p class="small-line">È qualcosa di più sottile.</p>
+    <!-- PULL QUOTE 1 -->
+    <div class="pull-quote bg-dark">
+      <div class="pull-quote-inner">
+        <div class="pull-quote-text">Vai avanti.<br>Ma dentro senti che <em>qualcosa è cambiato.</em></div>
+      </div>
+    </div>
 
-      <hr class="divider" />
+    <!-- BLOCCO 2: l'esterno vs l'interno -->
+    <div class="narr-block bg-mid">
+      <div class="narr-inner">
+        <p>E la parte più frustrante è questa: <strong>all'esterno sembri perfettamente operativo.</strong></p>
+        <p class="small-line" style="color:var(--gray)">Gli esami magari sono normali.</p>
+        <p class="small-line" style="color:var(--gray)">Le persone intorno a te pensano che stai bene.</p>
+        <p class="small-line" style="color:var(--gray)">Tu stesso continui a dirti:</p>
+        <p style="color:var(--gray); padding-left:1.5rem; border-left:2px solid rgba(107,125,153,.2); margin:1.2rem 0; font-size:1rem;">"Forse è solo stress."<br>"Forse è l'età."<br>"Forse devo solo rallentare un po'."</p>
+        <p>Ma c'è un motivo se quella spiegazione non ti convince fino in fondo.</p>
+        <p>Perché tu non ti senti "malato".<br>Ti senti… <strong>meno te stesso.</strong></p>
+      </div>
+    </div>
 
-      <p>Perché continui a funzionare.<br>
-      Continui a lavorare.<br>
-      Continui a reggere ritmi alti.</p>
-
-      <p>Eppure senti che tutto ti costa più energia del necessario.</p>
-
-      <p class="small-line">La sera dormi anche abbastanza.</p>
-      <p class="small-line">Mangi decentemente.</p>
-      <p class="small-line">Ti alleni.</p>
-      <p class="small-line">Cerchi di fare le cose "come si deve".</p>
-
-      <p>Ma al mattino ti svegli già senza vero margine.<br>
-      Come se la notte non fosse bastata a ricaricare davvero.</p>
-
-      <p>E allora inizi a compensare.<br>
-      Più concentrazione. Più disciplina. Più stimoli per restare sul pezzo.</p>
-
-      <p>Vai avanti.<br>
-      Ma dentro senti che qualcosa è cambiato.</p>
-
-      <hr class="divider" />
-
-      <p>E la parte più frustrante è questa:</p>
-      <p><strong style="color:var(--off-white)">all'esterno sembri perfettamente operativo.</strong></p>
-
-      <p class="small-line" style="color:var(--gray)">Gli esami magari sono normali.</p>
-      <p class="small-line" style="color:var(--gray)">Le persone intorno a te pensano che stai bene.</p>
-      <p class="small-line" style="color:var(--gray)">Tu stesso continui a dirti:</p>
-
-      <p style="color:var(--gray); padding-left:1.5rem; border-left: 2px solid rgba(107,125,153,.2); margin: 1.2rem 0;">"Forse è solo stress."<br>"Forse è l'età."<br>"Forse devo solo rallentare un po'."</p>
-
-      <p>Ma c'è un motivo se quella spiegazione non ti convince fino in fondo.</p>
-
-      <p>Perché tu non ti senti "malato".<br>
-      Ti senti… <strong style="color:var(--off-white)">meno te stesso.</strong></p>
-
-      <hr class="divider" />
-
-      <div class="quote-block">
-        <p>"Continuo a funzionare.<br>Ma ho la sensazione di essere sempre un po' sotto."</p>
+    <!-- PULL QUOTE 2 — citazione paziente -->
+    <div class="pull-quote bg-dark">
+      <div class="pull-quote-inner">
+        <div class="pull-quote-text">"Continuo a funzionare.<br>Ma ho la sensazione di essere sempre <em>un po' sotto.</em>"</div>
         <cite>Imprenditore, 49 anni — paziente di Roberto Boscia</cite>
       </div>
+    </div>
 
-      <p>E sai qual è il problema?<br>
-      Che molte persone ad alte prestazioni vivono così per anni senza rendersene conto.</p>
+    <!-- BLOCCO 3: compensazione -->
+    <div class="narr-block bg-navy">
+      <div class="narr-inner">
+        <p>Molte persone ad alte prestazioni vivono così per anni senza rendersene conto.</p>
+        <p>Non crollano. <strong>Compensano.</strong> È diverso.</p>
+        <p>Il corpo è incredibilmente bravo ad adattarsi. Si adatta alle giornate lunghe, alla pressione continua, alle decisioni costanti, al fatto di essere sempre reperibili. Perfino al dormire male.</p>
+        <p>E all'inizio sembra quasi un vantaggio. Ti senti resistente. Operativo. Sempre acceso.</p>
+        <p>Finché quel ritmo inizia lentamente a presentare conseguenze.</p>
+        <ul class="symptoms-list">
+          <li>Ti svegli già stanco. Il recupero non è più quello di prima.</li>
+          <li>La testa si appanna più facilmente.</li>
+          <li>Hai meno pazienza. Meno margine mentale.</li>
+          <li>Per restare allo stesso livello… devi spingerti sempre un po' di più.</li>
+        </ul>
+        <p>Questa condizione raramente compare all'improvviso. Si costruisce lentamente. Ed è proprio per questo che spesso passa inosservata.</p>
+      </div>
+    </div>
 
-      <p>Non crollano.<br>
-      <strong style="color:var(--off-white)">Compensano.</strong><br>
-      È diverso.</p>
+    <!-- PULL QUOTE 3 — pattern -->
+    <div class="pull-quote bg-mid">
+      <div class="pull-quote-inner">
+        <div class="pull-quote-text">Negli ultimi anni ho iniziato a notare<br>un <em>pattern molto preciso.</em></div>
+      </div>
+    </div>
 
-      <hr class="divider" />
+    <!-- BLOCCO 4: il pattern -->
+    <div class="narr-block bg-navy">
+      <div class="narr-inner">
+        <p>Le persone che arrivavano da me non erano "malate". Molte avevano esami perfetti. Facevano sport. Dormivano anche 7 ore.</p>
+        <p>Eppure raccontavano quasi tutte le stesse cose:</p>
+        <ul class="symptoms-list">
+          <li>"Mi sveglio già stanco."</li>
+          <li>"Nel pomeriggio sento un calo netto."</li>
+          <li>"La testa non recupera come prima."</li>
+          <li>"Sento di dovermi spingere continuamente."</li>
+        </ul>
+        <p>Quando inizi a osservare insieme recupero, qualità del sonno, risposta allo stress e segnali del sistema nervoso… emergono pattern che nei normali check-up restano invisibili.</p>
+        <p>Non stiamo parlando di malattie. Stiamo parlando di capire come il tuo corpo sta realmente gestendo energia, recupero e pressione.</p>
+      </div>
+    </div>
 
-      <p>Il corpo è incredibilmente bravo ad adattarsi.<br>
-      Si adatta alle giornate lunghe. Alla pressione continua. Alle decisioni costanti. Al fatto di essere sempre reperibili. Perfino al dormire male.</p>
-
-      <p>E all'inizio sembra quasi un vantaggio.<br>
-      Ti senti resistente. Operativo. Sempre acceso.</p>
-
-      <p>Finché quel ritmo inizia lentamente a presentare conseguenze.</p>
-
-      <ul class="symptoms-list">
-        <li>Ti svegli già stanco. Il recupero non è più quello di prima.</li>
-        <li>La testa si appanna più facilmente.</li>
-        <li>Hai meno pazienza. Meno margine mentale.</li>
-        <li>Per restare allo stesso livello… devi spingerti sempre un po' di più.</li>
-      </ul>
-
-      <p>Il punto è che questa condizione raramente compare all'improvviso.<br>
-      Si costruisce lentamente.<br>
-      Ed è proprio per questo che spesso passa inosservata.</p>
-
-      <hr class="divider" />
-
-      <p class="lead">Negli ultimi anni ho iniziato a notare un pattern molto preciso.</p>
-
-      <p>Le persone che arrivavano da me non erano "malate". Anzi.<br>
-      Molte avevano esami perfetti. Facevano sport. Dormivano anche 7 ore.</p>
-
-      <p>Eppure raccontavano quasi tutte le stesse cose:</p>
-
-      <ul class="symptoms-list">
-        <li>"Mi sveglio già stanco."</li>
-        <li>"Nel pomeriggio sento un calo netto."</li>
-        <li>"La testa non recupera come prima."</li>
-        <li>"Sento di dovermi spingere continuamente."</li>
-      </ul>
-
-      <p>La parte interessante è che, quando inizi a osservare insieme recupero, qualità del sonno, risposta allo stress e segnali del sistema nervoso… emergono pattern che nei normali check-up restano invisibili.</p>
-
-      <p>Non stiamo parlando di malattie.<br>
-      Stiamo parlando di capire come il tuo corpo sta realmente gestendo energia, recupero e pressione.</p>
-
-      <p>Perché puoi continuare a funzionare molto bene… anche mentre il recupero peggiora lentamente.<br>
-      Ed è qui che molte persone iniziano a vivere in compensazione senza accorgersene.</p>
-
-      <hr class="divider" />
-
-      <!-- CASE STUDY -->
-      <div style="background:rgba(15,28,48,.7); border:1px solid rgba(201,146,58,.15); border-radius:10px; padding:2rem 2.2rem; margin:2rem 0;">
-        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Caso reale</p>
-        <p><strong style="color:var(--off-white)">Andrea, 47 anni. Manager. Esami perfetti.</strong></p>
+    <!-- CASE STUDY — sfondo scuro separato -->
+    <div class="narr-block bg-dark">
+      <div class="narr-inner">
+        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem;">Caso reale</p>
+        <p><strong>Andrea, 47 anni. Manager. Esami perfetti.</strong></p>
         <p>Eppure ogni giorno aveva lo stesso schema: verso le 16 sentiva il cervello rallentare. Sonno leggero. Risvegli pesanti. Bisogno continuo di "riaccendersi".</p>
         <p>Pensava fosse normale. Pensava fosse il prezzo inevitabile del suo lavoro.</p>
-        <p>Quando abbiamo iniziato ad analizzare insieme il suo recupero, la qualità del sonno, la variabilità dello stress e il modo in cui il suo corpo stava reagendo alla pressione continua… ha visto per la prima volta il quadro completo.</p>
-        <div class="quote-block" style="margin:1.5rem 0 0;">
+        <p>Quando abbiamo iniziato ad analizzare insieme il suo recupero, la qualità del sonno, la variabilità dello stress… ha visto per la prima volta il quadro completo.</p>
+        <div class="quote-block">
           <p>"Adesso capisco perché mi sento così."</p>
           <cite>Andrea, 47 anni</cite>
         </div>
+        <p>Ed è proprio qui che molte persone iniziano a notare i primi cambiamenti concreti:</p>
+        <div class="results-grid">
+          <div class="result-item"><span>Mente più stabile durante la giornata</span></div>
+          <div class="result-item"><span>Meno crash cognitivi nel pomeriggio</span></div>
+          <div class="result-item"><span>Risvegli meno pesanti</span></div>
+          <div class="result-item"><span>Maggiore lucidità decisionale</span></div>
+          <div class="result-item"><span>Meno necessità di "spingere"</span></div>
+          <div class="result-item"><span>Finalmente più margine</span></div>
+        </div>
       </div>
-
-      <p>Ed è proprio qui che molte persone iniziano a notare i primi cambiamenti concreti:</p>
-
-      <div class="results-grid">
-        <div class="result-item"><span>Mente più stabile durante la giornata</span></div>
-        <div class="result-item"><span>Meno crash cognitivi nel pomeriggio</span></div>
-        <div class="result-item"><span>Risvegli meno pesanti</span></div>
-        <div class="result-item"><span>Maggiore lucidità decisionale</span></div>
-        <div class="result-item"><span>Meno necessità di "spingere" continuamente</span></div>
-        <div class="result-item"><span>Sensazione di avere finalmente più margine</span></div>
-      </div>
-
-      <p>Ed è lì che cambia tutto.<br>
-      Perché smetti di interpretare a sensazione.<br>
-      Inizi finalmente a vedere dove stai consumando più energia del necessario… e cosa sta impedendo al corpo di recuperare davvero.</p>
-
-      <hr class="divider" />
-
-      <p>La maggior parte delle persone prova a risolvere questa situazione nello stesso modo:<br>
-      più disciplina. Più integratori. Più controllo. Più forza mentale.</p>
-
-      <p>Ma spesso il problema non è che ti manca volontà.<br>
-      È che stai chiedendo al corpo di performare continuamente… senza creare più vero recupero.</p>
-
-      <p>E quando questa condizione va avanti per mesi o anni, inizi lentamente ad abituarti.<br>
-      Ed è questa la parte più pericolosa.</p>
-
-      <ul class="symptoms-list">
-        <li>Ti abitui a svegliarti già stanco.</li>
-        <li>Ti abitui ad avere meno lucidità.</li>
-        <li>Ti abitui a vivere con meno margine.</li>
-        <li>Ti abitui a sentirti sempre "un po' sotto".</li>
-      </ul>
-
-      <p>Finché quella sensazione diventa il tuo nuovo normale.</p>
-
     </div>
-  </section>
+
+    <!-- PULL QUOTE 4 — la parte pericolosa -->
+    <div class="pull-quote bg-mid">
+      <div class="pull-quote-inner">
+        <div class="pull-quote-text">Il problema non è che ti manca volontà.<br>È che stai chiedendo al corpo di <em>performare senza recuperare.</em></div>
+      </div>
+    </div>
+
+    <!-- BLOCCO 5: abituarsi -->
+    <div class="narr-block bg-navy">
+      <div class="narr-inner">
+        <p>Quando questa condizione va avanti per mesi o anni, inizi lentamente ad abituarti. Ed è questa la parte più pericolosa.</p>
+        <ul class="symptoms-list">
+          <li>Ti abitui a svegliarti già stanco.</li>
+          <li>Ti abitui ad avere meno lucidità.</li>
+          <li>Ti abitui a vivere con meno margine.</li>
+          <li>Ti abitui a sentirti sempre "un po' sotto".</li>
+        </ul>
+        <p>Finché quella sensazione diventa il tuo nuovo normale.</p>
+      </div>
+    </div>
+
+  </div>
 
   <!-- SPOTLIGHT ROBERTO — stile Chiellini -->
   <section class="spotlight" id="chi-e">

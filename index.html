@@ -210,7 +210,7 @@
 
     /* Blocchi narrativi alternati */
     .narr-block {
-      padding: 5rem 2rem;
+      padding: 6rem 2rem;
     }
     .narr-block.bg-navy     { background: var(--navy); }
     .narr-block.bg-mid      { background: var(--navy-mid); }
@@ -615,6 +615,95 @@
       font-size: .85rem; color: var(--gray); line-height: 1.65;
     }
 
+    /* SELF-CHECK SECTION */
+    .self-check {
+      padding: 6rem 2rem;
+      background: #060C16;
+    }
+    .self-check-inner { max-width: 880px; margin: 0 auto; }
+    .check-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin-top: 2.8rem;
+    }
+    .check-card {
+      background: rgba(15,28,48,.7);
+      border: 1px solid rgba(201,146,58,.12);
+      border-radius: 10px; padding: 1.6rem 1.4rem;
+      display: flex; flex-direction: column; gap: .55rem;
+      transition: border-color .3s, transform .25s;
+    }
+    .check-card:hover {
+      border-color: rgba(201,146,58,.4);
+      transform: translateY(-3px);
+    }
+    .check-icon { font-size: 1.7rem; line-height: 1; }
+    .check-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--off-white); line-height: 1.25;
+    }
+    .check-sub { font-size: .8rem; color: var(--gray); line-height: 1.55; }
+
+    /* COMPARISON BLOCK (prima/dopo) */
+    .comparison-wrap { margin: 2.5rem 0; }
+    .comparison-block {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(201,146,58,.15);
+      border-radius: 10px; overflow: hidden;
+    }
+    .comp-col { padding: 2rem 1.8rem; }
+    .comp-col.comp-before { background: rgba(9,17,30,.9); }
+    .comp-col.comp-after {
+      background: rgba(15,28,48,.95);
+      border-left: 1px solid rgba(201,146,58,.15);
+    }
+    .comp-col h5 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 1.4rem; padding-bottom: .8rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .comp-before h5 { color: var(--gray); }
+    .comp-after h5 { color: var(--gold); }
+    .comp-item {
+      display: flex; align-items: flex-start; gap: .65rem;
+      font-size: .88rem; line-height: 1.5; margin-bottom: .65rem;
+    }
+    .comp-before .comp-item { color: rgba(107,125,153,.65); }
+    .comp-after .comp-item { color: rgba(248,246,242,.85); }
+    .comp-icon { flex-shrink: 0; margin-top: .05rem; font-style: normal; }
+    .comp-before .comp-icon { color: rgba(107,125,153,.35); }
+    .comp-after .comp-icon { color: var(--gold); }
+
+    /* DIVIDER ORNAMENT */
+    .divider-ornament {
+      text-align: center; padding: 1.5rem 0; position: relative;
+    }
+    .divider-ornament::before, .divider-ornament::after {
+      content: ''; position: absolute; top: 50%;
+      width: calc(50% - 32px); height: 1px;
+    }
+    .divider-ornament::before {
+      left: 0;
+      background: linear-gradient(to right, transparent, rgba(201,146,58,.2));
+    }
+    .divider-ornament::after {
+      right: 0;
+      background: linear-gradient(to left, transparent, rgba(201,146,58,.2));
+    }
+    .divider-ornament span {
+      font-size: 1rem; color: var(--gold);
+      position: relative; z-index: 1; line-height: 1;
+    }
+
+    /* HERO WAVE SVG */
+    .hero-wave {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      width: 100%; z-index: 3; pointer-events: none;
+      opacity: .35;
+    }
+
     /* CONTACT FORM SECTION */
     .form-section { background: var(--navy); padding: 5rem 2rem; }
     .form-section-inner {
@@ -639,6 +728,12 @@
       .narrative-inner, .product-inner, .pricing-inner, .form-section-inner {
         padding: 0 .5rem;
       }
+      .check-grid { grid-template-columns: 1fr 1fr; }
+      .comparison-block { grid-template-columns: 1fr; }
+      .comp-col.comp-after { border-left: none; border-top: 1px solid rgba(201,146,58,.15); }
+    }
+    @media (max-width: 480px) {
+      .check-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -674,6 +769,10 @@
     <div class="hero-image-right">
       <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia" />
     </div>
+    <!-- onda EEG decorativa -->
+    <svg class="hero-wave" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 30 L180 30 L200 30 L215 8 L228 52 L241 30 L290 30 L305 18 L318 42 L331 30 L500 30 L520 30 L535 4 L550 56 L565 30 L620 30 L635 20 L648 40 L661 30 L900 30 L915 14 L928 46 L941 30 L1200 30" stroke="rgba(201,146,58,0.4)" stroke-width="1.2" fill="none"/>
+    </svg>
   </section>
 
   <!-- STATS BAR -->
@@ -694,22 +793,56 @@
     </div>
   </div>
 
+  <!-- SELF-CHECK -->
+  <section class="self-check">
+    <div class="self-check-inner">
+      <p class="section-eyebrow" style="margin-bottom:.6rem;">Riconosci questi segnali?</p>
+      <p style="color:var(--gray); font-size:.95rem; max-width:540px; line-height:1.75;">Se ti ritrovi in almeno tre di questi pattern, il tuo corpo sta probabilmente compensando più di quanto pensi.</p>
+      <div class="check-grid">
+        <div class="check-card">
+          <span class="check-icon">😴</span>
+          <div class="check-label">Risvegli non ristoratori</div>
+          <div class="check-sub">Ti svegli e senti che la notte non ha ricaricato davvero.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">🧠</span>
+          <div class="check-label">Mente appannata</div>
+          <div class="check-sub">Nel pomeriggio senti la testa rallentare — più di prima.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">⚡</span>
+          <div class="check-label">Energia calante</div>
+          <div class="check-sub">Per mantenere gli stessi risultati devi spingere sempre di più.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">📊</span>
+          <div class="check-label">Performance altalenante</div>
+          <div class="check-sub">Giorni buoni e giorni no, senza un motivo apparente.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">😤</span>
+          <div class="check-label">Meno pazienza</div>
+          <div class="check-sub">Irritabilità in situazioni che prima gestivi senza problemi.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">🔄</span>
+          <div class="check-label">Recupero più lento</div>
+          <div class="check-sub">Dopo uno sforzo fisico o mentale, rientri nella norma con più difficoltà.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- NARRATIVA: IL PROBLEMA -->
   <div id="problema">
 
     <!-- BLOCCO 1: la sensazione -->
     <div class="narr-block bg-navy">
       <div class="narr-inner">
-        <p>Rileggi una mail due volte. Ti sfugge un dettaglio che normalmente avresti colto subito. Apri una finestra. Poi un'altra. Poi ti rendi conto che stai lavorando… ma senza quella lucidità che avevi prima.</p>
-        <p class="small-line">Non è un crollo improvviso.</p>
-        <p class="small-line">È qualcosa di più sottile.</p>
+        <p>Rileggi una mail due volte. Ti sfugge un dettaglio che normalmente avresti colto subito. Apri una finestra, poi un'altra. Ti rendi conto che stai lavorando… ma senza quella lucidità che avevi prima. Non è un crollo improvviso. È qualcosa di più sottile.</p>
         <hr class="narr-divider" />
-        <p>Perché continui a funzionare. Continui a lavorare. Continui a reggere ritmi alti.</p>
-        <p>Eppure senti che tutto ti costa più energia del necessario.</p>
-        <p class="small-line">La sera dormi anche abbastanza.</p>
-        <p class="small-line">Mangi decentemente. Ti alleni.</p>
-        <p class="small-line">Cerchi di fare le cose "come si deve".</p>
-        <p>Ma al mattino ti svegli già senza vero margine.<br>Come se la notte non fosse bastata a ricaricare davvero.</p>
+        <p>Continui a funzionare. Reggi ritmi alti. Eppure senti che tutto ti costa più energia del necessario. Dormi. Ti alleni. Fai le cose "come si deve".</p>
+        <p>Ma al mattino ti svegli già senza vero margine — come se la notte non fosse bastata a ricaricare davvero.</p>
       </div>
     </div>
 
@@ -795,13 +928,23 @@
           <cite>Andrea, 47 anni</cite>
         </div>
         <p>Ed è proprio qui che molte persone iniziano a notare i primi cambiamenti concreti:</p>
-        <div class="results-grid">
-          <div class="result-item"><span>Mente più stabile durante la giornata</span></div>
-          <div class="result-item"><span>Meno crash cognitivi nel pomeriggio</span></div>
-          <div class="result-item"><span>Risvegli meno pesanti</span></div>
-          <div class="result-item"><span>Maggiore lucidità decisionale</span></div>
-          <div class="result-item"><span>Meno necessità di "spingere"</span></div>
-          <div class="result-item"><span>Finalmente più margine</span></div>
+        <div class="comparison-wrap">
+          <div class="comparison-block">
+            <div class="comp-col comp-before">
+              <h5>Prima</h5>
+              <div class="comp-item"><i class="comp-icon">✗</i><span>Risvegli pesanti, recupero incompleto</span></div>
+              <div class="comp-item"><i class="comp-icon">✗</i><span>Crash cognitivo nel pomeriggio</span></div>
+              <div class="comp-item"><i class="comp-icon">✗</i><span>Sempre sotto — mai davvero in forma</span></div>
+              <div class="comp-item"><i class="comp-icon">✗</i><span>Spingere continuamente per funzionare</span></div>
+            </div>
+            <div class="comp-col comp-after">
+              <h5>Dopo Assetto Biologico™</h5>
+              <div class="comp-item"><i class="comp-icon">✓</i><span>Svegliarsi con energia reale</span></div>
+              <div class="comp-item"><i class="comp-icon">✓</i><span>Mente stabile e lucidità costante</span></div>
+              <div class="comp-item"><i class="comp-icon">✓</i><span>Presenza mentale senza sforzo</span></div>
+              <div class="comp-item"><i class="comp-icon">✓</i><span>Margine — non solo sopravvivenza</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -972,6 +1115,11 @@
       </div>
     </div>
   </section>
+
+  <!-- DIVIDER ORNAMENT -->
+  <div class="divider-ornament" style="background:var(--navy); padding:3rem 2rem;">
+    <span>✦</span>
+  </div>
 
   <!-- INVESTIMENTO -->
   <section class="pricing-block" id="investimento">

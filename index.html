@@ -3,12 +3,327 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dott. Roberto Boscia — Farmacista · Sonno · Longevità · Burnout</title>
-  <meta name="description" content="Dott. Roberto Boscia, farmacista esperto di sonno, longevità antiaging e recupero dal burnout. Consulenze a Nocera Inferiore (SA).">
+  <title>Assetto Biologico™ — Dott. Roberto Boscia</title>
+  <meta name="description" content="Scopri se oggi stai realmente recuperando… o se il tuo corpo sta semplicemente compensando meglio. Assetto Biologico™ con il Dott. Roberto Boscia.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── LANDING-SPECIFIC ── */
+    .lp-section { padding: 0; }
+
+    /* HERO HOOK */
+    .hero-hook {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-hook::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,146,58,0.10) 0%, transparent 65%);
+      top: -100px; right: -150px;
+      border-radius: 50%; pointer-events: none;
+    }
+    .hook-text {
+      position: relative; z-index: 2;
+      padding: 9rem 4rem 6rem 6rem;
+    }
+    .hook-text .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid rgba(201,146,58,0.4);
+      color: var(--gold-light);
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      padding: .4rem 1rem; border-radius: 2px; margin-bottom: 2rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .hook-text .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%; flex-shrink: 0;
+    }
+    .hook-text h1 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 700; line-height: 1.05;
+      margin-bottom: 1.8rem; letter-spacing: -.01em;
+    }
+    .hook-text h1 em {
+      font-style: italic;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hook-text .hero-sub {
+      font-size: 1.05rem; color: rgba(248,246,242,.65);
+      margin-bottom: 2.8rem; max-width: 460px; line-height: 1.75;
+    }
+    .hero-image-right {
+      height: 100vh; overflow: hidden; position: relative;
+    }
+    .hero-image-right img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      filter: brightness(.7) saturate(.85);
+    }
+    .hero-image-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--navy) 0%, transparent 35%);
+      z-index: 1;
+    }
+    .hero-image-right::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+      background: linear-gradient(to top, var(--navy) 0%, transparent 100%);
+      z-index: 1;
+    }
+
+    /* NARRATIVE SECTION */
+    .narrative {
+      background: var(--navy);
+      padding: 5rem 2rem;
+    }
+    .narrative-inner {
+      max-width: 760px; margin: 0 auto;
+    }
+    .narrative p {
+      font-size: 1.12rem; line-height: 1.9;
+      color: rgba(248,246,242,.8);
+      margin-bottom: 1.2rem;
+    }
+    .narrative p.lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-style: italic;
+      color: var(--off-white); line-height: 1.6;
+      margin-bottom: 1.8rem;
+    }
+    .narrative p.small-line {
+      font-size: 1rem; color: var(--gray); margin-bottom: .5rem;
+    }
+    .narrative .divider {
+      border: none; border-top: 1px solid rgba(201,146,58,.15);
+      margin: 3rem 0;
+    }
+    .quote-block {
+      border-left: 2px solid var(--gold);
+      padding: 1.2rem 2rem;
+      margin: 2.5rem 0;
+      background: rgba(201,146,58,.05);
+      border-radius: 0 6px 6px 0;
+    }
+    .quote-block p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-style: italic;
+      color: var(--off-white); line-height: 1.55;
+      margin-bottom: .5rem !important;
+    }
+    .quote-block cite {
+      font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); font-style: normal;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* SYMPTOMS LIST */
+    .symptoms-list {
+      list-style: none; padding: 0; margin: 1.5rem 0 2rem;
+    }
+    .symptoms-list li {
+      display: flex; align-items: flex-start; gap: .8rem;
+      font-size: 1rem; color: rgba(248,246,242,.8);
+      margin-bottom: .7rem; line-height: 1.5;
+    }
+    .symptoms-list li::before {
+      content: '—'; color: var(--gold); flex-shrink: 0; margin-top: .05rem;
+    }
+
+    /* RESULTS GRID */
+    .results-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: .8rem; margin: 2rem 0;
+    }
+    .result-item {
+      display: flex; align-items: flex-start; gap: .7rem;
+      background: rgba(201,146,58,.06);
+      border: 1px solid rgba(201,146,58,.15);
+      border-radius: 6px; padding: .9rem 1.1rem;
+    }
+    .result-item::before {
+      content: '✓';
+      color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: .05rem;
+    }
+    .result-item span {
+      font-size: .92rem; color: rgba(248,246,242,.85); line-height: 1.4;
+    }
+
+    /* PRODUCT BLOCK */
+    .product-block {
+      background: var(--navy-mid); padding: 5rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .product-block::before {
+      content: '';
+      position: absolute; width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,146,58,.07) 0%, transparent 65%);
+      top: 50%; right: -100px; transform: translateY(-50%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .product-inner {
+      max-width: 760px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 1rem; line-height: 1.05;
+    }
+    .product-not {
+      display: flex; flex-direction: column; gap: .5rem;
+      margin: 1.8rem 0 2.5rem;
+    }
+    .product-not-item {
+      display: flex; align-items: center; gap: .8rem;
+      font-size: 1rem; color: var(--gray);
+    }
+    .product-not-item::before { content: '✗'; color: rgba(201,146,58,.4); font-size: 1.1rem; }
+    .product-not-item.is {
+      color: rgba(248,246,242,.85);
+    }
+    .product-not-item.is::before { content: '→'; color: var(--gold); }
+
+    /* INCLUDES */
+    .includes-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin: 2.5rem 0;
+    }
+    .include-item {
+      background: rgba(9,17,30,.8);
+      border: 1px solid rgba(201,146,58,.15);
+      border-radius: 7px; padding: 1.2rem 1.4rem;
+      transition: border-color .3s;
+    }
+    .include-item:hover { border-color: rgba(201,146,58,.4); }
+    .include-item h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .82rem; font-weight: 700;
+      color: var(--gold-light); letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: .4rem;
+    }
+    .include-item p {
+      font-size: .88rem; color: var(--gray); line-height: 1.5;
+    }
+
+    /* PRICING BLOCK */
+    .pricing-block {
+      background: var(--navy); padding: 5rem 2rem;
+    }
+    .pricing-inner {
+      max-width: 760px; margin: 0 auto;
+    }
+    .value-stack {
+      background: rgba(15,28,48,.9);
+      border: 1px solid rgba(201,146,58,.2);
+      border-radius: 10px; padding: 2.5rem;
+      margin: 2rem 0;
+    }
+    .value-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .65rem 0;
+      border-bottom: 1px solid rgba(107,125,153,.12);
+      font-size: .95rem;
+    }
+    .value-row:last-child { border-bottom: none; }
+    .value-row span:first-child { color: rgba(248,246,242,.75); }
+    .value-row span:last-child {
+      color: var(--gray); font-size: .9rem; text-decoration: line-through;
+    }
+    .value-total {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,146,58,.3);
+    }
+    .value-total-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .8rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gray);
+    }
+    .value-total-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 700;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1;
+    }
+    .value-sub {
+      font-size: .82rem; color: var(--gray); text-align: right; margin-top: .3rem;
+    }
+    .scarcity-note {
+      background: rgba(201,146,58,.07);
+      border: 1px solid rgba(201,146,58,.2);
+      border-radius: 6px; padding: 1rem 1.4rem;
+      font-size: .9rem; color: rgba(248,246,242,.7);
+      line-height: 1.6; margin: 1.5rem 0;
+      text-align: center;
+    }
+    .scarcity-note strong { color: var(--gold-light); }
+
+    /* CTA FINAL */
+    .cta-final {
+      background: var(--navy-mid); padding: 6rem 2rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute; width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(201,146,58,.07) 0%, transparent 60%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .cta-final-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+    .cta-final h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.2rem; line-height: 1.1;
+    }
+    .cta-final p {
+      color: var(--gray); font-size: 1rem;
+      line-height: 1.75; margin-bottom: 2.5rem;
+    }
+    .cta-disclaimer {
+      margin-top: 2rem;
+      font-size: .78rem; color: rgba(107,125,153,.6);
+      line-height: 1.6;
+    }
+
+    /* CONTACT FORM SECTION */
+    .form-section { background: var(--navy); padding: 5rem 2rem; }
+    .form-section-inner {
+      max-width: 560px; margin: 0 auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-hook { grid-template-columns: 1fr; }
+      .hook-text { padding: 9rem 2.5rem 5rem; }
+      .hero-image-right {
+        height: 50vh;
+      }
+      .hero-image-right::before {
+        background: linear-gradient(to bottom, var(--navy) 0%, transparent 40%);
+      }
+      .results-grid { grid-template-columns: 1fr; }
+      .includes-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hook-text { padding: 7rem 1.5rem 4rem; }
+      .narrative-inner, .product-inner, .pricing-inner, .form-section-inner {
+        padding: 0 .5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -17,10 +332,10 @@
     <div class="logo">Dott. <span>Roberto Boscia</span></div>
     <nav>
       <ul id="nav-menu">
-        <li><a href="#servizi">Servizi</a></li>
-        <li><a href="#chi-sono">Chi Sono</a></li>
-        <li><a href="#trasparenza">Prezzi</a></li>
-        <li><a href="#contatti" class="nav-cta">Prenota</a></li>
+        <li><a href="#problema">Il Problema</a></li>
+        <li><a href="#programma">Il Programma</a></li>
+        <li><a href="#investimento">Investimento</a></li>
+        <li><a href="#prenota" class="nav-cta">Prenota</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -28,200 +343,325 @@
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-text">
-      <div class="hero-badge">Farmacista · Sonno · Longevità · Burnout</div>
-      <h1>Ritrova il tuo<br><em>sonno naturale,</em><br>senza sorprese</h1>
-      <p class="hero-sub">Un percorso personalizzato basato su scienza, esperienza clinica e totale trasparenza. Nessun protocollo generico: solo ciò che funziona per te.</p>
+  <!-- HERO HOOK -->
+  <section class="hero-hook" id="home">
+    <div class="hook-text">
+      <div class="hero-badge">Dott. Roberto Boscia · Farmacista</div>
+      <h1>Hai presente quella sensazione verso<br><em>metà pomeriggio?</em></h1>
+      <p class="hero-sub">Sei davanti allo schermo. Le parole scorrono. Ma tu fai più fatica del solito a stargli dietro. Non è un crollo improvviso. È qualcosa di più sottile.</p>
       <div class="hero-actions">
-        <a href="#contatti" class="btn-primary">Prenota una consulenza</a>
-        <a href="#servizi" class="btn-ghost">Scopri i servizi</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num" data-count="15">0</div>
-          <div class="stat-label">Anni di esperienza</div>
-        </div>
-        <div>
-          <div class="stat-num" data-count="500">0</div>
-          <div class="stat-label">Pazienti seguiti</div>
-        </div>
-        <div>
-          <div class="stat-num" data-count="3">0</div>
-          <div class="stat-label">Specializzazioni</div>
-        </div>
+        <a href="#prenota" class="btn-primary">Prenota la valutazione</a>
+        <a href="#problema" class="btn-ghost">Continua a leggere</a>
       </div>
     </div>
-    <div class="hero-image">
-      <img src="img/hero-1.jpg" alt="Persona che si sveglia riposata" />
+    <div class="hero-image-right">
+      <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia" />
     </div>
   </section>
 
-  <!-- SERVIZI -->
-  <section id="servizi">
-    <div class="section-inner">
-      <div class="services-header">
-        <div>
-          <p class="section-eyebrow">Cosa faccio per te</p>
-          <h2 class="section-heading">I miei<br>servizi</h2>
-        </div>
-        <p class="section-lead">Tre aree di intervento, un unico obiettivo: restituirti energia, chiarezza mentale e qualità di vita.</p>
+  <!-- NARRATIVA: IL PROBLEMA -->
+  <section class="narrative" id="problema">
+    <div class="narrative-inner">
+
+      <p>Rileggi una mail due volte.<br>
+      Ti sfugge un dettaglio che normalmente avresti colto subito.<br>
+      Apri una finestra. Poi un'altra. Poi ti rendi conto che stai lavorando… ma senza quella lucidità che avevi prima.</p>
+
+      <p class="small-line">Non è un crollo improvviso.</p>
+      <p class="small-line">È qualcosa di più sottile.</p>
+
+      <hr class="divider" />
+
+      <p>Perché continui a funzionare.<br>
+      Continui a lavorare.<br>
+      Continui a reggere ritmi alti.</p>
+
+      <p>Eppure senti che tutto ti costa più energia del necessario.</p>
+
+      <p class="small-line">La sera dormi anche abbastanza.</p>
+      <p class="small-line">Mangi decentemente.</p>
+      <p class="small-line">Ti alleni.</p>
+      <p class="small-line">Cerchi di fare le cose "come si deve".</p>
+
+      <p>Ma al mattino ti svegli già senza vero margine.<br>
+      Come se la notte non fosse bastata a ricaricare davvero.</p>
+
+      <p>E allora inizi a compensare.<br>
+      Più concentrazione. Più disciplina. Più stimoli per restare sul pezzo.</p>
+
+      <p>Vai avanti.<br>
+      Ma dentro senti che qualcosa è cambiato.</p>
+
+      <hr class="divider" />
+
+      <p>E la parte più frustrante è questa:</p>
+      <p><strong style="color:var(--off-white)">all'esterno sembri perfettamente operativo.</strong></p>
+
+      <p class="small-line" style="color:var(--gray)">Gli esami magari sono normali.</p>
+      <p class="small-line" style="color:var(--gray)">Le persone intorno a te pensano che stai bene.</p>
+      <p class="small-line" style="color:var(--gray)">Tu stesso continui a dirti:</p>
+
+      <p style="color:var(--gray); padding-left:1.5rem; border-left: 2px solid rgba(107,125,153,.2); margin: 1.2rem 0;">"Forse è solo stress."<br>"Forse è l'età."<br>"Forse devo solo rallentare un po'."</p>
+
+      <p>Ma c'è un motivo se quella spiegazione non ti convince fino in fondo.</p>
+
+      <p>Perché tu non ti senti "malato".<br>
+      Ti senti… <strong style="color:var(--off-white)">meno te stesso.</strong></p>
+
+      <hr class="divider" />
+
+      <div class="quote-block">
+        <p>"Continuo a funzionare.<br>Ma ho la sensazione di essere sempre un po' sotto."</p>
+        <cite>Imprenditore, 49 anni — paziente di Roberto Boscia</cite>
       </div>
-      <div class="services-grid">
 
-        <div class="service-card featured">
-          <span class="service-icon">🌙</span>
-          <h3>Consulenza del Sonno</h3>
-          <p>Analisi personalizzata delle cause del tuo insonnia o sonno non ristoratore. Protocolli integrati di igiene del sonno, supplementazione mirata e supporto fitoterapico — senza farmaci di dipendenza.</p>
-          <div class="service-tag">Scopri →</div>
+      <p>E sai qual è il problema?<br>
+      Che molte persone ad alte prestazioni vivono così per anni senza rendersene conto.</p>
+
+      <p>Non crollano.<br>
+      <strong style="color:var(--off-white)">Compensano.</strong><br>
+      È diverso.</p>
+
+      <hr class="divider" />
+
+      <p>Il corpo è incredibilmente bravo ad adattarsi.<br>
+      Si adatta alle giornate lunghe. Alla pressione continua. Alle decisioni costanti. Al fatto di essere sempre reperibili. Perfino al dormire male.</p>
+
+      <p>E all'inizio sembra quasi un vantaggio.<br>
+      Ti senti resistente. Operativo. Sempre acceso.</p>
+
+      <p>Finché quel ritmo inizia lentamente a presentare conseguenze.</p>
+
+      <ul class="symptoms-list">
+        <li>Ti svegli già stanco. Il recupero non è più quello di prima.</li>
+        <li>La testa si appanna più facilmente.</li>
+        <li>Hai meno pazienza. Meno margine mentale.</li>
+        <li>Per restare allo stesso livello… devi spingerti sempre un po' di più.</li>
+      </ul>
+
+      <p>Il punto è che questa condizione raramente compare all'improvviso.<br>
+      Si costruisce lentamente.<br>
+      Ed è proprio per questo che spesso passa inosservata.</p>
+
+      <hr class="divider" />
+
+      <p class="lead">Negli ultimi anni ho iniziato a notare un pattern molto preciso.</p>
+
+      <p>Le persone che arrivavano da me non erano "malate". Anzi.<br>
+      Molte avevano esami perfetti. Facevano sport. Dormivano anche 7 ore.</p>
+
+      <p>Eppure raccontavano quasi tutte le stesse cose:</p>
+
+      <ul class="symptoms-list">
+        <li>"Mi sveglio già stanco."</li>
+        <li>"Nel pomeriggio sento un calo netto."</li>
+        <li>"La testa non recupera come prima."</li>
+        <li>"Sento di dovermi spingere continuamente."</li>
+      </ul>
+
+      <p>La parte interessante è che, quando inizi a osservare insieme recupero, qualità del sonno, risposta allo stress e segnali del sistema nervoso… emergono pattern che nei normali check-up restano invisibili.</p>
+
+      <p>Non stiamo parlando di malattie.<br>
+      Stiamo parlando di capire come il tuo corpo sta realmente gestendo energia, recupero e pressione.</p>
+
+      <p>Perché puoi continuare a funzionare molto bene… anche mentre il recupero peggiora lentamente.<br>
+      Ed è qui che molte persone iniziano a vivere in compensazione senza accorgersene.</p>
+
+      <hr class="divider" />
+
+      <!-- CASE STUDY -->
+      <div style="background:rgba(15,28,48,.7); border:1px solid rgba(201,146,58,.15); border-radius:10px; padding:2rem 2.2rem; margin:2rem 0;">
+        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Caso reale</p>
+        <p><strong style="color:var(--off-white)">Andrea, 47 anni. Manager. Esami perfetti.</strong></p>
+        <p>Eppure ogni giorno aveva lo stesso schema: verso le 16 sentiva il cervello rallentare. Sonno leggero. Risvegli pesanti. Bisogno continuo di "riaccendersi".</p>
+        <p>Pensava fosse normale. Pensava fosse il prezzo inevitabile del suo lavoro.</p>
+        <p>Quando abbiamo iniziato ad analizzare insieme il suo recupero, la qualità del sonno, la variabilità dello stress e il modo in cui il suo corpo stava reagendo alla pressione continua… ha visto per la prima volta il quadro completo.</p>
+        <div class="quote-block" style="margin:1.5rem 0 0;">
+          <p>"Adesso capisco perché mi sento così."</p>
+          <cite>Andrea, 47 anni</cite>
         </div>
+      </div>
 
-        <div class="service-card">
-          <span class="service-icon">⚗️</span>
-          <h3>Protocolli Longevità Antiaging</h3>
-          <p>Percorsi evidence-based per rallentare l'invecchiamento cellulare: analisi del microbioma, gestione infiammazione cronica e nutraceutici di ultima generazione.</p>
-          <div class="service-tag">Scopri →</div>
+      <p>Ed è proprio qui che molte persone iniziano a notare i primi cambiamenti concreti:</p>
+
+      <div class="results-grid">
+        <div class="result-item"><span>Mente più stabile durante la giornata</span></div>
+        <div class="result-item"><span>Meno crash cognitivi nel pomeriggio</span></div>
+        <div class="result-item"><span>Risvegli meno pesanti</span></div>
+        <div class="result-item"><span>Maggiore lucidità decisionale</span></div>
+        <div class="result-item"><span>Meno necessità di "spingere" continuamente</span></div>
+        <div class="result-item"><span>Sensazione di avere finalmente più margine</span></div>
+      </div>
+
+      <p>Ed è lì che cambia tutto.<br>
+      Perché smetti di interpretare a sensazione.<br>
+      Inizi finalmente a vedere dove stai consumando più energia del necessario… e cosa sta impedendo al corpo di recuperare davvero.</p>
+
+      <hr class="divider" />
+
+      <p>La maggior parte delle persone prova a risolvere questa situazione nello stesso modo:<br>
+      più disciplina. Più integratori. Più controllo. Più forza mentale.</p>
+
+      <p>Ma spesso il problema non è che ti manca volontà.<br>
+      È che stai chiedendo al corpo di performare continuamente… senza creare più vero recupero.</p>
+
+      <p>E quando questa condizione va avanti per mesi o anni, inizi lentamente ad abituarti.<br>
+      Ed è questa la parte più pericolosa.</p>
+
+      <ul class="symptoms-list">
+        <li>Ti abitui a svegliarti già stanco.</li>
+        <li>Ti abitui ad avere meno lucidità.</li>
+        <li>Ti abitui a vivere con meno margine.</li>
+        <li>Ti abitui a sentirti sempre "un po' sotto".</li>
+      </ul>
+
+      <p>Finché quella sensazione diventa il tuo nuovo normale.</p>
+
+    </div>
+  </section>
+
+  <!-- IL PROGRAMMA -->
+  <section class="product-block" id="programma">
+    <div class="product-inner">
+      <p class="section-eyebrow" style="margin-bottom:1rem;">Ed è esattamente qui che nasce</p>
+      <div class="product-name">Assetto Biologico™</div>
+
+      <div class="product-not">
+        <div class="product-not-item">Non è un trattamento.</div>
+        <div class="product-not-item">Non è motivazione.</div>
+        <div class="product-not-item">Non è l'ennesimo protocollo da biohacking.</div>
+        <div class="product-not-item is">È una lettura integrata del modo in cui il tuo corpo sta recuperando, compensando e consumando energia.</div>
+      </div>
+
+      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:2rem;">Per farlo utilizziamo strumenti precisi. Ma il punto non sono i test. Il punto è l'interpretazione. Perché avere dati senza una lettura chiara spesso crea solo altra confusione. <strong style="color:var(--off-white)">Il lavoro vero è collegare i punti.</strong></p>
+
+      <p style="color:rgba(248,246,242,.75); line-height:1.8; margin-bottom:1.5rem;">Capire: dove il sistema sta compensando troppo — dove stai consumando energie inutilmente — cosa sta impattando davvero lucidità, recupero e performance — e soprattutto da dove conviene iniziare.</p>
+
+      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:2.5rem;">Per questo il percorso è strutturato in 3 consulenze. Nella prima raccogliamo dati, analizziamo il quadro completo e definiamo le priorità reali. Nelle successive monitoriamo come il corpo sta reagendo e correggiamo il percorso in base ai cambiamenti osservati.</p>
+
+      <p class="section-eyebrow" style="margin-bottom:1.5rem;">Cosa include</p>
+
+      <div class="includes-grid">
+        <div class="include-item">
+          <h4>Performance Recovery Assessment™</h4>
+          <p>Prima consulenza con raccolta dati completa e analisi composizione corporea e stato cellulare.</p>
         </div>
-
-        <div class="service-card">
-          <span class="service-icon">🔋</span>
-          <h3>Recupero dal Burnout</h3>
-          <p>Programma strutturato per professionisti in esaurimento: valutazione dei biomarcatori dello stress, reset surrenalico e ritmo circadiano.</p>
-          <div class="service-tag">Scopri →</div>
+        <div class="include-item">
+          <h4>Mappa di Compensazione Biologica™</h4>
+          <p>Valutazione del recupero, variabilità dello stress e analisi dei ritmi biologici.</p>
         </div>
+        <div class="include-item">
+          <h4>Performance Recovery Report™</h4>
+          <p>Interpretazione integrata dei pattern di recupero, stress e compensazione. Questionari avanzati sui segnali di compensazione cronica.</p>
+        </div>
+        <div class="include-item">
+          <h4>Roadmap Operativa Personalizzata</h4>
+          <p>Piano iniziale di intervento con priorità operative chiare e concrete.</p>
+        </div>
+        <div class="include-item" style="grid-column: 1 / -1;">
+          <h4>2 Sessioni Strategiche di Follow-up e Ottimizzazione</h4>
+          <p>Monitoraggio dei progressi e correzione del percorso in base ai cambiamenti osservati. Assetto Biologico™ viene seguito personalmente: ogni mese vengono aperte massimo 6 nuove valutazioni.</p>
+        </div>
+      </div>
 
+      <div class="quote-block" style="margin-top:2.5rem;">
+        <p>"La cosa che molte persone notano per prima non è nemmeno 'più energia'. È altro. Risvegli meno pesanti. Mente più stabile. Meno irritabilità. Più presenza mentale durante la giornata.<br><br>La sensazione di non dover più lottare continuamente contro se stessi per funzionare bene."</p>
+        <cite>Dott. Roberto Boscia</cite>
+      </div>
+
+      <hr class="divider" />
+
+      <p style="color:rgba(248,246,242,.8); line-height:1.85;">Ora, è importante chiarire una cosa. Assetto Biologico™ non serve a diagnosticare malattie. Non sostituisce esami clinici. E non promette energia infinita o trasformazioni miracolose.</p>
+      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:0;">Serve a una cosa molto più concreta: <strong style="color:var(--off-white)">capire come stai funzionando adesso… prima che certe condizioni diventino semplicemente la tua normalità.</strong></p>
+
+    </div>
+  </section>
+
+  <!-- INVESTIMENTO -->
+  <section class="pricing-block" id="investimento">
+    <div class="pricing-inner">
+      <p class="section-eyebrow" style="margin-bottom:.8rem;">Trasparenza totale</p>
+      <h2 class="section-heading gold-text">Nessuna Sorpresa</h2>
+      <p style="color:var(--gray); line-height:1.8; margin-bottom:2rem; font-size:.97rem;">Questo percorso non è pensato per chi vuole semplicemente "curiosare". È per persone che hanno iniziato a percepire una differenza reale nel proprio livello di lucidità, recupero e presenza… e vogliono capire perché.</p>
+
+      <div class="value-stack">
+        <div class="value-row">
+          <span>Performance Recovery Assessment™</span>
+          <span>€350</span>
+        </div>
+        <div class="value-row">
+          <span>Mappa di Compensazione Biologica™</span>
+          <span>€500</span>
+        </div>
+        <div class="value-row">
+          <span>Sessione Strategica 1:1</span>
+          <span>€300</span>
+        </div>
+        <div class="value-row">
+          <span>Roadmap Operativa Personalizzata</span>
+          <span>€250</span>
+        </div>
+        <div class="value-row">
+          <span>2 Follow-up di Ottimizzazione</span>
+          <span>€400</span>
+        </div>
+        <div class="value-total">
+          <div>
+            <div class="value-total-label">Investimento iniziale</div>
+            <div style="font-size:.78rem; color:rgba(107,125,153,.5); margin-top:.2rem;">Valore totale: €1.800+</div>
+          </div>
+          <div>
+            <div class="value-total-amount">€497</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scarcity-note">
+        Assetto Biologico™ viene seguito <strong>personalmente</strong>.<br>
+        Ogni mese vengono aperte <strong>massimo 6 nuove valutazioni</strong>, così da mantenere il lavoro realmente approfondito e personalizzato.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA FINALE -->
+  <section class="cta-final" id="prenota">
+    <div class="cta-final-inner">
+      <p class="section-eyebrow">Sei pronto a vedere il quadro completo?</p>
+      <h2 class="section-heading">Prenota la tua valutazione<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Assetto Biologico™</em></h2>
+      <p>Se vuoi vedere in modo chiaro come il tuo corpo sta gestendo recupero, pressione ed energia oggi — scopri se stai realmente recuperando… o se il tuo corpo sta semplicemente compensando meglio.</p>
+      <a href="#form-contatto" class="btn-primary" style="font-size:1rem; padding:1.1rem 2.8rem;">Prenota ora la tua valutazione →</a>
+      <div class="cta-disclaimer">
+        Assetto Biologico™ non sostituisce esami clinici e non diagnostica malattie.<br>
+        Via Attilio Barbarulo 60, Nocera Inferiore (SA) · info@robertoboscia.it
       </div>
     </div>
   </section>
 
-  <!-- CHI SONO -->
-  <section id="chi-sono">
-    <div class="section-inner">
-      <div class="about-layout">
-        <div class="about-photo-wrap">
-          <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia, farmacista" />
-          <div class="photo-frame"></div>
-          <div class="photo-badge">15+ anni di esperienza</div>
-        </div>
-        <div class="about-text">
-          <p class="section-eyebrow">Chi sono</p>
-          <h2 class="section-heading">Dott. Roberto Boscia</h2>
-          <p>Sono un farmacista con oltre 15 anni di esperienza clinica e un'ossessione sana per la medicina integrativa. Ho dedicato la mia carriera a capire perché così tante persone soffrono di sonno disturbato, invecchiano prima del dovuto o si sentono perennemente a corto di energie.</p>
-          <p>Dopo anni di lavoro in farmacia ho frequentato corsi avanzati di psicofarmacologia del sonno, nutraceutica antiaging e medicina funzionale. Oggi offro consulenze private che uniscono il rigore della farmacologia con l'attenzione personalizzata che il sistema sanitario spesso non riesce a garantire.</p>
-          <p>Con me non riceverai mai un protocollo copiato da internet. Ogni percorso nasce da un colloquio approfondito e, dove necessario, dall'analisi di esami di laboratorio.</p>
-          <div class="credentials">
-            <span class="credential-tag">Laurea in Farmacia</span>
-            <span class="credential-tag">Psicofarmacologia del Sonno</span>
-            <span class="credential-tag">Medicina Funzionale</span>
-            <span class="credential-tag">Nutraceutica Antiaging</span>
-            <span class="credential-tag">Ordine Farmacisti SA</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- FORM -->
+  <section class="form-section" id="form-contatto">
+    <div class="form-section-inner">
+      <p class="section-eyebrow" style="text-align:center; margin-bottom:.6rem;">Contattami</p>
+      <h2 class="section-heading" style="text-align:center; margin-bottom:.8rem;">Inizia da qui</h2>
+      <p style="text-align:center; color:var(--gray); font-size:.95rem; margin-bottom:2rem; line-height:1.7;">Compila il modulo. Rispondo entro 24 ore nei giorni feriali. La prima chiamata conoscitiva (15 min) è gratuita.</p>
 
-  <!-- PREZZI -->
-  <section id="trasparenza">
-    <div class="section-inner">
-      <div class="pricing-intro">
-        <p class="section-eyebrow">Trasparenza totale</p>
-        <h2 class="section-heading gold-text">Nessuna Sorpresa</h2>
-        <p class="section-lead">I prezzi sono chiari fin dal primo contatto. Nessun costo nascosto, nessuna pressione.</p>
-      </div>
-      <div class="pricing-grid">
-
-        <div class="pricing-card">
-          <h3>Prima Consulenza</h3>
-          <div class="pricing-price">€80</div>
-          <p>Colloquio conoscitivo di 60 minuti. Analisi della situazione attuale, identificazione delle priorità e indicazioni iniziali.</p>
-        </div>
-
-        <div class="pricing-card featured">
-          <div class="pricing-chip">Più richiesto</div>
-          <h3>Percorso Completo</h3>
-          <div class="pricing-price">€220</div>
-          <p>Prima consulenza + 2 follow-up mensili. Protocollo personalizzato scritto, monitoraggio e aggiustamenti in corso d'opera.</p>
-        </div>
-
-        <div class="pricing-card">
-          <h3>Follow-up</h3>
-          <div class="pricing-price">€50</div>
-          <p>Sessione di monitoraggio da 30 minuti per verificare i progressi e ottimizzare il protocollo.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTATTI -->
-  <section id="contatti">
-    <div class="section-inner">
-      <div class="contact-layout">
-        <div class="contact-info">
-          <p class="section-eyebrow">Parliamo</p>
-          <h2 class="section-heading">Prenota la tua<br>consulenza</h2>
-          <p>Compila il modulo o contattami direttamente. Rispondo entro 24 ore nei giorni feriali. La prima chiamata conoscitiva (15 min) è gratuita.</p>
-
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div class="contact-item-body">
-              <strong>Indirizzo</strong>
-              <span>Via Attilio Barbarulo 60<br>Nocera Inferiore (SA)</span>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <div class="contact-item-body">
-              <strong>Telefono</strong>
-              <span><a href="tel:+39000000000">+39 000 000 0000</a></span>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div class="contact-item-body">
-              <strong>Email</strong>
-              <span>info@robertoboscia.it</span>
-            </div>
-          </div>
-
-          <div class="social-row">
-            <a href="#" class="social-btn">📷 Instagram</a>
-            <a href="#" class="social-btn">👤 Facebook</a>
-            <a href="#" class="social-btn">💼 LinkedIn</a>
-          </div>
-        </div>
-
-        <form class="contact-form" id="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Nome</label>
-              <input type="text" id="name" name="name" placeholder="Mario Rossi" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="mario@email.com" required />
-            </div>
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" placeholder="Mario Rossi" required />
           </div>
           <div class="form-group">
-            <label for="service">Servizio di interesse</label>
-            <select id="service" name="service">
-              <option value="">Scegli un servizio…</option>
-              <option value="sonno">Consulenza del Sonno</option>
-              <option value="longevita">Protocolli Longevità Antiaging</option>
-              <option value="burnout">Recupero dal Burnout</option>
-            </select>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="mario@email.com" required />
           </div>
-          <div class="form-group">
-            <label for="message">Messaggio</label>
-            <textarea id="message" name="message" placeholder="Descrivi brevemente la tua situazione…"></textarea>
-          </div>
-          <button type="submit" class="form-submit">Prenota Consulenza</button>
-        </form>
-      </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Descrivi brevemente la tua situazione</label>
+          <textarea id="message" name="message" placeholder="Es: mi sveglio stanco, calo di energia nel pomeriggio, difficoltà di concentrazione…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Prenota la valutazione Assetto Biologico™</button>
+      </form>
     </div>
   </section>
 
@@ -230,7 +670,7 @@
     <div class="footer-inner">
       <div>
         <div class="footer-brand">Dott. <span>Roberto Boscia</span></div>
-        <div style="font-size:0.76rem;color:rgba(107,125,153,0.5);margin-top:0.3rem;font-family:'Plus Jakarta Sans',sans-serif">Farmacista · Nocera Inferiore (SA)</div>
+        <div style="font-size:.76rem; color:rgba(107,125,153,.5); margin-top:.3rem; font-family:'Plus Jakarta Sans',sans-serif;">Farmacista · Nocera Inferiore (SA)</div>
       </div>
       <div class="footer-meta">
         <div>P.IVA: — · Ordine Farmacisti SA n. —</div>
@@ -239,7 +679,6 @@
     </div>
   </footer>
 
-  <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>

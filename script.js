@@ -73,6 +73,32 @@ gsap.from('.value-row', {
 scrollIn('.cta-final-inner', { y: 35 });
 scrollIn('.form-section-inner', { y: 30 });
 
+// Stats counters
+document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  gsap.to({ val: 0 }, {
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    val: target, duration: 1.8, ease: 'power2.out',
+    onUpdate() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
+  });
+});
+
+// Pillar bars
+document.querySelectorAll('.pillar-bar-fill').forEach(bar => {
+  const w = bar.dataset.width + '%';
+  gsap.to(bar, {
+    scrollTrigger: { trigger: bar, start: 'top 88%', once: true },
+    width: w, duration: 1.2, ease: 'power2.out', delay: 0.2
+  });
+});
+
+// Process steps
+gsap.from('.process-step', {
+  scrollTrigger: { trigger: '.process-steps', start: 'top 80%', once: true },
+  opacity: 0, y: 40, duration: 0.7, stagger: 0.2, ease: 'power2.out'
+});
+
 // Contact form
 const form = document.getElementById('contact-form');
 if (form) {

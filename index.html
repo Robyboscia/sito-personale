@@ -461,6 +461,160 @@
       line-height: 1.6;
     }
 
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(201,146,58,.1);
+      border-bottom: 1px solid rgba(201,146,58,.1);
+      padding: 3rem 2rem;
+    }
+    .stats-bar-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; text-align: center;
+    }
+    .stat-item { position: relative; }
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 60px;
+      background: rgba(201,146,58,.2);
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 700; line-height: 1;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .4rem;
+    }
+    .stat-label {
+      font-size: .75rem; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--gray);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* DIAGRAM — 4 pillars */
+    .diagram-section {
+      padding: 4rem 2rem;
+      background: var(--navy);
+    }
+    .diagram-inner {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .pillars-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin: 2.5rem 0;
+      position: relative;
+    }
+    .pillars-grid::before {
+      content: 'ASSETTO\ABIOLÖGICO™';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .65rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); text-align: center;
+      white-space: pre; line-height: 1.4;
+      pointer-events: none; z-index: 2;
+    }
+    .pillar {
+      background: rgba(15,28,48,.9);
+      border: 1px solid rgba(201,146,58,.18);
+      border-radius: 10px; padding: 1.8rem 1.5rem;
+      text-align: left; transition: border-color .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .pillar:hover { border-color: rgba(201,146,58,.5); transform: translateY(-3px); }
+    .pillar::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--btn-gradient);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .pillar:hover::before { transform: scaleX(1); }
+    .pillar-icon {
+      font-size: 1.6rem; margin-bottom: .8rem; display: block;
+    }
+    .pillar h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--off-white); margin-bottom: .5rem;
+    }
+    .pillar p {
+      font-size: .82rem; color: var(--gray); line-height: 1.6;
+    }
+    .pillar-bar {
+      height: 3px; background: rgba(107,125,153,.15);
+      border-radius: 2px; margin-top: 1rem; overflow: hidden;
+    }
+    .pillar-bar-fill {
+      height: 100%; border-radius: 2px;
+      background: var(--btn-gradient);
+      width: 0; transition: width 1.2s ease;
+    }
+
+    /* PROCESS FLOW */
+    .process-section {
+      background: var(--navy-mid);
+      padding: 5rem 2rem;
+    }
+    .process-inner {
+      max-width: 900px; margin: 0 auto;
+    }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; margin-top: 3rem; position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute; top: 38px; left: 16.5%; right: 16.5%;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold) 0%, rgba(201,146,58,.3) 50%, var(--gold) 100%);
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center; padding: 0 1.5rem; position: relative; z-index: 1;
+    }
+    .process-num {
+      width: 76px; height: 76px;
+      border: 1px solid rgba(201,146,58,.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      background: var(--navy-mid);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 700;
+      background: var(--btn-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+    .process-num-wrap {
+      width: 76px; height: 76px;
+      border: 1px solid rgba(201,146,58,.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      background: var(--navy-mid);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .process-step:hover .process-num-wrap {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(201,146,58,.15);
+    }
+    .process-step h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--off-white); margin-bottom: .6rem;
+    }
+    .process-step p {
+      font-size: .85rem; color: var(--gray); line-height: 1.65;
+    }
+
     /* CONTACT FORM SECTION */
     .form-section { background: var(--navy); padding: 5rem 2rem; }
     .form-section-inner {
@@ -521,6 +675,24 @@
       <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia" />
     </div>
   </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item">
+        <div class="stat-number" data-target="15" data-suffix="+">0</div>
+        <div class="stat-label">Anni di esperienza clinica</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="500" data-suffix="+">0</div>
+        <div class="stat-label">Persone seguite</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="6" data-suffix="">0</div>
+        <div class="stat-label">Valutazioni al mese (max)</div>
+      </div>
+    </div>
+  </div>
 
   <!-- NARRATIVA: IL PROBLEMA -->
   <div id="problema">
@@ -697,6 +869,40 @@
 
       <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:2.5rem;">Per questo il percorso è strutturato in 3 consulenze. Nella prima raccogliamo dati, analizziamo il quadro completo e definiamo le priorità reali. Nelle successive monitoriamo come il corpo sta reagendo e correggiamo il percorso in base ai cambiamenti osservati.</p>
 
+      <!-- DIAGRAMMA 4 PILASTRI -->
+      <div class="diagram-section" style="padding:3rem 0 2rem; background:transparent;">
+        <div class="diagram-inner" style="text-align:left;">
+          <p class="section-eyebrow" style="margin-bottom:.6rem;">Le 4 aree di analisi</p>
+          <p style="color:var(--gray); font-size:.9rem; margin-bottom:2rem;">Ogni area viene osservata in modo integrato, non separato.</p>
+          <div class="pillars-grid">
+            <div class="pillar">
+              <span class="pillar-icon">🌙</span>
+              <h4>Qualità del Sonno</h4>
+              <p>Analisi dei ritmi biologici, architettura del sonno e pattern di recupero notturno.</p>
+              <div class="pillar-bar"><div class="pillar-bar-fill" data-width="90"></div></div>
+            </div>
+            <div class="pillar">
+              <span class="pillar-icon">⚡</span>
+              <h4>Variabilità dello Stress</h4>
+              <p>Valutazione della risposta al carico cronico e della capacità di recupero del sistema nervoso.</p>
+              <div class="pillar-bar"><div class="pillar-bar-fill" data-width="85"></div></div>
+            </div>
+            <div class="pillar">
+              <span class="pillar-icon">🔬</span>
+              <h4>Composizione Cellulare</h4>
+              <p>Stato delle membrane cellulari, idratazione e bioimpedenzometria avanzata.</p>
+              <div class="pillar-bar"><div class="pillar-bar-fill" data-width="80"></div></div>
+            </div>
+            <div class="pillar">
+              <span class="pillar-icon">🧠</span>
+              <h4>Compensazione Cronica</h4>
+              <p>Questionari specifici per identificare i pattern di compensazione che i normali check-up non vedono.</p>
+              <div class="pillar-bar"><div class="pillar-bar-fill" data-width="95"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <p class="section-eyebrow" style="margin-bottom:1.5rem;">Cosa include</p>
 
       <div class="includes-grid">
@@ -732,6 +938,38 @@
       <p style="color:rgba(248,246,242,.8); line-height:1.85;">Ora, è importante chiarire una cosa. Assetto Biologico™ non serve a diagnosticare malattie. Non sostituisce esami clinici. E non promette energia infinita o trasformazioni miracolose.</p>
       <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:0;">Serve a una cosa molto più concreta: <strong style="color:var(--off-white)">capire come stai funzionando adesso… prima che certe condizioni diventino semplicemente la tua normalità.</strong></p>
 
+    </div>
+  </section>
+
+  <!-- PROCESS FLOW -->
+  <section class="process-section">
+    <div class="process-inner">
+      <p class="section-eyebrow" style="text-align:center; margin-bottom:.6rem;">Come funziona</p>
+      <h2 class="section-heading" style="text-align:center; margin-bottom:.5rem;">Il percorso in 3 consulenze</h2>
+      <p style="text-align:center; color:var(--gray); font-size:.95rem; margin-bottom:0;">Nessun protocollo fisso. Ogni passo dipende da quello precedente.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-num-wrap">
+            <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; background:var(--btn-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">1</span>
+          </div>
+          <h4>Valutazione Completa</h4>
+          <p>Raccolta dati, analisi composizione corporea, questionari avanzati. Otteniamo il quadro completo del tuo stato biologico attuale.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num-wrap">
+            <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; background:var(--btn-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">2</span>
+          </div>
+          <h4>Performance Recovery Report™</h4>
+          <p>Interpretazione integrata dei pattern. Capisci dove stai consumando energia inutilmente e da dove conviene iniziare.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num-wrap">
+            <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; background:var(--btn-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">3</span>
+          </div>
+          <h4>2 Follow-up di Ottimizzazione</h4>
+          <p>Monitoriamo come il corpo sta reagendo. Correggiamo il percorso in base ai cambiamenti reali, non a protocolli teorici.</p>
+        </div>
+      </div>
     </div>
   </section>
 

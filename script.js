@@ -73,6 +73,18 @@ gsap.from('.value-row', {
 scrollIn('.cta-final-inner', { y: 35 });
 scrollIn('.form-section-inner', { y: 30 });
 
+// Self-check cards
+gsap.from('.check-card', {
+  scrollTrigger: { trigger: '.check-grid', start: 'top 85%', once: true },
+  opacity: 0, y: 25, duration: 0.5, stagger: 0.08, ease: 'power2.out'
+});
+
+// Comparison block
+gsap.from('.comp-col', {
+  scrollTrigger: { trigger: '.comparison-block', start: 'top 85%', once: true },
+  opacity: 0, y: 20, duration: 0.6, stagger: 0.2, ease: 'power2.out'
+});
+
 // Stats counters
 document.querySelectorAll('.stat-number[data-target]').forEach(el => {
   const target = parseInt(el.dataset.target);

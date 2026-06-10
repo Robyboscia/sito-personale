@@ -704,6 +704,92 @@
       opacity: .35;
     }
 
+    /* ACCORDION FAQ */
+    .faq-section { background: var(--navy-mid); padding: 5rem 2rem; }
+    .faq-inner { max-width: 720px; margin: 0 auto; }
+    details.faq-item {
+      border-bottom: 1px solid rgba(201,146,58,.12);
+      padding: 1.5rem 0;
+    }
+    details.faq-item:first-of-type { border-top: 1px solid rgba(201,146,58,.12); }
+    summary.faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; list-style: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--off-white); line-height: 1.3; gap: 1rem;
+    }
+    summary.faq-q::-webkit-details-marker { display: none; }
+    .faq-arrow {
+      width: 24px; height: 24px; flex-shrink: 0;
+      border: 1px solid rgba(201,146,58,.4); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: .7rem; font-style: normal;
+      transition: transform .3s, border-color .3s;
+    }
+    details[open] > summary .faq-arrow { transform: rotate(180deg); border-color: var(--gold); }
+    .faq-answer {
+      padding: 1.2rem 0 .5rem;
+      font-size: .97rem; color: rgba(248,246,242,.72);
+      line-height: 1.85;
+    }
+    .faq-answer p { margin-bottom: .8rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+
+    /* REVEAL BULLETS */
+    .includes-extra {
+      overflow: hidden; max-height: 0;
+      transition: max-height .5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .includes-extra.expanded { max-height: 800px; }
+    .btn-reveal {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: none; border: 1px solid rgba(201,146,58,.3);
+      color: var(--gold-light); font-size: .78rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: .75rem 1.5rem; border-radius: 3px; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-top: 1rem; transition: border-color .25s, color .25s;
+    }
+    .btn-reveal:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-reveal-arrow { display: inline-block; transition: transform .3s; font-style: normal; }
+    .btn-reveal.open .btn-reveal-arrow { transform: rotate(180deg); }
+
+    /* NARRATIVE SEPARATOR */
+    .narr-separator {
+      text-align: center; padding: 2.2rem 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2vw, 1.2rem); font-style: italic;
+      color: var(--gold); letter-spacing: .02em; line-height: 1.4;
+    }
+    .narr-separator.bg-dark { background: #060C16; }
+    .narr-separator.bg-navy { background: var(--navy); }
+    .narr-separator.bg-mid  { background: var(--navy-mid); }
+
+    /* INLINE PULL QUOTE (dentro blocco narrativo) */
+    .inline-pull {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+      font-style: italic; font-weight: 600;
+      color: var(--off-white); line-height: 1.25;
+      border-left: 2px solid var(--gold);
+      padding: .9rem 0 .9rem 1.8rem;
+      margin: 2.5rem 0 2rem;
+    }
+    .inline-pull em {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* NARR-BLOCK SECTION TITLES */
+    .narr-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
+      color: var(--off-white); line-height: 1.2;
+      margin-bottom: 1.6rem; letter-spacing: -.01em;
+    }
+
     /* CONTACT FORM SECTION */
     .form-section { background: var(--navy); padding: 5rem 2rem; }
     .form-section-inner {
@@ -833,12 +919,18 @@
     </div>
   </section>
 
+  <!-- SEPARATORE NARRATIVO -->
+  <div class="narr-separator bg-navy">Ma c'è una cosa che nessuno ti ha ancora detto chiaramente…</div>
+
   <!-- NARRATIVA: IL PROBLEMA -->
   <div id="problema">
 
     <!-- BLOCCO 1: la sensazione -->
-    <div class="narr-block bg-navy">
+    <div class="narr-block bg-navy" style="padding-top:3rem;">
       <div class="narr-inner">
+        <p class="section-eyebrow" style="margin-bottom:.8rem;">La Scena</p>
+        <h2 class="narr-title">La stanchezza che gli esami non riescono a spiegare</h2>
+        <div class="inline-pull">Stai lavorando.<br>Ma senza la lucidità <em>che avevi prima.</em></div>
         <p>Rileggi una mail due volte. Ti sfugge un dettaglio che normalmente avresti colto subito. Apri una finestra, poi un'altra. Ti rendi conto che stai lavorando… ma senza quella lucidità che avevi prima. Non è un crollo improvviso. È qualcosa di più sottile.</p>
         <hr class="narr-divider" />
         <p>Continui a funzionare. Reggi ritmi alti. Eppure senti che tutto ti costa più energia del necessario. Dormi. Ti alleni. Fai le cose "come si deve".</p>
@@ -856,6 +948,8 @@
     <!-- BLOCCO 2: l'esterno vs l'interno -->
     <div class="narr-block bg-mid">
       <div class="narr-inner">
+        <p class="section-eyebrow" style="margin-bottom:.8rem;">Il Paradosso</p>
+        <h2 class="narr-title">Fuori sembri a posto.<br>Dentro sai che <em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">non è così.</em></h2>
         <p>E la parte più frustrante è questa: <strong>all'esterno sembri perfettamente operativo.</strong></p>
         <p class="small-line" style="color:var(--gray)">Gli esami magari sono normali.</p>
         <p class="small-line" style="color:var(--gray)">Le persone intorno a te pensano che stai bene.</p>
@@ -874,9 +968,15 @@
       </div>
     </div>
 
+    <!-- SEPARATORE NARRATIVO -->
+    <div class="narr-separator bg-dark">Ecco dove cambia tutto.</div>
+
     <!-- BLOCCO 3: compensazione -->
     <div class="narr-block bg-navy">
       <div class="narr-inner">
+        <p class="section-eyebrow" style="margin-bottom:.8rem;">Il Meccanismo</p>
+        <h2 class="narr-title">Il corpo non crolla.<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Compensa.</em> Ed è questo il problema.</h2>
+        <div class="inline-pull">Non crollano. <em>Compensano.</em><br>È diverso.</div>
         <p>Molte persone ad alte prestazioni vivono così per anni senza rendersene conto.</p>
         <p>Non crollano. <strong>Compensano.</strong> È diverso.</p>
         <p>Il corpo è incredibilmente bravo ad adattarsi. Si adatta alle giornate lunghe, alla pressione continua, alle decisioni costanti, al fatto di essere sempre reperibili. Perfino al dormire male.</p>
@@ -902,6 +1002,8 @@
     <!-- BLOCCO 4: il pattern -->
     <div class="narr-block bg-navy">
       <div class="narr-inner">
+        <p class="section-eyebrow" style="margin-bottom:.8rem;">Il Pattern</p>
+        <h2 class="narr-title">Esami perfetti. Eppure sempre <em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">un po' sotto.</em></h2>
         <p>Le persone che arrivavano da me non erano "malate". Molte avevano esami perfetti. Facevano sport. Dormivano anche 7 ore.</p>
         <p>Eppure raccontavano quasi tutte le stesse cose:</p>
         <ul class="symptoms-list">
@@ -972,6 +1074,9 @@
 
   </div>
 
+  <!-- SEPARATORE NARRATIVO -->
+  <div class="narr-separator bg-dark">Fino al giorno in cui ho smesso di cercare diagnosi — e ho iniziato a leggere segnali.</div>
+
   <!-- SPOTLIGHT ROBERTO — stile Chiellini -->
   <section class="spotlight" id="chi-e">
     <div class="spotlight-inner">
@@ -979,8 +1084,9 @@
         <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia, farmacista" />
       </div>
       <div class="spotlight-text">
-        <p class="section-eyebrow">Chi sono</p>
-        <h2>Dott. Roberto Boscia</h2>
+        <p class="section-eyebrow">Autorità</p>
+        <h2>Il farmacista che vede quello che i check-up non mostrano</h2>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:rgba(201,146,58,.8); margin-bottom:1.5rem; line-height:1.5;">Dott. Roberto Boscia — 15 anni a capire perché persone sane si sentono sempre a metà.</p>
         <p>Sono un farmacista con oltre 15 anni di esperienza clinica. Ho dedicato la mia carriera a capire perché così tante persone ad alte prestazioni soffrono di energia calante, sonno non ristoratore e mente appannata — pur avendo esami perfetti.</p>
         <p>Oggi offro consulenze private che uniscono il rigore della farmacologia con l'attenzione personalizzata che il sistema sanitario spesso non riesce a garantire. Con me non riceverai mai un protocollo copiato da internet.</p>
         <div class="spotlight-tags">
@@ -1048,7 +1154,7 @@
 
       <p class="section-eyebrow" style="margin-bottom:1.5rem;">Cosa include</p>
 
-      <div class="includes-grid">
+      <div class="includes-grid" id="includes-visible">
         <div class="include-item">
           <h4>Performance Recovery Assessment™</h4>
           <p>Prima consulenza con raccolta dati completa e analisi composizione corporea e stato cellulare.</p>
@@ -1061,6 +1167,8 @@
           <h4>Performance Recovery Report™</h4>
           <p>Interpretazione integrata dei pattern di recupero, stress e compensazione. Questionari avanzati sui segnali di compensazione cronica.</p>
         </div>
+      </div>
+      <div class="includes-grid includes-extra" id="includes-hidden">
         <div class="include-item">
           <h4>Roadmap Operativa Personalizzata</h4>
           <p>Piano iniziale di intervento con priorità operative chiare e concrete.</p>
@@ -1070,6 +1178,10 @@
           <p>Monitoraggio dei progressi e correzione del percorso in base ai cambiamenti osservati. Assetto Biologico™ viene seguito personalmente: ogni mese vengono aperte massimo 6 nuove valutazioni.</p>
         </div>
       </div>
+      <button class="btn-reveal" id="btn-reveal-includes" onclick="toggleIncludes(this)">
+        <span class="btn-label">Mostra tutti i componenti</span>
+        <i class="btn-reveal-arrow">▾</i>
+      </button>
 
       <div class="quote-block" style="margin-top:2.5rem;">
         <p>"La cosa che molte persone notano per prima non è nemmeno 'più energia'. È altro. Risvegli meno pesanti. Mente più stabile. Meno irritabilità. Più presenza mentale durante la giornata.<br><br>La sensazione di non dover più lottare continuamente contro se stessi per funzionare bene."</p>
@@ -1083,6 +1195,9 @@
 
     </div>
   </section>
+
+  <!-- SEPARATORE NARRATIVO -->
+  <div class="narr-separator bg-navy">Il percorso è semplice. Non semplice da scoprire da soli — ma semplice da seguire insieme.</div>
 
   <!-- PROCESS FLOW -->
   <section class="process-section">
@@ -1167,6 +1282,61 @@
 
     </div>
   </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <p class="section-eyebrow" style="margin-bottom:.6rem;">Hai qualche dubbio?</p>
+      <h2 class="section-heading" style="margin-bottom:2.5rem;">Domande frequenti</h2>
+
+      <details class="faq-item" open>
+        <summary class="faq-q">
+          Ho già fatto gli esami e sono tutti nella norma. Perché dovrebbe servire?
+          <i class="faq-arrow">▾</i>
+        </summary>
+        <div class="faq-answer">
+          <p>È esattamente il caso più comune che incontro. Gli esami clinici standard misurano la presenza o assenza di patologie — non la qualità del recupero, la variabilità dello stress o i pattern di compensazione cronica.</p>
+          <p>Puoi avere emocromo, tiroide e vitamina D perfetti e allo stesso tempo un sistema nervoso che fatica a recuperare, un sonno che non rigenera davvero, una risposta allo stress cronicamente alterata. Assetto Biologico™ osserva quello strato che i check-up normali non toccano.</p>
+        </div>
+      </details>
+
+      <details class="faq-item" open>
+        <summary class="faq-q">
+          È una consulenza medica? Riceverò diagnosi o prescrizioni?
+          <i class="faq-arrow">▾</i>
+        </summary>
+        <div class="faq-answer">
+          <p>No. Assetto Biologico™ non è una visita medica, non diagnostica malattie e non sostituisce il tuo medico di base o gli specialisti.</p>
+          <p>È una valutazione funzionale: analizza come il tuo corpo sta gestendo energia, recupero e pressione in questo momento. Il risultato è una lettura integrata e una roadmap operativa — non una diagnosi.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Non so se ho il tempo per seguire un percorso strutturato.
+          <i class="faq-arrow">▾</i>
+        </summary>
+        <div class="faq-answer">
+          <p>Il percorso è composto da 3 consulenze distribuite nel tempo — non da un programma quotidiano da seguire. Non devi cambiare la tua vita per iniziare: devi capire cosa cambiare, e perché.</p>
+          <p>La prima cosa che molte persone notano è proprio che smettono di sprecare energia su abitudini che non servono al loro caso specifico. Questo libera tempo, non lo occupa.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Come faccio a sapere se ne vale la pena prima di iniziare?
+          <i class="faq-arrow">▾</i>
+        </summary>
+        <div class="faq-answer">
+          <p>La prima chiamata conoscitiva (15 minuti) è gratuita e senza impegno. In quei 15 minuti ti faccio alcune domande su come stai funzionando adesso: se emerge un quadro chiaro, ha senso procedere. Se non è il momento giusto, te lo dico direttamente.</p>
+          <p>Non accetto valutazioni quando non sono sicuro che possa portare un risultato concreto.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- SEPARATORE NARRATIVO -->
+  <div class="narr-separator bg-navy" style="padding:3rem 2rem;">Se ti riconosci in quello che hai letto, il passo successivo è semplice.</div>
 
   <!-- CTA FINALE -->
   <section class="cta-final" id="prenota">

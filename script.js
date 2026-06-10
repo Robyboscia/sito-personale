@@ -1,3 +1,13 @@
+// Reveal includes
+function toggleIncludes(btn) {
+  const hidden = document.getElementById('includes-hidden');
+  const label = btn.querySelector('.btn-label');
+  hidden.classList.toggle('expanded');
+  btn.classList.toggle('open');
+  label.textContent = hidden.classList.contains('expanded')
+    ? 'Nascondi' : 'Mostra tutti i componenti';
+}
+
 // Header scroll
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
@@ -72,6 +82,17 @@ gsap.from('.value-row', {
 // CTA
 scrollIn('.cta-final-inner', { y: 35 });
 scrollIn('.form-section-inner', { y: 30 });
+
+// Narr titles + inline pulls
+scrollIn('.narr-title', { y: 25, duration: 0.7 });
+scrollIn('.inline-pull', { y: 20, duration: 0.65 });
+scrollIn('.narr-separator', { opacity: 0, y: 10, duration: 0.5 });
+
+// FAQ items
+gsap.from('.faq-item', {
+  scrollTrigger: { trigger: '.faq-section', start: 'top 80%', once: true },
+  opacity: 0, y: 20, duration: 0.5, stagger: 0.1, ease: 'power2.out'
+});
 
 // Self-check cards
 gsap.from('.check-card', {

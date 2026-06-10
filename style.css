@@ -49,7 +49,7 @@ header.scrolled {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--off-white);
+  color: #0A1C52;
   letter-spacing: 0.04em;
 }
 .logo span { color: var(--gold); }
@@ -61,7 +61,7 @@ nav ul {
   align-items: center;
 }
 nav a {
-  color: rgba(248,246,242,0.75);
+  color: #2A4070;
   text-decoration: none;
   font-size: 0.82rem;
   letter-spacing: 0.1em;
@@ -95,7 +95,7 @@ nav a:hover { color: var(--gold); }
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--off-white);
+  background: #0A1C52;
   transition: all 0.3s;
 }
 
@@ -802,8 +802,6 @@ footer {
 .footer-brand { color: #FFFFFF; }
 .footer-meta { color: rgba(255,255,255,0.45); }
 
-nav ul { background: #0A1C52; }
-
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; }
@@ -828,14 +826,14 @@ nav ul { background: #0A1C52; }
     flex-direction: column;
     position: fixed;
     inset: 0;
-    background: var(--navy);
+    background: #0A1C52;
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
     z-index: 999;
   }
   nav ul.open { display: flex; }
-  nav a { font-size: 1.1rem; }
+  nav a { font-size: 1.1rem; color: rgba(255,255,255,.85); }
   .hamburger { display: flex; }
   .section-inner { padding: 4.5rem 1.5rem; }
   .form-row { grid-template-columns: 1fr; }

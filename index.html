@@ -131,8 +131,8 @@
 
     /* SPOTLIGHT SECTION — stile Chiellini */
     .spotlight {
-      background: #020508;
-      border-top: 1px solid rgba(201,146,58,.1);
+      background: var(--page-alt);
+      border-top: 1px solid var(--border-c);
       position: relative; overflow: hidden;
     }
     .spotlight-inner {
@@ -170,11 +170,11 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 3.5vw, 3rem);
       font-weight: 700; line-height: 1.1;
-      color: var(--off-white); margin-bottom: 1.5rem;
+      color: var(--text-h); margin-bottom: 1.5rem;
       letter-spacing: -.01em;
     }
     .spotlight-text p {
-      color: rgba(107,125,153,.9);
+      color: var(--text-body);
       font-size: .97rem; line-height: 1.85;
       margin-bottom: 1.1rem;
     }
@@ -732,32 +732,32 @@
     }
 
     /* ACCORDION FAQ */
-    .faq-section { background: #1C3450; padding: 5rem 2rem; border-top: 1px solid rgba(201,146,58,.1); }
+    .faq-section { background: var(--page-white); padding: 5rem 2rem; border-top: 1px solid var(--border-c); }
     .faq-inner { max-width: 720px; margin: 0 auto; }
     details.faq-item {
-      border-bottom: 1px solid rgba(201,146,58,.12);
+      border-bottom: 1px solid var(--border-c);
       padding: 1.5rem 0;
     }
-    details.faq-item:first-of-type { border-top: 1px solid rgba(201,146,58,.12); }
+    details.faq-item:first-of-type { border-top: 1px solid var(--border-c); }
     summary.faq-q {
       display: flex; justify-content: space-between; align-items: center;
       cursor: pointer; list-style: none;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.3rem; font-weight: 600;
-      color: var(--off-white); line-height: 1.3; gap: 1rem;
+      color: var(--text-h); line-height: 1.3; gap: 1rem;
     }
     summary.faq-q::-webkit-details-marker { display: none; }
     .faq-arrow {
       width: 24px; height: 24px; flex-shrink: 0;
-      border: 1px solid rgba(201,146,58,.4); border-radius: 50%;
+      border: 1px solid rgba(27,58,140,.25); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--gold); font-size: .7rem; font-style: normal;
+      color: var(--blue-btn); font-size: .7rem; font-style: normal;
       transition: transform .3s, border-color .3s;
     }
     details[open] > summary .faq-arrow { transform: rotate(180deg); border-color: var(--gold); }
     .faq-answer {
       padding: 1.2rem 0 .5rem;
-      font-size: .97rem; color: rgba(248,246,242,.72);
+      font-size: .97rem; color: var(--text-body);
       line-height: 1.85;
     }
     .faq-answer p { margin-bottom: .8rem; }
@@ -1290,7 +1290,7 @@
   </div>
 
   <!-- SEPARATORE NARRATIVO -->
-  <div class="narr-separator bg-dark">Fino al giorno in cui ho smesso di cercare diagnosi — e ho iniziato a leggere segnali.</div>
+  <div class="narr-separator" style="background:var(--page-alt); padding-bottom:0;">Fino al giorno in cui ho smesso di cercare diagnosi — e ho iniziato a leggere segnali.</div>
 
   <!-- SPOTLIGHT ROBERTO — stile Chiellini -->
   <section class="spotlight" id="chi-e">
@@ -1301,7 +1301,7 @@
       <div class="spotlight-text">
         <p class="section-eyebrow">Autorità</p>
         <h2>Il farmacista che vede quello che i check-up non mostrano</h2>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:rgba(201,146,58,.8); margin-bottom:1.5rem; line-height:1.5;">Dott. Roberto Boscia — 15 anni a capire perché persone sane si sentono sempre a metà.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:#1B3A8C; margin-bottom:1.5rem; line-height:1.5;">Dott. Roberto Boscia — 15 anni a capire perché persone sane si sentono sempre a metà.</p>
         <p>Sono un farmacista con oltre 15 anni di esperienza clinica. Ho dedicato la mia carriera a capire perché così tante persone ad alte prestazioni soffrono di energia calante, sonno non ristoratore e mente appannata — pur avendo esami perfetti.</p>
         <p>Oggi offro consulenze private che uniscono il rigore della farmacologia con l'attenzione personalizzata che il sistema sanitario spesso non riesce a garantire. Con me non riceverai mai un protocollo copiato da internet.</p>
         <div class="spotlight-tags">

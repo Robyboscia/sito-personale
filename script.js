@@ -117,6 +117,15 @@ document.querySelectorAll('.stat-number[data-target]').forEach(el => {
   });
 });
 
+// Bio-metric bars
+document.querySelectorAll('.bm-fill[data-bm-width]').forEach(bar => {
+  const w = bar.dataset.bmWidth + '%';
+  gsap.to(bar, {
+    scrollTrigger: { trigger: bar, start: 'top 88%', once: true },
+    width: w, duration: 1.4, ease: 'power2.out', delay: 0.15
+  });
+});
+
 // Pillar bars
 document.querySelectorAll('.pillar-bar-fill').forEach(bar => {
   const w = bar.dataset.width + '%';

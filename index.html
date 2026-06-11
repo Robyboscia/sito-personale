@@ -17,8 +17,8 @@
       --page-white: #FFFFFF;
       --page-dark:  #0D2260;   /* sezioni scure — hero, CTA */
       --text-h:     #0A1C52;
-      --text-body:  #2A4070;
-      --text-muted: #6B82A8;
+      --text-body:  #3D3D3D;
+      --text-muted: #64748B;
       --border-c:   rgba(27,58,140,0.12);
       --blue-btn:   #1B3A8C;
     }
@@ -1034,6 +1034,90 @@
     .result-item::before { color: var(--blue-btn); }
     .result-item span { color: var(--text-body); }
 
+    /* ── COMPENSAZIONE TIMELINE ── */
+    .comp-timeline {
+      display: flex; flex-direction: column;
+      margin: 2rem 0; position: relative;
+    }
+    .comp-timeline::before {
+      content: '';
+      position: absolute; left: 15px; top: 20px; bottom: 20px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--border-c), rgba(27,58,140,.25), rgba(192,80,80,.3));
+    }
+    .comp-tl-step {
+      display: flex; gap: 1.2rem;
+      padding: .75rem 0; position: relative; z-index: 1;
+    }
+    .comp-tl-dot {
+      width: 30px; height: 30px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--page-white);
+      border: 1.5px solid rgba(27,58,140,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .68rem; font-weight: 700; color: var(--blue-btn);
+    }
+    .comp-tl-dot.warn { border-color: rgba(192,80,80,.5); color: #B05050; background: rgba(192,80,80,.05); }
+    .comp-tl-text strong {
+      display: block;
+      font-size: .82rem; font-weight: 700;
+      color: var(--text-h);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-bottom: .15rem;
+    }
+    .comp-tl-text p {
+      font-size: .84rem !important;
+      color: var(--text-muted) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.5 !important;
+    }
+
+    /* ── BIO-METRICS PANEL ── */
+    .bio-metrics-panel {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem; margin: 2.5rem 0;
+    }
+    .bm-item {
+      background: var(--page-white);
+      border: 1px solid var(--border-c);
+      border-radius: 10px; padding: 1.4rem 1.2rem;
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .bm-icon { font-size: 1.4rem; line-height: 1; }
+    .bm-label {
+      font-size: .68rem; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--text-muted);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .bm-track {
+      height: 5px; background: var(--border-c);
+      border-radius: 3px; overflow: hidden;
+    }
+    .bm-fill {
+      height: 100%; border-radius: 3px; width: 0;
+    }
+    .bm-fill.red  { background: linear-gradient(90deg, #D95454, #E87070); }
+    .bm-fill.amber { background: linear-gradient(90deg, #C9923A, #E8B86D); }
+    .bm-fill.blue { background: linear-gradient(90deg, #3B6FD4, #1B3A8C); }
+    .bm-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 700; color: var(--text-h); line-height: 1;
+    }
+    .bm-caption { font-size: .76rem; color: var(--text-muted); line-height: 1.4; }
+    .bm-note {
+      font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted); margin-top: .2rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .bm-note.bad { color: #C05050; }
+    .bm-note.warn { color: #C9923A; }
+    .bm-note.ok { color: #1B6B8C; }
+    @media (max-width: 600px) {
+      .bio-metrics-panel { grid-template-columns: 1fr; }
+      .comp-timeline::before { display: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -1203,6 +1287,31 @@
           <li>Hai meno pazienza. Meno margine mentale.</li>
           <li>Per restare allo stesso livello… devi spingerti sempre un po' di più.</li>
         </ul>
+
+        <div class="comp-timeline">
+          <div class="comp-tl-step">
+            <div class="comp-tl-dot">1</div>
+            <div class="comp-tl-text">
+              <strong>Adattamento</strong>
+              <p>Il corpo si adatta al carico. Riesci ancora a funzionare — ma con sforzo interno crescente.</p>
+            </div>
+          </div>
+          <div class="comp-tl-step">
+            <div class="comp-tl-dot">2</div>
+            <div class="comp-tl-text">
+              <strong>Compensazione attiva</strong>
+              <p>Il sistema nervoso attinge alle riserve profonde. Fuori sembri OK. Dentro il costo si accumula.</p>
+            </div>
+          </div>
+          <div class="comp-tl-step">
+            <div class="comp-tl-dot warn">3</div>
+            <div class="comp-tl-text">
+              <strong>Degrado silente</strong>
+              <p>Le riserve si esauriscono. Il "livello normale" scende progressivamente — spesso senza accorgersene.</p>
+            </div>
+          </div>
+        </div>
+
         <p>Questa condizione raramente compare all'improvviso. Si costruisce lentamente. Ed è proprio per questo che spesso passa inosservata.</p>
       </div>
     </div>
@@ -1284,6 +1393,35 @@
           <li>Ti abitui a sentirti sempre "un po' sotto".</li>
         </ul>
         <p>Finché quella sensazione diventa il tuo nuovo normale.</p>
+
+        <div class="bio-metrics-panel">
+          <div class="bm-item">
+            <span class="bm-icon">😴</span>
+            <div class="bm-label">Recupero Notturno</div>
+            <div class="bm-track"><div class="bm-fill red" data-bm-width="28"></div></div>
+            <div class="bm-value">28%</div>
+            <div class="bm-caption">Il sonno non rigenera davvero — il corpo non completa i cicli profondi</div>
+            <div class="bm-note bad">Critico</div>
+          </div>
+          <div class="bm-item">
+            <span class="bm-icon">⚡</span>
+            <div class="bm-label">Carico Stress Cronico</div>
+            <div class="bm-track"><div class="bm-fill amber" data-bm-width="76"></div></div>
+            <div class="bm-value">76%</div>
+            <div class="bm-caption">Accumulo progressivo — spesso invisibile agli esami standard</div>
+            <div class="bm-note warn">Elevato</div>
+          </div>
+          <div class="bm-item">
+            <span class="bm-icon">🧠</span>
+            <div class="bm-label">Riserva Cognitiva</div>
+            <div class="bm-track"><div class="bm-fill red" data-bm-width="34"></div></div>
+            <div class="bm-value">34%</div>
+            <div class="bm-caption">La mente funziona, ma a regime ridotto — ogni compito costa di più</div>
+            <div class="bm-note bad">Ridotta</div>
+          </div>
+        </div>
+        <p style="font-size:.82rem; color:var(--text-muted); text-align:center; font-style:italic;">Esempio illustrativo del profilo di compensazione rilevato da Assetto Biologico™</p>
+
       </div>
     </div>
 

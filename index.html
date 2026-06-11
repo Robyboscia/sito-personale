@@ -828,16 +828,40 @@
       .hero-hook { grid-template-columns: 1fr; }
       .hook-text { padding: 9rem 2.5rem 5rem; }
       .hero-image-right {
-        height: 50vh;
+        height: 65vw;
+        overflow: hidden;
+      }
+      .hero-image-right img {
+        position: static; width: 100%; height: 100%;
+        object-fit: cover; object-position: center top;
+        right: auto; bottom: auto;
       }
       .hero-image-right::before {
-        background: linear-gradient(to bottom, var(--navy) 0%, transparent 40%);
+        background: linear-gradient(to bottom, var(--page-white) 0%, transparent 35%);
+      }
+      .hero-image-right::after {
+        background: linear-gradient(to top, var(--page-white) 0%, transparent 100%);
       }
       .results-grid { grid-template-columns: 1fr; }
       .includes-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .hook-text { padding: 7rem 1.5rem 4rem; }
+      .hero-image-right { height: 70vw; }
+      /* Spotlight foto full-bleed su mobile */
+      .spotlight-inner { padding: 0; }
+      .spotlight-photo {
+        height: 75vw;
+        overflow: hidden;
+        width: 100%;
+      }
+      .spotlight-photo img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        max-width: none;
+      }
+      .spotlight-text { padding: 2.5rem 1.5rem; }
       .narrative-inner, .product-inner, .pricing-inner, .form-section-inner {
         padding: 0 .5rem;
       }
@@ -1344,7 +1368,10 @@
         <p class="section-eyebrow">Chi sono</p>
         <h2>Non sono qui con curriculum infiniti o premi.<br>Sono qui con <em style="font-style:italic;">una sola idea.</em></h2>
         <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:#1B3A8C; margin-bottom:1.5rem; line-height:1.5;">Aiutare persone apparentemente sane a capire perché si sentono costantemente stanche.</p>
-        <p>Sono Roberto Boscia, farmacista con oltre 15 anni di esperienza. Ho dedicato il mio lavoro a rispondere a una domanda che il sistema sanitario spesso ignora: perché persone sane, con esami perfetti, si sentono sempre più stanche?</p>
+        <p>Sono Roberto Boscia, farmacista con oltre 15 anni di esperienza. Ho dedicato il mio lavoro a rispondere a una domanda che il sistema sanitario spesso ignora:</p>
+        <blockquote style="border-left: 3px solid var(--gold); padding: .8rem 1.4rem; margin: 1.4rem 0; background: rgba(27,58,140,.04); border-radius: 0 6px 6px 0;">
+          <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.2rem,2.5vw,1.55rem); font-style:italic; font-weight:600; color:var(--text-h); line-height:1.35; margin:0;">Perché <u style="text-decoration-color:var(--gold); text-underline-offset:4px;">persone sane, con esami perfetti</u>, si sentono <strong>sempre più stanche?</strong></p>
+        </blockquote>
         <p>Non con protocolli preconfezionati. Non con soluzioni standard. Con una lettura integrata della situazione reale di ogni persona — e la chiarezza che ne deriva.</p>
         <div class="spotlight-tags">
           <span class="spotlight-tag">Speaker del podcast "Champion"</span>

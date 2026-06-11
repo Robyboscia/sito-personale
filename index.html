@@ -17,8 +17,8 @@
       --page-white: #FFFFFF;
       --page-dark:  #0D2260;   /* sezioni scure — hero, CTA */
       --text-h:     #0A1C52;
-      --text-body:  #2A4070;
-      --text-muted: #6B82A8;
+      --text-body:  #3D3D3D;
+      --text-muted: #64748B;
       --border-c:   rgba(27,58,140,0.12);
       --blue-btn:   #1B3A8C;
     }
@@ -1034,6 +1034,90 @@
     .result-item::before { color: var(--blue-btn); }
     .result-item span { color: var(--text-body); }
 
+    /* ── COMPENSAZIONE TIMELINE ── */
+    .comp-timeline {
+      display: flex; flex-direction: column;
+      margin: 2rem 0; position: relative;
+    }
+    .comp-timeline::before {
+      content: '';
+      position: absolute; left: 15px; top: 20px; bottom: 20px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--border-c), rgba(27,58,140,.25), rgba(192,80,80,.3));
+    }
+    .comp-tl-step {
+      display: flex; gap: 1.2rem;
+      padding: .75rem 0; position: relative; z-index: 1;
+    }
+    .comp-tl-dot {
+      width: 30px; height: 30px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--page-white);
+      border: 1.5px solid rgba(27,58,140,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .68rem; font-weight: 700; color: var(--blue-btn);
+    }
+    .comp-tl-dot.warn { border-color: rgba(192,80,80,.5); color: #B05050; background: rgba(192,80,80,.05); }
+    .comp-tl-text strong {
+      display: block;
+      font-size: .82rem; font-weight: 700;
+      color: var(--text-h);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-bottom: .15rem;
+    }
+    .comp-tl-text p {
+      font-size: .84rem !important;
+      color: var(--text-muted) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.5 !important;
+    }
+
+    /* ── BIO-METRICS PANEL ── */
+    .bio-metrics-panel {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem; margin: 2.5rem 0;
+    }
+    .bm-item {
+      background: var(--page-white);
+      border: 1px solid var(--border-c);
+      border-radius: 10px; padding: 1.4rem 1.2rem;
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .bm-icon { font-size: 1.4rem; line-height: 1; }
+    .bm-label {
+      font-size: .68rem; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--text-muted);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .bm-track {
+      height: 5px; background: var(--border-c);
+      border-radius: 3px; overflow: hidden;
+    }
+    .bm-fill {
+      height: 100%; border-radius: 3px; width: 0;
+    }
+    .bm-fill.red  { background: linear-gradient(90deg, #D95454, #E87070); }
+    .bm-fill.amber { background: linear-gradient(90deg, #C9923A, #E8B86D); }
+    .bm-fill.blue { background: linear-gradient(90deg, #3B6FD4, #1B3A8C); }
+    .bm-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 700; color: var(--text-h); line-height: 1;
+    }
+    .bm-caption { font-size: .76rem; color: var(--text-muted); line-height: 1.4; }
+    .bm-note {
+      font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted); margin-top: .2rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .bm-note.bad { color: #C05050; }
+    .bm-note.warn { color: #C9923A; }
+    .bm-note.ok { color: #1B6B8C; }
+    @media (max-width: 600px) {
+      .bio-metrics-panel { grid-template-columns: 1fr; }
+      .comp-timeline::before { display: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -1057,9 +1141,9 @@
   <!-- HERO HOOK -->
   <section class="hero-hook" id="home">
     <div class="hook-text">
-      <p class="hero-pre">Ogni persona ha diritto a capire come sta davvero funzionando il proprio corpo.</p>
-      <h1>Ritrova energia, lucidità e controllo con una <em>lettura biologica su misura.</em></h1>
-      <p class="hero-sub">Sei davanti allo schermo. Le parole scorrono. Ma tu fai più fatica del solito a stargli dietro. Non è un crollo improvviso. È qualcosa di più sottile.</p>
+      <h1>Se gli esami dicono che stai bene,<br>perché ogni anno <em>ti senti più stanco?</em></h1>
+      <p class="hero-sub">Ti svegli meno riposato. Recuperi più lentamente. Hai meno lucidità e più fatica a mantenere lo stesso livello di performance.</p>
+      <p class="hero-sub" style="font-size:.92rem; color:var(--text-muted); margin-top:-1.4rem;">E ogni volta che cerchi una spiegazione senti sempre la stessa cosa: <em style="font-style:italic;">"È tutto a posto." "Non c'è niente." "Probabilmente è solo stress."</em></p>
       <div class="hero-actions">
         <a href="#prenota" class="btn-primary">Prenota la valutazione</a>
         <a href="#chi-e" class="btn-outline-gold">Chi è Roberto Boscia</a>
@@ -1095,8 +1179,8 @@
   <!-- SELF-CHECK -->
   <section class="self-check">
     <div class="self-check-inner">
-      <p class="section-eyebrow" style="margin-bottom:.6rem;">Riconosci questi segnali?</p>
-      <p style="color:var(--gray); font-size:.95rem; max-width:540px; line-height:1.75;">Se ti ritrovi in almeno tre di questi pattern, il tuo corpo sta probabilmente compensando più di quanto pensi.</p>
+      <p class="section-eyebrow" style="margin-bottom:.6rem;">Qualcosa ti suona familiare?</p>
+      <p style="color:var(--gray); font-size:.95rem; max-width:540px; line-height:1.75;">Se ti riconosci in almeno tre di questi, probabilmente la risposta che cerchi non è ancora arrivata.</p>
       <div class="check-grid">
         <div class="check-card">
           <span class="check-icon">😴</span>
@@ -1133,164 +1217,122 @@
   </section>
 
   <!-- SEPARATORE NARRATIVO -->
-  <div class="narr-separator bg-navy">Ma c'è una cosa che nessuno ti ha ancora detto chiaramente…</div>
+  <div class="narr-separator bg-navy">Forse non sei qui perché stai male. Sei qui perché non ti senti più come prima.</div>
 
   <!-- NARRATIVA: IL PROBLEMA -->
   <div id="problema">
 
-    <!-- BLOCCO 1: la sensazione -->
+    <!-- BLOCCO 1: la domanda -->
     <div class="narr-block bg-navy" style="padding-top:3rem;">
       <div class="narr-inner">
-        <p class="section-eyebrow" style="margin-bottom:.8rem;">La Scena</p>
-        <h2 class="narr-title">La stanchezza che gli esami non riescono a spiegare</h2>
-        <div class="inline-pull">Stai lavorando.<br>Ma senza la lucidità <em>che avevi prima.</em></div>
-        <p>Rileggi una mail due volte. Ti sfugge un dettaglio che normalmente avresti colto subito. Apri una finestra, poi un'altra. Ti rendi conto che stai lavorando… ma senza quella lucidità che avevi prima. Non è un crollo improvviso. È qualcosa di più sottile.</p>
+        <h2 class="narr-title">Ti alzi ogni mattina.<br>Vai avanti. Porti avanti tutto.<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Ma dentro sai.</em></h2>
+        <p>Ti alzi.<br>Vai al lavoro.<br>Ti alleni.<br>Porti avanti le tue responsabilità.</p>
+        <p>Da fuori sembri perfettamente in forma.</p>
         <hr class="narr-divider" />
-        <p>Continui a funzionare. Reggi ritmi alti. Eppure senti che tutto ti costa più energia del necessario. Dormi. Ti alleni. Fai le cose "come si deve".</p>
-        <p>Ma al mattino ti svegli già senza vero margine — come se la notte non fosse bastata a ricaricare davvero.</p>
+        <p>Ma dentro sai una cosa.</p>
+        <p>Ogni anno hai meno energia.<br>Ogni anno recuperi peggio.<br>Ogni anno devi fare più fatica per ottenere gli stessi risultati.</p>
+        <p>E la parte più frustrante è che <strong>nessuno riesce a spiegarti il motivo.</strong></p>
       </div>
     </div>
 
     <!-- PULL QUOTE 1 -->
     <div class="pull-quote bg-dark">
       <div class="pull-quote-inner">
-        <div class="pull-quote-text">Vai avanti.<br>Ma dentro senti che <em>qualcosa è cambiato.</em></div>
+        <div class="pull-quote-text">Ogni anno un po' meno.<br><em>Non abbastanza da fermarti. Abbastanza da cambiarti.</em></div>
       </div>
     </div>
 
-    <div style="background:var(--page-white); padding:0 2rem;"><div style="max-width:680px; margin:0 auto; border-top:1px solid rgba(27,58,140,.12);"></div></div>
-
-    <!-- BLOCCO 2: l'esterno vs l'interno -->
+    <!-- BLOCCO 2: compensazione -->
     <div class="narr-block bg-mid">
       <div class="narr-inner">
-        <p class="section-eyebrow" style="margin-bottom:.8rem;">Il Paradosso</p>
-        <h2 class="narr-title">Fuori sembri a posto.<br>Dentro sai che <em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">non è così.</em></h2>
-        <p>E la parte più frustrante è questa: <strong>all'esterno sembri perfettamente operativo.</strong></p>
-        <p class="small-line" style="color:var(--gray)">Gli esami magari sono normali.</p>
-        <p class="small-line" style="color:var(--gray)">Le persone intorno a te pensano che stai bene.</p>
-        <p class="small-line" style="color:var(--gray)">Tu stesso continui a dirti:</p>
-        <p style="color:var(--gray); padding-left:1.5rem; border-left:2px solid rgba(107,125,153,.2); margin:1.2rem 0; font-size:1rem;">"Forse è solo stress."<br>"Forse è l'età."<br>"Forse devo solo rallentare un po'."</p>
-        <p>Ma c'è un motivo se quella spiegazione non ti convince fino in fondo.</p>
-        <p>Perché tu non ti senti "malato".<br>Ti senti… <strong>meno te stesso.</strong></p>
-      </div>
-    </div>
+        <h2 class="narr-title">Il corpo non crolla.<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Prima compensa.</em></h2>
+        <div class="inline-pull">Siccome continui a funzionare…<br>pensi che sia <em>tutto sotto controllo.</em></div>
+        <p>Molte persone pensano che un problema debba arrivare all'improvviso.<br>Ma raramente funziona così.</p>
+        <p>Prima arriva una stanchezza che non passa.<br>Poi il recupero rallenta.<br>Poi la lucidità diventa meno costante.</p>
 
-    <!-- PULL QUOTE 2 — citazione paziente -->
-    <div class="pull-quote bg-dark">
-      <div class="pull-quote-inner">
-        <div class="pull-quote-text">"Continuo a funzionare.<br>Ma ho la sensazione di essere sempre <em>un po' sotto.</em>"</div>
-        <cite>Imprenditore, 49 anni — paziente di Roberto Boscia</cite>
+        <div class="comp-timeline">
+          <div class="comp-tl-step">
+            <div class="comp-tl-dot">1</div>
+            <div class="comp-tl-text">
+              <strong>Stanchezza che non passa</strong>
+              <p>Il corpo segnala. Ma continui ad andare avanti — ci sei abituato.</p>
+            </div>
+          </div>
+          <div class="comp-tl-step">
+            <div class="comp-tl-dot">2</div>
+            <div class="comp-tl-text">
+              <strong>Recupero che rallenta</strong>
+              <p>Dormi, ma non recuperi. Ti alleni, ma rendi meno. Attingi alle riserve senza ricaricarle.</p>
+            </div>
+          </div>
+          <div class="comp-tl-step">
+            <div class="comp-tl-dot warn">3</div>
+            <div class="comp-tl-text">
+              <strong>Lucidità che cala</strong>
+              <p>Non abbastanza da fermarti. Abbastanza da cambiarti — così lentamente che sembra normale.</p>
+            </div>
+          </div>
+        </div>
+
+        <p>E siccome continui a funzionare... pensi che sia tutto sotto controllo.</p>
+        <p>Ma il corpo spesso non crolla. <strong>Compensa.</strong></p>
+        <p>Ed è proprio questo che rende tutto più difficile da vedere.</p>
       </div>
     </div>
 
     <!-- SEPARATORE NARRATIVO -->
-    <div class="narr-separator bg-dark">Ecco dove cambia tutto.</div>
+    <div class="narr-separator bg-dark">C'è una storia che mi è rimasta in testa. Ve la racconto.</div>
 
-    <!-- BLOCCO 3: compensazione -->
-    <div class="narr-block bg-navy">
-      <div class="narr-inner">
-        <p class="section-eyebrow" style="margin-bottom:.8rem;">Il Meccanismo</p>
-        <h2 class="narr-title">Il corpo non crolla.<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Compensa.</em> Ed è questo il problema.</h2>
-        <div class="inline-pull">Non crollano. <em>Compensano.</em><br>È diverso.</div>
-        <p>Molte persone ad alte prestazioni vivono così per anni senza rendersene conto.</p>
-        <p>Non crollano. <strong>Compensano.</strong> È diverso.</p>
-        <p>Il corpo è incredibilmente bravo ad adattarsi. Si adatta alle giornate lunghe, alla pressione continua, alle decisioni costanti, al fatto di essere sempre reperibili. Perfino al dormire male.</p>
-        <p>E all'inizio sembra quasi un vantaggio. Ti senti resistente. Operativo. Sempre acceso.</p>
-        <p>Finché quel ritmo inizia lentamente a presentare conseguenze.</p>
-        <ul class="symptoms-list">
-          <li>Ti svegli già stanco. Il recupero non è più quello di prima.</li>
-          <li>La testa si appanna più facilmente.</li>
-          <li>Hai meno pazienza. Meno margine mentale.</li>
-          <li>Per restare allo stesso livello… devi spingerti sempre un po' di più.</li>
-        </ul>
-        <p>Questa condizione raramente compare all'improvviso. Si costruisce lentamente. Ed è proprio per questo che spesso passa inosservata.</p>
-      </div>
-    </div>
-
-    <!-- PULL QUOTE 3 — pattern -->
-    <div class="pull-quote bg-mid">
-      <div class="pull-quote-inner">
-        <div class="pull-quote-text">Negli ultimi anni ho iniziato a notare<br>un <em>pattern molto preciso.</em></div>
-      </div>
-    </div>
-
-    <!-- BLOCCO 4: il pattern -->
-    <div class="narr-block bg-navy">
-      <div class="narr-inner">
-        <p class="section-eyebrow" style="margin-bottom:.8rem;">Il Pattern</p>
-        <h2 class="narr-title">Esami perfetti. Eppure sempre <em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">un po' sotto.</em></h2>
-        <p>Le persone che arrivavano da me non erano "malate". Molte avevano esami perfetti. Facevano sport. Dormivano anche 7 ore.</p>
-        <p>Eppure raccontavano quasi tutte le stesse cose:</p>
-        <ul class="symptoms-list">
-          <li>"Mi sveglio già stanco."</li>
-          <li>"Nel pomeriggio sento un calo netto."</li>
-          <li>"La testa non recupera come prima."</li>
-          <li>"Sento di dovermi spingere continuamente."</li>
-        </ul>
-        <p>Quando inizi a osservare insieme recupero, qualità del sonno, risposta allo stress e segnali del sistema nervoso… emergono pattern che nei normali check-up restano invisibili.</p>
-        <p>Non stiamo parlando di malattie. Stiamo parlando di capire come il tuo corpo sta realmente gestendo energia, recupero e pressione.</p>
-      </div>
-    </div>
-
-    <!-- CASE STUDY — sfondo scuro separato -->
+    <!-- BLOCCO 3: le scatole -->
     <div class="narr-block bg-dark">
       <div class="narr-inner">
-        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem;">Caso reale</p>
-        <p><strong>Andrea, 47 anni. Manager. Esami perfetti.</strong></p>
-        <p>Eppure ogni giorno aveva lo stesso schema: verso le 16 sentiva il cervello rallentare. Sonno leggero. Risvegli pesanti. Bisogno continuo di "riaccendersi".</p>
-        <p>Pensava fosse normale. Pensava fosse il prezzo inevitabile del suo lavoro.</p>
-        <p>Quando abbiamo iniziato ad analizzare insieme il suo recupero, la qualità del sonno, la variabilità dello stress… ha visto per la prima volta il quadro completo.</p>
+        <h2 class="narr-title">Le scatole<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">lasciate a metà.</em></h2>
+        <p>Una delle cose che mi ha colpito di più negli ultimi anni non è successa in studio. È successa dietro il banco della farmacia.</p>
+        <p>Da poco ci occupiamo anche del ritiro di farmaci e prodotti scaduti. E da quando abbiamo iniziato, mi sono trovato davanti a una scena che continua a tornarmi in mente.</p>
+        <p><strong>Scatole lasciate a metà.</strong></p>
+        <ul class="symptoms-list">
+          <li>Integratori per l'energia.</li>
+          <li>Integratori per il sonno.</li>
+          <li>Integratori per la concentrazione.</li>
+          <li>Prodotti per lo stress.</li>
+        </ul>
+        <p>Confezioni quasi piene. Altre consumate per qualche settimana. Poi dimenticate. Poi scadute.</p>
+        <p>E ogni volta penso la stessa cosa. <em style="font-style:italic;">Quelle scatole raccontano una storia.</em></p>
+        <p>La storia di persone che stavano cercando di stare meglio. Che volevano più energia, più lucidità, più recupero. Persone che volevano tornare a sentirsi come prima.</p>
         <div class="quote-block">
-          <p>"Adesso capisco perché mi sento così."</p>
-          <cite>Andrea, 47 anni</cite>
+          <p>La maggior parte di quelle persone non stava cercando un integratore. Stava cercando una risposta.</p>
+          <cite>Dott. Roberto Boscia</cite>
         </div>
-        <p>Ed è proprio qui che molte persone iniziano a notare i primi cambiamenti concreti:</p>
-        <div class="comparison-wrap">
-          <div class="comparison-block">
-            <div class="comp-col comp-before">
-              <h5>Prima</h5>
-              <div class="comp-item"><i class="comp-icon">✗</i><span>Risvegli pesanti, recupero incompleto</span></div>
-              <div class="comp-item"><i class="comp-icon">✗</i><span>Crash cognitivo nel pomeriggio</span></div>
-              <div class="comp-item"><i class="comp-icon">✗</i><span>Sempre sotto — mai davvero in forma</span></div>
-              <div class="comp-item"><i class="comp-icon">✗</i><span>Spingere continuamente per funzionare</span></div>
-            </div>
-            <div class="comp-col comp-after">
-              <h5>Dopo Assetto Biologico™</h5>
-              <div class="comp-item"><i class="comp-icon">✓</i><span>Svegliarsi con energia reale</span></div>
-              <div class="comp-item"><i class="comp-icon">✓</i><span>Mente stabile e lucidità costante</span></div>
-              <div class="comp-item"><i class="comp-icon">✓</i><span>Presenza mentale senza sforzo</span></div>
-              <div class="comp-item"><i class="comp-icon">✓</i><span>Margine — non solo sopravvivenza</span></div>
-            </div>
-          </div>
-        </div>
+        <p>Perché quando ti senti sempre più stanco provi qualsiasi cosa. Un nuovo prodotto. Una nuova routine. Un nuovo consiglio.</p>
+        <p>E magari qualcosa aiuta anche. Per un po'.</p>
+        <p><strong>Ma se non hai capito cosa sta succedendo davvero... continui a girare in cerchio.</strong></p>
       </div>
     </div>
 
-    <!-- PULL QUOTE 4 — la parte pericolosa -->
+    <!-- PULL QUOTE 3 -->
     <div class="pull-quote bg-mid">
       <div class="pull-quote-inner">
-        <div class="pull-quote-text">Il problema non è che ti manca volontà.<br>È che stai chiedendo al corpo di <em>performare senza recuperare.</em></div>
+        <div class="pull-quote-text">"Sento di poter dare di più.<br>Ma non ho <em>l'energia per farlo.</em>"</div>
+        <cite>Imprenditore, 49 anni — paziente di Roberto Boscia</cite>
       </div>
     </div>
 
-    <!-- BLOCCO 5: abituarsi -->
+    <!-- BLOCCO 4: la svolta -->
     <div class="narr-block bg-navy">
       <div class="narr-inner">
-        <p>Quando questa condizione va avanti per mesi o anni, inizi lentamente ad abituarti. Ed è questa la parte più pericolosa.</p>
-        <ul class="symptoms-list">
-          <li>Ti abitui a svegliarti già stanco.</li>
-          <li>Ti abitui ad avere meno lucidità.</li>
-          <li>Ti abitui a vivere con meno margine.</li>
-          <li>Ti abitui a sentirti sempre "un po' sotto".</li>
-        </ul>
-        <p>Finché quella sensazione diventa il tuo nuovo normale.</p>
+        <h2 class="narr-title">Per anni ho cercato quale fosse <em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">la soluzione migliore.</em><br>Poi ho smesso.</h2>
+        <div class="inline-pull">Non: "Quale prodotto serve?"<br>Ma: <em>"Perché questa persona si sente così?"</em></div>
+        <p>Negli ultimi 15 anni ho dedicato il mio lavoro a rispondere a quella domanda.</p>
+        <p>Non quale integratore. Non quale protocollo. Non quale esame manca.</p>
+        <p><strong>Perché questa persona — con questa storia, con questo stile di vita, con questi segnali — si sente così?</strong></p>
+        <p>Quando inizi a fare la domanda giusta, le risposte cambiano completamente.</p>
       </div>
     </div>
 
   </div>
 
   <!-- SEPARATORE NARRATIVO -->
-  <div class="narr-separator" style="background:var(--page-alt); padding-bottom:0;">Fino al giorno in cui ho smesso di cercare diagnosi — e ho iniziato a leggere segnali.</div>
+  <div class="narr-separator" style="background:var(--page-alt); padding-bottom:0;">Ed è da quella domanda che nasce tutto. — e ho iniziato a leggere segnali.</div>
 
   <!-- SPOTLIGHT ROBERTO — stile Chiellini -->
   <section class="spotlight" id="chi-e">
@@ -1299,11 +1341,11 @@
         <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia, farmacista" />
       </div>
       <div class="spotlight-text">
-        <p class="section-eyebrow">Autorità</p>
-        <h2>Il farmacista che vede quello che i check-up non mostrano</h2>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:#1B3A8C; margin-bottom:1.5rem; line-height:1.5;">Dott. Roberto Boscia — 15 anni a capire perché persone sane si sentono sempre a metà.</p>
-        <p>Sono un farmacista con oltre 15 anni di esperienza clinica. Ho dedicato la mia carriera a capire perché così tante persone ad alte prestazioni soffrono di energia calante, sonno non ristoratore e mente appannata — pur avendo esami perfetti.</p>
-        <p>Oggi offro consulenze private che uniscono il rigore della farmacologia con l'attenzione personalizzata che il sistema sanitario spesso non riesce a garantire. Con me non riceverai mai un protocollo copiato da internet.</p>
+        <p class="section-eyebrow">Chi sono</p>
+        <h2>Non sono qui con curriculum infiniti o premi.<br>Sono qui con <em style="font-style:italic;">una sola idea.</em></h2>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:#1B3A8C; margin-bottom:1.5rem; line-height:1.5;">Aiutare persone apparentemente sane a capire perché si sentono costantemente stanche.</p>
+        <p>Sono Roberto Boscia, farmacista con oltre 15 anni di esperienza. Ho dedicato il mio lavoro a rispondere a una domanda che il sistema sanitario spesso ignora: perché persone sane, con esami perfetti, si sentono sempre più stanche?</p>
+        <p>Non con protocolli preconfezionati. Non con soluzioni standard. Con una lettura integrata della situazione reale di ogni persona — e la chiarezza che ne deriva.</p>
         <div class="spotlight-tags">
           <span class="spotlight-tag">Speaker del podcast "Champion"</span>
           <span class="spotlight-tag">Autore di "Dormire è facile... se sai come farlo"</span>
@@ -1317,21 +1359,51 @@
   <!-- IL PROGRAMMA -->
   <section class="product-block" id="programma">
     <div class="product-inner">
-      <p class="section-eyebrow" style="margin-bottom:1rem;">Ed è esattamente qui che nasce</p>
+      <p class="section-eyebrow" style="margin-bottom:1rem;">Il problema non è che manca una soluzione. Il problema è che manca una spiegazione.</p>
       <div class="product-name">Assetto Biologico™</div>
 
       <div class="product-not">
-        <div class="product-not-item">Non è un trattamento.</div>
-        <div class="product-not-item">Non è motivazione.</div>
-        <div class="product-not-item">Non è l'ennesimo protocollo da biohacking.</div>
-        <div class="product-not-item is">È una lettura integrata del modo in cui il tuo corpo sta recuperando, compensando e consumando energia.</div>
+        <div class="product-not-item">Non è una terapia.</div>
+        <div class="product-not-item">Non è un protocollo.</div>
+        <div class="product-not-item">Non è una raccolta di esami.</div>
+        <div class="product-not-item is">È un processo pensato per rispondere a una domanda molto semplice: perché mi sento così?</div>
       </div>
 
-      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:2rem;">Per farlo utilizziamo strumenti precisi. Ma il punto non sono i test. Il punto è l'interpretazione. Perché avere dati senza una lettura chiara spesso crea solo altra confusione. <strong style="color:var(--off-white)">Il lavoro vero è collegare i punti.</strong></p>
+      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:2rem;">Perché se non hai una risposta a questa domanda... stai procedendo alla cieca. Magari cambi alimentazione. Magari provi un nuovo integratore. Magari dormi un'ora in più. Ma stai comunque cercando una soluzione senza aver compreso il problema.</p>
 
-      <p style="color:rgba(248,246,242,.75); line-height:1.8; margin-bottom:1.5rem;">Capire: dove il sistema sta compensando troppo — dove stai consumando energie inutilmente — cosa sta impattando davvero lucidità, recupero e performance — e soprattutto da dove conviene iniziare.</p>
+      <p style="color:rgba(248,246,242,.75); line-height:1.8; margin-bottom:1.5rem;">La prima cosa che facciamo è fermarci. E guardare il quadro completo. Non il singolo sintomo. Non il singolo valore. Il quadro.</p>
 
-      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:2.5rem;">Per questo il percorso è strutturato in 3 consulenze. Nella prima raccogliamo dati, analizziamo il quadro completo e definiamo le priorità reali. Nelle successive monitoriamo come il corpo sta reagendo e correggiamo il percorso in base ai cambiamenti osservati.</p>
+      <!-- BLOCCO COMPARATIVO: quello che pensi vs quello che serve -->
+      <div class="comparison-wrap">
+        <div class="comparison-block">
+          <div class="comp-col comp-before">
+            <h5>Quello che pensi di aver bisogno</h5>
+            <div class="comp-item"><i class="comp-icon">✗</i><span>Un altro integratore</span></div>
+            <div class="comp-item"><i class="comp-icon">✗</i><span>Un'altra routine</span></div>
+            <div class="comp-item"><i class="comp-icon">✗</i><span>Un altro consiglio</span></div>
+            <div class="comp-item"><i class="comp-icon">✗</i><span>Un altro tentativo</span></div>
+          </div>
+          <div class="comp-col comp-after">
+            <h5>Quello che probabilmente ti serve davvero</h5>
+            <div class="comp-item"><i class="comp-icon">✓</i><span>Capire cosa sta succedendo</span></div>
+            <div class="comp-item"><i class="comp-icon">✓</i><span>Capire perché ti senti così</span></div>
+            <div class="comp-item"><i class="comp-icon">✓</i><span>Capire dove stai perdendo energia</span></div>
+            <div class="comp-item"><i class="comp-icon">✓</i><span>Capire da dove partire</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:2.5rem; margin-top:2rem;">È qui che arriva il momento che preferisco. Non quando una persona mi dice: "Mi sento meglio." Ma quando mi dice: <strong style="color:var(--off-white)">"Adesso ho capito."</strong></p>
+
+      <p class="section-eyebrow" style="margin-bottom:1rem;">Cosa scopriamo insieme</p>
+      <p style="color:rgba(248,246,242,.75); line-height:1.8; margin-bottom:.5rem;">Non voglio prometterti più energia. Non voglio prometterti trasformazioni straordinarie. Voglio prometterti qualcosa di molto più concreto: <strong style="color:var(--off-white)">chiarezza.</strong></p>
+      <ul class="symptoms-list" style="margin-bottom:2rem;">
+        <li>Perché ti senti sempre più stanco</li>
+        <li>Perché recuperi più lentamente</li>
+        <li>Perché la lucidità non è più quella di una volta</li>
+        <li>Cosa sta influenzando il tuo livello di energia</li>
+        <li>Quali sono le priorità reali da affrontare</li>
+      </ul>
 
       <!-- DIAGRAMMA 4 PILASTRI -->
       <div class="diagram-section" style="padding:3rem 0 2rem; background:transparent;">
@@ -1399,48 +1471,48 @@
       </button>
 
       <div class="quote-block" style="margin-top:2.5rem;">
-        <p>"La cosa che molte persone notano per prima non è nemmeno 'più energia'. È altro. Risvegli meno pesanti. Mente più stabile. Meno irritabilità. Più presenza mentale durante la giornata.<br><br>La sensazione di non dover più lottare continuamente contro se stessi per funzionare bene."</p>
+        <p>"Quello che le persone ottengono non è necessariamente più energia il giorno dopo. Ottengono qualcosa di più importante. Il sollievo di smettere di chiedersi: 'Che cosa mi sta succedendo?'"</p>
         <cite style="display:block; margin-bottom:2rem;">Dott. Roberto Boscia</cite>
       </div>
 
       <hr class="divider" />
 
-      <p style="color:rgba(248,246,242,.8); line-height:1.85;">Ora, è importante chiarire una cosa. Assetto Biologico™ non serve a diagnosticare malattie. Non sostituisce esami clinici. E non promette energia infinita o trasformazioni miracolose.</p>
-      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:0;">Serve a una cosa molto più concreta: <strong style="color:var(--off-white)">capire come stai funzionando adesso… prima che certe condizioni diventino semplicemente la tua normalità.</strong></p>
+      <p style="color:rgba(248,246,242,.8); line-height:1.85;">Assetto Biologico™ non diagnostica malattie. Non sostituisce il medico. Non promette trasformazioni immediate.</p>
+      <p style="color:rgba(248,246,242,.8); line-height:1.85; margin-bottom:0;">Serve a una cosa: <strong style="color:var(--off-white)">capire cosa sta succedendo adesso, prima che quella sensazione diventi semplicemente il tuo nuovo normale.</strong></p>
 
     </div>
   </section>
 
   <!-- SEPARATORE NARRATIVO -->
-  <div class="narr-separator bg-navy">Il percorso è semplice. Non semplice da scoprire da soli — ma semplice da seguire insieme.</div>
+  <div class="narr-separator bg-navy">Nessun protocollo standard. Nessuna soluzione preconfezionata. Nessuna scorciatoia.</div>
 
   <!-- PROCESS FLOW -->
   <section class="process-section">
     <div class="process-inner">
-      <p class="section-eyebrow" style="text-align:center; margin-bottom:.6rem;">Come funziona</p>
-      <h2 class="section-heading" style="text-align:center; margin-bottom:.5rem;">Il percorso in 3 consulenze</h2>
-      <p style="text-align:center; color:var(--gray); font-size:.95rem; margin-bottom:0;">Nessun protocollo fisso. Ogni passo dipende da quello precedente.</p>
+      <p class="section-eyebrow" style="text-align:center; margin-bottom:.6rem;">Come si svolge il percorso</p>
+      <h2 class="section-heading" style="text-align:center; margin-bottom:.5rem;">Quattro incontri. Una direzione.</h2>
+      <p style="text-align:center; color:var(--gray); font-size:.95rem; margin-bottom:0;">Perché il corpo non è una teoria. È una realtà in movimento.</p>
       <div class="process-steps">
         <div class="process-step">
           <div class="process-num-wrap">
             <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; background:var(--btn-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">1</span>
           </div>
-          <h4>Valutazione Completa</h4>
-          <p>Raccolta dati, analisi composizione corporea, questionari avanzati. Otteniamo il quadro completo del tuo stato biologico attuale.</p>
+          <h4>Facciamo emergere il quadro reale</h4>
+          <p>Raccogliamo informazioni. Osserviamo segnali. Analizziamo ciò che oggi potrebbe sfuggire a una lettura frammentata.</p>
         </div>
         <div class="process-step">
           <div class="process-num-wrap">
             <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; background:var(--btn-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">2</span>
           </div>
-          <h4>Performance Recovery Report™</h4>
-          <p>Interpretazione integrata dei pattern. Capisci dove stai consumando energia inutilmente e da dove conviene iniziare.</p>
+          <h4>Mettiamo insieme i pezzi</h4>
+          <p>Qui emerge la spiegazione. Qui iniziano a comparire connessioni che prima sembravano invisibili. Qui molte persone dicono: <em>"Adesso ha senso."</em></p>
         </div>
         <div class="process-step">
           <div class="process-num-wrap">
             <span style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; background:var(--btn-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">3</span>
           </div>
-          <h4>2 Follow-up di Ottimizzazione</h4>
-          <p>Monitoriamo come il corpo sta reagendo. Correggiamo il percorso in base ai cambiamenti reali, non a protocolli teorici.</p>
+          <h4>Due incontri di follow-up</h4>
+          <p>Verifichiamo. Osserviamo. Correggiamo. Perché il corpo non è una teoria — è una realtà in movimento.</p>
         </div>
       </div>
     </div>
@@ -1454,9 +1526,9 @@
   <!-- INVESTIMENTO -->
   <section class="pricing-block" id="investimento">
     <div class="pricing-inner">
-      <p class="section-eyebrow" style="margin-bottom:.8rem;">Trasparenza totale</p>
-      <h2 class="section-heading gold-text">Nessuna Sorpresa</h2>
-      <p style="color:var(--gray); line-height:1.8; margin-bottom:2rem; font-size:.97rem;">Questo percorso non è pensato per chi vuole semplicemente "curiosare". È per persone che hanno iniziato a percepire una differenza reale nel proprio livello di lucidità, recupero e presenza… e vogliono capire perché.</p>
+      <p class="section-eyebrow" style="margin-bottom:.8rem;">Investimento</p>
+      <h2 class="section-heading gold-text">Trasparenza totale</h2>
+      <p style="color:var(--gray); line-height:1.8; margin-bottom:2rem; font-size:.97rem;">Se tra due anni continuerai a sentirti così… sarai contento di aver aspettato? Quasi nessuno arriva qui dicendo: "Mi sento uguale a cinque anni fa." La storia è quasi sempre la stessa — un po' meno energia, un po' meno recupero, anno dopo anno. Vale la pena capirlo oggi, quando puoi ancora fare qualcosa con quell'informazione.</p>
 
       <div class="value-stack">
         <div class="value-row">
@@ -1498,6 +1570,48 @@
     </div>
   </section>
 
+  <!-- CHI OTTIENE PIÙ VALORE -->
+  <section class="self-check" style="background:var(--page-bg);">
+    <div class="self-check-inner">
+      <p class="section-eyebrow" style="margin-bottom:.6rem;">Chi ottiene più valore da Assetto Biologico™</p>
+      <h2 class="section-heading" style="margin-bottom:.8rem;">Persone che stanno ancora funzionando.<br>Ma sentono che qualcosa sta cambiando.</h2>
+      <p style="color:var(--text-muted); font-size:.95rem; max-width:580px; line-height:1.75; margin-bottom:2.5rem;">Non malate. Non in crisi. Ancora lavorano, producono, portano avanti responsabilità importanti. Eppure sentono ogni anno di spendere più energia per restare nello stesso posto.</p>
+      <div class="check-grid">
+        <div class="check-card">
+          <span class="check-icon">📉</span>
+          <div class="check-label">Meno energia ogni anno</div>
+          <div class="check-sub">Non un crollo improvviso. Un calo lento, costante, che sembra quasi normale.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">😴</span>
+          <div class="check-label">Recupero sempre più lento</div>
+          <div class="check-sub">Dormi, ma non recuperi. Ti alleni, ma rendi meno. Il corpo non si ripristina come dovrebbe.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">🧠</span>
+          <div class="check-label">Lucidità calante</div>
+          <div class="check-sub">La testa c'è — ma non è più quella di qualche anno fa. Ci vuole più sforzo per le stesse cose.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">🔍</span>
+          <div class="check-label">Esami nella norma</div>
+          <div class="check-sub">I check-up dicono che va tutto bene. Ma tu sai che qualcosa non va. E non hai ancora una spiegazione.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">🔄</span>
+          <div class="check-label">Tentativi senza risposta</div>
+          <div class="check-sub">Hai già provato integratori, routine, consigli. Qualcosa aiuta — ma solo per un po'. Poi si torna al punto di partenza.</div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">❓</span>
+          <div class="check-label">Nessuna spiegazione</div>
+          <div class="check-sub">La domanda che ti porti dietro da mesi, forse anni: perché mi sento così se sulla carta va tutto bene?</div>
+        </div>
+      </div>
+      <p style="color:var(--text-muted); font-size:.88rem; margin-top:2rem; font-style:italic;">Se questa frase ti colpisce — <strong style="color:var(--text-h); font-style:normal;">probabilmente sei nel posto giusto.</strong></p>
+    </div>
+  </section>
+
   <!-- FAQ ACCORDION -->
   <section class="faq-section">
     <div class="faq-inner">
@@ -1506,59 +1620,71 @@
 
       <details class="faq-item" open>
         <summary class="faq-q">
-          Ho già fatto gli esami e sono tutti nella norma. Perché dovrebbe servire?
+          Ho già provato tanti integratori. Cosa cambia questa volta?
           <i class="faq-arrow">▾</i>
         </summary>
         <div class="faq-answer">
-          <p>È esattamente il caso più comune che incontro. Gli esami clinici standard misurano la presenza o assenza di patologie — non la qualità del recupero, la variabilità dello stress o i pattern di compensazione cronica.</p>
-          <p>Puoi avere emocromo, tiroide e vitamina D perfetti e allo stesso tempo un sistema nervoso che fatica a recuperare, un sonno che non rigenera davvero, una risposta allo stress cronicamente alterata. Assetto Biologico™ osserva quello strato che i check-up normali non toccano.</p>
+          <p>Probabilmente non ti manca un'altra soluzione. Probabilmente ti manca una spiegazione. Da farmacista vedo ogni giorno confezioni lasciate a metà — integratori per l'energia, per il sonno, per la concentrazione. Prodotti acquistati con speranza e abbandonati poche settimane dopo.</p>
+          <p>Non perché fossero necessariamente sbagliati. Ma perché nessuno aveva ancora capito il problema che stavano cercando di risolvere. Assetto Biologico™ parte da una domanda diversa: <strong>perché mi sento così?</strong> Perché senza una risposta, qualsiasi soluzione rischia di diventare soltanto un altro tentativo.</p>
         </div>
       </details>
 
       <details class="faq-item" open>
         <summary class="faq-q">
-          È una consulenza medica? Riceverò diagnosi o prescrizioni?
+          Gli esami sono tutti nella norma. Perché dovrei approfondire?
           <i class="faq-arrow">▾</i>
         </summary>
         <div class="faq-answer">
-          <p>No. Assetto Biologico™ non è una visita medica, non diagnostica malattie e non sostituisce il tuo medico di base o gli specialisti.</p>
-          <p>È una valutazione funzionale: analizza come il tuo corpo sta gestendo energia, recupero e pressione in questo momento. Il risultato è una lettura integrata e una roadmap operativa — non una diagnosi.</p>
+          <p>Perché gli esami rispondono a una domanda diversa. Cercano segni di patologie. Tu stai cercando di capire perché ti senti sempre più stanco. Sono due cose diverse.</p>
+          <p>Molte delle persone che seguo arrivano con esami perfettamente nella norma. Eppure si svegliano stanche, recuperano lentamente e sentono di avere meno energia rispetto a qualche anno prima. La domanda non è "c'è una malattia?" — è <strong>"perché non mi sento più come prima?"</strong></p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q">
-          Non so se ho il tempo per seguire un percorso strutturato.
+          E se fosse davvero solo l'età?
           <i class="faq-arrow">▾</i>
         </summary>
         <div class="faq-answer">
-          <p>Il percorso è composto da 3 consulenze distribuite nel tempo — non da un programma quotidiano da seguire. Non devi cambiare la tua vita per iniziare: devi capire cosa cambiare, e perché.</p>
-          <p>La prima cosa che molte persone notano è proprio che smettono di sprecare energia su abitudini che non servono al loro caso specifico. Questo libera tempo, non lo occupa.</p>
+          <p>Forse. Ma allora perché alcune persone a 55 anni hanno più energia, più lucidità e recuperano meglio di altre a 45?</p>
+          <p>L'età cambia il corpo — questo è inevitabile. Quello che non è inevitabile è dare la colpa all'età senza aver capito cosa sta succedendo davvero. "Sto invecchiando" è spesso la risposta più facile. Non necessariamente quella giusta.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q">
-          Come faccio a sapere se ne vale la pena prima di iniziare?
+          Come faccio a capire se questo percorso è adatto a me?
           <i class="faq-arrow">▾</i>
         </summary>
         <div class="faq-answer">
-          <p>La prima chiamata conoscitiva (15 minuti) è gratuita e senza impegno. In quei 15 minuti ti faccio alcune domande su come stai funzionando adesso: se emerge un quadro chiaro, ha senso procedere. Se non è il momento giusto, te lo dico direttamente.</p>
-          <p>Non accetto valutazioni quando non sono sicuro che possa portare un risultato concreto.</p>
+          <p>Se ti riconosci in frasi come queste: "Mi sento sempre più stanco." "Recupero peggio rispetto a qualche anno fa." "Per ottenere gli stessi risultati devo fare più fatica." "Gli esami dicono che va tutto bene, ma io non mi sento bene" — probabilmente sì.</p>
+          <p>Se stai cercando una soluzione miracolosa, probabilmente no. Assetto Biologico™ nasce per persone che vogliono capire cosa c'è dietro quella sensazione.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          E se decidessi di non fare nulla?
+          <i class="faq-arrow">▾</i>
+        </summary>
+        <div class="faq-answer">
+          <p>Ti faccio una domanda: ti senti come cinque anni fa? Perché quasi nessuno che arriva qui risponde di sì. La storia che sento più spesso è un'altra — un po' meno energia, un po' meno recupero, un po' meno lucidità. Anno dopo anno. Così lentamente da sembrare normale.</p>
+          <p>Finché un giorno la differenza diventa impossibile da ignorare. E a quel punto la domanda non è più "cosa mi sta succedendo?" Ma: <strong>"perché ho aspettato così tanto per capirlo?"</strong></p>
+          <p>Tra qualche mese potresti ritrovarti con l'ennesima scatola lasciata a metà. Oppure potresti finalmente capire perché continui a cercare soluzioni.</p>
         </div>
       </details>
     </div>
   </section>
 
   <!-- SEPARATORE NARRATIVO -->
-  <div class="narr-separator bg-navy" style="padding:3rem 2rem;">Se ti riconosci in quello che hai letto, il passo successivo è semplice.</div>
+  <div class="narr-separator bg-navy" style="padding:3rem 2rem;">Il problema non è mai stata la mancanza di tentativi. È che nessuno ti ha ancora aiutato a capire cosa stai cercando di risolvere.</div>
 
   <!-- CTA FINALE -->
   <section class="cta-final" id="prenota">
     <div class="cta-final-inner">
-      <p class="section-eyebrow">Sei pronto a vedere il quadro completo?</p>
-      <h2 class="section-heading">Prenota la tua valutazione<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Assetto Biologico™</em></h2>
-      <p>Se vuoi vedere in modo chiaro come il tuo corpo sta gestendo recupero, pressione ed energia oggi — scopri se stai realmente recuperando… o se il tuo corpo sta semplicemente compensando meglio.</p>
+      <p class="section-eyebrow">Prenota la tua valutazione</p>
+      <h2 class="section-heading">Se gli esami dicono che va tutto bene<br>ma continui a sentirti sempre più stanco —<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">forse non ti manca una soluzione.</em></h2>
+      <p>Forse ti manca una spiegazione. Prenota Assetto Biologico™ e scopri cosa potrebbe esserci dietro quella stanchezza che nessuno è ancora riuscito a spiegarti.</p>
       <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
         <a href="#form-contatto" class="btn-primary" style="font-size:1rem; padding:1.1rem 2.8rem;">Prenota ora la tua valutazione →</a>
         <a href="#chi-e" class="btn-outline-gold" style="font-size:1rem; padding:1.1rem 2rem;">Chi è Roberto Boscia</a>

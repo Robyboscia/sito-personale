@@ -520,21 +520,62 @@
     /* CLOSING NARRATIVE */
     .closing-narrative {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.4rem, 2.8vw, 1.7rem);
+      font-size: clamp(1.5rem, 2.8vw, 1.9rem);
       line-height: 1.85;
-      color: #F8F6F2;
+      color: #FFFFFF;
       text-align: center;
+      margin-bottom: 4rem;
     }
-    .closing-narrative p { margin-bottom: 1.3rem; }
+    .closing-narrative p { margin-bottom: 1.4rem; }
     .closing-narrative strong { color: #FFFFFF; font-weight: 700; }
+    .closing-intro {
+      font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
+      color: #A8BEDD !important;
+      font-style: italic;
+      border-bottom: 1px solid rgba(201,146,58,.25);
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem !important;
+    }
+    .closing-question {
+      color: #D4E0F5 !important;
+      font-style: italic;
+      margin-top: 2rem !important;
+    }
+    .closing-answer {
+      font-size: 1.15em !important;
+      font-weight: 700;
+      background: linear-gradient(135deg, #C9923A, #E8B96A);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .closing-list {
       display: flex; flex-direction: column; align-items: center;
-      gap: .5rem; margin: 2rem 0;
+      gap: .6rem; margin: 2.5rem 0;
       font-style: italic;
-      color: #D4C9B8;
-      font-size: 1.05em;
+      color: #B8C8E0;
+      font-size: .95em;
+      letter-spacing: .02em;
     }
     .closing-list div::before { content: '— '; }
+
+    /* FORM BOX su sfondo bianco */
+    .closing-form-box {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+    .closing-form-box .contact-form label { color: #0A1C52; }
+    .closing-form-box .contact-form input,
+    .closing-form-box .contact-form textarea {
+      background: #F8FAFF;
+      border-color: #CBD5E1;
+      color: #0A1C52;
+    }
+    .closing-form-box .contact-form input::placeholder,
+    .closing-form-box .contact-form textarea::placeholder { color: #94A3B8; }
+    .closing-form-box .contact-form input:focus,
+    .closing-form-box .contact-form textarea:focus { border-color: #1B3A8C; box-shadow: 0 0 0 3px rgba(27,58,140,.1); }
 
     /* STATS BAR */
     .stats-bar {
@@ -1914,18 +1955,17 @@
   </section>
 
   <!-- NARRATIVA FINALE + FORM -->
-  <section class="cta-final" id="prenota" style="background:var(--page-dark);">
-    <div class="cta-final-inner" style="max-width:680px;">
+  <section class="cta-final" id="prenota" style="background:#0D1F52; padding:6rem 2rem;">
+    <div style="max-width:700px; margin:0 auto;">
 
-      <!-- Separatore narrativo -->
-      <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.15rem,2.4vw,1.4rem); color:#B8C8E8; text-align:center; font-style:italic; margin-bottom:3rem; line-height:1.8; border-bottom:1px solid rgba(201,146,58,.2); padding-bottom:3rem;">Il problema non è mai stata la mancanza di tentativi.<br>È che nessuno ti ha ancora aiutato a capire cosa stai cercando di risolvere.</p>
-
-      <!-- Narrative copy -->
+      <!-- Narrativa: testo grande e bianco -->
       <div class="closing-narrative">
+        <p class="closing-intro">Il problema non è mai stata la mancanza di tentativi.<br>È che nessuno ti ha ancora aiutato a capire<br>cosa stai cercando di risolvere.</p>
+
         <p>Quasi nessuno ha bisogno di un altro tentativo.</p>
         <p>Ha bisogno di <strong>una risposta</strong>.</p>
 
-        <p style="margin-top:2rem;">Per anni ho visto passare davanti ai miei occhi scatole lasciate a metà.</p>
+        <p style="margin-top:2.5rem;">Per anni ho visto passare davanti ai miei occhi<br>scatole lasciate a metà.</p>
 
         <div class="closing-list">
           <div>Integratori.</div>
@@ -1935,39 +1975,40 @@
         </div>
 
         <p>Il problema non era la mancanza di soluzioni.</p>
-        <p>Il problema era che nessuno aveva ancora aiutato quelle persone a capire <strong>cosa stessero cercando di risolvere</strong>.</p>
+        <p>Il problema era che nessuno aveva ancora aiutato<br>quelle persone a capire <strong>cosa stessero cercando di risolvere</strong>.</p>
 
-        <p style="margin-top:2rem; font-style:italic; color:rgba(248,246,242,.75);">Se gli esami dicono che va tutto bene ma tu continui a sentirti sempre più stanco...</p>
+        <p class="closing-question">Se gli esami dicono che va tutto bene<br>ma tu continui a sentirti sempre più stanco...</p>
 
         <p>forse non ti manca un'altra soluzione.</p>
-        <p><strong style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-size:1.05em;">Forse ti manca una spiegazione.</strong></p>
+        <p class="closing-answer">Forse ti manca una spiegazione.</p>
       </div>
 
-      <!-- CTA + Form -->
-      <div id="form-contatto" style="margin-top:3.5rem;">
-        <p class="section-eyebrow" style="text-align:center; margin-bottom:.5rem;">Prenota la tua valutazione</p>
+      <!-- Riquadro form su sfondo bianco — massima leggibilità -->
+      <div id="form-contatto" class="closing-form-box">
 
         <!-- Avatar firma -->
-        <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin:1.4rem 0 1.8rem;">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.8rem;">
           <picture>
             <source srcset="img/foto-roberto-boscia.webp" type="image/webp">
             <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia"
-                 style="width:64px; height:64px; border-radius:50%; object-fit:cover; object-position:center top; border:2px solid rgba(201,146,58,.4); flex-shrink:0;" loading="lazy" decoding="async">
+                 style="width:60px; height:60px; border-radius:50%; object-fit:cover; object-position:center top; border:2px solid #C9923A; flex-shrink:0;" loading="lazy" decoding="async">
           </picture>
-          <div style="text-align:left;">
-            <div style="font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:700; color:var(--off-white); line-height:1.2;">Dott. Roberto Boscia</div>
-            <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.72rem; color:rgba(248,246,242,.5); letter-spacing:.04em;">Farmacista · Nocera Inferiore (SA)</div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:#0A1C52; line-height:1.2;">Dott. Roberto Boscia</div>
+            <div style="font-size:.75rem; color:#64748B; letter-spacing:.04em; font-family:'Plus Jakarta Sans',sans-serif;">Farmacista · Nocera Inferiore (SA)</div>
           </div>
         </div>
 
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,3vw,2rem); font-weight:700; color:#0A1C52; margin-bottom:.4rem; line-height:1.2;">Prenota la tua valutazione</h3>
+        <p style="font-size:.88rem; color:#64748B; margin-bottom:.5rem;">Prima chiamata conoscitiva (15 min) gratuita — decidi solo dopo.</p>
+
         <!-- Prezzo -->
-        <div style="text-align:center; margin-bottom:2rem;">
-          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(201,146,58,.7); margin-bottom:.4rem;">Assetto Biologico™</div>
-          <div style="font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:700; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1;">€&thinsp;497</div>
-          <div style="font-size:.8rem; color:rgba(248,246,242,.45); margin-top:.5rem;">Prima chiamata conoscitiva gratuita · Paghi solo se decidi di procedere</div>
+        <div style="display:inline-flex; align-items:center; gap:.6rem; background:#F2F6FF; border:1px solid rgba(27,58,140,.12); border-radius:8px; padding:.5rem 1rem; margin-bottom:1.8rem;">
+          <span style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:700; color:#0A1C52;">€ 497</span>
+          <span style="font-size:.75rem; color:#64748B; line-height:1.3;">Assetto Biologico™<br>Valutazione completa</span>
         </div>
 
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" style="--form-bg:#fff; --label-color:#0A1C52; --input-border:#CBD5E1; --input-focus:#1B3A8C;">
           <div class="form-row">
             <div class="form-group">
               <label for="name">Nome</label>
@@ -1986,8 +2027,8 @@
             <label for="message">Descrivi brevemente la tua situazione</label>
             <textarea id="message" name="message" placeholder="Es: mi sveglio stanco, calo di energia nel pomeriggio, difficoltà di concentrazione…"></textarea>
           </div>
-          <button type="submit" class="form-submit">Prenota la valutazione Assetto Biologico™</button>
-          <p style="text-align:center; font-size:.78rem; color:rgba(248,246,242,.35); margin-top:.9rem; line-height:1.6;">
+          <button type="submit" class="form-submit">Prenota la valutazione →</button>
+          <p style="text-align:center; font-size:.75rem; color:#94A3B8; margin-top:.8rem; line-height:1.6;">
             Assetto Biologico™ non sostituisce esami clinici e non diagnostica malattie.<br>
             Via Attilio Barbarulo 60, Nocera Inferiore (SA) · info@robertoboscia.it
           </p>

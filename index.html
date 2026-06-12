@@ -517,6 +517,25 @@
       line-height: 1.6;
     }
 
+    /* CLOSING NARRATIVE */
+    .closing-narrative {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+      line-height: 1.75;
+      color: rgba(248,246,242,.82);
+      text-align: center;
+    }
+    .closing-narrative p { margin-bottom: 1rem; }
+    .closing-narrative strong { color: var(--off-white); }
+    .closing-list {
+      display: flex; flex-direction: column; align-items: center;
+      gap: .15rem; margin: 1.8rem 0;
+      font-style: italic;
+      color: rgba(248,246,242,.5);
+      font-size: .95em;
+    }
+    .closing-list div::before { content: '— '; }
+
     /* STATS BAR */
     .stats-bar {
       background: var(--navy-mid);
@@ -1894,80 +1913,87 @@
     </div>
   </section>
 
-  <!-- SEPARATORE NARRATIVO -->
-  <div class="narr-separator bg-navy" style="padding:3rem 2rem;">Il problema non è mai stata la mancanza di tentativi. È che nessuno ti ha ancora aiutato a capire cosa stai cercando di risolvere.</div>
+  <!-- NARRATIVA FINALE + FORM -->
+  <section class="cta-final" id="prenota" style="background:var(--page-dark);">
+    <div class="cta-final-inner" style="max-width:680px;">
 
-  <!-- CTA FINALE -->
-  <section class="cta-final" id="prenota">
-    <div class="cta-final-inner">
-      <p class="section-eyebrow">Prenota la tua valutazione</p>
-      <h2 class="section-heading">Se gli esami dicono che va tutto bene<br>ma continui a sentirti sempre più stanco —<br><em style="font-style:italic; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">forse non ti manca una soluzione.</em></h2>
-      <p>Forse ti manca una spiegazione. Prenota Assetto Biologico™ e scopri cosa potrebbe esserci dietro quella stanchezza che nessuno è ancora riuscito a spiegarti.</p>
-      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-        <a href="#form-contatto" class="btn-primary" style="font-size:1rem; padding:1.1rem 2.8rem;">Prenota ora la tua valutazione →</a>
-        <a href="#chi-e" class="btn-outline-gold" style="font-size:1rem; padding:1.1rem 2rem;">Chi è Roberto Boscia</a>
-      </div>
-      <div class="cta-disclaimer">
-        Assetto Biologico™ non sostituisce esami clinici e non diagnostica malattie.<br>
-        Via Attilio Barbarulo 60, Nocera Inferiore (SA) · info@robertoboscia.it
-      </div>
-    </div>
-  </section>
+      <!-- Separatore narrativo -->
+      <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1rem,2.2vw,1.2rem); color:rgba(248,246,242,.55); text-align:center; font-style:italic; margin-bottom:3rem; line-height:1.7;">Il problema non è mai stata la mancanza di tentativi.<br>È che nessuno ti ha ancora aiutato a capire cosa stai cercando di risolvere.</p>
 
-  <!-- FORM -->
-  <section class="form-section" id="form-contatto">
-    <div class="form-section-inner">
-      <!-- Avatar firma -->
-      <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:2rem;">
-        <picture>
-          <source srcset="img/foto-roberto-boscia.webp" type="image/webp">
-          <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia"
-               style="width:72px; height:72px; border-radius:50%; object-fit:cover; object-position:center top; border:3px solid var(--border-c); flex-shrink:0;" loading="lazy" decoding="async">
-        </picture>
-        <div style="text-align:left;">
-          <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:var(--text-h); line-height:1.2;">Dott. Roberto Boscia</div>
-          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.75rem; color:var(--text-muted); letter-spacing:.04em;">Farmacista · Nocera Inferiore (SA)</div>
+      <!-- Narrative copy -->
+      <div class="closing-narrative">
+        <p>Quasi nessuno ha bisogno di un altro tentativo.</p>
+        <p>Ha bisogno di <strong>una risposta</strong>.</p>
+
+        <p style="margin-top:2rem;">Per anni ho visto passare davanti ai miei occhi scatole lasciate a metà.</p>
+
+        <div class="closing-list">
+          <div>Integratori.</div>
+          <div>Prodotti per il sonno.</div>
+          <div>Prodotti per l'energia.</div>
+          <div>Tentativi.</div>
         </div>
+
+        <p>Il problema non era la mancanza di soluzioni.</p>
+        <p>Il problema era che nessuno aveva ancora aiutato quelle persone a capire <strong>cosa stessero cercando di risolvere</strong>.</p>
+
+        <p style="margin-top:2rem; font-style:italic; color:rgba(248,246,242,.75);">Se gli esami dicono che va tutto bene ma tu continui a sentirti sempre più stanco...</p>
+
+        <p>forse non ti manca un'altra soluzione.</p>
+        <p><strong style="background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-size:1.05em;">Forse ti manca una spiegazione.</strong></p>
       </div>
 
-      <p class="section-eyebrow" style="text-align:center; margin-bottom:.6rem;">Prenota la tua valutazione</p>
-      <h2 class="section-heading" style="text-align:center; margin-bottom:.8rem;">Inizia da qui</h2>
+      <!-- CTA + Form -->
+      <div id="form-contatto" style="margin-top:3.5rem;">
+        <p class="section-eyebrow" style="text-align:center; margin-bottom:.5rem;">Prenota la tua valutazione</p>
 
-      <!-- Prezzo visibile prima del form -->
-      <div style="display:flex; align-items:center; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.6rem;">
-        <div style="background:var(--page-alt); border:1.5px solid var(--border-c); border-radius:12px; padding:.9rem 1.6rem; text-align:center; max-width:340px; width:100%;">
-          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:.3rem;">Assetto Biologico™ · Valutazione completa</div>
-          <div style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; color:var(--text-h); line-height:1;">€&thinsp;497</div>
-          <div style="font-size:.8rem; color:var(--text-muted); margin-top:.4rem;">Pagamento dopo la chiamata conoscitiva gratuita</div>
-        </div>
-      </div>
-
-      <p style="text-align:center; color:var(--text-muted); font-size:.9rem; margin-bottom:2rem; line-height:1.7;">Compila il modulo. Rispondo entro 24 ore nei giorni feriali.<br><strong style="color:var(--text-h);">La prima chiamata conoscitiva (15 min) è gratuita</strong> — decidi solo dopo se procedere.</p>
-
-      <form class="contact-form" id="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Nome</label>
-            <input type="text" id="name" name="name" placeholder="Mario Rossi" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="mario@email.com" required />
+        <!-- Avatar firma -->
+        <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin:1.4rem 0 1.8rem;">
+          <picture>
+            <source srcset="img/foto-roberto-boscia.webp" type="image/webp">
+            <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia"
+                 style="width:64px; height:64px; border-radius:50%; object-fit:cover; object-position:center top; border:2px solid rgba(201,146,58,.4); flex-shrink:0;" loading="lazy" decoding="async">
+          </picture>
+          <div style="text-align:left;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:700; color:var(--off-white); line-height:1.2;">Dott. Roberto Boscia</div>
+            <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.72rem; color:rgba(248,246,242,.5); letter-spacing:.04em;">Farmacista · Nocera Inferiore (SA)</div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="phone">Numero di telefono</label>
-          <input type="tel" id="phone" name="phone" placeholder="+39 333 000 0000" />
+
+        <!-- Prezzo -->
+        <div style="text-align:center; margin-bottom:2rem;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(201,146,58,.7); margin-bottom:.4rem;">Assetto Biologico™</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:700; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1;">€&thinsp;497</div>
+          <div style="font-size:.8rem; color:rgba(248,246,242,.45); margin-top:.5rem;">Prima chiamata conoscitiva gratuita · Paghi solo se decidi di procedere</div>
         </div>
-        <div class="form-group">
-          <label for="message">Descrivi brevemente la tua situazione</label>
-          <textarea id="message" name="message" placeholder="Es: mi sveglio stanco, calo di energia nel pomeriggio, difficoltà di concentrazione…"></textarea>
-        </div>
-        <button type="submit" class="form-submit">Prenota la valutazione Assetto Biologico™</button>
-        <p style="text-align:center; font-size:.8rem; color:var(--text-muted); margin-top:.9rem; line-height:1.6;">
-          Prima chiamata conoscitiva gratuita · Valutazione completa <strong style="color:var(--text-h);">€ 497</strong> · Nessun impegno
-        </p>
-      </form>
+
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input type="text" id="name" name="name" placeholder="Mario Rossi" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="mario@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Numero di telefono</label>
+            <input type="tel" id="phone" name="phone" placeholder="+39 333 000 0000" />
+          </div>
+          <div class="form-group">
+            <label for="message">Descrivi brevemente la tua situazione</label>
+            <textarea id="message" name="message" placeholder="Es: mi sveglio stanco, calo di energia nel pomeriggio, difficoltà di concentrazione…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Prenota la valutazione Assetto Biologico™</button>
+          <p style="text-align:center; font-size:.78rem; color:rgba(248,246,242,.35); margin-top:.9rem; line-height:1.6;">
+            Assetto Biologico™ non sostituisce esami clinici e non diagnostica malattie.<br>
+            Via Attilio Barbarulo 60, Nocera Inferiore (SA) · info@robertoboscia.it
+          </p>
+        </form>
+      </div>
+
     </div>
   </section>
 

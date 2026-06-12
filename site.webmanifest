@@ -1,0 +1,12 @@
+{
+  "name": "Dott. Roberto Boscia",
+  "short_name": "Dr. Boscia",
+  "description": "Assetto Biologico™ — Valutazione funzionale personalizzata",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#1B3A8C",
+  "background_color": "#F2F6FF",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ]
+}

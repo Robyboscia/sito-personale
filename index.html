@@ -4,10 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Assetto Biologico™ — Dott. Roberto Boscia</title>
-  <meta name="description" content="Scopri se oggi stai realmente recuperando… o se il tuo corpo sta semplicemente compensando meglio. Assetto Biologico™ con il Dott. Roberto Boscia.">
+  <meta name="description" content="Se gli esami dicono che stai bene, perché ogni anno ti senti più stanco? Assetto Biologico™ con il Dott. Roberto Boscia, farmacista con 15+ anni di esperienza a Nocera Inferiore.">
+
+  <!-- Canonical & SEO -->
+  <link rel="canonical" href="https://drrobertoboscia.com/">
+  <meta name="theme-color" content="#1B3A8C">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Assetto Biologico™ — Dott. Roberto Boscia">
+  <meta property="og:description" content="Se gli esami dicono che stai bene, perché ogni anno ti senti più stanco? Scopri Assetto Biologico™, la valutazione funzionale personalizzata.">
+  <meta property="og:url" content="https://drrobertoboscia.com/">
+  <meta property="og:image" content="https://drrobertoboscia.com/img/foto-roberto-boscia.jpg">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Assetto Biologico™ — Dott. Roberto Boscia">
+  <meta name="twitter:description" content="Se gli esami dicono che stai bene, perché ogni anno ti senti più stanco?">
+  <meta name="twitter:image" content="https://drrobertoboscia.com/img/foto-roberto-boscia.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Preload hero image (LCP) -->
+  <link rel="preload" as="image" href="img/foto-roberto-boscia.jpg" fetchpriority="high">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
   <style>
     /* ── LIGHT THEME OVERRIDES (Mental Pro palette) ── */
@@ -1044,6 +1073,20 @@
     /* Hero wave */
     .hero-wave { opacity: .12; filter: hue-rotate(210deg); }
 
+    /* ── PERFORMANCE ── */
+    header { contain: layout; will-change: transform; }
+
+    /* Reduced motion — disabilita tutte le animazioni */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+      }
+    }
+
     /* Btn reveal */
     .btn-reveal { border-color: rgba(27,58,140,.2); color: var(--blue-btn); }
     .btn-reveal:hover { border-color: var(--blue-btn); background: rgba(27,58,140,.05); }
@@ -1145,6 +1188,116 @@
     }
 
   </style>
+
+  <!-- Noscript: rende visibili tutti gli elementi animati da GSAP -->
+  <noscript><style>
+    .hero-badge, .hook-text h1, .hook-text .hero-sub, .hero-actions,
+    .hero-image-right img, .result-item, .product-name, .include-item,
+    .value-stack, .value-row, .cta-final-inner, .form-section-inner,
+    .narr-title, .inline-pull, .narr-separator, .faq-item, .check-card,
+    .comp-col, .process-step, .pillar, .narrative-inner > * {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+  </style></noscript>
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://drrobertoboscia.com/#organization",
+        "name": "Dott. Roberto Boscia",
+        "url": "https://drrobertoboscia.com/",
+        "logo": "https://drrobertoboscia.com/img/foto-roberto-boscia.jpg",
+        "image": "https://drrobertoboscia.com/img/foto-roberto-boscia.jpg",
+        "description": "Farmacista con 15+ anni di esperienza specializzato in valutazioni funzionali per persone con stanchezza cronica e esami nella norma.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Attilio Barbarulo 60",
+          "addressLocality": "Nocera Inferiore",
+          "addressRegion": "SA",
+          "postalCode": "84014",
+          "addressCountry": "IT"
+        },
+        "email": "info@robertoboscia.it",
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://drrobertoboscia.com/#website",
+        "url": "https://drrobertoboscia.com/",
+        "name": "Dott. Roberto Boscia — Assetto Biologico™",
+        "inLanguage": "it-IT",
+        "publisher": { "@id": "https://drrobertoboscia.com/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://drrobertoboscia.com/#webpage",
+        "url": "https://drrobertoboscia.com/",
+        "name": "Assetto Biologico™ — Dott. Roberto Boscia",
+        "description": "Se gli esami dicono che stai bene, perché ogni anno ti senti più stanco? Scopri Assetto Biologico™, la valutazione funzionale personalizzata in 3 tappe.",
+        "inLanguage": "it-IT",
+        "isPartOf": { "@id": "https://drrobertoboscia.com/#website" },
+        "about": { "@id": "https://drrobertoboscia.com/#organization" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://drrobertoboscia.com/" }]
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://drrobertoboscia.com/#service",
+        "name": "Assetto Biologico™",
+        "description": "Percorso di valutazione funzionale in 3 tappe per capire perché ci si sente stanchi nonostante esami perfetti. Analisi di recupero, stress cronico e compensazione biologica.",
+        "provider": { "@id": "https://drrobertoboscia.com/#organization" },
+        "areaServed": "IT",
+        "offers": {
+          "@type": "Offer",
+          "price": "497",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/LimitedAvailability",
+          "url": "https://drrobertoboscia.com/#investimento"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://drrobertoboscia.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Ho già provato tanti integratori. Cosa cambia questa volta?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Probabilmente non ti manca un'altra soluzione, ti manca una spiegazione. Assetto Biologico™ parte dalla domanda 'perché mi sento così?' — senza una risposta, qualsiasi soluzione è solo un altro tentativo." }
+          },
+          {
+            "@type": "Question",
+            "name": "Gli esami sono tutti nella norma. Perché dovrei approfondire?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Gli esami cercano patologie. Assetto Biologico™ risponde a 'perché non mi sento più come prima?' — sono due domande diverse." }
+          },
+          {
+            "@type": "Question",
+            "name": "E se fosse davvero solo l'età?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Alcune persone a 55 anni hanno più energia di altre a 45. L'età cambia il corpo, ma dare la colpa all'età senza capire cosa sta succedendo è spesso la risposta più facile, non quella giusta." }
+          },
+          {
+            "@type": "Question",
+            "name": "Come faccio a capire se questo percorso è adatto a me?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Se ti riconosci in 'mi sento sempre più stanco', 'recupero peggio rispetto a qualche anno fa', 'gli esami dicono che va tutto bene ma non mi sento bene' — probabilmente sì." }
+          },
+          {
+            "@type": "Question",
+            "name": "E se decidessi di non fare nulla?",
+            "acceptedAnswer": { "@type": "Answer", "text": "La storia più comune è un po' meno energia, un po' meno recupero anno dopo anno, così lentamente da sembrare normale. Finché la differenza diventa impossibile da ignorare." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
 </head>
 <body>
 
@@ -1176,7 +1329,7 @@
       </div>
     </div>
     <div class="hero-image-right">
-      <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia" />
+      <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia" fetchpriority="high" decoding="sync" />
     </div>
     <!-- onda EEG decorativa -->
     <svg class="hero-wave" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -1364,7 +1517,7 @@
   <section class="spotlight" id="chi-e">
     <div class="spotlight-inner">
       <div class="spotlight-photo">
-        <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia, farmacista" />
+        <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia, farmacista" decoding="async" loading="lazy" />
       </div>
       <div class="spotlight-text">
         <p class="section-eyebrow">Chi sono</p>
@@ -1738,5 +1891,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
+
+  <!-- GA4 — caricamento differito, non impatta PageSpeed -->
+  <!-- Sostituisci G-XXXXXXXXXX con il tuo Measurement ID -->
+  <script>
+  (function(){
+    var loaded = false;
+    var GA_ID = 'G-XXXXXXXXXX';
+    function loadGA() {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      s.async = true;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_ID, {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+    }
+    ['click','scroll','keydown','touchstart'].forEach(function(e){
+      document.addEventListener(e, loadGA, {once:true, passive:true});
+    });
+    setTimeout(loadGA, 3000);
+  })();
+  </script>
 </body>
 </html>

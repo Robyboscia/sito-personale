@@ -243,11 +243,12 @@
       .hero-hook { grid-template-columns: 1fr; min-height: auto; }
       .hook-text { padding: 9rem 2rem 3rem; }
       .hero-image-right {
-        height: 70vw; overflow: hidden;
+        height: 90vw; overflow: hidden;
       }
       .hero-image-right img {
         position: static; width: 100%; height: 100%;
-        object-fit: cover; right: auto; bottom: auto;
+        object-fit: cover; object-position: center 18%;
+        right: auto; bottom: auto;
       }
       .spotlight-inner { grid-template-columns: 1fr; }
       .spotlight-photo { height: 60vw; }
@@ -925,14 +926,16 @@
       .hero-image-right {
         height: 65vw;
         overflow: hidden;
+        display: block;
       }
       .hero-image-right img {
-        position: static; width: 100%; height: 100%;
-        object-fit: cover; object-position: center 8%;
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover; object-position: center top;
         right: auto; bottom: auto;
       }
       .hero-image-right::before {
-        background: linear-gradient(to bottom, var(--page-white) 0%, transparent 35%);
+        background: none !important;
       }
       .hero-image-right::after {
         background: linear-gradient(to top, var(--page-white) 0%, transparent 100%);
@@ -942,7 +945,9 @@
     }
     @media (max-width: 768px) {
       .hook-text { padding: 7rem 1.5rem 4rem; }
-      .hero-image-right { height: 85vw; }
+      .hero-image-right { height: 90vw; display: block; }
+      .hero-image-right img { object-position: center top; }
+      .hero-image-right::before { background: none !important; }
       .narr-separator { padding-top: 1.2rem; padding-bottom: 1.2rem; }
       .narr-block { padding-top: 3rem; padding-bottom: 3rem; }
       /* Spotlight foto full-bleed su mobile */
@@ -951,12 +956,15 @@
         height: 90vw;
         overflow: hidden;
         width: 100%;
+        display: block;
       }
       .spotlight-photo img {
+        position: absolute; top: 0; left: 0;
         width: 100%; height: 100%;
         object-fit: cover;
-        object-position: center 5%;
+        object-position: center top;
         max-width: none;
+        border-radius: 0;
       }
       .spotlight-text { padding: 2.5rem 1.5rem; }
       .narrative-inner, .product-inner, .pricing-inner, .form-section-inner {

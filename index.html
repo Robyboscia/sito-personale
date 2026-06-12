@@ -511,12 +511,6 @@
       color: var(--gray); font-size: 1rem;
       line-height: 1.75; margin-bottom: 2.5rem;
     }
-    /* closing-narrative resetta gli override di .cta-final p */
-    .cta-final .closing-narrative p {
-      font-size: clamp(1.5rem, 2.8vw, 1.9rem) !important;
-      color: #FFFFFF !important;
-      line-height: 1.85 !important;
-    }
     .cta-disclaimer {
       margin-top: 2rem;
       font-size: .78rem; color: rgba(107,125,153,.6);
@@ -525,20 +519,14 @@
 
     /* CLOSING NARRATIVE */
     .closing-narrative {
-      font-family: 'Cormorant Garamond', serif !important;
-      font-size: clamp(1.5rem, 2.8vw, 1.9rem) !important;
-      line-height: 1.85 !important;
-      color: #FFFFFF !important;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+      line-height: 1.85;
+      color: #FFFFFF;
       text-align: center;
       margin-bottom: 4rem;
     }
-    .closing-narrative p {
-      font-family: 'Cormorant Garamond', serif !important;
-      font-size: clamp(1.5rem, 2.8vw, 1.9rem) !important;
-      line-height: 1.85 !important;
-      color: #FFFFFF !important;
-      margin-bottom: 1.4rem;
-    }
+    .closing-narrative p { margin-bottom: 1.4rem; color: #FFFFFF !important; }
     .closing-narrative strong { color: #FFFFFF !important; font-weight: 700; }
     .closing-intro {
       font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
@@ -940,7 +928,7 @@
       }
       .hero-image-right img {
         position: static; width: 100%; height: 100%;
-        object-fit: cover; object-position: center top;
+        object-fit: cover; object-position: center 8%;
         right: auto; bottom: auto;
       }
       .hero-image-right::before {
@@ -954,20 +942,20 @@
     }
     @media (max-width: 768px) {
       .hook-text { padding: 7rem 1.5rem 4rem; }
-      .hero-image-right { height: 70vw; }
+      .hero-image-right { height: 85vw; }
       .narr-separator { padding-top: 1.2rem; padding-bottom: 1.2rem; }
       .narr-block { padding-top: 3rem; padding-bottom: 3rem; }
       /* Spotlight foto full-bleed su mobile */
       .spotlight-inner { padding: 0; }
       .spotlight-photo {
-        height: 75vw;
+        height: 90vw;
         overflow: hidden;
         width: 100%;
       }
       .spotlight-photo img {
         width: 100%; height: 100%;
         object-fit: cover;
-        object-position: center 15%;
+        object-position: center 5%;
         max-width: none;
       }
       .spotlight-text { padding: 2.5rem 1.5rem; }

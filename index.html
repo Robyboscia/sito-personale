@@ -179,6 +179,8 @@
       object-fit: cover; object-position: center top;
       filter: brightness(.9) contrast(1.05);
       display: block;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 20px 60px rgba(13,34,96,0.18);
     }
     /* alone dorato dietro la foto */
     .spotlight-photo::before {
@@ -1895,6 +1897,19 @@
   <!-- FORM -->
   <section class="form-section" id="form-contatto">
     <div class="form-section-inner">
+      <!-- Avatar firma -->
+      <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:2rem;">
+        <picture>
+          <source srcset="img/foto-roberto-boscia.webp" type="image/webp">
+          <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia"
+               style="width:72px; height:72px; border-radius:50%; object-fit:cover; object-position:center top; border:3px solid var(--border-c); flex-shrink:0;" loading="lazy" decoding="async">
+        </picture>
+        <div style="text-align:left;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:var(--text-h); line-height:1.2;">Dott. Roberto Boscia</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:.75rem; color:var(--text-muted); letter-spacing:.04em;">Farmacista · Nocera Inferiore (SA)</div>
+        </div>
+      </div>
+
       <p class="section-eyebrow" style="text-align:center; margin-bottom:.6rem;">Prenota la tua valutazione</p>
       <h2 class="section-heading" style="text-align:center; margin-bottom:.8rem;">Inizia da qui</h2>
 

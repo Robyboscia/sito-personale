@@ -447,15 +447,16 @@
       margin: 2rem 0;
     }
     .value-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: .65rem 0;
+      display: flex; align-items: center;
+      padding: .7rem 0;
       border-bottom: 1px solid rgba(107,125,153,.12);
       font-size: .95rem;
+      gap: .75rem;
     }
     .value-row:last-child { border-bottom: none; }
-    .value-row span:first-child { color: rgba(248,246,242,.75); }
-    .value-row span:last-child {
-      color: var(--gray); font-size: .9rem; text-decoration: line-through;
+    .value-row span:first-child {
+      color: rgba(248,246,242,.85);
+      letter-spacing: .01em;
     }
     .value-total {
       display: flex; justify-content: space-between; align-items: center;
@@ -1021,7 +1022,6 @@
     .value-stack { background: var(--page-bg); border-color: var(--border-c); }
     .value-row { border-bottom-color: var(--border-c); }
     .value-row span:first-child { color: var(--text-body); }
-    .value-row span:last-child { color: var(--text-muted); }
     .value-total { border-top-color: rgba(27,58,140,.2); }
     .value-total-label { color: var(--text-muted); }
     .value-total-amount { background: linear-gradient(135deg, #1B3A8C, #3B6FD4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -1750,29 +1750,24 @@
   <section class="pricing-block" id="investimento">
     <div class="pricing-inner">
       <p class="section-eyebrow" style="margin-bottom:.8rem;">Investimento</p>
-      <h2 class="section-heading gold-text">Trasparenza totale</h2>
+      <h2 class="section-heading gold-text">Cosa include</h2>
       <p style="color:var(--gray); line-height:1.8; margin-bottom:2rem; font-size:.97rem;">Se tra due anni continuerai a sentirti così… sarai contento di aver aspettato? Quasi nessuno arriva qui dicendo: "Mi sento uguale a cinque anni fa." La storia è quasi sempre la stessa — un po' meno energia, un po' meno recupero, anno dopo anno. Vale la pena capirlo oggi, quando puoi ancora fare qualcosa con quell'informazione.</p>
 
       <div class="value-stack">
         <div class="value-row">
-          <span>Performance Recovery Assessment™</span>
-          <span>€350</span>
+          <span>✓ Valutazione completa iniziale</span>
         </div>
         <div class="value-row">
-          <span>Mappa di Compensazione Biologica™</span>
-          <span>€500</span>
+          <span>✓ Analisi integrata dei segnali di recupero ed energia</span>
         </div>
         <div class="value-row">
-          <span>Sessione Strategica 1:1</span>
-          <span>€300</span>
+          <span>✓ Restituzione personalizzata del quadro emerso</span>
         </div>
         <div class="value-row">
-          <span>Roadmap Operativa Personalizzata</span>
-          <span>€250</span>
+          <span>✓ Piano operativo personalizzato</span>
         </div>
         <div class="value-row">
-          <span>2 Follow-up di Ottimizzazione</span>
-          <span>€400</span>
+          <span>✓ Due incontri di follow-up</span>
         </div>
         <div class="value-total">
           <div>

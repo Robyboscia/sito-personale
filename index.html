@@ -30,12 +30,10 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Preload hero image (LCP) -->
-  <link rel="preload" as="image" href="img/foto-roberto-boscia.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="img/foto-roberto-boscia.webp" fetchpriority="high">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts self-hosted -->
+  <link rel="stylesheet" href="/fonts/fonts.css">
 
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -1329,7 +1327,10 @@
       </div>
     </div>
     <div class="hero-image-right">
-      <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia" fetchpriority="high" decoding="sync" />
+      <picture>
+        <source srcset="img/foto-roberto-boscia.webp" type="image/webp">
+        <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia" fetchpriority="high" decoding="sync" />
+      </picture>
     </div>
     <!-- onda EEG decorativa -->
     <svg class="hero-wave" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -1517,7 +1518,10 @@
   <section class="spotlight" id="chi-e">
     <div class="spotlight-inner">
       <div class="spotlight-photo">
-        <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia, farmacista" decoding="async" loading="lazy" />
+        <picture>
+          <source srcset="img/foto-roberto-boscia.webp" type="image/webp">
+          <img src="img/foto-roberto-boscia.jpg" alt="Dott. Roberto Boscia, farmacista" decoding="async" loading="lazy" />
+        </picture>
       </div>
       <div class="spotlight-text">
         <p class="section-eyebrow">Chi sono</p>
@@ -1888,9 +1892,9 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="script.js" defer></script>
 
   <!-- GA4 — caricamento differito, non impatta PageSpeed -->
   <script>

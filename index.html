@@ -2117,6 +2117,9 @@
             <label for="message">Descrivi brevemente la tua situazione</label>
             <textarea id="message" name="message" placeholder="Es: mi sveglio stanco, calo di energia nel pomeriggio, difficoltà di concentrazione…"></textarea>
           </div>
+          <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+            <input type="text" name="full-name-hp" tabindex="-1" autocomplete="off" />
+          </div>
           <button type="submit" class="form-submit">Prenota la valutazione →</button>
           <p style="text-align:center; font-size:.75rem; color:#94A3B8; margin-top:.8rem; line-height:1.6;">
             Assetto Biologico™ non sostituisce esami clinici e non diagnostica malattie.<br>
@@ -2154,6 +2157,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="script.js" defer></script>
+
+  <!-- Honeypot anti-spam -->
+  <script>
+  (function(){
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      var hp = form.querySelector('input[name="full-name-hp"]');
+      if (hp && hp.value !== '') {
+        e.preventDefault();
+        return false;
+      }
+    });
+  })();
+  </script>
 
   <!-- STICKY MOBILE CTA — mostra dopo 300px scroll, nasconde vicino al form -->
   <script>

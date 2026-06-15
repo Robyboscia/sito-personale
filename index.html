@@ -23,6 +23,88 @@
   <meta name="twitter:description" content="Se gli esami dicono che stai bene, perché ogni anno ti senti più stanco?">
   <meta name="twitter:image" content="https://drrobertoboscia.com/img/foto-roberto-boscia.jpg">
 
+  <!-- Open Graph image dimensions -->
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Dott. Roberto Boscia">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://drrobertoboscia.com/#person",
+        "name": "Roberto Boscia",
+        "honorificPrefix": "Dott.",
+        "jobTitle": "Farmacista",
+        "description": "Farmacista con oltre 15 anni di esperienza clinica, specializzato in valutazione funzionale integrata e recupero energetico con il metodo Assetto Biologico™.",
+        "url": "https://drrobertoboscia.com/",
+        "image": "https://drrobertoboscia.com/img/foto-roberto-boscia.jpg",
+        "email": "info@robertoboscia.it",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Attilio Barbarulo 60",
+          "addressLocality": "Nocera Inferiore",
+          "addressRegion": "SA",
+          "postalCode": "84014",
+          "addressCountry": "IT"
+        },
+        "knowsAbout": ["farmacia clinica", "valutazione funzionale", "recupero energetico", "medicina integrativa"]
+      },
+      {
+        "@type": "MedicalBusiness",
+        "@id": "https://drrobertoboscia.com/#business",
+        "name": "Assetto Biologico™ — Dott. Roberto Boscia",
+        "description": "Valutazione funzionale integrata per chi si sente sempre stanco nonostante gli esami nella norma. Metodo Assetto Biologico™ del Dott. Roberto Boscia, farmacista a Nocera Inferiore.",
+        "url": "https://drrobertoboscia.com/",
+        "logo": "https://drrobertoboscia.com/img/foto-roberto-boscia.jpg",
+        "email": "info@robertoboscia.it",
+        "priceRange": "€€",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Attilio Barbarulo 60",
+          "addressLocality": "Nocera Inferiore",
+          "addressRegion": "SA",
+          "postalCode": "84014",
+          "addressCountry": "IT"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.7447",
+          "longitude": "14.6488"
+        },
+        "medicalSpecialty": "General",
+        "employee": {
+          "@id": "https://drrobertoboscia.com/#person"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://drrobertoboscia.com/#webpage",
+        "url": "https://drrobertoboscia.com/",
+        "name": "Assetto Biologico™ — Dott. Roberto Boscia",
+        "description": "Se gli esami dicono che stai bene, perché ogni anno ti senti più stanco? Assetto Biologico™ con il Dott. Roberto Boscia, farmacista con 15+ anni di esperienza a Nocera Inferiore.",
+        "inLanguage": "it-IT",
+        "isPartOf": { "@id": "https://drrobertoboscia.com/#business" },
+        "about": { "@id": "https://drrobertoboscia.com/#person" },
+        "dateModified": "2026-06-15"
+      },
+      {
+        "@type": "Offer",
+        "@id": "https://drrobertoboscia.com/#offer",
+        "name": "Assetto Biologico™ — Valutazione completa",
+        "description": "Valutazione completa iniziale, analisi integrata dei segnali di recupero ed energia, restituzione personalizzata, piano operativo e due incontri di follow-up.",
+        "price": "497",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/LimitedAvailability",
+        "seller": { "@id": "https://drrobertoboscia.com/#business" }
+      }
+    ]
+  }
+  </script>
+
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="32x32">

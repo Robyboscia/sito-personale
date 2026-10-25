@@ -364,3 +364,124 @@ body.home-v2 nav.home-nav-desktop{width:auto;max-width:none;min-height:0;margin:
  .home-footer-row{font-size:17px}
 }
 @media(prefers-reduced-motion:reduce){body.home-v2 *,body.home-v2 *::before,body.home-v2 *::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* ===================================================
+  PORTALE 2.1 — AREE INTERNE AUTONOME, UI PER PAGINA
+  Tutte le regole sono limitate alle detail-page.
+=================================================== */
+body.detail-page .home-nav-desktop a[aria-current="page"]{color:#f0c68b;border-bottom:2px solid #d8a966;padding-bottom:6px}
+body.detail-page .home-mobile-menu a[aria-current="page"]{color:#f0c68b;background:#172f46}
+body.detail-page .detail-breadcrumb{display:flex;align-items:center;gap:11px;font-size:12px;letter-spacing:.03em;margin-bottom:58px;color:#705c49}
+body.detail-page .detail-breadcrumb a{color:inherit;text-underline-offset:4px}
+body.detail-page .detail-breadcrumb span[aria-current="page"]{font-weight:700}
+body.detail-page .detail-breadcrumb-light{color:#b5c7cb}
+body.detail-page .detail-breadcrumb-light span[aria-current="page"]{color:#e6c087}
+body.detail-page h1{font-size:clamp(44px,6.2vw,83px);line-height:1.1;letter-spacing:-.045em;margin:18px 0 31px}
+body.detail-page .detail-lede{font-size:clamp(18px,2.2vw,23px);line-height:1.73;max-width:750px}
+body.detail-page h2{font-size:clamp(33px,4.2vw,56px)}
+body.detail-page h3{font-size:clamp(25px,2.5vw,33px);letter-spacing:-.02em}
+body.detail-page .home-kicker{margin:0 0 22px}
+body.detail-page .home-footer{background:#060d17}
+/* BIOGRAFIA: carta e fotografia, poi principi quasi museali */
+body.detail-about .detail-about-intro{background:#f2eee7;color:#1d2b3b}
+.detail-about-intro>.home-wrap{padding-block:55px 122px}
+.detail-about-lead{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.65fr);gap:clamp(36px,7vw,102px);align-items:center}
+.detail-about-lead h1{color:#172537}
+.detail-about-lead h1 em{color:#a37b4b}
+.detail-about-lead .detail-lede{color:#324152;margin-bottom:25px}
+.detail-about-copy{max-width:680px;color:#5b6571;font-size:17px;line-height:1.85;margin:0 0 40px}
+.detail-about-portrait{margin:0;position:relative}
+.detail-about-portrait img{width:100%;max-height:590px;display:block;aspect-ratio:4/5;object-fit:cover;object-position:center 28%;border-radius:48% 48% 3px 3px;box-shadow:18px 24px 0 #cfb99c}
+.detail-about-portrait figcaption{font:13px Georgia,serif;color:#6c563a;text-align:right;margin-top:25px}
+.detail-about-values{background:#25211d;color:#f6f0e8}
+.detail-about-values>.home-wrap{padding-block:105px 115px}
+.detail-about-values h2{max-width:700px;color:#f6efe2;margin-bottom:57px}
+.detail-about-values-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:43px}
+.detail-about-values-grid>div{border-top:1px solid #a98a6266;padding-top:20px}
+.detail-about-values-grid span{font:italic 45px Georgia,serif;color:#d8b16f}
+.detail-about-values-grid h3{margin:25px 0 16px}
+.detail-about-values-grid p{color:#c9bdb2;font-size:16px;line-height:1.8}
+.detail-about-path{background:#e4d8c8;color:#243243}
+.detail-about-path-grid{padding-block:110px;display:grid;grid-template-columns:1.1fr .85fr;gap:100px;align-items:center}
+.detail-about-path h2 em{color:#957047}
+.detail-about-path-grid p{font-size:17px;line-height:1.8;color:#4a5562}
+.detail-inline-links{display:flex;flex-direction:column;gap:15px;margin-top:28px}
+.detail-inline-links a{display:block;text-decoration:none;border-top:1px solid #9f8b776d;padding-top:15px;color:#744f26;font-weight:700;font-size:15px}
+.detail-inline-links a:hover{text-decoration:underline}
+/* LABORATORIO: griglia scientifica e orbite, poi indice delle attività */
+body.detail-lab .detail-lab-hero{background:radial-gradient(circle at 83% 55%,#24525c,#0a2730 53%,#071c24);color:#ecf6f4;overflow:hidden}
+.detail-lab-hero>.home-wrap{padding-block:55px 115px}
+.detail-lab-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(270px,.85fr);gap:70px;align-items:center}
+.detail-lab-hero h1 em{color:#9ddad2}
+.detail-lab-hero .detail-lede{max-width:630px;color:#c3dbd8;margin-bottom:37px}
+.detail-lab-hero .home-button-outline{border-color:#89bcb4;color:#d6f1ed}
+.detail-lab-orbit{aspect-ratio:1;position:relative;max-width:420px;width:100%;justify-self:center;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 25px #9bd9c91a)}
+.detail-orbit-ring{position:absolute;border:1px solid #9bd9c960;border-radius:50%;transform:rotate(-14deg)}
+.detail-orbit-ring.ring-one{inset:1%}
+.detail-orbit-ring.ring-two{inset:11%;border-style:dashed}
+.detail-orbit-ring.ring-three{inset:22%;border-width:2px;border-color:#baad77bb}
+.detail-orbit-ring.ring-one::before,.detail-orbit-ring.ring-two::after{content:"";width:12px;height:12px;position:absolute;border-radius:50%;background:#c7d3b3;top:11%;left:19%}
+.detail-orbit-ring.ring-two::after{top:auto;bottom:14%;left:auto;right:16%;background:#e4bd7b}
+.detail-orbit-center{z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.detail-orbit-center>span,.detail-orbit-center small{color:#afd1ce;font-size:10px;letter-spacing:.22em}
+.detail-orbit-center strong{font:500 clamp(65px,9vw,125px) Georgia,serif;color:#e8f5ed;letter-spacing:-.07em}
+.detail-orbit-center strong span{font-size:.26em;color:#e4b97c}
+.detail-lab-instruments{background:#102d34;color:#eef9f6}
+.detail-lab-instruments>.home-wrap{padding-block:115px}
+.detail-lab-instruments h2{max-width:860px;margin-bottom:59px}
+.detail-lab-instruments h2 em{color:#a7d8d1}
+.detail-lab-list{display:flex;flex-direction:column;border-top:1px solid #99c2bf69}
+.detail-lab-list>div{display:grid;grid-template-columns:1fr 1.25fr 1.75fr .75fr;align-items:center;gap:22px;border-bottom:1px solid #99c2bf4c;padding:35px 3px}
+.detail-lab-no{font-size:11px;letter-spacing:.13em;color:#b2ddd5}
+.detail-lab-list h3{margin:0}
+.detail-lab-list p{font-size:15px;line-height:1.65;color:#bfd1cf;margin:0}
+.detail-lab-list a{justify-self:end;color:#e2c494;font-size:14px;text-decoration:none;font-weight:700}
+.detail-lab-list a:hover{text-decoration:underline}
+.detail-lab-next{background:#082027;color:#e8f4ef}
+.detail-lab-next-grid{padding-block:105px;display:grid;grid-template-columns:1.12fr .85fr;gap:65px;align-items:center}
+.detail-lab-next h2 em{color:#b9dbcc}
+.detail-lab-next-grid>div:last-child p{font-size:17px;line-height:1.8;color:#b5ccce;margin:0 0 25px}
+/* CONTATTI: tipografia ampia, due canali senza form fittizio */
+body.detail-contact .detail-contact-hero{background:radial-gradient(ellipse at 78% 15%,#273d58,#0b1726 53%,#09111d);color:#f8f2e9}
+.detail-contact-hero>.home-wrap{padding-block:55px 120px}
+.detail-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(45px,7vw,120px);align-items:start}
+.detail-contact-grid h1 em{color:#e1bb7d}
+.detail-contact-grid .detail-lede{color:#c4d0dd}
+.detail-contact-methods{display:flex;flex-direction:column;gap:25px}
+.detail-contact-method{border-top:1px solid #d9b77d7d;padding-top:21px}
+.detail-contact-method>span{font:700 10px Arial,sans-serif;color:#cda976;letter-spacing:.16em}
+.detail-contact-method h2{font:500 29px Georgia,serif;margin:17px 0}
+.detail-contact-method p{color:#b8c5d1;font-size:15px;line-height:1.76;max-width:500px}
+.detail-contact-method a{font-size:16px;word-break:break-word;color:#edc894;text-decoration:none;font-weight:700}
+.detail-contact-method a:hover{text-decoration:underline}
+.detail-contact-note{background:#eee5d9;color:#233145}
+.detail-contact-note-grid{padding-block:95px;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.detail-contact-note h2 em{color:#967247}
+.detail-contact-note-grid p{color:#4a5966;font-size:17px;line-height:1.85}
+@media(max-width:990px){
+ .detail-about-lead{grid-template-columns:1fr minmax(260px,.75fr);gap:34px}
+ .detail-lab-list>div{grid-template-columns:1fr 1.2fr 1fr;row-gap:10px}
+ .detail-lab-list p{grid-column:2/4}
+ .detail-lab-list a{grid-column:3;grid-row:1}
+ .detail-lab-no{grid-column:1;grid-row:1}
+ .detail-lab-list h3{grid-column:2;grid-row:1}
+}
+@media(max-width:760px){
+ body.detail-page .detail-breadcrumb{margin-bottom:35px}
+ .detail-about-intro>.home-wrap,.detail-lab-hero>.home-wrap,.detail-contact-hero>.home-wrap{padding-block:35px 75px}
+ .detail-about-lead,.detail-lab-hero-grid,.detail-contact-grid{grid-template-columns:1fr;gap:44px}
+ .detail-about-portrait{max-width:420px;margin:auto}
+ .detail-about-values>.home-wrap,.detail-about-path-grid,.detail-lab-instruments>.home-wrap,.detail-lab-next-grid,.detail-contact-note-grid{padding-block:78px}
+ .detail-about-values-grid{grid-template-columns:1fr;gap:20px}
+ .detail-about-path-grid,.detail-lab-next-grid,.detail-contact-note-grid{grid-template-columns:1fr;gap:26px}
+ .detail-lab-orbit{max-width:320px}
+ .detail-lab-list>div{grid-template-columns:1fr;gap:11px;padding:25px 0}
+ .detail-lab-list p,.detail-lab-list a,.detail-lab-no,.detail-lab-list h3{grid-column:1;grid-row:auto}
+ .detail-lab-list a{justify-self:start}
+ .detail-contact-grid{gap:55px}
+}
+@media(max-width:480px){
+ .detail-about-portrait{max-width:265px}
+ .detail-about-portrait img{box-shadow:12px 14px 0 #cfb99c}
+ .detail-lab-orbit{max-width:260px}
+}

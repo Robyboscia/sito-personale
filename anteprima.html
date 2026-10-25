@@ -19,7 +19,54 @@
 .hero-layout>.hero-photo{grid-column:2;grid-row:1;justify-self:end;align-self:center;margin:0}
 .hero-inner>.actions{margin-top:36px}
 @media(max-width:850px){.hero-layout{grid-template-columns:1fr;row-gap:52px}.hero-layout>.hero-photo{grid-column:1;grid-row:2;justify-self:center}.hero-inner>.actions{margin-bottom:0}}
-</style></head><body><header><nav aria-label="Navigazione principale"><a class="brand" href="/">Dott. Roberto <span>Boscia</span></a><div class="links"><a href="#percorsi">Percorsi</a><a href="https://drrobertoboscia.com/">Assetto Biologico™</a><a href="#laboratorio">Laboratorio del Sonno</a><a href="#formazione">Formazione</a><a href="#contatti">Contatti</a></div></nav></header><main><div class="hero">
+
+/* Accademia e pagine editoriali: design system blu notte/oro */
+:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+.page-top{padding:88px 24px 64px;background:radial-gradient(ellipse at 85% 0%,#263b58,transparent 48%),#0d1726;border-bottom:1px solid #ffffff1a}
+.page-top .lede{font-size:clamp(18px,2.2vw,22px);color:#cbd5e3;max-width:765px;line-height:1.65}
+.page-top h1{font-size:clamp(44px,6vw,72px);max-width:900px}
+.breadcrumb{font-size:13px;color:#c1cad7;margin-bottom:30px}
+.breadcrumb a{color:var(--gold2);text-decoration:none}
+.section-label{color:var(--gold2);font-size:12px;text-transform:uppercase;letter-spacing:.19em;font-weight:700}
+.block-head{max-width:820px;margin-bottom:27px}
+.block-head p{color:#c6d0dd;font-size:18px}
+.editorial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.editorial-card{border:1px solid #ffffff27;background:linear-gradient(145deg,#172740,#101c2e);display:flex;flex-direction:column;min-height:340px;padding:30px;transition:transform .2s,border-color .2s}
+.editorial-card:hover{transform:translateY(-3px);border-color:#c9923a90}
+.editorial-card h2,.editorial-card h3{font-family:Georgia,serif;font-size:clamp(25px,2.8vw,31px);margin:10px 0 14px}
+.editorial-card p{font-size:16px;color:#c2cbd8;margin:0 0 22px;line-height:1.66}
+.editorial-card .meta{color:var(--gold2);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.editorial-card a{color:var(--gold2);text-decoration:none;font-weight:700;margin-top:auto}
+.editorial-card a:hover{text-decoration:underline}
+.notice{padding:22px 25px;background:#132641;border-left:3px solid var(--gold2);color:#d9e0ea;margin:28px 0;max-width:850px}
+.notice strong{color:#f1cd91}
+.content-narrow{max-width:810px;margin:0 auto}
+.prose{font-size:18px;line-height:1.85;color:#e5e9ef}
+.prose h2{font-size:clamp(30px,4vw,43px);margin:48px 0 18px}
+.prose h3{font-size:27px;margin:34px 0 12px}
+.prose p{margin:0 0 22px}
+.prose ul,.prose ol{padding-left:28px;margin:0 0 26px}
+.prose li{padding-left:4px;margin-bottom:13px}
+.prose a{color:#ecc78a;text-underline-offset:4px}
+.prose strong{color:#fff}
+.prose blockquote{border-left:3px solid var(--gold);padding:8px 0 8px 25px;margin:34px 0;color:#f0d6a7;font:italic 25px/1.5 Georgia,serif}
+.source-panel{border-top:1px solid #ffffff30;padding-top:24px;margin-top:46px;font-size:15px;color:#c6d0dc}
+.source-panel ol{padding-left:23px}
+.source-panel li{margin:10px 0}
+.source-panel a{color:#ecc78a;overflow-wrap:anywhere}
+.info-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,.45fr);gap:48px;align-items:center}
+.info-side{border:1px solid #cca45d70;background:linear-gradient(145deg,#1b2e49,#111b2b);padding:32px;max-width:370px}
+.info-side .large-quote{font:italic 29px/1.3 Georgia,serif;color:#f1dbb3}
+.pill{display:inline-block;border:1px solid #c9923a80;border-radius:30px;padding:5px 13px;color:#ecc78a;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.simple-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.simple-list>div{border-top:1px solid #ffffff35;padding-top:19px}
+.simple-list strong{display:block;font:25px Georgia,serif;margin-bottom:8px}
+.simple-list span{color:#b9c7d9;font-size:15px}
+.editorial-footer{margin-top:44px;display:flex;gap:14px;flex-wrap:wrap}
+.mini-disclaimer{font-size:13px;color:#aebed1;max-width:800px;margin-top:28px}
+@media(max-width:900px){.editorial-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.info-split{grid-template-columns:1fr}.page-top{padding:65px 24px 48px}}
+@media(max-width:640px){.editorial-grid,.simple-list{grid-template-columns:1fr}.editorial-card{min-height:270px}.prose{font-size:17px}.page-top{padding:54px 22px 43px}.page-top h1{font-size:clamp(40px,10vw,56px)}.info-side{max-width:none}}
+</style></head><body><header><nav aria-label="Navigazione principale"><a class="brand" href="index.html">Dott. Roberto <span>Boscia</span></a><div class="links"><a href="#percorsi">Percorsi</a><a href="assetto-biologico/index.html">Assetto Biologico™</a><a href="accademia/index.html">Accademia</a><a href="libro/index.html">Il libro</a><a href="shop/index.html">Progetti e prodotti</a><a href="#contatti">Contatti</a></div></nav></header><main><div class="hero">
   <div class="wrap hero-layout">
     <div class="hero-inner">
       <div class="eyebrow">Conoscenza · Metodo · Consapevolezza</div>
@@ -27,7 +74,7 @@
       <p class="lead">Sonno, ritmi biologici e benessere quotidiano: strumenti, contenuti e percorsi per orientarsi con maggiore consapevolezza, senza scorciatoie né promesse miracolose.</p>
       <div class="actions">
         <a class="btn primary" href="#percorsi">Esplora i percorsi</a>
-        <a class="btn secondary" href="https://drrobertoboscia.com/">Scopri Assetto Biologico™</a>
+        <a class="btn secondary" href="assetto-biologico/index.html">Scopri Assetto Biologico™</a>
       </div>
     </div>
     <div class="hero-photo">
@@ -40,4 +87,4 @@
       </div>
     </div>
   </div>
-</div><section id="percorsi"><div class="wrap"><div class="eyebrow">Da dove cominciare</div><h2>Un portale, diversi percorsi.</h2><p class="intro">Ogni persona arriva con domande diverse. Qui puoi trovare il punto di partenza più adatto ai tuoi interessi.</p><div class="grid"><article class="card"><div class="number">01 / METODO</div><h3>Assetto Biologico™</h3><p>La pagina originale del percorso, conservata con i suoi contenuti e la sua identità.</p><a href="https://drrobertoboscia.com/">Esplora il metodo →</a></article><article class="card"><div class="number">02 / SONNO</div><h3>Laboratorio del Sonno</h3><p>Uno spazio in preparazione per diari, questionari educativi e strumenti di osservazione delle abitudini.</p><a href="#laboratorio">Scopri il progetto →</a></article><article class="card"><div class="number">03 / CONSULENZE</div><h3>Percorsi individuali</h3><p>Informazioni sui servizi e sulle modalità di consulenza, in corso di definizione.</p><a href="#contatti">Richiedi informazioni →</a></article></div></div></section><section class="alt" id="laboratorio"><div class="wrap"><div class="feature"><div class="eyebrow">In sviluppo</div><h2>Il Laboratorio del Sonno</h2><p>Vogliamo rendere accessibili strumenti utili per osservare regolarità, abitudini e ritmi circadiani. Gli strumenti saranno educativi e non sostituiranno una valutazione sanitaria.</p></div></div></section><section id="formazione"><div class="wrap"><div class="eyebrow">Conoscenza applicata</div><h2>Libri, approfondimenti e progetti.</h2><div class="grid"><article class="card"><div class="number">LETTURA</div><h3>Dormire è facile se sai come farlo</h3><p>Il libro e i contenuti dedicati alla comprensione del sonno.</p><a href="https://dormirefacile.com/">Vai al sito del libro →</a></article><article class="card"><div class="number">FORMAZIONE</div><h3>Accademia</h3><p>Uno spazio editoriale in preparazione per articoli, guide e approfondimenti.</p><a href="#contatti">Rimani in contatto →</a></article><article class="card"><div class="number">PRODOTTI</div><h3>Mental Pro</h3><p>Informazioni sul progetto e sui prodotti, attraverso il sito dedicato.</p><a href="https://mentalpro.it/">Visita Mental Pro →</a></article></div></div></section><section class="alt" id="contatti"><div class="wrap"><div class="eyebrow">Contatti</div><h2>Hai una domanda?</h2><p class="intro">Per il momento puoi utilizzare i contatti già presenti nella pagina Assetto Biologico™. La nuova area contatti sarà definita prima della pubblicazione.</p><a class="btn secondary" href="https://drrobertoboscia.com/">Vai alla pagina originale</a><p class="fine">Anteprima di sviluppo: contenuti e servizi da verificare prima del rilascio.</p></div></section></main><footer><div class="footer-inner"><span>© Dott. Roberto Boscia · Anteprima di sviluppo</span><span>Informazioni educative: non sostituiscono il parere di un professionista sanitario.</span></div></footer></body></html>
+</div><section id="percorsi"><div class="wrap"><div class="eyebrow">Da dove cominciare</div><h2>Un portale, diversi percorsi.</h2><p class="intro">Ogni persona arriva con domande diverse. Qui puoi trovare il punto di partenza più adatto ai tuoi interessi.</p><div class="grid"><article class="card"><div class="number">01 / METODO</div><h3>Assetto Biologico™</h3><p>La pagina originale del percorso, conservata con i suoi contenuti e la sua identità.</p><a href="assetto-biologico/index.html">Esplora il metodo →</a></article><article class="card"><div class="number">02 / SONNO</div><h3>Laboratorio del Sonno</h3><p>Uno spazio in preparazione per diari, questionari educativi e strumenti di osservazione delle abitudini.</p><a href="#laboratorio">Scopri il progetto →</a></article><article class="card"><div class="number">03 / CONSULENZE</div><h3>Percorsi individuali</h3><p>Informazioni sui servizi e sulle modalità di consulenza, in corso di definizione.</p><a href="#contatti">Richiedi informazioni →</a></article></div></div></section><section class="alt" id="laboratorio"><div class="wrap"><div class="feature"><div class="eyebrow">In sviluppo</div><h2>Il Laboratorio del Sonno</h2><p>Vogliamo rendere accessibili strumenti utili per osservare regolarità, abitudini e ritmi circadiani. Gli strumenti saranno educativi e non sostituiranno una valutazione sanitaria.</p></div></div></section><section id="formazione"><div class="wrap"><div class="eyebrow">Conoscenza applicata</div><h2>Leggere, approfondire, scegliere.</h2><p class="intro">Tre aree distinte ma collegate: articoli accessibili, il libro e le informazioni sui progetti.</p><div class="grid"><article class="card"><div class="number">ACCADEMIA</div><h3>Tre articoli per iniziare</h3><p>Il diario del sonno, il ruolo della luce e i limiti dei wearable: contenuti divulgativi con fonti consultabili.</p><a href="accademia/index.html">Entra nell’Accademia →</a></article><article class="card"><div class="number">IL LIBRO</div><h3>Dormire è facile se sai come farlo</h3><p>Il progetto editoriale dedicato al sonno, con accesso al sito del libro.</p><a href="libro/index.html">Scopri il libro →</a></article><article class="card"><div class="number">PROGETTI</div><h3>Mental Pro e risorse digitali</h3><p>Collegamenti ai progetti e ai prodotti, senza confondere contenuti educativi e offerte commerciali.</p><a href="shop/index.html">Esplora i progetti →</a></article></div></div></section><section class="alt" id="contatti"><div class="wrap"><div class="eyebrow">Contatti</div><h2>Hai una domanda?</h2><p class="intro">Per il momento puoi utilizzare i contatti già presenti nella pagina Assetto Biologico™. La nuova area contatti sarà definita prima della pubblicazione.</p><a class="btn secondary" href="assetto-biologico/index.html">Vai alla pagina originale</a><p class="fine">Anteprima di sviluppo: contenuti e servizi da verificare prima del rilascio.</p></div></section></main><footer><div class="footer-inner"><span>© Dott. Roberto Boscia · Anteprima di sviluppo</span><span>Informazioni educative: non sostituiscono il parere di un professionista sanitario.</span></div></footer></body></html>

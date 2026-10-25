@@ -403,3 +403,16 @@ body.sleep-tool{background:#082027;color:#e8f5f2}
  .sleep-tool .sd-email-options>label{padding:16px}
  .sleep-tool .sd-email-panel{padding:22px 18px}
 }
+
+.sleep-tool .sd-privacy-email-shortcut{
+  margin:16px 0 0;
+  padding-top:15px;
+  border-top:1px solid rgba(161,204,196,.23);
+  font-size:13px;
+  color:#c5d9d3;
+}
+.sleep-tool .sd-privacy-email-shortcut a{
+  color:#f0cd95;
+  font-weight:700;
+  text-underline-offset:4px;
+}

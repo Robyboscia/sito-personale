@@ -41,3 +41,14 @@ Sono emersi da precedenti lavori dell'utente termini e materiali tecnici come **
 7. Il sito in `main` rimane invariato.
 
 La sezione **Consulenze** resta separatamente marcata «Ancora da costruire».
+
+## Test effettuati nel ramo di sviluppo (25 ottobre 2026)
+- Verificata staticamente la presenza di tutti i collegamenti locali di Laboratorio, Progetti e quattro nuove pagine: **nessun file referenziato mancante**.
+- JavaScript di tutte e quattro le app: **parsing sintattico riuscito**.
+- Test browser del Check-up: 12 domande presenti, rilevazione delle risposte mancanti, creazione delle quattro aree. Un'interazione via automazione ha richiesto alcuni clic ripetuti sui radio, quindi controllare anche manualmente Safari iPhone.
+- Test browser del Calcolatore Caffeina: campi ed elaborazione dei tre scenari presenti. Non usare come dato di riferimento numeri di esempio prodotti dal report di automazione: i default effettivi sono espresso 80 mg alle 08:00 e espresso 80 mg alle 14:00.
+- Test browser Diario PRO: selettore CSV e bottone di lettura schede locali presenti; senza schede salvate appare un errore comprensibile.
+- Test indipendenti della funzione di importazione CSV con due notti (una con risvegli omessi, una con durata orientativa), gestione di celle con `;` e virgolette, rifiuto di WASO mancante falsamente marcato completo e rifiuto di durata manipolata: **superati**.
+- Test indipendenti del pianificatore Turni per notte 22–06 + turno immediatamente successivo, sette mattine consecutive e riposo dopo notte: **superati**.
+- **Non ancora verificati end-to-end nel browser:** click e download CSV dei turni, generazione file TXT del Diario PRO, stampa/salvataggio PDF e test fisico su iPhone.
+- I prototipi restano in stato **da revisionare**, con `noindex` e senza pagamento, fino a QA e verifica scientifica/privacy prima della pubblicazione.

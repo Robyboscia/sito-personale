@@ -434,7 +434,7 @@
     return lines.join("\n");
   }
   function openEmailDraft(address,subject,body){
-    window.location.href="mailto:"+encodeURIComponent(address)+
+    window.location.href="mailto:"+encodeURIComponent(address).replace(/%40/g,"@")+
       "?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
   }
   function prepareEmail(event){
@@ -455,7 +455,7 @@
     const address=addressField.value.trim();
     const mode=$("sd-email-form").elements.namedItem("emailFormat").value;
     if(mode==="summary"){
-      emailStatus("Sto aprendo una bozza nella tua app di posta. Controlla il destinatario e premi tu Invia.","success");
+      emailStatus("Se hai una app email configurata, si apre una bozza: controlla il destinatario e premi tu Invia. Se non si apre, usa Esporta CSV.","success");
       openEmailDraft(address,"Il mio Diario del Sonno - riepilogo",makeEmailSummary());
       return;
     }
@@ -482,7 +482,7 @@
       return;
     }
     saveCsvFile(csv);
-    emailStatus("Ho scaricato il CSV e preparato una bozza email. Allega il file scaricato prima di premere Invia.","success");
+    emailStatus("Ho avviato il download del CSV e provo ad aprire una bozza email. Devi allegare il file scaricato prima di premere Invia.","success");
     openEmailDraft(address,"Il mio Diario del Sonno - file completo",
       "Ho preparato il mio Diario del Sonno completo.\n"+
       "Prima di inviare allego il file "+csvFilename+" appena scaricato.\n"+

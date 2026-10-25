@@ -40,11 +40,11 @@
   function calculate(data) {
     const bed=mins(data.bedTime), attempt=mins(data.tryTime),
           waking=mins(data.finalWake), rising=mins(data.outTime);
-    const sol=numeric(data.latency,600,true),waso=numeric(data.waso,600,true);
+    const sol=numeric(data.latency,600,true),waso=numeric(data.waso,600,false);
     for(const [name,value] of [
       ["bedTime",bed],["tryTime",attempt],["latency",sol],
       ["waso",waso],["finalWake",waking],["outTime",rising]
-    ]) if(!Number.isFinite(value)) {
+    ]) if(value !== null && !Number.isFinite(value)) {
       throw new DiaryFieldError("Controlla questo orario o questa durata: il valore non è valido.",[name]);
     }
     const before=forward(bed,attempt),night=forward(attempt,waking),after=forward(waking,rising);
@@ -61,17 +61,32 @@
     if(tib<60||tib>1080)throw new DiaryFieldError(
       "Gli orari indicano meno di un'ora o più di 18 ore a letto. Controlla gli orari evidenziati, anche rispetto alla mezzanotte.",
       ["bedTime","tryTime","finalWake","outTime"]);
-    const tst=night-sol-waso;
+    // Se la fascia dei risvegli non è indicata, NON inventiamo zero risvegli:
+    // semplicemente non applichiamo la sottrazione e segnaliamo la stima parziale.
+    const hasWakeEstimate=waso!==null;
+    const tst=night-sol-(hasWakeEstimate?waso:0);
     if(tst<0)throw new DiaryFieldError(
-      "Il tempo per addormentarti e i minuti sveglio superano il tempo notturno disponibile. Ricontrolla le durate e i due orari.",
-      ["latency","waso","tryTime","finalWake"]);
+      "Il tempo per addormentarti e la stima dei risvegli superano il periodo notturno. Ricontrolla i dati evidenziati.",
+      hasWakeEstimate?["latency","waso","tryTime","finalWake"]:["latency","tryTime","finalWake"]);
     if(data.awakenings==="0"&&waso>0)throw new DiaryFieldError(
-      "Hai indicato zero risvegli ma anche minuti sveglio durante la notte. Controlla questi due campi.",
+      "Hai indicato zero risvegli ma anche tempo sveglio durante la notte. Controlla questi due campi.",
       ["awakenings","waso"]);
-    return {tib,tst,sol,waso,efficiency:(tst/tib)*100};
+    if(Number(data.awakenings)>0 && waso===0)throw new DiaryFieldError(
+      "Hai indicato dei risvegli ma selezionato 'Non ho avuto risvegli'. Controlla i due campi.",
+      ["awakenings","waso"]);
+    return {tib,tst,sol,waso,hasWakeEstimate,partial:!hasWakeEstimate,efficiency:(tst/tib)*100};
+  }
+  // Le schede già registrate con i vecchi minuti esatti non vengono cancellate:
+  // una voce temporanea mantiene il valore precedente, senza inventare una fascia.
+  const WASO_RANGES={"0":"Nessun risveglio","5":"Meno di 10 minuti","20":"10–30 minuti","45":"30–60 minuti","90":"Più di un'ora"};
+  function wakeRangeLabel(value) {
+    if(value===""||value===null||value===undefined)return "Non indicato";
+    return WASO_RANGES[String(value)]||("Dato precedente: "+value+" minuti");
   }
   function blankForm() {
-    FIELDS.forEach(name => { form.elements.namedItem(name).value = ""; });
+    const select=form.elements.namedItem("waso");
+    [...select.querySelectorAll('option[data-previous-value]')].forEach(option=>option.remove());
+    FIELDS.forEach(name=>{form.elements.namedItem(name).value="";});
   }
   function showMessage(message, kind = "info") {
     const el = $("sd-form-message");
@@ -173,6 +188,16 @@
     const entry = entries[current];
     blankForm();
     clearAllFieldErrors();
+    if(entry&&entry.waso!==""&&entry.waso!=null){
+      const select=form.elements.namedItem("waso");
+      if(![...select.options].some(option=>option.value===entry.waso)){
+        const option=document.createElement("option");
+        option.value=entry.waso;
+        option.textContent="Dato inserito in precedenza: "+entry.waso+" minuti";
+        option.dataset.previousValue="true";
+        select.appendChild(option);
+      }
+    }
     if (entry) for (const name of FIELDS) form.elements.namedItem(name).value = entry[name] ?? "";
     dirty = false;
     $("sd-form-number").textContent = String(current+1).padStart(2,"0");
@@ -211,12 +236,26 @@
     const sleep = average(calculated.map(v=>v.tst));
     const efficiency = average(calculated.map(v=>v.efficiency));
     const latency = average(calculated.map(v=>v.sol));
+    const partialCount=calculated.filter(v=>v.partial).length;
+    const includedCount=count-partialCount;
+    const coverage=$("sd-coverage-note");
+    if(!count){
+      coverage.textContent="Se scegli una fascia di risveglio, il calcolo ne terrà conto. Se la ometti, la stima sarà parziale.";
+      coverage.classList.remove("sd-coverage-warning");
+    }else if(partialCount){
+      coverage.textContent="STIMA PARZIALE: per "+partialCount+" nott"+(partialCount===1?"e":"i")+
+        " su "+count+" non hai indicato la fascia dei risvegli. Per quelle notti i minuti sveglio NON sono stati sottratti: durata ed efficienza possono risultare più alte del reale. Le altre "+includedCount+" notti usano la fascia scelta.";
+      coverage.classList.add("sd-coverage-warning");
+    }else{
+      coverage.textContent="Tutte le "+count+" notti registrate includono una fascia stimata dei risvegli (selezionata da te): i valori rimangono orientativi.";
+      coverage.classList.remove("sd-coverage-warning");
+    }
     $("sd-progress").textContent = count + " / " + TOTAL;
     $("sd-progress-fill").style.width = (count / TOTAL * 100) + "%";
     $("sd-stat-days").textContent = String(count);
-    $("sd-stat-sleep").textContent = formatSleep(sleep);
-    $("sd-stat-efficiency").textContent = efficiency === null ? "—" : Math.round(efficiency) + " %";
-    $("sd-stat-latency").textContent = latency === null ? "—" : Math.round(latency) + " min";
+    $("sd-stat-sleep").textContent = sleep===null?"—":"≈ "+formatSleep(sleep)+(partialCount?" *":"");
+    $("sd-stat-efficiency").textContent = efficiency === null ? "—" : "≈ "+Math.round(efficiency)+" %"+(partialCount?" *":"");
+    $("sd-stat-latency").textContent = latency === null ? "—" : "≈ "+Math.round(latency)+" min";
     $("sd-export").disabled = !count;
     $("sd-clear").disabled = !count;
 
@@ -226,13 +265,16 @@
       const column = document.createElement("div");
       column.className = "sd-chart-column";
       const bar = document.createElement("div");
-      bar.className = "sd-chart-bar" + (v ? " has-data" : "");
+      bar.className="sd-chart-bar"+(v?" has-data":"")+(v?.partial?" is-partial":"");
       bar.style.height = v ? Math.max(8,Math.min(100,v.tst/720*100)) + "%" : "4px";
       bar.setAttribute("role","img");
-      bar.setAttribute("aria-label",v ? "Giorno "+(i+1)+": "+formatSleep(v.tst) : "Giorno "+(i+1)+": non registrato");
-      bar.title = v ? "Giorno "+(i+1)+": "+formatSleep(v.tst) : "Nessun dato";
-      const label = document.createElement("span");
-      label.textContent = String(i+1).padStart(2,"0");
+      const chartLabel=v?("Giorno "+(i+1)+": circa "+formatSleep(v.tst)+
+        (v.partial?" — stima parziale, risvegli non sottratti":" — fascia dei risvegli considerata")):
+        ("Giorno "+(i+1)+": non registrato");
+      bar.setAttribute("aria-label",chartLabel);
+      bar.title=chartLabel;
+      const label=document.createElement("span");
+      label.textContent=String(i+1).padStart(2,"0")+(v?.partial?"*":"");
       column.append(bar,label);
       chart.appendChild(column);
     });
@@ -244,8 +286,9 @@
       const cols=[
         "Giorno "+String(i+1).padStart(2,"0"),
         entry ? dateLabel(entry.wakeDate) : "—",
-        v ? formatSleep(v.tst) : "—",
-        v ? Math.round(v.efficiency)+" %" : "—",
+        v ? "≈ "+formatSleep(v.tst)+(v.partial?" *":"") : "—",
+        v ? "≈ "+Math.round(v.efficiency)+" %"+(v.partial?" *":"") : "—",
+        entry ? wakeRangeLabel(entry.waso) : "—",
         entry && entry.quality ? entry.quality+"/5" : "—"
       ];
       cols.forEach((t,j) => {
@@ -299,7 +342,9 @@
     persistData();
     $("sd-remove-day").disabled=false;
     renderPicker();renderSummary();
-    showMessage("Giorno "+String(current+1).padStart(2,"0")+" salvato. Puoi passare a un'altra notte.","success");
+    showMessage("Giorno "+String(current+1).padStart(2,"0")+" salvato. "+
+      (data.waso===""?"Senza fascia dei risvegli: stima parziale, nessun minuto sottratto. ":"")+
+      "Puoi passare a un'altra notte.","success");
   }
   function removeDay() {
     if (!entries[current]) return;
@@ -322,12 +367,21 @@
     return '"'+s.replace(/"/g,'""')+'"';
   }
   function exportCSV() {
-    const headers=["Giorno","Data risveglio","Ora a letto","Tentativo di dormire","Latenza min","Veglia notturna min","Risvegli n","Risveglio finale","Ora alzata","Qualità 1-5","Energia 1-5","Sonnellini min","Tempo a letto min","Sonno stimato min","Efficienza stimata percentuale","Note"];
+    const headers=["Giorno","Data risveglio","Ora a letto","Tentativo di dormire","Latenza min",
+      "Fascia dei risvegli","Minuti orientativi sottratti","Risvegli n",
+      "Risveglio finale","Ora alzata","Qualità 1-5","Energia 1-5","Sonnellini min",
+      "Tempo a letto min","Sonno orientativo min","Efficienza orientativa percentuale",
+      "Veglia inclusa nel calcolo","Calcolo parziale","Note"];
     const rows=[headers];
     entries.forEach((e,i)=>{
       if (!e) return;
       const v=calculate(e);
-      rows.push([i+1,e.wakeDate,e.bedTime,e.tryTime,e.latency,e.waso,e.awakenings,e.finalWake,e.outTime,e.quality,e.energy,e.naps,v.tib,v.tst,v.efficiency.toFixed(1).replace(".",","),e.notes]);
+      rows.push([i+1,e.wakeDate,e.bedTime,e.tryTime,e.latency,
+        v.hasWakeEstimate?wakeRangeLabel(e.waso):"",
+        v.hasWakeEstimate?v.waso:"",
+        e.awakenings,e.finalWake,e.outTime,e.quality,e.energy,e.naps,
+        v.tib,v.tst,v.efficiency.toFixed(1).replace(".",","),
+        v.hasWakeEstimate?"Sì":"No",v.partial?"Sì":"No",e.notes]);
     });
     if(rows.length===1)return;
     const content="\ufeff"+rows.map(row=>row.map(csvCell).join(";")).join("\r\n");

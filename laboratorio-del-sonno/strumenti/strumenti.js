@@ -10,7 +10,7 @@ const ST={
   mean(a){return a.length?a.reduce((s,n)=>s+n,0)/a.length:null;},
   round(n,dec=0){return n===null?"—":n.toLocaleString("it-IT",{maximumFractionDigits:dec,minimumFractionDigits:dec});},
   fmtMinutes(n){if(n===null||!Number.isFinite(n))return "—";const x=Math.round(n);return Math.floor(x/60)+" h "+String(x%60).padStart(2,"0")+" min";},
-  parseTime(t){return /^([01]\\d|2[0-3]):[0-5]\\d$/.test(t)?Number(t.slice(0,2))*60+Number(t.slice(3)):NaN;},
+  parseTime(t){return /^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(t)?Number(t.slice(0,2))*60+Number(t.slice(3)):NaN;},
   time(n){const x=((Math.round(n)%1440)+1440)%1440;return String(Math.floor(x/60)).padStart(2,"0")+":"+String(x%60).padStart(2,"0");},
   forward(a,b){return (b-a+1440)%1440;},
   number(v,min,max){const n=Number(v);return v!==""&&Number.isFinite(n)&&n>=min&&n<=max?n:NaN;},
@@ -22,7 +22,7 @@ const ST={
     const a=this.el("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),12000);
   },
-  csvQuote(value){let s=String(value??"");if(/^[\\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';},
+  csvQuote(value){let s=String(value??"");if(/^[ \t]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';},
   print(id){this.$(id)?.addEventListener("click",()=>window.print());}
 };
 window.SleepLabTools=ST;

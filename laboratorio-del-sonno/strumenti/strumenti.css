@@ -1,0 +1,131 @@
+
+/* Strumenti del Laboratorio del Sonno · temi diversi, stessa esperienza di compilazione */
+body.sleep-app{background:#eff1e9;color:#193543}
+.sleep-app *{box-sizing:border-box}
+.sleep-app main{overflow-x:clip}
+.sleep-app main section{padding:0}
+.sleep-app h1,.sleep-app h2,.sleep-app h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:-.035em;line-height:1.14;font-weight:500}
+.sleep-app h1{font-size:clamp(45px,6vw,84px);margin:20px 0 22px}
+.sleep-app h1 em,.sleep-app h2 em{color:#dbb77e;font-weight:400}
+.sleep-app h2{font-size:clamp(29px,3.5vw,47px)}
+.sleep-app h3{font-size:clamp(23px,2.6vw,31px)}
+.sleep-app .st-head{background:linear-gradient(115deg,#102d39,#234b51 85%);color:#f9f8f1;border-bottom:5px solid #d8b780}
+.sleep-app .st-head>.home-wrap{padding-bottom:74px}
+.sleep-app .st-breadcrumb{padding:29px 0 57px;display:flex;flex-wrap:wrap;align-items:center;gap:11px;font-size:12px;color:#b8cdca}
+.sleep-app .st-breadcrumb a{color:#efcd9b;text-decoration:none}
+.sleep-app .st-heading{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(180px,.45fr);gap:50px;align-items:center}
+.sleep-app .st-label{font-size:11px;font-weight:700;letter-spacing:.19em;color:#e3c794}
+.sleep-app .st-lede{font-size:clamp(17px,1.8vw,22px);line-height:1.8;color:#cad9d7;max-width:790px}
+.sleep-app .st-head-side{min-height:180px;display:grid;place-items:center;border:1px solid #c8be9d7a;outline:1px solid #8cb3ae66;outline-offset:13px;border-radius:50%;aspect-ratio:1;font:italic clamp(63px,9vw,100px) Georgia,serif;color:#f2d199}
+.sleep-app .st-head-side span{font-size:17px;font-style:normal;letter-spacing:.08em}
+.sleep-app .st-head-note{font-size:12px;color:#a8c8c4;line-height:1.7;max-width:680px}
+.sleep-app .st-workspace>.home-wrap{padding-block:57px 95px}
+.sleep-app .st-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:25px;align-items:start}
+.sleep-app .st-panel{background:#fbfaf5;color:#193543;border:1px solid #cad5cd;border-top:4px solid #b18b58;box-shadow:0 14px 25px #15282b0d;border-radius:5px;padding:clamp(20px,2.8vw,33px)}
+.sleep-app .st-panel h2{margin:0 0 16px}
+.sleep-app .st-panel h3{margin:0 0 13px}
+.sleep-app .st-panel p{line-height:1.74;color:#516773}
+.sleep-app .st-panel>p:first-child{margin-top:0}
+.sleep-app .st-field{display:flex;flex-direction:column;gap:7px;margin:0 0 19px}
+.sleep-app .st-field>label,.sleep-app fieldset legend{font-size:14px;color:#26424d;font-weight:700;line-height:1.46}
+.sleep-app .st-field small,.sleep-app .st-help{font-size:12px;color:#617276;line-height:1.65}
+.sleep-app input[type="number"],.sleep-app input[type="time"],.sleep-app input[type="date"],.sleep-app select{
+  min-height:49px;padding:10px 12px;border:1px solid #9db9b1;border-radius:4px;background:#fff;color:#1b3541;width:100%;font:16px Arial,sans-serif
+}
+.sleep-app input:focus-visible,.sleep-app select:focus-visible,.sleep-app button:focus-visible,.sleep-app a:focus-visible{outline:3px solid #b67e39;outline-offset:3px}
+.sleep-app input[aria-invalid="true"],.sleep-app select[aria-invalid="true"]{border:3px solid #bf392b;background:#fff0ec}
+.sleep-app input[type="range"]{width:100%;accent-color:#23615f}
+.sleep-app input[type="checkbox"],.sleep-app input[type="radio"]{accent-color:#245f62;width:19px;height:19px}
+.sleep-app .st-fieldset{margin:0 0 19px;padding:0;border:0}
+.sleep-app .st-fieldset legend{margin-bottom:8px}
+.sleep-app .st-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.sleep-app .st-2col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.sleep-app .st-3col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sleep-app .st-button{cursor:pointer;border:1px solid #244653;border-radius:4px;background:#214854;color:#fff8e7;min-height:49px;padding:13px 19px;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-weight:700;font-size:14px;text-decoration:none}
+.sleep-app .st-button:not(:disabled):hover{background:#376c6b}
+.sleep-app .st-button:disabled{opacity:.5;cursor:not-allowed}
+.sleep-app .st-button.st-alt{background:transparent;color:#214854;border-color:#88aaa3}
+.sleep-app .st-button.st-alt:hover{background:#e8f1eb}
+.sleep-app .st-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;padding:6px 9px;border-radius:4px;background:#e4ede6;color:#34574d}
+.sleep-app .st-tag.st-pro{background:#f3e6cb;color:#805b2d}
+.sleep-app .st-status{min-height:23px;margin:15px 0;font-weight:700;font-size:13px;line-height:1.6;color:#446b5b}
+.sleep-app .st-status.is-error{color:#ae3226}
+.sleep-app .st-note{margin:19px 0 0;padding:14px 18px;background:#ebf1ec;border-left:4px solid #678c80;font-size:13px;line-height:1.68;color:#4a6268}
+.sleep-app .st-note.st-warning{border-color:#c69150;background:#f9f0df;color:#64513b}
+.sleep-app .st-result{min-height:245px}
+.sleep-app .st-result:empty:after{content:"Il tuo riepilogo comparirà qui dopo la compilazione.";color:#7b8c87;font-size:14px;line-height:1.7}
+.sleep-app .st-result-title{font-size:24px;line-height:1.2;font-family:Georgia,serif;margin:16px 0}
+.sleep-app .st-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}
+.sleep-app .st-metric{padding:15px;background:#edf2ed;border:1px solid #d9e3de;min-width:0}
+.sleep-app .st-metric span{display:block;color:#647875;font-size:11px;letter-spacing:.08em;text-transform:uppercase;line-height:1.45}
+.sleep-app .st-metric strong{font:500 clamp(22px,3vw,33px) Georgia,serif;display:block;color:#173e4b;margin:8px 0 0;overflow-wrap:anywhere}
+.sleep-app .st-item{border-top:1px solid #d7e1da;padding:16px 0}
+.sleep-app .st-item:last-child{border-bottom:1px solid #d7e1da}
+.sleep-app .st-item strong{display:block;color:#213f4b;font:500 20px Georgia,serif;margin-bottom:5px}
+.sleep-app .st-item p{margin:4px 0;color:#536973;font-size:13px;line-height:1.6}
+.sleep-app .st-question{margin:0;padding:21px 0;border:0;border-bottom:1px solid #dae1d9}
+.sleep-app .st-question legend{font-weight:700;color:#253d48;font-size:15px;line-height:1.55;margin-bottom:10px;padding:0}
+.sleep-app .st-question-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sleep-app .st-question-options label{display:flex;gap:8px;align-items:flex-start;background:#f1f5f0;border:1px solid #dbe3dd;border-radius:4px;padding:12px 8px;font-size:12px;color:#354a53;cursor:pointer;line-height:1.4}
+.sleep-app .st-question-options label:has(input:checked){background:#e1f0e6;border-color:#3b796b}
+.sleep-app .st-question-options input{width:16px;height:16px;flex:0 0 16px;margin:0}
+.sleep-app .st-domain{padding:16px 0;border-bottom:1px solid #d4dfd8}
+.sleep-app .st-domain strong{font:500 21px Georgia,serif}
+.sleep-app .st-progress{width:100%;height:9px;background:#dee7e1;border-radius:5px;overflow:hidden;margin-top:9px}
+.sleep-app .st-progress>span{display:block;height:100%;background:linear-gradient(90deg,#6d9b88,#c3a172)}
+.sleep-app .st-domain small{display:block;margin:9px 0 0;color:#597073;line-height:1.6}
+.sleep-app .st-bars{display:flex;align-items:flex-end;gap:6px;min-height:135px;margin:23px 0 17px;border-bottom:1px solid #b7cac0;padding-bottom:3px}
+.sleep-app .st-bar-cell{flex:1;min-width:0;display:flex;align-items:center;flex-direction:column;justify-content:flex-end;gap:4px}
+.sleep-app .st-bar{display:block;width:85%;max-width:42px;background:linear-gradient(#c7ad79,#436e71);min-height:3px}
+.sleep-app .st-bar.partial{background:repeating-linear-gradient(45deg,#ceae74,#ceae74 5px,#537e80 5px,#537e80 10px)}
+.sleep-app .st-bar-cell small{font-size:10px;color:#52666e}
+.sleep-app .st-example{font-size:12px;color:#677978;line-height:1.6;margin-bottom:15px}
+.sleep-app .st-table-scroll{max-width:100%;overflow-x:auto}
+.sleep-app .st-table{border-collapse:collapse;width:100%;font-size:13px;margin:18px 0}
+.sleep-app .st-table th,.sleep-app .st-table td{border-bottom:1px solid #dae2da;padding:11px 9px;text-align:left;vertical-align:top}
+.sleep-app .st-table th{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#59736f;background:#eef3ed}
+.sleep-app .st-table td{color:#3b5158}
+.sleep-app .st-table .st-bad{color:#a03422;font-weight:700}
+.sleep-app .st-table .st-good{color:#32654d;font-weight:700}
+.sleep-app .st-chart-legend{font-size:12px;line-height:1.65;color:#617772}
+.sleep-app .st-input-unit{display:flex;gap:8px;align-items:center}
+.sleep-app .st-input-unit input{max-width:160px}
+.sleep-app .st-dose-line{display:grid;grid-template-columns:135px 125px auto;gap:10px;align-items:end;margin:13px 0;border-bottom:1px solid #dce5dc;padding-bottom:13px}
+.sleep-app .st-dose-line .st-field{margin:0}
+.sleep-app .st-dose-line button{align-self:end;min-height:49px}
+.sleep-app .st-source-note{background:#e4ece5;padding:16px 20px;margin-top:30px;font-size:13px;line-height:1.72;color:#4c6669}
+.sleep-app .st-source-note a{color:#236374}
+.sleep-app .st-foot{padding:58px 0;background:#142f3b;color:#c6d5d1}
+.sleep-app .st-foot p{line-height:1.74;max-width:800px}
+.sleep-app .st-print-only{display:none}
+@media(max-width:1050px){
+.sleep-app .home-nav-desktop{display:none!important}
+.sleep-app .home-mobile-menu{display:block;position:relative}
+.sleep-app .home-mobile-menu summary{list-style:none;cursor:pointer;padding:10px 14px;color:#edcb92;border:1px solid #bd9559;font-size:13px}
+.sleep-app .home-mobile-menu summary::-webkit-details-marker{display:none}
+.sleep-app .home-mobile-menu nav{position:absolute;top:calc(100% + 10px);right:0;display:flex;flex-direction:column;gap:0;align-items:stretch;width:min(82vw,300px);padding:10px;background:#0d1b2b;border:1px solid #bf9969;z-index:50;box-shadow:0 20px 25px #0007}
+.sleep-app .home-mobile-menu nav a{padding:12px;color:#e4d9be;font-size:14px;border-bottom:1px solid #fff2;text-decoration:none}
+}
+@media(max-width:800px){.sleep-app .st-grid{grid-template-columns:1fr}.sleep-app .st-heading{grid-template-columns:1fr}.sleep-app .st-head-side{display:none}.sleep-app .st-head>.home-wrap{padding-bottom:54px}}
+@media(max-width:560px){
+.sleep-app .st-breadcrumb{padding-bottom:35px}
+.sleep-app .st-head h1{font-size:clamp(43px,10.5vw,66px)}
+.sleep-app .st-workspace>.home-wrap{padding-block:34px 72px}
+.sleep-app .st-2col,.sleep-app .st-3col{grid-template-columns:1fr}
+.sleep-app .st-dose-line{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.sleep-app .st-dose-line button{grid-column:1/-1}
+.sleep-app .st-question-options{grid-template-columns:1fr}
+.sleep-app .st-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sleep-app .st-panel{padding:19px}
+.sleep-app .st-table{font-size:12px}
+}
+@media print{
+  body.sleep-app{background:#fff!important;color:#111}
+  .sleep-app .home-header,.sleep-app .st-head,.sleep-app .st-input-panel,.sleep-app .st-foot,.sleep-app .home-footer,.sleep-app .st-no-print,.sleep-app .st-button{display:none!important}
+  .sleep-app .st-workspace>.home-wrap{padding:0!important}
+  .sleep-app .st-grid{display:block!important}
+  .sleep-app .st-panel{border:0!important;box-shadow:none!important;padding:0!important}
+  .sleep-app .st-print-only{display:block;font:500 26px Georgia,serif;margin:0 0 20px}
+  .sleep-app .st-bars{page-break-inside:avoid}
+  .sleep-app .st-domain,.sleep-app .st-item{break-inside:avoid}
+}

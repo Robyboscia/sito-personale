@@ -52,3 +52,13 @@ La sezione **Consulenze** resta separatamente marcata «Ancora da costruire».
 - Test indipendenti del pianificatore Turni per notte 22–06 + turno immediatamente successivo, sette mattine consecutive e riposo dopo notte: **superati**.
 - **Non ancora verificati end-to-end nel browser:** click e download CSV dei turni, generazione file TXT del Diario PRO, stampa/salvataggio PDF e test fisico su iPhone.
 - I prototipi restano in stato **da revisionare**, con `noindex` e senza pagamento, fino a QA e verifica scientifica/privacy prima della pubblicazione.
+
+## Revisione del Calcolatore della Caffeina (25 ottobre 2026)
+- Su richiesta dell'utente sono state eliminate dall'interfaccia le diciture tecniche «emivita illustrativa» e l'ipotesi delle «24 ore precedenti» come data di assunzione.
+- Ogni bevanda è collocata nella **giornata simulata** (reale o tipica, senza data obbligatoria). Se il coricamento è fra mezzanotte e le 05:59, lo collochiamo nel giorno successivo, insieme a eventuali bevande prese fra mezzanotte e quell'ora; si controllano orari che risultano successivi al coricamento.
+- Il modello continua **oltre mezzanotte e nei giorni successivi, senza blocco a 24 ore**, e mostra per ogni scenario «nella giornata simulata», «il giorno seguente», «due giorni dopo» oppure «N giorni dopo» seguiti dall'ora.
+- Viene mostrata l'ora orientativa in cui **ogni bevanda** del giorno è scesa sotto il 5% della sua dose iniziale. È una convenzione esplicita per «quasi completamente smaltita» e NON equivale a livello zero né garantisce sonno indisturbato. Formula per singola dose: ora di assunzione + ore necessarie per dimezzare la quantità × log2(20); per bevande multiple si usa l'ora più tarda.
+- Gli scenari sono tradotti in linguaggio semplice come smaltimento più rapido (metà ogni 3 ore), intermedio (5 ore) e più lento (7 ore).
+- Avviso scientifico: caffeina tardiva può influenzare il sonno anche quando l'utente sente di addormentarsi e riposare bene. Non attribuire soglie individuali di sicurezza né sostenere che un espresso singolo abbia gli stessi effetti delle dosi elevate degli studi. Fonti: https://pubmed.ncbi.nlm.nih.gov/24235903/ e https://pubmed.ncbi.nlm.nih.gov/39377163/.
+- Test matematici eseguiti e superati per scenari che terminano **il giorno seguente** e **due giorni dopo**, con 80 mg alle 14:00, una bevanda alle 23:30 prima del sonno alle 01:00 e una bevanda alle 00:30 prima del sonno alle 01:00.
+- La logica `giornata tipo` non identifica date vere: documentare sempre il criterio di collocazione degli orari, senza spacciarlo per un log cronologico verificato.

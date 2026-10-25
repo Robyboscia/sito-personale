@@ -1,0 +1,147 @@
+
+/* PROGETTI | Dott. Roberto Boscia
+   Un archivio di progetti indipendenti, NON un e-commerce interno. */
+body.projects-page{background:#101e29;color:#f6f1e7}
+.projects-page main{overflow:clip}
+.projects-page main section{padding:0}
+.projects-page h1,.projects-page h2,.projects-page h3{font-family:Georgia,'Times New Roman',serif;line-height:1.07;font-weight:500;letter-spacing:-.052em}
+.projects-page h2{font-size:clamp(42px,5.3vw,71px)}
+.projects-page a:focus-visible{outline:3px solid #eac486;outline-offset:4px}
+.projects-page .home-nav-desktop a[aria-current="page"],.projects-page .home-mobile-menu a[aria-current="page"]{color:#efc88b}
+.projects-page .pr-kicker,.projects-page .pr-eyebrow{font-size:11px;font-weight:700;letter-spacing:.19em;text-transform:uppercase;line-height:1.6;color:#e1bf89}
+.projects-page .pr-button{display:inline-flex;align-items:center;justify-content:space-between;gap:33px;min-height:53px;padding:14px 19px;font-size:13px;line-height:1.35;text-decoration:none;font-weight:700;color:#192b32;background:#e5c18c;border:1px solid #e7c88e;transition:transform .2s,background .2s}
+.projects-page .pr-button:hover{transform:translateY(-3px);background:#f2d7a7}
+.projects-page .pr-breadcrumb{display:flex;align-items:center;gap:13px;padding:33px 0 0;margin:0;font-size:12px;color:#b0c0bf}
+.projects-page .pr-breadcrumb a{color:#e4bf87;text-decoration:none}
+.projects-page .pr-breadcrumb a:hover{text-decoration:underline}
+/* HERO — deep navy editorial introduction, with a large circular seal */
+.projects-page .pr-hero{position:relative;background:radial-gradient(ellipse at 90% 38%,#2a4850 0%,#162d39 40%,#0b1e2b 85%);color:#f9f6ef}
+.projects-page .pr-hero:before{position:absolute;inset:0;content:"";pointer-events:none;opacity:.06;background-image:radial-gradient(#e2bf8f .65px,transparent .65px);background-size:7px 7px}
+.projects-page .pr-hero>.home-wrap{position:relative}
+.projects-page .pr-hero-layout{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(270px,.84fr);gap:clamp(32px,8vw,105px);align-items:center;padding:70px 0 80px}
+.projects-page .pr-eyebrow span{font-size:17px;color:#efcd9e;margin-right:8px}
+.projects-page .pr-hero h1{font-size:clamp(54px,7vw,99px);margin:23px 0 27px}
+.projects-page .pr-hero h1 em{color:#e4bf8b}
+.projects-page .pr-hero-lede{font-size:clamp(17px,2vw,22px);line-height:1.75;max-width:700px;color:#c1d2d3;margin:0}
+.projects-page .pr-jump-link{display:inline-flex;align-items:center;gap:22px;margin-top:32px;color:#edca91;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid #cb9f60;padding-bottom:7px}
+.projects-page .pr-jump-link:hover{text-decoration:underline}
+.projects-page .pr-hero-visual{position:relative;width:100%;max-width:430px;aspect-ratio:1;justify-self:center;display:grid;place-items:center}
+.projects-page .pr-circle{position:absolute;border-radius:50%;aspect-ratio:1;border:1px solid #d9c0937b}
+.projects-page .pr-circle-outer{width:95%;border-color:#96b9bc73}
+.projects-page .pr-circle-mid{width:72%;border-style:dashed}
+.projects-page .pr-circle-inner{width:47%;border-color:#e2ba85}
+.projects-page .pr-circle-outer:before{content:"";position:absolute;top:18%;left:13%;height:10px;width:10px;border-radius:50%;background:#ebc78b;box-shadow:0 0 21px #edbd79a3}
+.projects-page .pr-orbit-initial{position:relative;font:italic clamp(88px,12vw,158px)/1 Georgia,serif;color:#e6c99c;letter-spacing:-.11em;transform:translateX(-9px)}
+.projects-page .pr-orbit-initial span{color:#90bbb4}
+.projects-page .pr-orbit-label{position:absolute;font-size:10px;letter-spacing:.2em;color:#b7d1cf;white-space:nowrap}
+.projects-page .pr-orbit-label-top{top:2%;right:0}
+.projects-page .pr-orbit-label-bottom{bottom:3%;left:0}
+.projects-page .pr-hero-index{border-top:1px solid #a7c5bd4e;padding:22px 0;display:flex;justify-content:space-between;gap:20px;letter-spacing:.18em;color:#a7c7c7;font-size:10px;font-weight:700}
+/* FIRST FEATURE — gold / navy geometric concept rather than counterfeit product packaging */
+.projects-page .pr-feature{background:#ebdfcb;color:#203442}
+.projects-page .pr-feature>.home-wrap{padding-block:100px 112px}
+.projects-page .pr-section-line{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-bottom:22px;border-bottom:1px solid #aa9880;font-weight:700;font-size:10px;letter-spacing:.17em;color:#94724b}
+.projects-page .pr-feature-layout{display:grid;grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr);gap:clamp(45px,7vw,106px);align-items:center;margin-top:45px}
+.projects-page .pr-feature-visual{position:relative;background:radial-gradient(ellipse at 65% 55%,#364c58,#112b3a 60%,#0d2230);min-height:490px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.projects-page .pr-feature-visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#d4b8891e 1px,transparent 1px),linear-gradient(90deg,#d4b8891e 1px,transparent 1px);background-size:39px 39px}
+.projects-page .pr-mp-mark{z-index:2;display:flex;align-items:baseline;gap:10px;font:italic clamp(100px,12vw,165px)/1 Georgia,serif;color:#e9d29f;text-shadow:0 13px 30px #0008}
+.projects-page .pr-mp-mark i{color:#8ebeb5;font-size:.7em;font-style:normal}
+.projects-page .pr-feature-orbit{position:absolute;aspect-ratio:1;border:1px solid #d9b67575;border-radius:50%;width:77%;max-width:415px}
+.projects-page .pr-feature-orbit-two{width:56%;border-style:dashed;border-color:#8cb2b27c}
+.projects-page .pr-feature-visual p{position:absolute;top:30px;left:33px;color:#c6d2c7;font-size:10px;letter-spacing:.18em;font-weight:700;z-index:2;margin:0}
+.projects-page .pr-feature-visual p span{color:#edc184}
+.projects-page .pr-visual-note{position:absolute;bottom:23px;left:24px;right:20px;z-index:2;color:#a4bdba;font-size:9px;line-height:1.5;letter-spacing:.13em}
+.projects-page .pr-feature-copy h2{font-size:clamp(65px,7.3vw,110px);margin:17px 0 30px;color:#192f3b}
+.projects-page .pr-feature-copy h2 em{color:#9c784d}
+.projects-page .pr-feature-copy .pr-kicker{color:#946e41}
+.projects-page .pr-feature-copy>p:not(.pr-kicker){font-size:16px;color:#556571;line-height:1.85;margin:0 0 22px;max-width:630px}
+.projects-page .pr-feature-copy>p.pr-feature-lede{font-size:19px;color:#324b56}
+.projects-page .pr-feature-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:33px}
+.projects-page .pr-feature-actions small{color:#727b7b;font-size:12px}
+/* BOOK — single beautiful ivory strip linking to the complete book page */
+.projects-page .pr-book{background:#f8f4ec;color:#172d3c}
+.projects-page .pr-book-layout{display:grid;grid-template-columns:minmax(0,1.24fr) minmax(220px,.76fr);gap:clamp(60px,9vw,130px);align-items:center;padding-block:100px 108px}
+.projects-page .pr-section-number{font-size:10px;letter-spacing:.17em;font-weight:700;color:#927049}
+.projects-page .pr-book-info h2{margin:19px 0 27px}
+.projects-page .pr-book-info h2 em{color:#a68053}
+.projects-page .pr-book-info p{font-size:17px;line-height:1.86;color:#53656c;max-width:700px;margin:0 0 29px}
+.projects-page .pr-book-info p strong{color:#273b46}
+.projects-page .pr-inline-link{display:inline-flex;gap:20px;align-items:center;color:#80603f;text-decoration:none;border-bottom:1px solid #ab8c60;padding-bottom:7px;font-size:14px;font-weight:700}
+.projects-page .pr-inline-link:hover{text-decoration:underline}
+.projects-page .pr-book-image{justify-self:center;width:100%;max-width:310px;text-decoration:none;position:relative;display:flex;flex-direction:column;align-items:center}
+.projects-page .pr-book-image img{display:block;width:auto;max-width:100%;max-height:350px;height:auto;object-fit:contain;box-shadow:14px 20px 29px #534a3c52;transform:rotate(3deg);transition:transform .2s}
+.projects-page .pr-book-image:hover img{transform:rotate(0)}
+.projects-page .pr-book-image>span{display:flex;gap:18px;justify-content:space-between;margin-top:32px;font-size:10px;letter-spacing:.16em;color:#806341;font-weight:700}
+/* CURRENT / FUTURE — tablelike entries, accessible links */
+.projects-page .pr-digital{background:#283d47;color:#f4f3ed}
+.projects-page .pr-digital>.home-wrap{padding-block:96px 109px}
+.projects-page .pr-digital .pr-section-line{color:#c7d9d3;border-color:#8ab1b04b}
+.projects-page .pr-digital-head{display:grid;grid-template-columns:1.15fr .75fr;gap:75px;align-items:end;margin:40px 0 44px}
+.projects-page .pr-digital-head h2{margin:0}
+.projects-page .pr-digital-head h2 em{color:#e4bf8c}
+.projects-page .pr-digital-head p{color:#c3d1d0;line-height:1.76;font-size:16px;margin:0}
+.projects-page .pr-digital-rows{border-top:1px solid #accac351}
+.projects-page .pr-digital-row{display:grid;grid-template-columns:65px minmax(0,1fr) 165px 30px;gap:20px;align-items:center;padding:25px 14px 25px 0;border-bottom:1px solid #accac351;min-height:120px;text-decoration:none;color:inherit;transition:background .2s}
+.projects-page a.pr-digital-row:hover{background:#ffffff0b}
+.projects-page .pr-row-no{font:italic 31px Georgia,serif;color:#ddba87}
+.projects-page .pr-row-content{display:flex;flex-direction:column;gap:8px;min-width:0}
+.projects-page .pr-row-content strong{font:500 clamp(24px,2.8vw,36px)/1.12 Georgia,serif}
+.projects-page .pr-row-content small{font-size:14px;color:#b9cbca;line-height:1.5}
+.projects-page .pr-row-tag{justify-self:start;display:inline-block;font-size:10px;letter-spacing:.08em;border:1px solid #9eb5b078;padding:7px 9px;white-space:nowrap;font-weight:700}
+.projects-page .pr-row-ready{color:#cfecd7;background:#245c538a}
+.projects-page .pr-row-pending{color:#e0d3b9;background:#66573b47}
+.projects-page .pr-row-arrow{font:24px Georgia,serif;color:#e8c18c;justify-self:end}
+.projects-page .pr-row-future{opacity:.77}
+/* final CTA */
+.projects-page .pr-footer-cta{background:linear-gradient(115deg,#b69c73,#e9d9bc);color:#22313a}
+.projects-page .pr-footer-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(45px,8vw,120px);align-items:center;padding-block:105px}
+.projects-page .pr-footer-layout h2{margin:18px 0 0}
+.projects-page .pr-footer-layout h2 em{color:#846039}
+.projects-page .pr-footer-layout p:not(.pr-kicker){font-size:17px;line-height:1.8;color:#42535a;margin:0 0 25px}
+.projects-page .pr-footer-layout .pr-button{background:#132f3e;border-color:#132f3e;color:#f4e3c5}
+.projects-page .pr-footer-layout .pr-button:hover{background:#255062}
+@media(max-width:1130px){
+.projects-page .home-nav-desktop{display:none!important}
+.projects-page .home-mobile-menu{display:block;position:relative}
+.projects-page .home-mobile-menu summary{list-style:none;cursor:pointer;padding:10px 14px;color:#edcb92;border:1px solid #bd9559;font-size:13px}
+.projects-page .home-mobile-menu summary::-webkit-details-marker{display:none}
+.projects-page .home-mobile-menu nav{position:absolute;top:calc(100% + 10px);right:0;width:min(82vw,310px);padding:10px;display:flex;flex-direction:column;align-items:stretch;gap:0;background:#0d1b2b;border:1px solid #bf9969;box-shadow:0 18px 30px #0007;z-index:55}
+.projects-page .home-mobile-menu nav a{padding:12px;color:#f1dcb9;text-decoration:none;border-bottom:1px solid #ffffff1a;font-size:14px}
+}
+@media(max-width:830px){
+.projects-page .pr-hero-layout,.projects-page .pr-feature-layout,.projects-page .pr-book-layout,.projects-page .pr-digital-head,.projects-page .pr-footer-layout{grid-template-columns:1fr}
+.projects-page .pr-hero-layout{gap:20px;padding:65px 0}
+.projects-page .pr-hero-visual{width:min(70vw,340px)}
+.projects-page .pr-feature-layout{gap:42px}
+.projects-page .pr-feature-visual{min-height:390px}
+.projects-page .pr-book-layout{gap:38px}
+.projects-page .pr-book-image{max-width:275px}
+.projects-page .pr-digital-head{gap:19px}
+.projects-page .pr-footer-layout{gap:30px}
+}
+@media(max-width:600px){
+.projects-page .pr-hero h1{font-size:clamp(52px,11vw,77px)}
+.projects-page .pr-hero-layout{padding:48px 0}
+.projects-page .pr-hero-visual{width:min(60vw,250px)}
+.projects-page .pr-orbit-initial{font-size:90px}
+.projects-page .pr-orbit-label{font-size:8px}
+.projects-page .pr-hero-index{font-size:9px}
+.projects-page .pr-feature>.home-wrap,.projects-page .pr-digital>.home-wrap{padding-block:72px 80px}
+.projects-page .pr-feature-visual{min-height:310px}
+.projects-page .pr-mp-mark{font-size:100px}
+.projects-page .pr-feature-copy h2{font-size:70px}
+.projects-page .pr-book-layout,.projects-page .pr-footer-layout{padding-block:75px}
+.projects-page .pr-digital-row{grid-template-columns:39px minmax(0,1fr) 20px;gap:12px;padding:22px 0}
+.projects-page .pr-row-tag{grid-column:2;grid-row:2}
+.projects-page .pr-row-arrow{grid-column:3;grid-row:1}
+.projects-page .pr-row-no{font-size:26px}
+.projects-page .pr-row-content strong{font-size:24px}
+.projects-page .pr-row-content small{font-size:12px}
+}
+@media(max-width:390px){
+.projects-page .pr-hero h1{font-size:51px}
+.projects-page .pr-feature-visual{min-height:260px}
+.projects-page .pr-mp-mark{font-size:85px}
+.projects-page .pr-hero-index span:first-child{max-width:230px}
+}
+@media(prefers-reduced-motion:reduce){.projects-page .pr-button,.projects-page .pr-digital-row,.projects-page .pr-book-image img{transition:none}}

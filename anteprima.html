@@ -508,6 +508,72 @@ body:not(.home-v2) header nav{max-width:1270px}
 @media(max-width:930px){body:not(.home-v2) header nav{flex-direction:column;align-items:flex-start;gap:12px;min-height:80px}body:not(.home-v2) header .links{font-size:13px}}
 /* Separate-page affordances on the homepage */
 body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,body.home-v2 .home-academy a:focus-visible{outline-offset:6px}
+
+/* Diario del sonno — blocco download editoriale dedicato */
+.download-diary{display:grid;grid-template-columns:minmax(185px,.64fr) minmax(0,1.25fr);gap:29px;align-items:center;background:#ede5d9;color:#142236;border:1px solid #d4c6b1;margin:0 0 41px;overflow:hidden;border-radius:7px}
+.download-diary-art{height:100%;min-height:405px;display:grid;place-items:center;padding:30px 20px;background:radial-gradient(ellipse at 30% 25%,#475c73,#142b44 66%,#091522)}
+.download-diary-page{background:#faf8f3;box-shadow:9px 13px 0 #d3b98e33,0 22px 35px #0006;border-top:12px solid #091521;width:min(100%,205px);min-height:292px;transform:rotate(-5deg);display:flex;flex-direction:column;justify-content:space-between;padding:20px 17px;color:#1e2d42}
+.download-diary-masthead{font:700 8px Arial,sans-serif;letter-spacing:.10em;color:#8b6432}
+.download-diary-page strong{font:500 35px/1 Georgia,serif;letter-spacing:-.04em}
+.download-diary-page em{font:italic 13px Georgia,serif;color:#957145}
+.download-diary-art-lines{display:flex;flex-direction:column;gap:12px;margin-top:15px}
+.download-diary-art-lines span{height:1px;background:#bbbdbd}
+.download-diary-art-foot{font:700 7px Arial,sans-serif;letter-spacing:.12em;color:#8b6432;margin-top:10px}
+.download-diary-copy{padding:34px 35px 33px 0}
+.download-diary-eyebrow{display:block;color:#986f37;letter-spacing:.17em;text-transform:uppercase;font-size:10px;font-weight:700;margin-bottom:14px}
+.download-diary-copy h2{font-size:clamp(29px,4vw,39px);line-height:1.15;color:#152539;margin:0 0 19px}
+.download-diary-copy p{font-size:15px;line-height:1.8;color:#4b5564;margin:0 0 24px}
+.download-diary-copy strong{color:#223447}
+.download-diary-button{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:13px 15px;margin:7px 0 17px;color:#071523!important;background:linear-gradient(115deg,#d19c49,#e7be76);text-decoration:none!important;font:700 14px Arial,sans-serif;line-height:1.35;border-radius:3px;box-shadow:0 5px 16px #15233220;transition:transform .2s,box-shadow .2s}
+.download-diary-button:hover{transform:translateY(-2px);box-shadow:0 9px 20px #15233230}
+.download-diary-button>span{width:25px;height:25px;flex:none;border:1px solid #1b2a3266;border-radius:50%;display:grid;place-items:center;font-size:20px}
+.download-diary-button small{margin-left:auto;font-weight:400;font-size:11px;color:#253549}
+.download-diary-copy .download-diary-small{font-size:12px;line-height:1.55;color:#676a6d;margin:0}
+@media(max-width:710px){.download-diary{grid-template-columns:1fr;gap:0}.download-diary-art{min-height:260px}.download-diary-page{min-height:205px;max-width:165px;padding:14px}.download-diary-page strong{font-size:27px}.download-diary-copy{padding:28px 25px 30px}}
+@media(max-width:420px){.download-diary-button{display:grid;grid-template-columns:28px 1fr;gap:7px}.download-diary-button small{grid-column:2;margin:0}}
+
+/* 03 | Consulenze — ingresso autonomo: sabbia/ambra, geometrie diverse dal metodo */
+body.home-v2 .home-consultations{background:radial-gradient(circle at 5% 40%,#e1caa7,#d4b78e 52%,#cfb48d);color:#23303a}
+body.home-v2 .home-consultations-grid{display:grid;grid-template-columns:150px minmax(0,1.2fr) minmax(170px,.56fr);gap:clamp(33px,5.2vw,85px);align-items:center;padding-block:90px}
+body.home-v2 .home-consultations-mark{aspect-ratio:1;max-width:149px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #7e6749;border-radius:50%;box-shadow:0 0 0 17px #5b513219;color:#3a474a}
+body.home-v2 .home-consultations-mark span{font:italic 63px Georgia,serif;letter-spacing:-.11em;line-height:1}
+body.home-v2 .home-consultations-mark small{font-size:8px;letter-spacing:.12em;white-space:nowrap;margin-top:9px;color:#72573b;font-weight:700}
+body.home-v2 .home-consultations-copy h2{font-size:clamp(36px,4.3vw,61px);line-height:1.06;margin:18px 0 23px}
+body.home-v2 .home-consultations-copy h2 em{color:#81613e}
+body.home-v2 .home-consultations-copy p:not(.home-kicker){max-width:720px;color:#45545a;font-size:16px;line-height:1.78;margin:0 0 24px}
+body.home-v2 .home-consultations-index{align-self:stretch;display:flex;flex-direction:column;justify-content:center;border-left:1px solid #8e774f86;padding-left:22px}
+body.home-v2 .home-consultations-index div{display:flex;gap:15px;align-items:center;padding:13px 0;border-bottom:1px solid #9f8f6f66;font-size:13px;color:#384a4d;line-height:1.45;font-weight:700}
+body.home-v2 .home-consultations-index div:first-child{border-top:1px solid #9f8f6f66}
+body.home-v2 .home-consultations-index span{font:italic 23px Georgia,serif;color:#805b31}
+@media(max-width:1180px){
+ body.home-v2 .home-nav-desktop{gap:11px!important}
+ body.home-v2 .home-nav-desktop a{font-size:12px}
+}
+@media(max-width:1050px){
+ body.home-v2 .home-nav-desktop{display:none!important}
+ body.home-v2 .home-mobile-menu{display:block;position:relative}
+ body.home-v2 .home-mobile-menu summary{list-style:none;cursor:pointer;padding:10px 14px;color:#edcb92;border:1px solid #bd9559;font-size:13px}
+ body.home-v2 .home-mobile-menu summary::-webkit-details-marker{display:none}
+ body.home-v2 .home-mobile-menu summary span{margin-left:9px}
+ body.home-v2 .home-mobile-menu nav{position:absolute;right:0;top:calc(100% + 10px);width:min(82vw,300px);margin:0;padding:10px;display:flex;flex-direction:column;align-items:stretch;gap:0;min-height:0;background:#0d1b2b;border:1px solid #bf9969;box-shadow:0 18px 30px #0007}
+ body.home-v2 .home-mobile-menu nav a{padding:12px;color:#f1dcb9;text-decoration:none;font-size:14px;border-bottom:1px solid #ffffff1a}
+ body.home-v2 .home-mobile-menu nav a:last-child{border-bottom:0}
+}
+@media(max-width:840px){
+ body.home-v2 .home-consultations-grid{grid-template-columns:105px 1fr;gap:42px;padding-block:75px}
+ body.home-v2 .home-consultations-mark{grid-column:1}
+ body.home-v2 .home-consultations-copy{grid-column:2}
+ body.home-v2 .home-consultations-index{grid-column:2;margin-top:-6px}
+ body.home-v2 .home-consultations-mark span{font-size:48px}
+ body.home-v2 .home-consultations-mark small{font-size:7px;white-space:normal;text-align:center}
+}
+@media(max-width:600px){
+ body.home-v2 .home-consultations-grid{grid-template-columns:1fr;gap:32px;padding-block:71px}
+ body.home-v2 .home-consultations-mark{grid-column:1;max-width:112px}
+ body.home-v2 .home-consultations-copy,body.home-v2 .home-consultations-index{grid-column:1}
+ body.home-v2 .home-consultations-mark span{font-size:53px}
+ body.home-v2 .home-consultations-index{margin-top:0}
+}
 </style>
 </head>
 <body class="home-v2">
@@ -517,6 +583,7 @@ body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,
     <a class="home-brand" href="index.html" aria-label="Dott. Roberto Boscia — Torna alla home"><span class="home-brand-pre">Dott.</span> Roberto <em>Boscia</em><small>Farmacista · Divulgazione e benessere</small></a>
     <nav class="home-nav-desktop" aria-label="Aree del portale">
       <a href="chi-sono/index.html">Chi sono</a>
+      <a href="consulenze/index.html">Consulenze</a>
       <a href="assetto-biologico/index.html">Metodo</a>
       <a href="laboratorio-del-sonno/index.html">Laboratorio</a>
       <a href="accademia/index.html">Accademia</a>
@@ -524,7 +591,8 @@ body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,
       <a class="home-nav-contact" href="contatti/index.html">Contatti</a>
     </nav>
     <details class="home-mobile-menu"><summary aria-label="Apri il menu">Menu <span aria-hidden="true">☰</span></summary>
-      <nav aria-label="Menu mobile"><a href="chi-sono/index.html">Chi sono</a><a href="assetto-biologico/index.html">Metodo</a><a href="laboratorio-del-sonno/index.html">Laboratorio</a><a href="accademia/index.html">Accademia</a><a href="shop/index.html">Progetti</a><a href="contatti/index.html">Contatti</a></nav>
+      <nav aria-label="Menu mobile"><a href="chi-sono/index.html">Chi sono</a>
+      <a href="consulenze/index.html">Consulenze</a><a href="assetto-biologico/index.html">Metodo</a><a href="laboratorio-del-sonno/index.html">Laboratorio</a><a href="accademia/index.html">Accademia</a><a href="shop/index.html">Progetti</a><a href="contatti/index.html">Contatti</a></nav>
     </details>
   </div>
 </header>
@@ -580,15 +648,33 @@ body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,
       <div class="home-method-footer"><span>UN METODO, NON UNA PROMESSA DI RISULTATO</span><a class="home-button home-button-outline" href="assetto-biologico/index.html">Visita la pagina Assetto Biologico™ <span aria-hidden="true">↗</span></a></div>
     </div>
   </section>
-  <!-- 04: LABORATORIO — linguaggio grafico scientifico e didascalie oneste -->
+  <!-- 04: CONSULENZE — ingresso a una sezione autonoma, non un secondo form -->
+  <section id="consulenze" class="home-consultations" aria-labelledby="home-cons-title">
+    <div class="home-wrap home-consultations-grid">
+      <div class="home-consultations-mark" aria-hidden="true"><span>RB</span><small>DOMANDE, NON PACCHETTI</small></div>
+      <div class="home-consultations-copy">
+        <p class="home-kicker home-kicker-ink">03 / CONSULENZE E PERCORSI</p>
+        <h2 id="home-cons-title">Il percorso giusto<br><em>inizia dalla domanda.</em></h2>
+        <p>Assetto Biologico™ ha già una presentazione completa. Le proposte dedicate al sonno sono ancora in definizione. Qui trovi quello che è disponibile, quello che stiamo preparando e come orientarti.</p>
+        <a class="home-text-link home-text-link-dark" href="consulenze/index.html">Esplora consulenze e percorsi <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="home-consultations-index" aria-label="Aree delle consulenze">
+        <div><span>01</span> Assetto Biologico™</div>
+        <div><span>02</span> Sonno e ritmi</div>
+        <div><span>03</span> Strumenti gratuiti</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05: LABORATORIO — linguaggio grafico scientifico e didascalie oneste -->
   <section id="laboratorio" class="home-lab" aria-labelledby="lab-title">
     <div class="home-wrap home-lab-grid">
       <div class="home-lab-copy">
-        <p class="home-kicker home-kicker-aqua">03 / LABORATORIO DEL SONNO</p>
-        <span class="home-status">STRUMENTI IN PREPARAZIONE</span>
+        <p class="home-kicker home-kicker-aqua">04 / LABORATORIO DEL SONNO</p>
+        <span class="home-status">DIARIO DIGITALE DISPONIBILE</span>
         <h2 id="lab-title">Osservare i ritmi.<br><em>Capire gli schemi.</em></h2>
-        <p>Diari, questionari educativi e lettura ragionata delle abitudini: uno spazio in sviluppo per esplorare il sonno senza trasformare ogni dato in una diagnosi.</p>
-        <a class="home-text-link home-text-link-aqua" href="laboratorio-del-sonno/index.html">Entra nel Laboratorio del Sonno <span aria-hidden="true">↗</span></a>
+        <p>Il primo strumento è pronto: un diario digitale di 14 giorni per annotare le notti e osservare le tue stime. Il Laboratorio crescerà una funzione alla volta, senza diagnosi automatiche.</p>
+        <a class="home-text-link home-text-link-aqua" href="laboratorio-del-sonno/index.html">Scopri il diario digitale <span aria-hidden="true">↗</span></a>
       </div>
       <div class="home-lab-visual" role="img" aria-label="Illustrazione astratta di un ritmo giornaliero, non basata su misurazioni reali">
         <div class="home-lab-panel-head"><span class="home-lab-dot"></span> RITMI · OSSERVAZIONE <span class="home-lab-panel-number">FIG. 01</span></div>
@@ -611,7 +697,7 @@ body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,
   <section id="accademia" class="home-academy" aria-labelledby="academy-title">
     <div class="home-wrap">
       <div class="home-academy-header">
-        <div><p class="home-kicker home-kicker-editorial">04 / ACCADEMIA</p><h2 id="academy-title">Le idee meritano <em>spazio.</em></h2></div>
+        <div><p class="home-kicker home-kicker-editorial">05 / ACCADEMIA</p><h2 id="academy-title">Le idee meritano <em>spazio.</em></h2></div>
         <div><p>Un magazine sul sonno e sulla cronobiologia, con due livelli di lettura: accessibile a tutti, approfondito per i professionisti.</p><a class="home-text-link home-text-link-gold" href="accademia/index.html">Entra nell'Accademia <span aria-hidden="true">↗</span></a></div>
       </div>
       <div class="home-academy-layout">
@@ -641,7 +727,7 @@ body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,
   <!-- 06: PROGETTI — vetrina chiara con editoriale per il libro e progetto commerciale -->
   <section id="progetti" class="home-projects" aria-labelledby="projects-title">
     <div class="home-wrap">
-      <div class="home-projects-heading"><p class="home-kicker home-kicker-ink">05 / LIBRI E PROGETTI</p><h2 id="projects-title">Le idee continuano <em>fuori da qui.</em></h2></div>
+      <div class="home-projects-heading"><p class="home-kicker home-kicker-ink">06 / LIBRI E PROGETTI</p><h2 id="projects-title">Le idee continuano <em>fuori da qui.</em></h2></div>
       <div class="home-projects-layout">
         <div class="home-book-feature">
           <div class="home-book-cover" aria-hidden="true"><span>DOTT. ROBERTO BOSCIA</span><strong>Dormire<br>è facile<br><i>se sai come farlo</i></strong><span>SONNO · CONOSCENZA · ABITUDINI</span></div>
@@ -656,7 +742,7 @@ body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,
   <!-- 07: CONTATTI — finale essenziale con CTA chiara -->
   <section id="contatti" class="home-contact" aria-labelledby="contact-title">
     <div class="home-wrap home-contact-grid">
-      <div><p class="home-kicker">06 / CONTATTI</p><h2 id="contact-title">Una buona domanda<br><em>è già un inizio.</em></h2></div>
+      <div><p class="home-kicker">07 / CONTATTI</p><h2 id="contact-title">Una buona domanda<br><em>è già un inizio.</em></h2></div>
       <div><p>Una pagina dedicata ai contatti, dove trovi i canali disponibili e il collegamento al modulo già presente in Assetto Biologico™.</p><a class="home-button home-button-gold" href="contatti/index.html">Apri la pagina contatti <span aria-hidden="true">↗</span></a><small>Le informazioni offerte dal portale non sostituiscono la valutazione di un professionista sanitario.</small></div>
     </div>
   </section>

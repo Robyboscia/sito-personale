@@ -129,3 +129,24 @@ body.sleep-app{background:#eff1e9;color:#193543}
   .sleep-app .st-bars{page-break-inside:avoid}
   .sleep-app .st-domain,.sleep-app .st-item{break-inside:avoid}
 }
+
+/* L'attributo hidden deve vincere sul display:flex e sulle griglie. */
+.sleep-app [hidden]{display:none!important}
+.sleep-app .st-question-options label{font-weight:400}
+.sleep-app .st-fieldset input:focus-visible,.sleep-app .st-question input:focus-visible{outline:3px solid #b67e39}
+.sleep-app .st-head-side{white-space:nowrap}
+.sleep-app .st-domain{overflow-wrap:break-word}
+@media(max-width:800px){
+.sleep-app .st-dose-line{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}
+}
+@media(max-width:560px){
+.sleep-app .st-dose-line{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sleep-app .st-dose-line .st-field:nth-child(3){grid-column:1}
+.sleep-app .st-dose-line button{grid-column:2}
+}
+@media print{
+.sleep-app .st-print-only{display:block!important}
+.sleep-app .st-result{min-height:0}
+.sleep-app .st-metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sleep-app .st-note{background:transparent!important}
+}

@@ -150,3 +150,39 @@ body.sleep-app{background:#eff1e9;color:#193543}
 .sleep-app .st-metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .sleep-app .st-note{background:transparent!important}
 }
+
+/* Risultati caffeina: l'orario stimato, anche dopo mezzanotte,
+   è leggibile senza interpretare il grafico dei mg. */
+.sleep-app .st-caffeine-scenario{padding:22px 0}
+.sleep-app .st-caffeine-scenario>strong{font-size:clamp(20px,2.3vw,25px);line-height:1.35}
+.sleep-app .st-caffeine-finish{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  margin-top:16px;
+  padding:14px 17px;
+  border-left:3px solid #af8753;
+  background:#eaf0e9;
+}
+.sleep-app .st-caffeine-finish .st-caffeine-finish-label{
+  color:#576f63;
+  font:700 10px/1.5 Arial,sans-serif;
+  letter-spacing:.09em;
+}
+.sleep-app .st-caffeine-finish>strong{
+  color:#224b48;
+  font:500 clamp(22px,3vw,30px)/1.22 Georgia,serif;
+  overflow-wrap:break-word;
+}
+.sleep-app .st-caffeine-finish>small{
+  color:#4f6663;
+  font-size:12px;
+  line-height:1.6;
+}
+@media print{
+ .sleep-app .st-caffeine-finish{
+   background:transparent;
+   border-color:#555;
+   break-inside:avoid;
+ }
+}

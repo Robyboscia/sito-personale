@@ -100,7 +100,8 @@
     if(!input||!input.name)return;
     const label=input.closest("label");
     input.removeAttribute("aria-invalid");
-    input.removeAttribute("aria-describedby");
+    if(input.name==="waso")input.setAttribute("aria-describedby","sd-waso-help");
+    else input.removeAttribute("aria-describedby");
     label?.classList.remove("sd-has-error");
     label?.querySelector(".sd-field-error")?.remove();
   }
@@ -119,7 +120,7 @@
     note.className="sd-field-error";
     note.textContent=message;
     label.appendChild(note);
-    input.setAttribute("aria-describedby",note.id);
+    input.setAttribute("aria-describedby",name==="waso"?"sd-waso-help "+note.id:note.id);
   }
   function showValidationError(message,fields,shortMessage) {
     clearAllFieldErrors();
@@ -244,7 +245,8 @@
       coverage.classList.remove("sd-coverage-warning");
     }else if(partialCount){
       coverage.textContent="STIMA PARZIALE: per "+partialCount+" nott"+(partialCount===1?"e":"i")+
-        " su "+count+" non hai indicato la fascia dei risvegli. Per quelle notti i minuti sveglio NON sono stati sottratti: durata ed efficienza possono risultare più alte del reale. Le altre "+includedCount+" notti usano la fascia scelta.";
+        " su "+count+" non hai indicato la fascia dei risvegli. Per quelle notti i minuti sveglio NON sono stati sottratti: durata ed efficienza possono risultare più alte del reale. "+
+        (includedCount?"Per le altre "+includedCount+" notti abbiamo usato la fascia scelta.":"Nessuna notte include una fascia dei risvegli.");
       coverage.classList.add("sd-coverage-warning");
     }else{
       coverage.textContent="Tutte le "+count+" notti registrate includono una fascia stimata dei risvegli (selezionata da te): i valori rimangono orientativi.";

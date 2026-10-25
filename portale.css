@@ -493,3 +493,26 @@ body:not(.home-v2) header nav{max-width:1270px}
 @media(max-width:930px){body:not(.home-v2) header nav{flex-direction:column;align-items:flex-start;gap:12px;min-height:80px}body:not(.home-v2) header .links{font-size:13px}}
 /* Separate-page affordances on the homepage */
 body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,body.home-v2 .home-academy a:focus-visible{outline-offset:6px}
+
+/* Diario del sonno — blocco download editoriale dedicato */
+.download-diary{display:grid;grid-template-columns:minmax(185px,.64fr) minmax(0,1.25fr);gap:29px;align-items:center;background:#ede5d9;color:#142236;border:1px solid #d4c6b1;margin:0 0 41px;overflow:hidden;border-radius:7px}
+.download-diary-art{height:100%;min-height:405px;display:grid;place-items:center;padding:30px 20px;background:radial-gradient(ellipse at 30% 25%,#475c73,#142b44 66%,#091522)}
+.download-diary-page{background:#faf8f3;box-shadow:9px 13px 0 #d3b98e33,0 22px 35px #0006;border-top:12px solid #091521;width:min(100%,205px);min-height:292px;transform:rotate(-5deg);display:flex;flex-direction:column;justify-content:space-between;padding:20px 17px;color:#1e2d42}
+.download-diary-masthead{font:700 8px Arial,sans-serif;letter-spacing:.10em;color:#8b6432}
+.download-diary-page strong{font:500 35px/1 Georgia,serif;letter-spacing:-.04em}
+.download-diary-page em{font:italic 13px Georgia,serif;color:#957145}
+.download-diary-art-lines{display:flex;flex-direction:column;gap:12px;margin-top:15px}
+.download-diary-art-lines span{height:1px;background:#bbbdbd}
+.download-diary-art-foot{font:700 7px Arial,sans-serif;letter-spacing:.12em;color:#8b6432;margin-top:10px}
+.download-diary-copy{padding:34px 35px 33px 0}
+.download-diary-eyebrow{display:block;color:#986f37;letter-spacing:.17em;text-transform:uppercase;font-size:10px;font-weight:700;margin-bottom:14px}
+.download-diary-copy h2{font-size:clamp(29px,4vw,39px);line-height:1.15;color:#152539;margin:0 0 19px}
+.download-diary-copy p{font-size:15px;line-height:1.8;color:#4b5564;margin:0 0 24px}
+.download-diary-copy strong{color:#223447}
+.download-diary-button{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:13px 15px;margin:7px 0 17px;color:#071523!important;background:linear-gradient(115deg,#d19c49,#e7be76);text-decoration:none!important;font:700 14px Arial,sans-serif;line-height:1.35;border-radius:3px;box-shadow:0 5px 16px #15233220;transition:transform .2s,box-shadow .2s}
+.download-diary-button:hover{transform:translateY(-2px);box-shadow:0 9px 20px #15233230}
+.download-diary-button>span{width:25px;height:25px;flex:none;border:1px solid #1b2a3266;border-radius:50%;display:grid;place-items:center;font-size:20px}
+.download-diary-button small{margin-left:auto;font-weight:400;font-size:11px;color:#253549}
+.download-diary-copy .download-diary-small{font-size:12px;line-height:1.55;color:#676a6d;margin:0}
+@media(max-width:710px){.download-diary{grid-template-columns:1fr;gap:0}.download-diary-art{min-height:260px}.download-diary-page{min-height:205px;max-width:165px;padding:14px}.download-diary-page strong{font-size:27px}.download-diary-copy{padding:28px 25px 30px}}
+@media(max-width:420px){.download-diary-button{display:grid;grid-template-columns:28px 1fr;gap:7px}.download-diary-button small{grid-column:2;margin:0}}

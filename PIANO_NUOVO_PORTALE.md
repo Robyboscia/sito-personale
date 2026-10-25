@@ -13,7 +13,7 @@
 - /consulenze/ — **sezione rimandata, soltanto pagina “Ancora da costruire”**. Non duplicare Assetto Biologico™ e non mostrare prezzo o dettagli del Metodo.
 - /laboratorio-del-sonno/ — strumenti educativi e questionari.
 - /accademia/ — articoli e formazione.
-- /libro/ — Dormire è facile se sai come farlo, con collegamento a dormirefacile.com.
+- /libro/ — Dormire è facile se sai come farlo, con collegamento a dormirefacile.com. **Copertina autentica disponibile su https://www.dormirefacile.com/images/book_cover.webp**. Non inventare un mockup tipografico in sua sostituzione.
 - /shop/ — collegamenti ai prodotti e a mentalpro.it.
 - /contatti/ — contatti e privacy.
 

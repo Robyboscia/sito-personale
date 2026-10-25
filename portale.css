@@ -516,3 +516,46 @@ body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,
 .download-diary-copy .download-diary-small{font-size:12px;line-height:1.55;color:#676a6d;margin:0}
 @media(max-width:710px){.download-diary{grid-template-columns:1fr;gap:0}.download-diary-art{min-height:260px}.download-diary-page{min-height:205px;max-width:165px;padding:14px}.download-diary-page strong{font-size:27px}.download-diary-copy{padding:28px 25px 30px}}
 @media(max-width:420px){.download-diary-button{display:grid;grid-template-columns:28px 1fr;gap:7px}.download-diary-button small{grid-column:2;margin:0}}
+
+/* 03 | Consulenze — ingresso autonomo: sabbia/ambra, geometrie diverse dal metodo */
+body.home-v2 .home-consultations{background:radial-gradient(circle at 5% 40%,#e1caa7,#d4b78e 52%,#cfb48d);color:#23303a}
+body.home-v2 .home-consultations-grid{display:grid;grid-template-columns:150px minmax(0,1.2fr) minmax(170px,.56fr);gap:clamp(33px,5.2vw,85px);align-items:center;padding-block:90px}
+body.home-v2 .home-consultations-mark{aspect-ratio:1;max-width:149px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #7e6749;border-radius:50%;box-shadow:0 0 0 17px #5b513219;color:#3a474a}
+body.home-v2 .home-consultations-mark span{font:italic 63px Georgia,serif;letter-spacing:-.11em;line-height:1}
+body.home-v2 .home-consultations-mark small{font-size:8px;letter-spacing:.12em;white-space:nowrap;margin-top:9px;color:#72573b;font-weight:700}
+body.home-v2 .home-consultations-copy h2{font-size:clamp(36px,4.3vw,61px);line-height:1.06;margin:18px 0 23px}
+body.home-v2 .home-consultations-copy h2 em{color:#81613e}
+body.home-v2 .home-consultations-copy p:not(.home-kicker){max-width:720px;color:#45545a;font-size:16px;line-height:1.78;margin:0 0 24px}
+body.home-v2 .home-consultations-index{align-self:stretch;display:flex;flex-direction:column;justify-content:center;border-left:1px solid #8e774f86;padding-left:22px}
+body.home-v2 .home-consultations-index div{display:flex;gap:15px;align-items:center;padding:13px 0;border-bottom:1px solid #9f8f6f66;font-size:13px;color:#384a4d;line-height:1.45;font-weight:700}
+body.home-v2 .home-consultations-index div:first-child{border-top:1px solid #9f8f6f66}
+body.home-v2 .home-consultations-index span{font:italic 23px Georgia,serif;color:#805b31}
+@media(max-width:1180px){
+ body.home-v2 .home-nav-desktop{gap:11px!important}
+ body.home-v2 .home-nav-desktop a{font-size:12px}
+}
+@media(max-width:1050px){
+ body.home-v2 .home-nav-desktop{display:none!important}
+ body.home-v2 .home-mobile-menu{display:block;position:relative}
+ body.home-v2 .home-mobile-menu summary{list-style:none;cursor:pointer;padding:10px 14px;color:#edcb92;border:1px solid #bd9559;font-size:13px}
+ body.home-v2 .home-mobile-menu summary::-webkit-details-marker{display:none}
+ body.home-v2 .home-mobile-menu summary span{margin-left:9px}
+ body.home-v2 .home-mobile-menu nav{position:absolute;right:0;top:calc(100% + 10px);width:min(82vw,300px);margin:0;padding:10px;display:flex;flex-direction:column;align-items:stretch;gap:0;min-height:0;background:#0d1b2b;border:1px solid #bf9969;box-shadow:0 18px 30px #0007}
+ body.home-v2 .home-mobile-menu nav a{padding:12px;color:#f1dcb9;text-decoration:none;font-size:14px;border-bottom:1px solid #ffffff1a}
+ body.home-v2 .home-mobile-menu nav a:last-child{border-bottom:0}
+}
+@media(max-width:840px){
+ body.home-v2 .home-consultations-grid{grid-template-columns:105px 1fr;gap:42px;padding-block:75px}
+ body.home-v2 .home-consultations-mark{grid-column:1}
+ body.home-v2 .home-consultations-copy{grid-column:2}
+ body.home-v2 .home-consultations-index{grid-column:2;margin-top:-6px}
+ body.home-v2 .home-consultations-mark span{font-size:48px}
+ body.home-v2 .home-consultations-mark small{font-size:7px;white-space:normal;text-align:center}
+}
+@media(max-width:600px){
+ body.home-v2 .home-consultations-grid{grid-template-columns:1fr;gap:32px;padding-block:71px}
+ body.home-v2 .home-consultations-mark{grid-column:1;max-width:112px}
+ body.home-v2 .home-consultations-copy,body.home-v2 .home-consultations-index{grid-column:1}
+ body.home-v2 .home-consultations-mark span{font-size:53px}
+ body.home-v2 .home-consultations-index{margin-top:0}
+}

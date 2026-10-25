@@ -34,6 +34,7 @@ questions.forEach(([domain,q],i)=>{
   const row=add(choices,"label"),input=add(row,"input");
   input.type="radio";input.name="q"+i;input.value=value;input.required=true;
   add(row,"span","",label);
+  input.addEventListener("change",()=>{group.style.outline="";status("check-status","")});
  });
 });
 const form=$("check-form"),result=$("check-result"),actions=$("check-actions");
@@ -42,6 +43,7 @@ form.addEventListener("submit",event=>{
  event.preventDefault();
  const inputs=questions.map((_,i)=>form.querySelector('input[name="q'+i+'"]:checked'));
  const missing=inputs.findIndex(x=>!x);
+ container.querySelectorAll("fieldset").forEach(x=>x.style.outline="");
  if(missing!==-1){
   const group=container.querySelectorAll("fieldset")[missing];
   group.style.outline="3px solid #b64634";group.style.outlineOffset="4px";

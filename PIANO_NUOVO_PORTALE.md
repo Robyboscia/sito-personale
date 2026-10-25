@@ -54,3 +54,14 @@ Documento di pianificazione: nessuna modifica al sito pubblico.
 - **Bloccanti P0:** il modulo originale simula una conferma senza inviare davvero la richiesta; configurazione privacy/analytics e informativa generale da verificare/completare.
 - Test mobile reale (iPhone) **ancora mancante**; CSS e markup responsivi presenti, ma il browser desktop non può convalidarne la resa sul dispositivo.
 - Il sito pubblico `main` non è stato modificato.
+
+## Quattro strumenti interattivi del Laboratorio — 25 ottobre 2026
+- Implementati nel ramo `sviluppo-nuovo-portale`:
+  1. **Check-up del Sonno** — 12 domande originali, mappa educativa stampabile, gratuito.
+  2. **Calcolatore della Caffeina** — inserimenti multipli, scenari con emivita 3/5/7 ore, gratuito.
+  3. **Diario del Sonno PRO** — importa il CSV del diario o le schede salvate sullo stesso browser, metriche e report stampabile, **prototipo senza pagamenti**.
+  4. **Turni & Sonno** — 7 giorni di turni, intervalli, finestre illustrative e CSV, **prototipo senza pagamenti**.
+- Sono raggiungibili dalla pagina Laboratorio e dal portale Progetti. Per sicurezza sono marcati `noindex` durante lo sviluppo.
+- **Quinto progetto Wearable Decoder:** da **non sviluppare finché non vengono recuperate le dispense dei corsi specifici che l'utente afferma di aver seguito**. Non attribuire nomi di corsi non verificati.
+- Fonte di verità per criteri e backlog: **`laboratorio-del-sonno/strumenti/ROADMAP.md`**.
+- QA, revisione scientifica e privacy indispensabili prima della pubblicazione.

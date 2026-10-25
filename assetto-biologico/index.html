@@ -1500,8 +1500,66 @@
   }
   </script>
 
+
+  <!-- Navigazione tra le sezioni del portale: separata dal menu originale della landing -->
+  <style id="portale-global-nav-styles">
+    :root{--portale-nav-height:56px}
+    html{scroll-padding-top:150px}
+    body{padding-top:var(--portale-nav-height)}
+    body header#header{top:var(--portale-nav-height)!important}
+    #portale-navigazione{height:var(--portale-nav-height);position:fixed;inset:0 0 auto 0;z-index:20000;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(15px,2.5vw,38px);background:#081521;color:#f5f0e8;border-bottom:1px solid rgba(229,182,106,.37);font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.2;box-sizing:border-box;box-shadow:0 1px 15px rgba(0,0,0,.13)}
+    #portale-navigazione *{box-sizing:border-box}
+    #portale-navigazione a{color:#e9e2d7;text-decoration:none;font-size:13px;letter-spacing:0;font-weight:500;text-transform:none}
+    #portale-navigazione a:hover,#portale-navigazione a:focus-visible{color:#e8b86d}
+    #portale-navigazione a:focus-visible,#portale-navigazione summary:focus-visible{outline:2px solid #e8b86d;outline-offset:3px}
+    #portale-navigazione .portale-home-link{white-space:nowrap;display:inline-flex;align-items:center;gap:7px;font-weight:700}
+    #portale-navigazione .portale-home-link span{color:#e8b86d;font-size:19px;line-height:0}
+    #portale-navigazione .portale-links{display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,1.7vw,25px);min-width:0}
+    #portale-navigazione .portale-links a{white-space:nowrap}
+    #portale-navigazione .portale-links a[aria-current="page"],#portale-navigazione .portale-mobile-links a[aria-current="page"]{color:#e8b86d;font-weight:700}
+    #portale-navigazione .portale-mobile-menu{display:none}
+    #portale-navigazione .portale-current-label{display:none;color:#c5ac89;white-space:nowrap;letter-spacing:.03em}
+    @media(max-width:1100px){
+      #portale-navigazione .portale-links{display:none}
+      #portale-navigazione .portale-current-label{display:inline;font-size:12px}
+      #portale-navigazione .portale-mobile-menu{display:block;position:relative;margin-left:auto}
+      #portale-navigazione .portale-mobile-menu>summary{display:flex;align-items:center;gap:8px;list-style:none;cursor:pointer;border:1px solid rgba(232,184,109,.65);padding:9px 12px;border-radius:3px;color:#f0d4a4;font-size:12px;font-weight:700}
+      #portale-navigazione .portale-mobile-menu>summary::-webkit-details-marker{display:none}
+      #portale-navigazione .portale-mobile-links{position:absolute;right:0;top:calc(100% + 9px);min-width:218px;display:flex;flex-direction:column;padding:7px;background:#0b1b2d;border:1px solid rgba(232,184,109,.65);box-shadow:0 14px 35px rgba(0,0,0,.4);border-radius:5px;max-height:calc(100vh - 75px);overflow:auto}
+      #portale-navigazione .portale-mobile-links a{display:block;padding:12px 11px;border-bottom:1px solid rgba(255,255,255,.12);white-space:nowrap}
+      #portale-navigazione .portale-mobile-links a:last-child{border-bottom:0}
+    }
+    @media(max-width:420px){#portale-navigazione{gap:8px;padding-inline:12px}#portale-navigazione .portale-current-label{font-size:11px}#portale-navigazione .portale-home-link{font-size:12px}}
+  </style>
+
 </head>
 <body>
+  <div id="portale-navigazione" role="navigation" aria-label="Navigazione generale del sito">
+    <a class="portale-home-link" href="../index.html"><span aria-hidden="true">←</span> Portale Roberto Boscia</a>
+    <span class="portale-current-label">Assetto Biologico™</span>
+    <div class="portale-links">
+      <a href="../chi-sono/index.html">Chi sono</a>
+      <a href="index.html" aria-current="page">Assetto Biologico™</a>
+      <a href="../laboratorio-del-sonno/index.html">Laboratorio del Sonno</a>
+      <a href="../accademia/index.html">Accademia</a>
+      <a href="../libro/index.html">Libro</a>
+      <a href="../shop/index.html">Progetti</a>
+      <a href="../contatti/index.html">Contatti</a>
+    </div>
+    <details class="portale-mobile-menu">
+      <summary>Altre sezioni <span aria-hidden="true">▾</span></summary>
+      <div class="portale-mobile-links">
+      <a href="../chi-sono/index.html">Chi sono</a>
+      <a href="index.html" aria-current="page">Assetto Biologico™</a>
+      <a href="../laboratorio-del-sonno/index.html">Laboratorio del Sonno</a>
+      <a href="../accademia/index.html">Accademia</a>
+      <a href="../libro/index.html">Libro</a>
+      <a href="../shop/index.html">Progetti</a>
+      <a href="../contatti/index.html">Contatti</a>
+      </div>
+    </details>
+  </div>
+
 
   <!-- HEADER -->
   <header id="header">
@@ -1533,7 +1591,7 @@
     </div>
     <div class="hero-image-right">
       <picture>
-        <source srcset="img/foto-roberto-boscia-casual.webp" type="image/webp">
+        <source srcset="../img/foto-roberto-boscia-casual.webp" type="image/webp">
         <img src="../img/foto-roberto-boscia-casual.jpg" alt="Dott. Roberto Boscia" fetchpriority="high" decoding="sync" />
       </picture>
     </div>

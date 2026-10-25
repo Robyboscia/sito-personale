@@ -559,3 +559,28 @@ body.home-v2 .home-consultations-index span{font:italic 23px Georgia,serif;color
  body.home-v2 .home-consultations-mark span{font-size:53px}
  body.home-v2 .home-consultations-index{margin-top:0}
 }
+
+/* La vera copertina del libro, presente su dormirefacile.com,
+   sostituisce la precedente ricostruzione tipografica. */
+body.home-v2 .home-book-cover.home-book-cover-real{
+  display:block;
+  width:min(100%,245px);
+  height:auto;
+  min-height:0;
+  padding:0;
+  background:transparent;
+  border:0;
+  box-shadow:11px 14px 0 #1f2a3542,16px 22px 25px #0003;
+  overflow:hidden;
+}
+body.home-v2 .home-book-cover-real img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+@media(max-width:530px){
+  body.home-v2 .home-book-cover.home-book-cover-real{
+    max-width:235px;
+  }
+}

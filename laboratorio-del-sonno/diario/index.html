@@ -67,7 +67,17 @@
 <label><span>Quando sei andato a letto? <em>*</em></span><input type="time" name="bedTime" required><small>Non coincide sempre con il momento in cui provi a dormire.</small></label>
 <label><span>Quando hai provato ad addormentarti? <em>*</em></span><input type="time" name="tryTime" required></label>
 <label><span>Tempo per addormentarti <em>*</em></span><div class="sd-number-input"><input type="number" name="latency" min="0" max="600" step="1" placeholder="Es. 20" required><span>min</span></div></label>
-<label><span>Tempo totale sveglio nei risvegli notturni <em>*</em></span><div class="sd-number-input"><input type="number" name="waso" min="0" max="600" step="1" placeholder="Es. 15" required><span>min</span></div><small>Escluso il risveglio finale.</small></label>
+<label class="sd-waso-choice"><span>Quanto pensi di essere rimasto sveglio durante la notte? <span class="sd-optional-tag">FACOLTATIVO</span></span>
+<select name="waso" aria-describedby="sd-waso-help">
+<option value="">Non saprei / preferisco non indicarlo</option>
+<option value="0">Non ho avuto risvegli (0 minuti)</option>
+<option value="5">Pochi minuti (meno di 10)</option>
+<option value="20">Fra 10 e 30 minuti circa</option>
+<option value="45">Fra 30 e 60 minuti circa</option>
+<option value="90">Più di un'ora (stima indicativa: 90 minuti)</option>
+</select>
+<small id="sd-waso-help">Non controllare l'orologio: scegli una fascia orientativa o lascia vuoto. Se indichi una fascia, usiamo un valore convenzionale per il calcolo; altrimenti non sottraiamo minuti di risveglio e segnaliamo che la stima è parziale. Si esclude il risveglio finale.</small>
+</label>
 <label><span>Quante volte ti sei svegliato?</span><input type="number" name="awakenings" min="0" max="30" step="1" placeholder="Es. 2"></label>
 <label><span>A che ora ti sei svegliato definitivamente? <em>*</em></span><input type="time" name="finalWake" required></label>
 <label><span>A che ora sei uscito dal letto? <em>*</em></span><input type="time" name="outTime" required></label>
@@ -80,15 +90,16 @@
 <div class="sd-form-actions"><button class="sd-save" type="submit">Salva questo giorno <span aria-hidden="true">✓</span></button><button class="sd-remove" id="sd-remove-day" type="button">Elimina questa scheda</button></div>
 </form></div>
 <div class="sd-results" aria-labelledby="sd-results-title"><div class="sd-results-heading"><div><p class="home-kicker home-kicker-aqua">IL QUADRO D'INSIEME</p><h3 id="sd-results-title">Cosa emerge dai tuoi dati?</h3><p>I valori si aggiornano quando salvi una scheda. Le stime sono soggettive: non sono misurazioni cliniche.</p></div><div class="sd-export-actions"><button type="button" id="sd-export" disabled>Esporta CSV <span aria-hidden="true">↓</span></button><button type="button" id="sd-clear" disabled>Cancella tutti i dati</button></div></div>
+<p id="sd-coverage-note" class="sd-coverage-note" role="status" aria-live="polite">Le stime terranno conto dei risvegli notturni soltanto nei giorni in cui selezioni una fascia.</p>
 <div class="sd-stat-grid">
 <div><span>GIORNI COMPLETATI</span><strong id="sd-stat-days">0</strong><small>su 14</small></div>
 <div><span>SONNO STIMATO MEDIO</span><strong id="sd-stat-sleep">—</strong><small>per notte registrata</small></div>
 <div><span>EFFICIENZA STIMATA MEDIA</span><strong id="sd-stat-efficiency">—</strong><small>tempo dormito / tempo a letto</small></div>
 <div><span>ADDORMENTAMENTO MEDIO</span><strong id="sd-stat-latency">—</strong><small>latenza dichiarata</small></div>
 </div>
-<div class="sd-chart-card"><div class="sd-chart-head"><strong>Durata stimata del sonno</strong><span>UNA COLONNA PER OGNI NOTTE</span></div><div class="sd-chart-container" id="sd-chart" role="group" aria-label="Grafico delle durate stimate per ogni giorno"></div><p class="sd-chart-caption">Nessuna colonna indica una notte non ancora registrata. L'altezza delle colonne è relativa alla durata, non a un obiettivo consigliato.</p></div>
+<div class="sd-chart-card"><div class="sd-chart-head"><strong>Durata orientativa del sonno</strong><span>UNA COLONNA PER OGNI NOTTE</span></div><div class="sd-chart-container" id="sd-chart" role="group" aria-label="Grafico delle durate stimate per ogni giorno"></div><p class="sd-chart-caption">Le colonne sono stime, non misurazioni. Il simbolo * indica una notte senza durata dei risvegli: in quel caso i minuti di veglia notturna non sono stati sottratti. Nessuna colonna indica una notte non registrata.</p></div>
 <div class="sd-table-scroll"><table class="sd-summary-table"><caption>Riepilogo delle quattordici notti</caption><thead><tr><th>Giorno</th><th>Data</th><th>Sonno stimato</th><th>Efficienza stimata</th><th>Qualità</th></tr></thead><tbody id="sd-summary-body"></tbody></table></div>
-<div class="sd-chart-foot"><p>Il tempo di sonno stimato è calcolato sottraendo latenza e risvegli notturni dal periodo compreso tra il tentativo di dormire e il risveglio finale. L'efficienza stimata è il rapporto fra sonno e tempo totale trascorso a letto. <strong>Non usare percentuali o soglie per diagnosticare l'insonnia.</strong></p>
+<div class="sd-chart-foot"><p>Il tempo di sonno è una <strong>stima orientativa</strong>: al periodo fra tentativo di dormire e risveglio finale sottraiamo la latenza dichiarata. Se hai scelto una fascia per i risvegli notturni, sottraiamo anche un valore rappresentativo della fascia (5, 20, 45 o 90 minuti). <strong>Se lasci vuoto quel campo, non sottraiamo nulla per i risvegli e segnaliamo la stima come parziale: non significa che tu sia rimasto sveglio zero minuti.</strong> L'efficienza è il rapporto fra sonno stimato e tempo a letto, quindi risente della stessa approssimazione. Non usare percentuali o soglie per diagnosticare l'insonnia.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/22294820/" target="_blank" rel="noopener noreferrer">Carney e colleghi, Consensus Sleep Diary (2012) ↗</a> · <a href="https://www.nhlbi.nih.gov/health/insomnia/diagnosis" target="_blank" rel="noopener noreferrer">NHLBI — Sleep Diary ↗</a>. Questo modulo è una versione educativa autonoma, non il questionario originale validato.</p></div>
 </div>
 </div></section>

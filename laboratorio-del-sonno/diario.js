@@ -31,28 +31,44 @@
     const n = Number(v);
     return Number.isInteger(n) && n >= 0 && n <= max ? n : NaN;
   }
+
+  // L'incoerenza fra due orari non permette di sapere quale sia sbagliato:
+  // in quel caso evidenziamo tutte le caselle da controllare.
+  class DiaryFieldError extends Error {
+    constructor(message,fields) {super(message);this.name="DiaryFieldError";this.fields=fields;}
+  }
   function calculate(data) {
-    const bed = mins(data.bedTime);
-    const attempt = mins(data.tryTime);
-    const waking = mins(data.finalWake);
-    const rising = mins(data.outTime);
-    const sol = numeric(data.latency, 600, true);
-    const waso = numeric(data.waso, 600, true);
-    if ([bed,attempt,waking,rising,sol,waso].some(n => !Number.isFinite(n))) {
-      throw Error("Inserisci tutti gli orari e i minuti obbligatori.");
+    const bed=mins(data.bedTime), attempt=mins(data.tryTime),
+          waking=mins(data.finalWake), rising=mins(data.outTime);
+    const sol=numeric(data.latency,600,true),waso=numeric(data.waso,600,true);
+    for(const [name,value] of [
+      ["bedTime",bed],["tryTime",attempt],["latency",sol],
+      ["waso",waso],["finalWake",waking],["outTime",rising]
+    ]) if(!Number.isFinite(value)) {
+      throw new DiaryFieldError("Controlla questo orario o questa durata: il valore non è valido.",[name]);
     }
-    const before = forward(bed,attempt);
-    const night = forward(attempt,waking);
-    const after = forward(waking,rising);
-    const tib = before + night + after;
-    if (night < 1 || tib < 60 || tib > 1080 || before > 360 || after > 360) {
-      throw Error("Gli orari indicati non descrivono una notte plausibile. Controlla soprattutto mezzanotte, addormentamento e ora di alzata.");
-    }
-    const tst = night - sol - waso;
-    if (tst < 0) {
-      throw Error("Latenza e minuti dei risvegli superano il tempo tra il tentativo di dormire e il risveglio finale. Ricontrolla le stime.");
-    }
-    return {tib, tst, sol, waso, efficiency: (tst / tib) * 100};
+    const before=forward(bed,attempt),night=forward(attempt,waking),after=forward(waking,rising);
+    const tib=before+night+after;
+    if(night<1)throw new DiaryFieldError(
+      "L'ora del tentativo di dormire coincide con il risveglio finale. Controlla entrambi gli orari.",
+      ["tryTime","finalWake"]);
+    if(before>360)throw new DiaryFieldError(
+      "Risultano più di 6 ore fra l'ingresso a letto e il tentativo di dormire. Verifica i due orari.",
+      ["bedTime","tryTime"]);
+    if(after>360)throw new DiaryFieldError(
+      "Risultano più di 6 ore fra il risveglio finale e l'uscita dal letto. Verifica i due orari.",
+      ["finalWake","outTime"]);
+    if(tib<60||tib>1080)throw new DiaryFieldError(
+      "Gli orari indicano meno di un'ora o più di 18 ore a letto. Controlla gli orari evidenziati, anche rispetto alla mezzanotte.",
+      ["bedTime","tryTime","finalWake","outTime"]);
+    const tst=night-sol-waso;
+    if(tst<0)throw new DiaryFieldError(
+      "Il tempo per addormentarti e i minuti sveglio superano il tempo notturno disponibile. Ricontrolla le durate e i due orari.",
+      ["latency","waso","tryTime","finalWake"]);
+    if(data.awakenings==="0"&&waso>0)throw new DiaryFieldError(
+      "Hai indicato zero risvegli ma anche minuti sveglio durante la notte. Controlla questi due campi.",
+      ["awakenings","waso"]);
+    return {tib,tst,sol,waso,efficiency:(tst/tib)*100};
   }
   function blankForm() {
     FIELDS.forEach(name => { form.elements.namedItem(name).value = ""; });
@@ -62,6 +78,48 @@
     el.textContent = message;
     el.className = "sd-feedback" + (kind === "error" ? " is-error" : kind === "success" ? " is-success" : "");
   }
+
+  // Mostra un bordo rosso, un messaggio sotto il campo e lo segnala
+  // alle tecnologie assistive; sposta poi l'attenzione sulla prima casella.
+  function clearFieldError(input) {
+    if(!input||!input.name)return;
+    const label=input.closest("label");
+    input.removeAttribute("aria-invalid");
+    input.removeAttribute("aria-describedby");
+    label?.classList.remove("sd-has-error");
+    label?.querySelector(".sd-field-error")?.remove();
+  }
+  function clearAllFieldErrors() {
+    FIELDS.forEach(name=>clearFieldError(form.elements.namedItem(name)));
+  }
+  function highlightField(name,message) {
+    const input=form.elements.namedItem(name);
+    if(!input)return;
+    const label=input.closest("label");
+    if(!label)return;
+    label.classList.add("sd-has-error");
+    input.setAttribute("aria-invalid","true");
+    const note=document.createElement("small");
+    note.id="sd-error-"+name;
+    note.className="sd-field-error";
+    note.textContent=message;
+    label.appendChild(note);
+    input.setAttribute("aria-describedby",note.id);
+  }
+  function showValidationError(message,fields,shortMessage) {
+    clearAllFieldErrors();
+    const names=[...new Set(fields)].filter(name=>form.elements.namedItem(name));
+    names.forEach(name=>highlightField(name,shortMessage||(names.length>1?
+      "Controlla questa casella insieme alle altre evidenziate.":message)));
+    showMessage(message+" Ho evidenziato "+(names.length>1?
+      "le caselle da controllare.":"la casella da correggere."),"error");
+    const first=names.length?form.elements.namedItem(names[0]):null;
+    if(first) {
+      first.focus({preventScroll:true});
+      first.scrollIntoView({behavior:"smooth",block:"center",inline:"nearest"});
+    }
+  }
+
   function privacyFeedback(message) {
     $("sd-privacy-feedback").textContent = message;
   }
@@ -114,6 +172,7 @@
   function fillForm() {
     const entry = entries[current];
     blankForm();
+    clearAllFieldErrors();
     if (entry) for (const name of FIELDS) form.elements.namedItem(name).value = entry[name] ?? "";
     dirty = false;
     $("sd-form-number").textContent = String(current+1).padStart(2,"0");
@@ -203,29 +262,44 @@
     FIELDS.forEach(name=>{out[name]=String(form.elements.namedItem(name).value||"").trim()});
     return out;
   }
+
   function save(event) {
     event.preventDefault();
-    if (!form.reportValidity()) {
-      showMessage("Compila prima i campi obbligatori evidenziati.", "error");
+    clearAllFieldErrors();
+    const invalid=FIELDS.filter(name=>{
+      const input=form.elements.namedItem(name);
+      return input&&!input.checkValidity();
+    });
+    if(invalid.length) {
+      const missing=invalid.filter(name=>!form.elements.namedItem(name).value);
+      showValidationError(missing.length?
+        "Manca almeno un valore obbligatorio.":"Uno o più valori non sono nel formato o nell'intervallo consentito.",
+        invalid,missing.length?"Compila questa casella.":"Correggi questo orario o numero.");
       return;
     }
-    const data = gather();
-    if (data.wakeDate && !/^\d{4}-\d{2}-\d{2}$/.test(data.wakeDate)) {
-      showMessage("Controlla la data del risveglio.", "error");return;
+    const data=gather();
+    if(data.wakeDate&&!/^\d{4}-\d{2}-\d{2}$/.test(data.wakeDate)) {
+      showValidationError("Controlla la data del risveglio.",["wakeDate"]);return;
     }
-    const awak = numeric(data.awakenings,30,false);
-    const naps = numeric(data.naps,600,false);
-    if ((awak !== null && !Number.isFinite(awak)) || (naps !== null && !Number.isFinite(naps))) {
-      showMessage("Controlla i valori numerici.", "error");return;
+    const awak=numeric(data.awakenings,30,false),naps=numeric(data.naps,600,false);
+    if(awak!==null&&!Number.isFinite(awak)){
+      showValidationError("Il numero di risvegli non è valido.",["awakenings"]);return;
     }
-    try { calculate(data); }
-    catch (error) { showMessage(error.message,"error");return; }
+    if(naps!==null&&!Number.isFinite(naps)){
+      showValidationError("I minuti dei sonnellini non sono validi.",["naps"]);return;
+    }
+    try {calculate(data);}
+    catch(error) {
+      if(error instanceof DiaryFieldError)showValidationError(error.message,error.fields);
+      else showMessage("Non è stato possibile verificare questi dati.","error");
+      return;
+    }
     entries[current]=data;
     dirty=false;
     persistData();
     $("sd-remove-day").disabled=false;
     renderPicker();renderSummary();
-    showMessage("Giorno "+String(current+1).padStart(2,"0")+" salvato. Puoi passare a un'altra notte.", "success");
+    showMessage("Giorno "+String(current+1).padStart(2,"0")+" salvato. Puoi passare a un'altra notte.","success");
   }
   function removeDay() {
     if (!entries[current]) return;
@@ -265,8 +339,13 @@
     window.setTimeout(()=>URL.revokeObjectURL(url),1200);
   }
   form.addEventListener("submit",save);
-  form.addEventListener("input",()=>{dirty=true;showMessage("")});
-  form.addEventListener("change",()=>{dirty=true;showMessage("")});
+  function onFieldChange(event) {
+    dirty=true;
+    if(event.target?.name)clearFieldError(event.target);
+    showMessage("");
+  }
+  form.addEventListener("input",onFieldChange);
+  form.addEventListener("change",onFieldChange);
   $("sd-remove-day").addEventListener("click",removeDay);
   $("sd-clear").addEventListener("click",clearAll);
   $("sd-export").addEventListener("click",exportCSV);

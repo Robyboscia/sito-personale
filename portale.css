@@ -485,3 +485,11 @@ body.detail-contact .detail-contact-hero{background:radial-gradient(ellipse at 7
  .detail-about-portrait img{box-shadow:12px 14px 0 #cfb99c}
  .detail-lab-orbit{max-width:260px}
 }
+
+/* Navigation state for older editorial templates */
+body:not(.home-v2) header .links a[aria-current="page"]{color:#f0cb8b;text-decoration:underline;text-decoration-color:#c9923a;text-underline-offset:8px;text-decoration-thickness:2px}
+body:not(.home-v2) header .links{gap:10px 17px;align-items:center}
+body:not(.home-v2) header nav{max-width:1270px}
+@media(max-width:930px){body:not(.home-v2) header nav{flex-direction:column;align-items:flex-start;gap:12px;min-height:80px}body:not(.home-v2) header .links{font-size:13px}}
+/* Separate-page affordances on the homepage */
+body.home-v2 .home-about a:focus-visible,body.home-v2 .home-lab a:focus-visible,body.home-v2 .home-academy a:focus-visible{outline-offset:6px}

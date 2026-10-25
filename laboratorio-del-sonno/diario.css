@@ -177,3 +177,30 @@ body.sleep-tool{background:#082027;color:#e8f5f2}
  .sd-chart-column>span{font-size:8px}
 }
 @media(prefers-reduced-motion:reduce){.sd-chart-bar,#sd-progress-fill{transition:none}}
+
+/* Evidenziazione immediata dei campi da correggere */
+.sleep-tool .sd-form label.sd-has-error{
+  outline:3px solid #be3529;
+  outline-offset:7px;
+  border-radius:3px;
+  background:#fcebe6;
+  scroll-margin-top:150px;
+}
+.sleep-tool .sd-form label.sd-has-error>span:first-child{color:#942c23}
+.sleep-tool .sd-form label.sd-has-error input,
+.sleep-tool .sd-form label.sd-has-error select,
+.sleep-tool .sd-form label.sd-has-error textarea{
+  border:2px solid #bd2c21;
+  background:#fff2ef;
+  color:#45211b;
+  box-shadow:0 0 0 4px rgba(185,45,31,.16);
+}
+.sleep-tool .sd-form .sd-field-error{
+  display:block;
+  margin-top:3px;
+  color:#8f271d;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.45;
+}
+.sleep-tool .sd-form label.sd-has-error:focus-within{outline-color:#942c23}

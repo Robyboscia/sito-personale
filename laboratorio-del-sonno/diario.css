@@ -204,3 +204,55 @@ body.sleep-tool{background:#082027;color:#e8f5f2}
   line-height:1.45;
 }
 .sleep-tool .sd-form label.sd-has-error:focus-within{outline-color:#942c23}
+
+/* Risvegli facoltativi: la persona indica una fascia, non minuti al cronometro. */
+.sd-optional-tag{
+  display:inline-block;
+  padding:4px 7px;
+  margin-left:5px;
+  border-radius:2px;
+  border:1px solid #8baba5;
+  background:#e0ede8;
+  color:#2e6a5c;
+  font:700 10px Arial,sans-serif;
+  letter-spacing:.07em;
+  vertical-align:middle;
+}
+.sleep-tool .sd-waso-choice{
+  border-radius:4px;
+}
+.sleep-tool .sd-waso-choice select{
+  border:1px solid #89b6a8;
+  background:#fbfdfb;
+  min-height:53px;
+}
+.sleep-tool .sd-waso-choice #sd-waso-help{
+  font-size:12px;
+  line-height:1.65;
+  color:#536e6b;
+}
+.sleep-tool .sd-coverage-note{
+  padding:17px 21px;
+  margin:0 0 17px;
+  border-left:4px solid #9fc6b1;
+  background:#15424b;
+  color:#e5f0e9;
+  font-size:14px;
+  line-height:1.65;
+}
+.sleep-tool .sd-coverage-note.sd-coverage-warning{
+  border-left-color:#e5bd76;
+  background:#374034;
+  color:#f0dfbb;
+}
+.sleep-tool .sd-chart-bar.is-partial{
+  background:repeating-linear-gradient(-45deg,#d1b47c 0px,#d1b47c 7px,#587f7d 7px,#587f7d 13px);
+  border:1px dashed #e2c68c;
+}
+.sleep-tool .sd-summary-table{
+  min-width:680px;
+}
+@media(max-width:760px){
+  .sd-optional-tag{font-size:9px}
+  .sleep-tool .sd-coverage-note{padding:14px}
+}

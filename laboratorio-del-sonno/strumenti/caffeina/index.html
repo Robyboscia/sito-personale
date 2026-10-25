@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calcolatore <em>della Caffeina.</em> | Laboratorio del Sonno — Dott. Roberto Boscia</title>
+<meta name="description" content="Calcola scenari teorici di riduzione della caffeina da bevande, orari e ora di coricarsi.">
+<meta name="theme-color" content="#102d39">
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="../../../portale.css">
+<link rel="stylesheet" href="../strumenti.css">
+<script src="../strumenti.js" defer></script>
+</head>
+<body class="home-v2 sleep-app" data-tool="caffeina">
+<a class="home-skip" href="#contenuto">Vai al contenuto</a>
+<header class="home-header"><div class="home-header-inner">
+<a class="home-brand" href="../../../index.html" aria-label="Dott. Roberto Boscia — Homepage"><span class="home-brand-pre">Dott.</span> Roberto <em>Boscia</em><small>Farmacista · Divulgazione e benessere</small></a>
+<nav class="home-nav-desktop" aria-label="Aree del portale">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../consulenze/index.html">Consulenze</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav>
+<details class="home-mobile-menu"><summary aria-label="Apri il menu">Menu <span aria-hidden="true">☰</span></summary>
+<nav aria-label="Menu mobile">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../consulenze/index.html">Consulenze</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav></details></div></header>
+<main id="contenuto">
+<section class="st-head" aria-labelledby="tool-heading"><div class="home-wrap">
+<nav class="st-breadcrumb" aria-label="Percorso"><a href="../../../index.html">Home</a><span>/</span><a href="../../index.html">Laboratorio</a><span>/</span><span aria-current="page">Calcolatore <em>della Caffeina.</em></span></nav>
+<div class="st-heading"><div><p class="st-label">LABORATORIO DEL SONNO · STRUMENTO 02</p>
+<h1 id="tool-heading">Calcolatore <em>della Caffeina.</em></h1><p class="st-lede">Un modello illustrativo per capire quanto potrebbe diminuire la caffeina dopo l'ultima tazza, tenendo conto degli orari. Non misura la caffeina nel sangue.</p><p class="st-head-note">I tuoi dati sono elaborati in questa pagina, senza account né invio al portale. I risultati sono educativi e orientativi, non diagnosi o piani di cura.</p></div>
+<div class="st-head-side" aria-hidden="true">½</div></div></div></section>
+<section class="st-workspace"><div class="home-wrap">
+
+<div class="st-grid">
+<div class="st-panel st-input-panel"><span class="st-tag">GRATUITO · SIMULAZIONE</span><h2>Quando hai bevuto <em>caffeina?</em></h2>
+<p>Inserisci fino a otto assunzioni. Se non conosci i mg, scegli una stima dall'elenco: sono quantità illustrative molto variabili per marca e preparazione.</p>
+<form id="caff-form" novalidate>
+<div class="st-field"><label for="caff-bed">A che ora pensi di coricarti?</label><input type="time" id="caff-bed" value="23:00" required></div>
+<div id="caff-doses"></div>
+<div class="st-row"><button id="caff-add" class="st-button st-alt" type="button">+ Aggiungi una bevanda</button></div>
+<div class="st-note">Ogni assunzione viene interpretata come avvenuta <strong>nelle 24 ore precedenti</strong> l'orario di coricarsi scelto, anche quando si attraversa la mezzanotte.</div>
+<div class="st-row" style="margin-top:20px"><button type="submit" class="st-button">Calcola i tre scenari ↗</button><button type="reset" class="st-button st-alt">Azzera</button></div>
+</form>
+<p id="caff-status" class="st-status" role="status" aria-live="polite"></p>
+</div>
+<aside class="st-panel"><h2>Caffeina <em>stimata.</em></h2><div id="caff-result" class="st-result" aria-live="polite"></div>
+<div id="caff-actions" class="st-row st-no-print" hidden><button id="caff-print" type="button" class="st-button st-alt">Stampa / salva PDF</button></div></aside>
+</div>
+<div class="st-source-note"><strong>Come calcoliamo:</strong> la quantità teorica residua di ogni assunzione è <code>mg × 0,5^(ore trascorse / emivita)</code>. Usiamo emivite illustrative di 3, 5 e 7 ore; nessuna di queste descrive la tua eliminazione individuale. Il CDC/NIOSH cita in genere circa 5–6 ore, con molta variabilità. <a href="https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod6/11.html" target="_blank" rel="noopener noreferrer">Fonte NIOSH/CDC ↗</a>. Questo modello semplifica assorbimento, metaboliti, variazioni genetiche e condizioni personali.</div>
+
+<div class="st-source-note">Non è uno strumento medico diagnostico. Il sonno dipende da molti fattori: se i disturbi persistono, se hai forte sonnolenza, russamento con pause respiratorie osservate o problemi di sicurezza sul lavoro/alla guida, rivolgiti a un professionista sanitario competente. <a href="../../index.html">Torna al Laboratorio del Sonno ↗</a></div>
+</div></section></main>
+<footer class="home-footer"><div class="home-wrap"><div class="home-footer-row"><span>Dott. Roberto Boscia</span><a href="../../index.html">Torna al Laboratorio ↗</a></div><p>Versione prototipo nel ramo di sviluppo. Nessun dato sanitario viene trasmesso dal modulo a un server del portale. I contenuti richiedono revisione scientifica e privacy prima del rilascio pubblico.</p></div></footer>
+</body></html>

@@ -99,6 +99,38 @@
 </div>
 <div class="sd-chart-card"><div class="sd-chart-head"><strong>Durata orientativa del sonno</strong><span>UNA COLONNA PER OGNI NOTTE</span></div><div class="sd-chart-container" id="sd-chart" role="group" aria-label="Grafico delle durate stimate per ogni giorno"></div><p class="sd-chart-caption">Le colonne sono stime, non misurazioni. Il simbolo * indica una notte senza durata dei risvegli: in quel caso i minuti di veglia notturna non sono stati sottratti. Nessuna colonna indica una notte non registrata.</p></div>
 <div class="sd-table-scroll"><table class="sd-summary-table"><caption>Riepilogo delle quattordici notti</caption><thead><tr><th>Giorno</th><th>Data</th><th>Sonno orientativo</th><th>Efficienza orientativa</th><th>Fascia dei risvegli</th><th>Qualità</th></tr></thead><tbody id="sd-summary-body"></tbody></table></div>
+<section class="sd-email-panel" aria-labelledby="sd-email-title" id="ricevi-per-email">
+  <div class="sd-email-heading">
+    <div class="sd-email-mark" aria-hidden="true">✉</div>
+    <div>
+      <p class="home-kicker home-kicker-aqua">OPZIONE PERSONALE · NESSUN ACCOUNT</p>
+      <h3 id="sd-email-title">Ricevi il diario <em>nella tua email.</em></h3>
+      <p>Puoi preparare un messaggio indirizzato alla tua casella e spedirlo dalla <strong>tua app di posta</strong>. È una funzione facoltativa: <strong>il sito non riceve i tuoi dati e non spedisce messaggi automaticamente.</strong></p>
+    </div>
+  </div>
+  <form id="sd-email-form" class="sd-email-form" novalidate>
+    <div class="sd-email-input-group">
+      <label for="sd-email-address">A quale indirizzo vuoi riceverlo?</label>
+      <input type="email" id="sd-email-address" name="email" placeholder="nome@esempio.it" autocomplete="email" inputmode="email" required maxlength="254">
+      <small>Usa un indirizzo che controlli personalmente. Non lo salviamo nel diario.</small>
+    </div>
+    <fieldset class="sd-email-options">
+      <legend>Cosa vuoi ricevere?</legend>
+      <label><input type="radio" name="emailFormat" value="summary" checked>
+        <span><strong>Riepilogo nel testo dell'email</strong><small>Solo notti, durate orientative, qualità del sonno e indicazioni sui dati mancanti. Nessuna nota personale.</small></span>
+      </label>
+      <label><input type="radio" name="emailFormat" value="full">
+        <span><strong>Diario completo come file CSV</strong><small>Include tutti i dati e le note inserite. Su dispositivi compatibili puoi allegarlo dalla condivisione; altrimenti lo scarichi e lo alleghi manualmente.</small></span>
+      </label>
+    </fieldset>
+    <label class="sd-email-ack"><input type="checkbox" id="sd-email-ack" required>
+      <span>Ho capito che <strong>sarò io a confermare l'invio</strong> nella mia app di posta e che un'email può contenere informazioni personali sul sonno, accessibili al mio fornitore di posta e al destinatario. L'email ordinaria non garantisce la crittografia end-to-end.</span>
+    </label>
+    <div class="sd-email-privacy"><span aria-hidden="true">◈</span><p>Questa funzione apre la tua app email o il pannello di condivisione. Nessun dato del diario viene inviato a un server del portale per effettuare la spedizione. <a href="privacy/index.html">Leggi come funzionano privacy, salvataggio e invio ↗</a></p></div>
+    <button type="submit" class="sd-email-button" id="sd-email-send" disabled>Prepara la mia email <span aria-hidden="true">↗</span></button>
+    <p id="sd-email-feedback" class="sd-email-feedback" role="status" aria-live="polite">Compila e salva almeno una notte per attivare questa opzione.</p>
+  </form>
+</section>
 <div class="sd-chart-foot"><p>Il tempo di sonno è una <strong>stima orientativa</strong>: al periodo fra tentativo di dormire e risveglio finale sottraiamo la latenza dichiarata. Se hai scelto una fascia per i risvegli notturni, sottraiamo anche un valore rappresentativo della fascia (5, 20, 45 o 90 minuti). <strong>Se lasci vuoto quel campo, non sottraiamo nulla per i risvegli e segnaliamo la stima come parziale: non significa che tu sia rimasto sveglio zero minuti.</strong> L'efficienza è il rapporto fra sonno stimato e tempo a letto, quindi risente della stessa approssimazione. Non usare percentuali o soglie per diagnosticare l'insonnia.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/22294820/" target="_blank" rel="noopener noreferrer">Carney e colleghi, Consensus Sleep Diary (2012) ↗</a> · <a href="https://www.nhlbi.nih.gov/health/insomnia/diagnosis" target="_blank" rel="noopener noreferrer">NHLBI — Sleep Diary ↗</a>. Questo modulo è una versione educativa autonoma, non il questionario originale validato.</p></div>
 </div>

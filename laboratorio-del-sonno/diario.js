@@ -260,6 +260,7 @@
     $("sd-stat-latency").textContent = latency === null ? "—" : "≈ "+Math.round(latency)+" min";
     $("sd-export").disabled = !count;
     $("sd-clear").disabled = !count;
+    $("sd-email-send").disabled = !count;
 
     const chart = $("sd-chart");
     chart.replaceChildren();
@@ -359,7 +360,9 @@
     if (!entries.some(Boolean)) return;
     if (!window.confirm("Cancellare TUTTE le 14 schede? L'operazione non è reversibile. Esporta un CSV se vuoi conservarne una copia.")) return;
     entries=Array(TOTAL).fill(null);
-    current=0;stopPersisting();
+    current=0;stopPersisting();persist.checked=false;
+    privacyFeedback("Salvataggio locale disattivato: i dati del diario sono stati eliminati.");
+    $("sd-email-form").reset();
     fillForm();renderPicker();renderSummary();
     showMessage("Tutti i dati del diario sono stati cancellati.", "success");
   }
@@ -368,7 +371,7 @@
     if (/^[\s]*[=+@-]/.test(s)) s="'"+s;
     return '"'+s.replace(/"/g,'""')+'"';
   }
-  function exportCSV() {
+  function buildCSV() {
     const headers=["Giorno","Data risveglio","Ora a letto","Tentativo di dormire","Latenza min",
       "Fascia dei risvegli","Minuti orientativi sottratti","Risvegli n",
       "Risveglio finale","Ora alzata","Qualità 1-5","Energia 1-5","Sonnellini min",
@@ -386,13 +389,104 @@
         v.hasWakeEstimate?"Sì":"No",v.partial?"Sì":"No",e.notes]);
     });
     if(rows.length===1)return;
-    const content="\ufeff"+rows.map(row=>row.map(csvCell).join(";")).join("\r\n");
-    const blob = new Blob([content],{type:"text/csv;charset=utf-8"});
-    const url=URL.createObjectURL(blob);
+    return rows.length===1 ? "" : "\ufeff"+rows.map(row=>row.map(csvCell).join(";")).join("\r\n");
+  }
+
+  const csvFilename="Diario_del_Sonno_Dott_Roberto_Boscia.csv";
+
+  function saveCsvFile(csv) {
+    if(!csv)return;
+    const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
     const a=document.createElement("a");
-    a.href=url;a.download="Diario_del_Sonno_Dott_Roberto_Boscia.csv";
-    document.body.appendChild(a);a.click();a.remove();
-    window.setTimeout(()=>URL.revokeObjectURL(url),1200);
+    a.href=url;a.download=csvFilename;document.body.appendChild(a);
+    a.click();a.remove();
+    window.setTimeout(()=>URL.revokeObjectURL(url),10000);
+  }
+  function exportCSV(){saveCsvFile(buildCSV());}
+
+  function emailStatus(text,kind="info"){
+    const el=$("sd-email-feedback");
+    el.textContent=text;
+    el.className="sd-email-feedback"+(kind==="error"?" is-error":kind==="success"?" is-success":"");
+  }
+  function makeEmailSummary(){
+    const lines=[
+      "DIARIO DEL SONNO - RIEPILOGO PERSONALE",
+      "Laboratorio del Sonno | Dott. Roberto Boscia",
+      "",
+      "Notti registrate: "+entries.filter(Boolean).length+" su 14",
+      "Stime personali, non misurazioni cliniche.",
+      ""
+    ];
+    entries.forEach((entry,i)=>{
+      if(!entry)return;
+      const v=calculate(entry);
+      lines.push(
+        "Giorno "+String(i+1).padStart(2,"0")+
+        (entry.wakeDate?" ("+dateLabel(entry.wakeDate)+")":"")+
+        ": sonno circa "+formatSleep(v.tst)+
+        ", efficienza circa "+Math.round(v.efficiency)+"%"+
+        ", qualita "+(entry.quality?entry.quality+"/5":"non indicata")+
+        (v.partial?", STIMA PARZIALE (risvegli non sottratti)":", risvegli: "+wakeRangeLabel(entry.waso))
+      );
+    });
+    lines.push("","Le note personali NON sono incluse.","Questo riepilogo è stato preparato sul tuo dispositivo.");
+    return lines.join("\n");
+  }
+  function openEmailDraft(address,subject,body){
+    window.location.href="mailto:"+encodeURIComponent(address)+
+      "?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  }
+  function prepareEmail(event){
+    event.preventDefault();
+    if(!entries.some(Boolean)){
+      emailStatus("Salva almeno una notte prima di preparare l'email.","error");return;
+    }
+    const addressField=$("sd-email-address");
+    if(!addressField.checkValidity()){
+      emailStatus("Controlla l'indirizzo email.","error");
+      addressField.focus();addressField.reportValidity();return;
+    }
+    const privacyCheck=$("sd-email-ack");
+    if(!privacyCheck.checked){
+      emailStatus("Conferma prima di aver compreso le informazioni su email e dati personali.","error");
+      privacyCheck.focus();return;
+    }
+    const address=addressField.value.trim();
+    const mode=$("sd-email-form").elements.namedItem("emailFormat").value;
+    if(mode==="summary"){
+      emailStatus("Sto aprendo una bozza nella tua app di posta. Controlla il destinatario e premi tu Invia.","success");
+      openEmailDraft(address,"Il mio Diario del Sonno - riepilogo",makeEmailSummary());
+      return;
+    }
+    const csv=buildCSV();
+    if(!csv){emailStatus("Non ci sono schede da allegare.","error");return;}
+    const file=new File([csv],csvFilename,{type:"text/csv;charset=utf-8"});
+    let supported=false;
+    try{
+      supported=typeof navigator.share==="function"&&
+        typeof navigator.canShare==="function"&&navigator.canShare({files:[file]});
+    }catch{supported=false}
+    if(supported){
+      emailStatus("Scegli l'app di posta dal menu Condividi e indica il destinatario "+address+". Non viene inviato nulla in automatico.");
+      navigator.share({
+        files:[file],
+        title:"Il mio Diario del Sonno - Roberto Boscia",
+        text:"Diario personale da inviare via email a "+address
+      }).then(()=>{
+        emailStatus("Il file è stato passato all'app selezionata. Controlla che l'email sia effettivamente partita.","success");
+      }).catch(error=>{
+        if(error?.name==="AbortError")emailStatus("Condivisione annullata. Nessuna email inviata.");
+        else emailStatus("Impossibile condividere il file: scarica il CSV e allegalo manualmente alla tua email.","error");
+      });
+      return;
+    }
+    saveCsvFile(csv);
+    emailStatus("Ho scaricato il CSV e preparato una bozza email. Allega il file scaricato prima di premere Invia.","success");
+    openEmailDraft(address,"Il mio Diario del Sonno - file completo",
+      "Ho preparato il mio Diario del Sonno completo.\n"+
+      "Prima di inviare allego il file "+csvFilename+" appena scaricato.\n"+
+      "Controllo il destinatario prima dell'invio.");
   }
   form.addEventListener("submit",save);
   function onFieldChange(event) {
@@ -405,6 +499,7 @@
   $("sd-remove-day").addEventListener("click",removeDay);
   $("sd-clear").addEventListener("click",clearAll);
   $("sd-export").addEventListener("click",exportCSV);
+  $("sd-email-form").addEventListener("submit",prepareEmail);
   persist.addEventListener("change",()=>{
     if(persist.checked){
       persistData();

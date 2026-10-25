@@ -10,7 +10,7 @@
 ## Architettura proposta
 - / — homepage professionale e navigazione generale.
 - /assetto-biologico/ — landing originale preservata.
-- /consulenze/ — percorsi e modalità di contatto.
+- /consulenze/ — **sezione rimandata, soltanto pagina “Ancora da costruire”**. Non duplicare Assetto Biologico™ e non mostrare prezzo o dettagli del Metodo.
 - /laboratorio-del-sonno/ — strumenti educativi e questionari.
 - /accademia/ — articoli e formazione.
 - /libro/ — Dormire è facile se sai come farlo, con collegamento a dormirefacile.com.
@@ -26,3 +26,10 @@
 
 ## Stato
 Documento di pianificazione: nessuna modifica al sito pubblico.
+
+## Decisione confermata — Consulenze (25/10/2026)
+- L'utente trova ridondante la distinzione fra "Consulenze" e "Metodo" se entrambe raccontano Assetto Biologico™.
+- **Metodo** continua a portare alla landing autonoma di Assetto Biologico™. Non modificarne copy, prezzo, moduli o funzione.
+- **Consulenze** deve rimanere una pagina-segnaposto con la dicitura "Ancora da costruire" (senza promozioni, tariffe, prenotazioni o duplicati di Assetto Biologico™).
+- L'argomento sarà ripreso **solo più avanti, quando l'utente deciderà di svilupparlo**. Non anticipare offerte o consulenze non definite.
+- Aggiornata anche l'anteprima in homepage per rispecchiare lo stato sospeso.

@@ -584,3 +584,23 @@ body.home-v2 .home-book-cover-real img{
     max-width:235px;
   }
 }
+
+/* Laboratorio: quattro prototipi interattivi */
+body.home-v2 .lab-prototypes{background:#e6ebe4;color:#163b45;padding:88px 0 100px}
+body.home-v2 .lab-prototypes h2{color:#173b45;font-size:clamp(35px,4.8vw,61px);line-height:1.1;margin:17px 0 30px}
+body.home-v2 .lab-prototypes h2 em{color:#628f7c}
+body.home-v2 .lab-prototypes .home-kicker{color:#577d6f}
+body.home-v2 .lab-prototypes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px}
+body.home-v2 .lab-prototypes-grid a{display:flex;flex-direction:column;align-items:flex-start;position:relative;min-height:190px;padding:30px;background:#fdfdf9;border:1px solid #c3d3c8;border-top:3px solid #c49b67;text-decoration:none;color:#163b45;transition:transform .16s}
+body.home-v2 .lab-prototypes-grid a:hover{transform:translateY(-4px);border-color:#8baf9c}
+body.home-v2 .lab-prototypes-grid a span{font-size:10px;letter-spacing:.17em;color:#987244;font-weight:700}
+body.home-v2 .lab-prototypes-grid a strong{font:500 clamp(23px,2.9vw,37px)/1.14 Georgia,serif;margin:16px 30px 10px 0}
+body.home-v2 .lab-prototypes-grid a small{font-size:14px;line-height:1.6;color:#566f72}
+body.home-v2 .lab-prototypes-grid a b{position:absolute;top:27px;right:23px;color:#9e7950;font-size:21px}
+body.home-v2 .lab-prototypes-note{color:#4e6a68;font-size:13px;line-height:1.7;margin:25px 0 0}
+@media(max-width:690px){
+body.home-v2 .lab-prototypes{padding:66px 0}
+body.home-v2 .lab-prototypes-grid{grid-template-columns:1fr}
+body.home-v2 .lab-prototypes-grid a{min-height:0;padding:23px}
+}
+@media(prefers-reduced-motion:reduce){body.home-v2 .lab-prototypes-grid a{transition:none}}

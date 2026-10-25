@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diario del Sonno digitale | Laboratorio del Sonno — Roberto Boscia</title>
+<meta name="description" content="Compila un diario del sonno digitale di 14 giorni, osserva orari, risvegli e durata stimata del riposo ed esporta le tue annotazioni.">
+<meta name="theme-color" content="#0a2730">
+<link rel="canonical" href="https://drrobertoboscia.com/laboratorio-del-sonno/diario/">
+<link rel="stylesheet" href="../../portale.css">
+<link rel="stylesheet" href="../diario.css">
+<script src="../diario.js" defer></script>
+</head>
+<body class="home-v2 detail-page detail-lab sleep-tool">
+<a class="home-skip" href="#contenuto">Vai al contenuto</a>
+<header class="home-header">
+<div class="home-header-inner">
+<a class="home-brand" href="../../index.html" aria-label="Dott. Roberto Boscia — Torna alla homepage"><span class="home-brand-pre">Dott.</span> Roberto <em>Boscia</em><small>Farmacista · Divulgazione e benessere</small></a>
+<nav class="home-nav-desktop" aria-label="Aree del portale">
+<a href="../../chi-sono/index.html">Chi sono</a>
+<a href="../../assetto-biologico/index.html">Metodo</a>
+<a href="../index.html" aria-current="page">Laboratorio</a>
+<a href="../../accademia/index.html">Accademia</a>
+<a href="../../shop/index.html">Progetti</a>
+<a href="../../contatti/index.html">Contatti</a>
+</nav>
+<details class="home-mobile-menu"><summary aria-label="Apri il menu">Menu <span aria-hidden="true">☰</span></summary>
+<nav aria-label="Menu mobile">
+<a href="../../chi-sono/index.html">Chi sono</a><a href="../../assetto-biologico/index.html">Metodo</a><a href="../index.html" aria-current="page">Laboratorio</a><a href="../../accademia/index.html">Accademia</a><a href="../../shop/index.html">Progetti</a><a href="../../contatti/index.html">Contatti</a>
+</nav></details></div></header>
+<main id="contenuto">
+<section class="sd-top"><div class="home-wrap">
+<nav class="detail-breadcrumb detail-breadcrumb-light" aria-label="Percorso"><a href="../../index.html">Home</a><span>/</span><a href="../index.html">Laboratorio del Sonno</a><span>/</span><span aria-current="page">Diario digitale</span></nav>
+<div class="sd-top-grid">
+<div><p class="home-kicker home-kicker-aqua">STRUMENTO INTERATTIVO / 01</p><h1>Le tue notti, <em>nero su bianco.</em></h1>
+<p class="sd-top-sub">Un diario digitale per 14 giorni, senza registrazione. Annota la notte appena trascorsa e osserva gli andamenti, senza inseguire la perfezione.</p>
+<div class="sd-top-actions">
+<a href="#diario" class="home-button sd-primary-button">Inizia a compilare <span aria-hidden="true">↓</span></a>
+<a class="sd-pdf-link" href="../../assets/Diario_del_Sonno_14_Giorni_Dott_Roberto_Boscia.pdf" download type="application/pdf">Preferisci la versione PDF? <span aria-hidden="true">↗</span></a>
+</div></div>
+<div class="sd-hero-art" aria-hidden="true"><div class="sd-art-dial"><div class="sd-art-hand"></div><div class="sd-art-dot"></div><div class="sd-art-center">14<small>NOTTI</small></div></div><p>OSSERVARE <span>·</span> CAPIRE</p></div>
+</div></div></section>
+<section class="sd-intro"><div class="home-wrap sd-intro-grid">
+<div><span>01</span><strong>Compila al mattino</strong><p>Inserisci le tue stime senza controllare l'orologio nel cuore della notte.</p></div>
+<div><span>02</span><strong>Una notte alla volta</strong><p>Puoi completare fino a 14 schede, in qualsiasi ordine.</p></div>
+<div><span>03</span><strong>Leggi l'andamento</strong><p>Il riepilogo e il grafico sono descrittivi, non diagnostici.</p></div>
+</div></section>
+<section id="diario" class="sd-workspace" aria-labelledby="sd-heading">
+<div class="home-wrap">
+<div class="sd-workspace-head"><div><p class="home-kicker home-kicker-aqua">IL TUO QUADERNO DIGITALE</p><h2 id="sd-heading">Diario del Sonno <em>14 giorni.</em></h2><p>Seleziona un giorno, compila gli orari e salva la scheda.</p></div>
+<div class="sd-progress-box"><span>SCHEDE COMPLETE</span><strong id="sd-progress" aria-live="polite">0 / 14</strong><div class="sd-progress-track"><div id="sd-progress-fill"></div></div></div></div>
+<div class="sd-privacy">
+<div class="sd-privacy-icon" aria-hidden="true">◈</div>
+<div><strong>La compilazione avviene nel tuo browser.</strong><p>Non chiediamo nome o account e il modulo non invia questi dati al nostro server. Per conservare le schede fra visite, puoi scegliere di salvarle su <em>questo browser</em>. Su dispositivi condivisi, meglio non attivare l'opzione.</p>
+<label class="sd-toggle"><input id="sd-persist" type="checkbox"><span>Conserva le schede su questo dispositivo</span></label><small id="sd-privacy-feedback" role="status" aria-live="polite">Senza questa opzione, le annotazioni si perdono quando chiudi o ricarichi la pagina.</small>
+</div></div>
+<div class="sd-editor">
+<div class="sd-editor-nav">
+<div class="sd-editor-title"><span>SELEZIONA LA NOTTE</span><strong id="sd-current-day-title">Giorno 01</strong></div>
+<div class="sd-day-picker" id="sd-day-picker" role="group" aria-label="Scegli una delle quattordici notti"></div>
+</div>
+<form id="sd-form" class="sd-form" novalidate>
+<div class="sd-form-intro">
+<div><span class="sd-form-number" id="sd-form-number">01</span><div><strong>La notte che vuoi raccontare</strong><small>Gli orari possono attraversare la mezzanotte.</small></div></div>
+<label class="sd-date"><span>Data del risveglio (facoltativa)</span><input type="date" name="wakeDate"></label>
+</div>
+<div class="sd-fields">
+<label><span>Quando sei andato a letto? <em>*</em></span><input type="time" name="bedTime" required><small>Non coincide sempre con il momento in cui provi a dormire.</small></label>
+<label><span>Quando hai provato ad addormentarti? <em>*</em></span><input type="time" name="tryTime" required></label>
+<label><span>Tempo per addormentarti <em>*</em></span><div class="sd-number-input"><input type="number" name="latency" min="0" max="600" step="1" placeholder="Es. 20" required><span>min</span></div></label>
+<label><span>Tempo totale sveglio nei risvegli notturni <em>*</em></span><div class="sd-number-input"><input type="number" name="waso" min="0" max="600" step="1" placeholder="Es. 15" required><span>min</span></div><small>Escluso il risveglio finale.</small></label>
+<label><span>Quante volte ti sei svegliato?</span><input type="number" name="awakenings" min="0" max="30" step="1" placeholder="Es. 2"></label>
+<label><span>A che ora ti sei svegliato definitivamente? <em>*</em></span><input type="time" name="finalWake" required></label>
+<label><span>A che ora sei uscito dal letto? <em>*</em></span><input type="time" name="outTime" required></label>
+<label><span>Come valuti la qualità del sonno?</span><select name="quality"><option value="">Non indicato</option><option value="1">1 — Molto scarsa</option><option value="2">2 — Scarsa</option><option value="3">3 — Media</option><option value="4">4 — Buona</option><option value="5">5 — Ottima</option></select></label>
+<label><span>Come ti senti di energia oggi?</span><select name="energy"><option value="">Non indicato</option><option value="1">1 — Molto bassa</option><option value="2">2 — Bassa</option><option value="3">3 — Media</option><option value="4">4 — Buona</option><option value="5">5 — Molto alta</option></select></label>
+<label><span>Sonnellini nella giornata precedente</span><div class="sd-number-input"><input type="number" name="naps" min="0" max="600" step="1" placeholder="Facoltativo"><span>min</span></div></label>
+</div>
+<label class="sd-notes"><span>Note (facoltative)</span><textarea name="notes" rows="3" maxlength="500" placeholder="Caffeina, turni, stress, attività fisica o altro che pensi sia utile ricordare."></textarea><small>Non inserire nomi, recapiti o informazioni che non vuoi conservare sul dispositivo.</small></label>
+<div id="sd-form-message" class="sd-feedback" role="status" aria-live="polite"></div>
+<div class="sd-form-actions"><button class="sd-save" type="submit">Salva questo giorno <span aria-hidden="true">✓</span></button><button class="sd-remove" id="sd-remove-day" type="button">Elimina questa scheda</button></div>
+</form></div>
+<div class="sd-results" aria-labelledby="sd-results-title"><div class="sd-results-heading"><div><p class="home-kicker home-kicker-aqua">IL QUADRO D'INSIEME</p><h3 id="sd-results-title">Cosa emerge dai tuoi dati?</h3><p>I valori si aggiornano quando salvi una scheda. Le stime sono soggettive: non sono misurazioni cliniche.</p></div><div class="sd-export-actions"><button type="button" id="sd-export" disabled>Esporta CSV <span aria-hidden="true">↓</span></button><button type="button" id="sd-clear" disabled>Cancella tutti i dati</button></div></div>
+<div class="sd-stat-grid">
+<div><span>GIORNI COMPLETATI</span><strong id="sd-stat-days">0</strong><small>su 14</small></div>
+<div><span>SONNO STIMATO MEDIO</span><strong id="sd-stat-sleep">—</strong><small>per notte registrata</small></div>
+<div><span>EFFICIENZA STIMATA MEDIA</span><strong id="sd-stat-efficiency">—</strong><small>tempo dormito / tempo a letto</small></div>
+<div><span>ADDORMENTAMENTO MEDIO</span><strong id="sd-stat-latency">—</strong><small>latenza dichiarata</small></div>
+</div>
+<div class="sd-chart-card"><div class="sd-chart-head"><strong>Durata stimata del sonno</strong><span>UNA COLONNA PER OGNI NOTTE</span></div><div class="sd-chart-container" id="sd-chart" role="group" aria-label="Grafico delle durate stimate per ogni giorno"></div><p class="sd-chart-caption">Nessuna colonna indica una notte non ancora registrata. L'altezza delle colonne è relativa alla durata, non a un obiettivo consigliato.</p></div>
+<div class="sd-table-scroll"><table class="sd-summary-table"><caption>Riepilogo delle quattordici notti</caption><thead><tr><th>Giorno</th><th>Data</th><th>Sonno stimato</th><th>Efficienza stimata</th><th>Qualità</th></tr></thead><tbody id="sd-summary-body"></tbody></table></div>
+<div class="sd-chart-foot"><p>Il tempo di sonno stimato è calcolato sottraendo latenza e risvegli notturni dal periodo compreso tra il tentativo di dormire e il risveglio finale. L'efficienza stimata è il rapporto fra sonno e tempo totale trascorso a letto. <strong>Non usare percentuali o soglie per diagnosticare l'insonnia.</strong></p>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/22294820/" target="_blank" rel="noopener noreferrer">Carney e colleghi, Consensus Sleep Diary (2012) ↗</a> · <a href="https://www.nhlbi.nih.gov/health/insomnia/diagnosis" target="_blank" rel="noopener noreferrer">NHLBI — Sleep Diary ↗</a>. Questo modulo è una versione educativa autonoma, non il questionario originale validato.</p></div>
+</div>
+</div></section>
+<section class="sd-more"><div class="home-wrap"><div><p class="home-kicker home-kicker-ink">VUOI UN DIARIO SU CARTA?</p><h2>Il sonno si osserva <em>anche con una penna.</em></h2></div><div><p>Abbiamo preparato una versione in PDF intestata al Dott. Roberto Boscia: 14 giornate, istruzioni e riepilogo finale.</p><a class="home-text-link home-text-link-dark" href="../../assets/Diario_del_Sonno_14_Giorni_Dott_Roberto_Boscia.pdf" download>Scarica la versione stampabile ↗</a><br><a class="home-text-link home-text-link-dark" href="../../accademia/diario-del-sonno/index.html">Leggi la guida completa ↗</a></div></div></section>
+<noscript><div class="home-wrap sd-noscript">Per compilare il diario digitale è necessario JavaScript. Puoi comunque scaricare il <a href="../../assets/Diario_del_Sonno_14_Giorni_Dott_Roberto_Boscia.pdf">diario stampabile in PDF</a>.</div></noscript>
+</main>
+<footer class="home-footer"><div class="home-wrap"><div class="home-footer-row"><span>Dott. Roberto Boscia</span><a href="../index.html">Torna al Laboratorio ↗</a></div><p>Strumento divulgativo in sviluppo · Nessun risultato costituisce una diagnosi o un'indicazione terapeutica. In caso di disturbi persistenti o sonnolenza importante, consulta un professionista sanitario.</p></div></footer>
+</body></html>

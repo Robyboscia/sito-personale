@@ -47,3 +47,10 @@ Documento di pianificazione: nessuna modifica al sito pubblico.
   5. Revisione scientifica e legale dei contenuti orientati alla salute e dei confini della professione di farmacista.
   6. Controllo SEO, canonical, sitemap, accessibilità e prestazioni; QA prima del rilascio.
 - **Non unire in `main` e non pubblicare** senza approvazione esplicita dell'utente dopo revisione.
+
+## Audit tecnico avviato — 25 ottobre 2026
+- Risultati e criteri di blocco della pubblicazione in **`AUDIT_PREPUBBLICAZIONE_2026-10-25.md`**.
+- Corrette esclusivamente due path `srcset` delle immagini WebP in `assetto-biologico/index.html` sul ramo di sviluppo.
+- **Bloccanti P0:** il modulo originale simula una conferma senza inviare davvero la richiesta; configurazione privacy/analytics e informativa generale da verificare/completare.
+- Test mobile reale (iPhone) **ancora mancante**; CSS e markup responsivi presenti, ma il browser desktop non può convalidarne la resa sul dispositivo.
+- Il sito pubblico `main` non è stato modificato.

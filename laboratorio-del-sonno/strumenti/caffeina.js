@@ -39,42 +39,111 @@ $("caff-add").addEventListener("click",()=>{
  newDose("15:00",80);
 });
 $("caff-form").addEventListener("reset",()=>setTimeout(resetUI,0));
+/* Ogni bevanda appartiene alla giornata simulata. Se il sonno è fra
+   mezzanotte e le 05:59 lo consideriamo nella notte successiva;
+   le bevande fra le 00 e quell'ora si riferiscono alla stessa notte.
+   Nessuna data vera o limite arbitrario a mezzanotte sullo smaltimento. */
+function dayTimeline(bed,doses){
+ const sleep=bed<360?bed+1440:bed;
+ return {
+  sleep,
+  doses:doses.map(x=>({
+   ...x,
+   absolute:bed<360&&x.minutes<=bed?x.minutes+1440:x.minutes
+  }))
+ };
+}
+function when(minutes){
+ const rounded=Math.ceil(minutes);
+ const day=Math.floor(rounded/1440);
+ const time=T.time(rounded);
+ const label=day===0?"nella giornata simulata":day===1?"il giorno seguente":day===2?"due giorni dopo":day+" giorni dopo";
+ return {day,time,label,full:label+" alle "+time};
+}
+function almostGone(doses,half){
+ // Oltre il 95% di OGNI dose risulta smaltito quando tutte le singole
+ // dosi sono sotto il 5% iniziale. Con il modello esponenziale non si
+ // raggiunge mai matematicamente lo zero.
+ const extraMinutes=half*60*Math.log2(20);
+ return Math.max(...doses.map(dose=>dose.absolute+extraMinutes));
+}
+const scenarioNames={
+ 3:"Smaltimento più rapido",
+ 5:"Smaltimento intermedio",
+ 7:"Smaltimento più lento"
+};
 $("caff-form").addEventListener("submit",event=>{
  event.preventDefault();
  const bed=T.parseTime($("caff-bed").value);
- if(!Number.isFinite(bed)){status("caff-status","Inserisci un orario di coricamento valido.",true);$("caff-bed").focus();return}
- const taken=[];
+ if(!Number.isFinite(bed)){
+  status("caff-status","Indica un orario valido per coricarti.",true);
+  $("caff-bed").focus();
+  return;
+ }
+ const raw=[];
  for(const row of doses.children){
-  const mgField=row.querySelector('input[type="number"]'),timeField=row.querySelector('input[type="time"]');
-  const mg=T.number(mgField.value,1,1000),time=T.parseTime(timeField.value);
-  if(!Number.isFinite(mg)||!Number.isInteger(mg)||!Number.isFinite(time)){
-   const incorrect=!Number.isFinite(mg)||!Number.isInteger(mg)?mgField:timeField;
-   incorrect.setAttribute("aria-invalid","true");incorrect.focus();
-   status("caff-status","Correggi la casella evidenziata: mg interi fra 1 e 1000 e ora in formato valido.",true);
+  const mgField=row.querySelector('input[type="number"]');
+  const timeField=row.querySelector('input[type="time"]');
+  const mg=T.number(mgField.value,1,1000);
+  const minutes=T.parseTime(timeField.value);
+  if(!Number.isFinite(mg)||!Number.isInteger(mg)||!Number.isFinite(minutes)){
+   const bad=(!Number.isFinite(mg)||!Number.isInteger(mg))?mgField:timeField;
+   bad.setAttribute("aria-invalid","true");bad.focus();
+   status("caff-status","Controlla la casella evidenziata: da 1 a 1000 mg interi e un orario valido.",true);
    return;
   }
-  mgField.removeAttribute("aria-invalid");timeField.removeAttribute("aria-invalid");
-  taken.push({mg,hours:T.forward(time,bed)/60});
+  mgField.removeAttribute("aria-invalid");
+  timeField.removeAttribute("aria-invalid");
+  raw.push({mg,minutes,input:timeField});
  }
- if(!taken.length){status("caff-status","Aggiungi almeno una bevanda.",true);return}
- const total=taken.reduce((s,x)=>s+x.mg,0);
- const scenarios=[3,5,7].map(half=>({half,remain:taken.reduce((s,x)=>s+x.mg*Math.pow(0.5,x.hours/half),0)}));
+ if(!raw.length){
+  status("caff-status","Inserisci almeno una bevanda.",true);
+  return;
+ }
+ const timeline=dayTimeline(bed,raw);
+ const after=timeline.doses.find(d=>d.absolute>timeline.sleep);
+ if(after){
+  after.input.setAttribute("aria-invalid","true");
+  after.input.focus();
+  status("caff-status","La bevanda delle "+T.time(after.minutes)+" risulta successiva all'ora di coricamento. Controlla gli orari della giornata simulata.",true);
+  return;
+ }
+ const total=timeline.doses.reduce((sum,d)=>sum+d.mg,0);
+ const last=Math.max(...timeline.doses.map(d=>d.absolute));
+ const scenarios=[3,5,7].map(half=>({
+  half,
+  remain:timeline.doses.reduce((sum,d)=>sum+d.mg*Math.pow(0.5,(timeline.sleep-d.absolute)/60/half),0),
+  finish:almostGone(timeline.doses,half)
+ }));
  clear(result);
- add(result,"div","st-tag","SIMULAZIONE ALLE "+$("caff-bed").value);
- add(result,"h3","st-result-title","Tre velocità di eliminazione");
+ add(result,"div","st-tag","STIMA PER IL SONNO ALLE "+$("caff-bed").value);
+ add(result,"h3","st-result-title","Quando potresti averne smaltita quasi tutta?");
  const stats=add(result,"div","st-metric-grid");
- metric(stats,"Caffeina inserita",T.round(total)+" mg");
- metric(stats,"Assunzioni",taken.length);
+ metric(stats,"Caffeina assunta",T.round(total)+" mg");
+ metric(stats,"Bevande considerate",timeline.doses.length);
+ const summary=add(result,"div","st-note");
+ summary.textContent="La caffeina non scompare a mezzanotte: il modello prosegue nei giorni successivi e indica il momento in cui di ogni dose resta meno del 5%. Non è un orario di eliminazione totale reale né una soglia che garantisce un sonno indisturbato.";
  for(const scenario of scenarios){
-  const block=add(result,"div","st-domain");
-  add(block,"strong","","Emivita illustrativa: "+scenario.half+" ore");
+  const block=add(result,"div","st-domain st-caffeine-scenario");
+  add(block,"strong","",scenarioNames[scenario.half]+" · quantità dimezzata ogni "+scenario.half+" ore");
   const track=add(block,"div","st-progress");
   add(track,"span").style.width=(scenario.remain/total*100)+"%";
-  add(block,"small","",T.round(scenario.remain,1)+" mg teorici residui ("+T.round(scenario.remain/total*100,1)+"% del totale inserito)");
+  add(block,"small","",T.round(scenario.remain,1)+" mg teorici presenti quando vai a letto ("+T.round(scenario.remain/total*100,1)+"% del totale)");
+  const end=when(scenario.finish);
+  const finish=add(block,"div","st-caffeine-finish");
+  add(finish,"span","st-caffeine-finish-label","QUASI COMPLETAMENTE SMALTITA");
+  add(finish,"strong","",end.full);
+  const delta=Math.ceil(scenario.finish-last);
+  add(finish,"small","","Circa "+T.fmtMinutes(delta)+" dopo l'ultima bevanda. È una soglia indicativa del 95%, non lo zero.");
  }
- note(result,"È un modello matematico illustrativo, non una misurazione del sangue. Il contenuto reale delle bevande e la velocità di eliminazione variano; la quantità residua non predice direttamente la qualità del sonno.",true);
+ const close=timeline.doses.filter(d=>(timeline.sleep-d.absolute)<360);
+ if(close.length){
+  note(result,"Attenzione: "+close.length+" bevand"+(close.length===1?"a risulta":"e risultano")+" nelle 6 ore prima di coricarti. A seconda di dose e sensibilità, la caffeina può disturbare il sonno anche se ti addormenti e hai l'impressione di riposare bene. Dosi elevate possono influire anche quando assunte prima.",true);
+ }else{
+  note(result,"Anche se nessuna bevanda risulta nelle ultime 6 ore, non possiamo dedurre che la caffeina non influenzi il tuo sonno: contano la quantità, la sensibilità individuale e il tempo effettivo di smaltimento.",true);
+ }
  $("caff-actions").hidden=false;
- status("caff-status","Simulazione completata. I tuoi dati non sono stati inviati a un server.");
+ status("caff-status","Calcolo completato, anche oltre mezzanotte. Nessun dato è stato inviato a un server.");
  result.scrollIntoView({behavior:"smooth",block:"start"});
 });
 resetUI();

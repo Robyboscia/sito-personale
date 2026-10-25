@@ -256,3 +256,150 @@ body.sleep-tool{background:#082027;color:#e8f5f2}
   .sd-optional-tag{font-size:9px}
   .sleep-tool .sd-coverage-note{padding:14px}
 }
+
+/* EMAIL FACOLTATIVA — stessa identità del laboratorio, senza nuovo server */
+.sleep-tool .sd-email-panel{
+  margin:24px 0 27px;
+  padding:clamp(23px,3.5vw,42px);
+  background:linear-gradient(125deg,#173b45,#102c38 80%);
+  border:1px solid rgba(154,199,190,.6);
+  border-top:3px solid #d8b878;
+  border-radius:9px;
+  color:#f2f6f0;
+}
+.sleep-tool .sd-email-heading{
+  display:flex;
+  align-items:flex-start;
+  gap:22px;
+  padding-bottom:23px;
+  margin-bottom:25px;
+  border-bottom:1px solid rgba(180,209,201,.23);
+}
+.sleep-tool .sd-email-mark{
+  width:68px;height:68px;flex:0 0 68px;
+  display:grid;place-items:center;
+  border:1px solid #b6cfc3;
+  border-radius:50%;
+  color:#e5c28d;
+  font:40px Georgia,serif;
+}
+.sleep-tool .sd-email-heading .home-kicker{margin:4px 0 11px}
+.sleep-tool .sd-email-heading h3{
+  font-size:clamp(30px,4vw,46px);
+  margin:0 0 16px;
+}
+.sleep-tool .sd-email-heading h3 em{color:#e5c28d}
+.sleep-tool .sd-email-heading p:last-child{
+  color:#c5d9d6;
+  line-height:1.75;
+  max-width:850px;
+  margin:0;
+  font-size:15px;
+}
+.sleep-tool .sd-email-heading strong{color:#f8e8c9}
+.sleep-tool .sd-email-form{display:grid;gap:23px}
+.sleep-tool .sd-email-input-group{display:flex;flex-direction:column;gap:9px;max-width:530px}
+.sleep-tool .sd-email-input-group label,
+.sleep-tool .sd-email-options legend{
+  color:#f7e8cd;
+  font-size:15px;
+  font-weight:700;
+}
+.sleep-tool .sd-email-input-group input{
+  width:100%;
+  min-height:52px;
+  padding:10px 15px;
+  background:#f9f9f5;
+  color:#1d3a45;
+  border:1px solid #93bdb0;
+  border-radius:4px;
+  font:16px Arial,sans-serif;
+}
+.sleep-tool .sd-email-input-group input:focus{
+  outline:3px solid #dbbe85;
+  outline-offset:2px;
+}
+.sleep-tool .sd-email-input-group small{color:#a7c7c2;font-size:12px}
+.sleep-tool .sd-email-options{
+  padding:0;margin:0;
+  border:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  min-width:0;
+}
+.sleep-tool .sd-email-options legend{margin:0 0 13px}
+.sleep-tool .sd-email-options>label{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:19px;
+  border:1px solid #81a8a56b;
+  background:#12333e;
+  border-radius:5px;
+  cursor:pointer;
+}
+.sleep-tool .sd-email-options>label:has(input:checked){
+  border-color:#e0bd82;
+  background:#20434c;
+  box-shadow:inset 0 0 0 1px #caa46862;
+}
+.sleep-tool .sd-email-options input,
+.sleep-tool .sd-email-ack input{
+  width:20px;height:20px;flex:0 0 20px;
+  margin:1px 0 0;
+  accent-color:#d7b676;
+}
+.sleep-tool .sd-email-options label span{display:flex;flex-direction:column;gap:8px}
+.sleep-tool .sd-email-options strong{font-size:15px;line-height:1.35;color:#f7e9cc}
+.sleep-tool .sd-email-options small{color:#c2d5d1;font-size:12px;line-height:1.66}
+.sleep-tool .sd-email-ack{
+  display:flex;align-items:flex-start;gap:12px;
+  cursor:pointer;
+  font-size:13px;line-height:1.67;
+  color:#d8e4e0;
+}
+.sleep-tool .sd-email-ack strong{color:#fff2d1}
+.sleep-tool .sd-email-privacy{
+  display:flex;gap:13px;
+  padding:17px 18px;
+  border:1px solid #93bcb851;
+  background:#0d2b34;
+  border-radius:4px;
+}
+.sleep-tool .sd-email-privacy>span{
+  font-size:25px;line-height:1;color:#e1bf84;
+}
+.sleep-tool .sd-email-privacy p{
+  font-size:12px;line-height:1.8;
+  color:#afcac7;margin:0;
+}
+.sleep-tool .sd-email-privacy a{color:#f0cb94;text-decoration:underline}
+.sleep-tool .sd-email-button{
+  display:flex;align-items:center;justify-content:space-between;
+  width:min(100%,385px);
+  min-height:52px;
+  padding:13px 22px;
+  background:linear-gradient(115deg,#d6a95b,#e6c88f);
+  border:1px solid #edcd98;border-radius:4px;
+  color:#173039;font-size:14px;font-weight:700;
+  cursor:pointer;
+}
+.sleep-tool .sd-email-button:not(:disabled):hover{filter:brightness(1.07)}
+.sleep-tool .sd-email-button:disabled{filter:grayscale(.5);cursor:not-allowed}
+.sleep-tool .sd-email-feedback{
+  margin:-9px 0 0;
+  min-height:20px;
+  font-size:13px;line-height:1.66;
+  color:#b4d2cb;
+}
+.sleep-tool .sd-email-feedback.is-error{color:#ffd0c1;font-weight:700}
+.sleep-tool .sd-email-feedback.is-success{color:#e9d09c}
+@media(max-width:760px){
+ .sleep-tool .sd-email-heading{gap:14px}
+ .sleep-tool .sd-email-mark{width:44px;height:44px;flex-basis:44px;font-size:26px}
+ .sleep-tool .sd-email-options{grid-template-columns:1fr}
+ .sleep-tool .sd-email-panel{margin-block:24px}
+}
+@media(max-width:450px){
+ .sleep-tool .sd-email-heading{flex-direction:column}
+ .sleep-tool .sd-email-options>label{padding:16px}
+ .sleep-tool .sd-email-panel{padding:22px 18px}
+}

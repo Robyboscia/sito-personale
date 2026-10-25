@@ -33,3 +33,17 @@ Documento di pianificazione: nessuna modifica al sito pubblico.
 - **Consulenze** deve rimanere una pagina-segnaposto con la dicitura "Ancora da costruire" (senza promozioni, tariffe, prenotazioni o duplicati di Assetto Biologico™).
 - L'argomento sarà ripreso **solo più avanti, quando l'utente deciderà di svilupparlo**. Non anticipare offerte o consulenze non definite.
 - Aggiornata anche l'anteprima in homepage per rispecchiare lo stato sospeso.
+
+## Stato di avanzamento — 25 ottobre 2026
+- Homepage, Chi sono, Metodo originale, Laboratorio del Sonno, Accademia, Libro, Contatti e Progetti sono presenti sul ramo di sviluppo.
+- **Consulenze resta intenzionalmente “Ancora da costruire”** per decisione dell'utente; non riaprire il tema senza nuova indicazione.
+- **Libro:** usare la copertina originale su https://www.dormirefacile.com/images/book_cover.webp; la nuova pagina Libro è già dedicata al volume.
+- **Progetti:** pagina `/shop/` rifinita come portale verso Mental Pro (link `https://mentalpro.it/`), libro (link interno) e strumenti educativi; niente carrello, prezzi o dichiarazioni di disponibilità non verificate. Visuale Mental Pro volutamente astratta, non falso packaging.
+- **PROSSIMA FASE — Audit pre-pubblicazione obbligatorio**, non aggiungere altre landing finché l'utente non lo richiede:
+  1. Test reale smartphone (in particolare menu delle pagine, overflow, pulsanti e leggibilità).
+  2. Controllo di tutti i link relativi/esterni, immagini, PDF e navigazione trasversale.
+  3. Verifica conservativa della landing Assetto Biologico™: funzioni, moduli, analytics, SEO, privacy e copy originali.
+  4. Verifica GDPR e gestione dei dati per il Diario digitale, salvataggio locale e funzione email, più informativa generale.
+  5. Revisione scientifica e legale dei contenuti orientati alla salute e dei confini della professione di farmacista.
+  6. Controllo SEO, canonical, sitemap, accessibilità e prestazioni; QA prima del rilascio.
+- **Non unire in `main` e non pubblicare** senza approvazione esplicita dell'utente dopo revisione.

@@ -2005,7 +2005,7 @@
         </div>
 
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,3vw,2rem); font-weight:700; color:#0A1C52; margin-bottom:.4rem; line-height:1.2;">Richiedi una prima chiamata</h3>
-        <p style="font-size:.88rem; color:#64748B; margin-bottom:.5rem;">Prima chiamata conoscitiva (15 min) gratuita — decidi solo dopo. Per ora la richiesta si prepara via email: <strong>sarai tu a premere Invia nella tua app di posta</strong>.</p>
+        <p style="font-size:.88rem; color:#64748B; margin-bottom:.5rem;">Prima chiamata conoscitiva (15 min) gratuita — decidi solo dopo. Il contatto via email è temporaneamente sospeso durante la configurazione di una casella professionale.</p>
 
         <!-- Prezzo -->
         <div style="display:inline-flex; align-items:center; gap:.6rem; background:#F2F6FF; border:1px solid rgba(27,58,140,.12); border-radius:8px; padding:.5rem 1rem; margin-bottom:1.8rem;">
@@ -2032,16 +2032,16 @@
             <label for="message">Una domanda generale (facoltativa)</label>
             <textarea id="message" name="message" maxlength="500" placeholder="Per esempio: vorrei conoscere come funziona la prima chiamata. Non inserire referti né dettagli sanitari."></textarea>
           </div>
-          <p style="font-size:.8rem;line-height:1.7;color:#536b83;margin:1rem 0"><strong>Prima di proseguire:</strong> leggi come vengono gestiti i dati nella <a href="../privacy/index.html" style="color:#1B3A8C;text-decoration:underline">pagina Privacy (bozza in revisione)</a> e le informazioni sui <a href="../cookie/index.html" style="color:#1B3A8C;text-decoration:underline">cookie</a>. Il modulo prepara soltanto una bozza email: dovrai inviarla tu.</p>
-          <button type="submit" class="form-submit">Prepara la richiesta via email →</button>
-          <p id="contact-form-status" role="status" aria-live="polite" style="font-size:.85rem;line-height:1.65;color:#1B3A8C;background:#F2F6FF;border-left:3px solid #C9923A;padding:.75rem 1rem;margin-top:.95rem;">Questo modulo non invia messaggi direttamente dal sito. Premendo il pulsante aprirai la tua app di posta: controlla la bozza e premi <strong>Invia</strong> per spedire la richiesta.</p>
+          <p style="font-size:.8rem;line-height:1.7;color:#536b83;margin:1rem 0"><strong>Prima di proseguire:</strong> leggi come vengono gestiti i dati nella <a href="../privacy/index.html" style="color:#1B3A8C;text-decoration:underline">pagina Privacy (bozza in revisione)</a> e le informazioni sui <a href="../cookie/index.html" style="color:#1B3A8C;text-decoration:underline">cookie</a>. La funzione di invio email non è ancora disponibile e i campi del modulo sono disabilitati.</p>
+          <button type="submit" class="form-submit" disabled>Contatti temporaneamente non disponibili</button>
+          <p id="contact-form-status" role="status" aria-live="polite" style="font-size:.85rem;line-height:1.65;color:#1B3A8C;background:#F2F6FF;border-left:3px solid #C9923A;padding:.75rem 1rem;margin-top:.95rem;">La casella email professionale è in attivazione. Questo modulo è momentaneamente disabilitato e non invia richieste.</p>
           <p style="text-align:center;font-size:.8rem;line-height:1.7;margin-top:.8rem;">
-            <a id="contact-direct-email" href="mailto:info@robertoboscia.it?subject=Informazioni%20Assetto%20Biologico" style="font-weight:700;color:#1B3A8C;text-decoration:underline;">Oppure scrivi direttamente a info@robertoboscia.it</a>
+            <a id="contact-direct-email" href="../privacy/index.html" style="font-weight:700;color:#1B3A8C;text-decoration:underline;">Privacy e recapito postale</a>
           </p>
           <p style="font-size:.75rem;line-height:1.6;color:#64748B;margin-top:.65rem;">Non inserire dati sanitari, informazioni mediche riservate o referti in questo modulo o nelle email ordinarie.</p>
           <p style="text-align:center; font-size:.75rem; color:#94A3B8; margin-top:.8rem; line-height:1.6;">
             Assetto Biologico™ non sostituisce esami clinici e non diagnostica malattie.<br>
-            Via Attilio Barbarulo 60, Nocera Inferiore (SA) · info@robertoboscia.it
+            Contatto email in aggiornamento · <a href="../privacy/index.html">Informazioni sul titolare</a>
           </p>
         </form>
       </div>
@@ -2066,10 +2066,7 @@
   <!-- STICKY MOBILE CTA BAR -->
   <div class="mobile-cta-bar" id="mobileCta">
     <a href="#form-contatto" class="mobile-cta-btn mobile-cta-primary">Richiedi info →</a>
-    <a href="mailto:info@robertoboscia.it?subject=Informazioni%20Assetto%20Biologico" class="mobile-cta-btn mobile-cta-phone">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
-      Email
-    </a>
+    <a href="../contatti/index.html" class="mobile-cta-btn mobile-cta-phone">Contatti</a>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>

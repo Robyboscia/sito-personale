@@ -132,6 +132,7 @@ $("caff-form").addEventListener("submit",event=>{
  clear(result);
  add(result,"div","st-tag","STIMA PER IL SONNO ALLE "+$("caff-bed").value);
  add(result,"h3","st-result-title","Quando potresti averne smaltita quasi tutta?");
+ add(result,"p","st-help","Ti mostriamo tre possibilità perché la velocità di smaltimento cambia da persona a persona. Non sappiamo se per te sia più rapida, intermedia o lenta: i valori di 3, 5 e 7 ore per dimezzare la quantità sono esempi, non un test del tuo metabolismo.");
  const stats=add(result,"div","st-metric-grid");
  metric(stats,"Caffeina assunta",T.round(total)+" mg");
  metric(stats,"Bevande considerate",timeline.doses.length);

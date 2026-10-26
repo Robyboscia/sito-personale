@@ -131,6 +131,10 @@ function overviewModel(data){
   firstCount:first.length,secondCount:second.length,firstMean,secondMean,
   difference,enoughTrend:enoughFirst&&enoughSecond,trendLabel,trendSymbol,trendType};
 }
+function changeLabel(minutes){
+ const n=Math.round(Math.abs(minutes));
+ return n<60?n+" minut"+(n===1?"o":"i"):T.fmtMinutes(n);
+}
 function overviewCard(parent,kicker,title,value,state){
  const card=add(parent,"section","pro-signal");
  add(card,"p","pro-signal-kicker",kicker);
@@ -194,7 +198,7 @@ function overviewGraphic(parent,model,data,isDemo){
  add(outcome,"strong","",model.trendLabel);
  if(model.difference!==null){
   add(outcome,"small","",
-   (model.difference>=0?"+":"−")+T.fmtMinutes(Math.abs(model.difference))+" di sonno medio stimato");
+   (model.difference>=0?"+":"−")+changeLabel(model.difference)+" di sonno medio stimato");
  }else add(outcome,"small","","Occorrono notti registrate in entrambe le settimane.");
  const bars=add(trend,"div","pro-week-bars");
  for(const [week,label,n,average] of [[1,"Giorni 1–7",model.firstCount,model.firstMean],[2,"Giorni 8–14",model.secondCount,model.secondMean]]){
@@ -271,10 +275,10 @@ function render(data,source,isDemo=false){
   item(details,"Confronto dei due blocchi settimanali",
    "Notti 1–7: "+T.fmtMinutes(a)+" (su "+first.length+" registrazioni); notti 8–14: "+
    T.fmtMinutes(b)+" (su "+second.length+" registrazioni). Differenza: "+
-   (delta>=0?"+":"−")+T.fmtMinutes(Math.abs(delta))+
+   (delta>=0?"+":"−")+changeLabel(delta)+
    ". Un aumento della durata non significa necessariamente miglioramento.");
  }else item(details,"Confronto delle due settimane","Disponibile quando registri almeno una notte per ciascuno dei due blocchi.");
- if(partial)note(details,partial+" notte/i su "+total+" non includono una stima dei risvegli. Per tali notti la durata potrebbe essere sovrastimata. Le medie mescolano stime complete e parziali.",true);
+ if(partial)note(details,partial+" "+(partial===1?"notte":"notti")+" su "+total+" non includono una stima dei risvegli. Per tali notti la durata potrebbe essere sovrastimata. Le medie mescolano stime complete e parziali.",true);
  note(details,"Dati elaborati da "+source+" sul tuo dispositivo. Questo report esclude le note personali. Non è una misurazione clinica.");
  report="DIARIO DEL SONNO PRO — Dott. Roberto Boscia\n"+
   (isDemo?"ESERCIZIO DIMOSTRATIVO — 14 NOTTI INVENTATE, NON DATI REALI\n":"")+

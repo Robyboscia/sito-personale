@@ -81,3 +81,9 @@ Documento di pianificazione: nessuna modifica al sito pubblico.
 - Scansione statica 21 HTML: nessun link locale rotto e nessun ID ripetuto negli HTML analizzati.
 - Checklist per finalizzare: `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`. Restano conferme di titolare, hosting/CDN, log, provider mail, data retention, eventuali cookie e trasferimenti; test su Safari iPhone.
 - Nessun tracciatore nuovo, nessun banner fittizio, nessun deploy. `main` invariato.
+
+## Risultato audit SEO e funzionale — 26 ottobre 2026
+- Conclusa scansione statico-funzionale nel ramo di sviluppo: 21 pagine HTML, 8 script JS, sitemap/robots, canonical, social preview, markup strutturato, link, ID, `alt`.
+- Sitemap pronta con 12 URL candidati all'indicizzazione, nove pagine `noindex` escluse; corrispondenza canonical/OG verificata 12/12.
+- Metadati social aggiunti, schema JSON-LD minimizzato e coerente, GSAP JS reso tollerante agli errori di CDN. Test logici Caffeina/Diario/Diario PRO superati; test Check-up/Turni e navigazione desktop in precedenza.
+- **Report di riferimento:** `AUDIT_SEO_FUNZIONALE_2026-10-26.md`. Domini esterni, privacy e cookie live, Performance PageSpeed, QA iPhone e rilascio pubblico rimangono non verificati. `main` invariato.

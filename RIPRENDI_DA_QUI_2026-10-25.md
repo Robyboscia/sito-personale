@@ -315,3 +315,24 @@ L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 
 - L'utente ha precisato esplicitamente «Segnaposto» in risposta alla domanda sull'autenticità della testimonianza «Imprenditore, 49 anni — paziente di Roberto Boscia». Era un contenuto fittizio, non un case study reale.
 - Rimossa **interamente** dal markup di `assetto-biologico/index.html` la sezione `<!-- PULL QUOTE 3 -->` con citazione e attribuzione; nessun'altra testimonianza è stata inventata o aggiunta. Commit ramo `sviluppo-nuovo-portale`: `51c6325849f9d16445dbd57b33c9cf36786d1d87`.
 - Prezzo €497 e quattro sedute individuali da 60 minuti preservati; form contatti ancora disabilitato e nessuna modifica a `main`. Non reintrodurre segnaposto come testimonianze o statistiche nel sito finale.
+
+
+## 28. NUOVO PORTALE PUBBLICATO — 26 ottobre 2026
+**Decisione esplicita utente:** «1 posponi; 2 fallo; 3 fallo; 4 escludi; 5 conferma; 6 pubblica», riferito a email, privacy/cookie, collaudo, Consulenze, dati professionali/fiscali, lancio.
+
+### Effettuato
+- **Email rinviata.** Contatti elettronici e modulo Assetto Biologico™ restano disabilitati; nessuna casella fittizia, nessun acquisto/pagamento online introdotto.
+- **Privacy/Cookie nel nuovo portale aggiornate**, eliminati banner di «bozza di sviluppo» e riferimenti falsi al mancato rilascio, come informative per il sito statico effettivo. Ospitante GitHub Pages, CDN cdnjs/Cloudflare, copertina del libro remota, memoria locale facoltativa del Diario; GA4 disattivato; nessun CMP fittizio. Non inventati durata log, ruoli contrattuali dei provider o garanzie su trasferimenti. **Non proclamare certificazione/completa conformità GDPR**: resta opportuno un controllo esperto e un browser network/cookie inventory.
+- **Collaudo statico pre-pubblicazione**: tutte le 21 pagine HTML editoriali del ramo dev, **zero link locali irrisolti** e zero link di navigazione a Consulenze. Ricalcolata numerazione homepage dopo rimozione Consulenze. Il Browser TinyFish ha aperto anteprima homepage, Laboratorio, Diario, Check-up, Caffeina e Assetto; URL del test: https://agent.tinyfish.ai/runs/3b8d7715-7dad-4c6b-8693-de7287a0df33. Confermate 4 × 60 min e prezzo 497 €. La segnalazione del form disabilitato era comportamento **voluto** data email rinviata. **NON testati su iPhone fisico/Safari WebKit, né Lighthouse, né browser DevTools Network/Storage per cookie effettivi.**
+- **Consulenze ESCLUSA** da 20 HTML di menu/navigazione, rimossa intera sezione homepage e anteprima; nel **tree di pubblicazione** eliminati proprio `consulenze/index.html` e `consulenze/consulenze.css`; rimangono recuperabili sul ramo di sviluppo. sitemap non le elenca, pagina in produzione restituisce HTTP 404.
+- **Dati professionali verificati**: Roberto Boscia, farmacista, persona fisica; recapito postale **Via Siciliano 45, 84014 Nocera Inferiore (SA)** confermato dall'utente. **Nessun numero P.IVA/REA è stato fornito o verificato**, non inventarlo o attribuirlo; ove obbligatorio, dovrà essere fornito prima dell'attivazione dei servizi commerciali. Rimosso il footer-segnaposto «dati fiscali da confermare».
+- **Backup prima del lancio**: `backup-main-pre-portale-2026-10-26` su commit `3aa86f64e2726dbbcbb3ab83e7d2c22040b2dd1f`. Rilascio creato con il tree di sviluppo `e9f00a87dc320ade4ca9724f4723081111c74e9c`, parent = precedente main; commit pubblicazione **`043a7bff0f84a6f9d6c61663e26506c5e13a65ef`**. Aggiornato `main` con fast forward/lease, senza rewrite della storia. DNS/CNAME preservato per `drrobertoboscia.com`.
+- **GitHub Pages:** run `40394764600` terminato **success** per commit pubblicazione `043a7b...`. Link https://github.com/Robyboscia/sito-personale/actions/runs/40394764600
+- **Test URL reali POST deploy via TinyFish fetch (ttl=0)**: `https://drrobertoboscia.com/` mostra la nuova homepage con numerazione 01,02,03 Laboratorio,04 Accademia,05 Libri/Progetti,06 Contatti. `/assetto-biologico/` ha 4 sedute × 60 min e informative. `/privacy/` e `/cookie/` sono accessibili senza etichette bozza; `/laboratorio-del-sonno/strumenti/caffeina/` è accessibile; `/consulenze/` 404 come voluto.
+
+### Da fare dopo lancio (NON riaprire lavori già conclusi)
+1. Email professionale solo quando utente la decide e attiva; poi riaprire moduli con test di ricezione, privacy e anti-spam.
+2. Verifica specialistica privacy, requisiti professionali e fiscali effettivamente applicabili prima di attivare prenotazioni/prestazioni.
+3. Test reali Safari iPhone, accessibilità VoiceOver, Lighthouse e monitoraggio cookie/storage tramite DevTools su browser pulito (non risultati già ottenuti).
+4. Attivare Consulenze solo su nuova autorizzazione esplicita dell'utente.
+5. Non ripubblicare contatori fittizi o testimonianze segnaposto, già rimossi.

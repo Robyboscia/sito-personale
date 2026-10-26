@@ -336,3 +336,15 @@ L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 
 3. Test reali Safari iPhone, accessibilità VoiceOver, Lighthouse e monitoraggio cookie/storage tramite DevTools su browser pulito (non risultati già ottenuti).
 4. Attivare Consulenze solo su nuova autorizzazione esplicita dell'utente.
 5. Non ripubblicare contatori fittizi o testimonianze segnaposto, già rimossi.
+
+
+## 29. Mental Pro promosso da progetto futuro a prodotto di punta — 26 ottobre 2026
+- L'utente ha dichiarato che **Mental Pro è il suo unico integratore attualmente commercializzato**, già ampiamente usato e messo alla prova da clienti; è il prodotto di maggior successo economico del suo portafoglio. Non definirlo "futuro" o un "concept".
+- Verificato sul sito reale: `https://mentalpro.it/` è una **landing commerciale** con formula, presentazione, offerte **€47, €117, €222** e id anchor `#pricing`. In precedenza nel portale la home rimandava alla sola sezione Progetti e il pulsante in Progetti puntava alla home di mentalpro.it: collegamento esistente, ma indiretto e svalutante.
+- Aggiornati nei rami **main e sviluppo-nuovo-portale**:
+  * `index.html`: riquadro Mental Pro prominente con contenuto "già realtà", immagine della confezione reale da `https://mentalpro.it/images/product.webp`, CTA diretta al sito ufficiale e link secondario a Progetti.
+  * `shop/index.html`: hero "Di idee ne ho tante. Di integratori, uno solo.", copy diretto senza risultati medici garantiti o numeri inventati; foto reale al posto del monogramma concettuale, prova non numerica "prodotto esistente / già scelto dai clienti / unico integratore della gamma"; CTA ufficiale e collegamento esatto alle offerte `https://mentalpro.it/#pricing`.
+  * `shop/progetti.css`, `portale.css`: stili responsive per confezione reale e blocchi prova; `privacy/index.html`, `cookie/index.html`: dichiarata la richiesta esterna per l'immagine da `mentalpro.it`.
+- **RISULTATO MOLTO IMPORTANTE DEI TEST DEL CHECKOUT**: browser reale automatizzato su `mentalpro.it` ha cliccato i tre pulsanti delle offerte, **nessuno ha aperto carrello/checkout**; URL non cambia se non hash `#`. Test https://agent.tinyfish.ai/runs/629ad246-4afe-4f72-9235-735d185e3680 . Non dire che checkout è funzionante; la landing esiste, ma vendita online non verificata e anzi apparentemente *non operativa*. In homepage cambiata CTA da "come acquistarlo" a "sul sito ufficiale" per evitare promesse false. **Prossima correzione prioritaria da concordare con utente: ripristinare il checkout sul sito mentalpro.it**.
+- Attenzione normative claims integratori: Regolamento (CE) 1924/2006, Ministero Salute `https://www.salute.gov.it/new/it/tema/nutrizione/indicazioni-nutrizionali-e-sulla-salute-claims/`. Landing di Mental Pro contiene diversi claim da verificare prima di promuoverli (in particolare promesse dirette di meccanismo neurochimico, insonnia e confronti). **NON copiati nel portale.**
+- Non introdurre in futuro statistiche di efficacia, recensioni non documentate o claim terapeutici. Il fatto di "ampiamente testato dai clienti" indica *uso commerciale/esperienziale*, non trial clinici.

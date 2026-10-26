@@ -104,39 +104,175 @@ function analyze(){
     "Non considerarla un'opportunità reale di riposo.";
   }
  }
+ // Le finestre vicine al limite dei sette giorni possono riferirsi
+ // a turni non inseriti: non le presentiamo come certamente disponibili.
+ for(const d of days){
+  if(d.type==="off"||d.conflictDay)continue;
+  if(d.windowStart<0||d.windowEnd>7*1440){
+   d.scopeUnknown=true;
+   d.window="DA CONFERMARE: "+d.window+
+    " La finestra tocca giorni fuori dalla settimana registrata: potresti avere altri turni non inseriti.";
+  }
+ }
  return days;
 }
-function render(days){
+function shiftName(type){
+ return {m:"Mattina",p:"Pomeriggio",n:"Notte",custom:"Personalizzato",off:"Riposo"}[type]||"Turno";
+}
+function weekSegments(days,index){
+ const start=index*1440,end=start+1440,segments=[];
+ days.filter(d=>d.type!=="off").forEach(d=>{
+  const from=Math.max(start,d.startAbs),to=Math.min(end,d.endAbs);
+  if(to>from){
+   segments.push({
+    day:d.day,type:d.type,label:d.label,start:from,end:to,
+    from:(from-start)/1440*100,width:(to-from)/1440*100,
+    rollover:from>d.startAbs||to<d.endAbs
+   });
+  }
+ });
+ // Assegniamo corsie separate se due turni sono stati inseriti
+ // sovrapposti, così nessuna fascia nasconde l'altra.
+ segments.sort((a,b)=>a.start-b.start||a.end-b.end);
+ const lanes=[];
+ segments.forEach(s=>{
+  let lane=lanes.findIndex(finish=>finish<=s.start);
+  if(lane===-1){lane=lanes.length;lanes.push(0)}
+  lanes[lane]=s.end;s.lane=lane;
+ });
+ return {segments,laneCount:Math.max(1,lanes.length)};
+}
+function renderTimeline(parent,days){
+ const section=add(parent,"section","shift-timeline-section");
+ section.setAttribute("aria-label","Settimana rappresentata sulle 24 ore di ogni giornata");
+ const title=add(section,"div","shift-section-heading");
+ add(title,"span","shift-kicker","LA SETTIMANA VISIVA");
+ add(title,"h3","","Quando lavori, giorno per giorno.");
+ add(title,"p","","Ogni riga rappresenta le 24 ore di un giorno. Se un turno attraversa mezzanotte, continua nella riga successiva. Le zone senza colore NON indicano necessariamente che stai dormendo.");
+ const legend=add(section,"div","shift-legend");
+ for(const [type,label] of [["m","Mattina"],["p","Pomeriggio"],["n","Notte"],["custom","Personalizzato"]]){
+  const element=add(legend,"span","");
+  add(element,"i","shift-legend-color shift-bg-"+type).setAttribute("aria-hidden","true");
+  add(element,"span","",label);
+ }
+ const hours=add(section,"div","shift-hour-scale");
+ const spacer=add(hours,"span","shift-hour-label","");
+ const nums=add(hours,"div","shift-hours");
+ ["00","06","12","18","24"].forEach(label=>add(nums,"span","",label));
+ const grid=add(section,"div","shift-timeline");
+ const max=days.reduce((n,d)=>Math.max(n,d.endAbs||0),0);
+ const rows=Math.max(7,Math.min(8,Math.ceil(max/1440)));
+ for(let index=0;index<rows;index++){
+  const row=add(grid,"div","shift-day-row");
+  const day=days[index],label=day?day.label:"Giorno 8";
+  const lab=add(row,"div","shift-day-label");
+  add(lab,"strong","",label);
+  add(lab,"small","",day&&day.type==="off"?"Segnato riposo":index===7?"Fine turno della domenica":shiftName(day?.type));
+  const bar=add(row,"div","shift-day-track");
+  const {segments,laneCount}=weekSegments(days,index);
+  bar.style.minHeight=(laneCount*21+12)+"px";
+  if(!segments.length){
+   const empty=add(bar,"span","shift-day-empty","Nessun turno indicato");
+   empty.setAttribute("aria-label","Nessun turno indicato nelle 24 ore di questa giornata");
+  }
+  for(const seg of segments){
+   const tile=add(bar,"span","shift-timeline-segment shift-bg-"+seg.type);
+   tile.style.left=seg.from+"%";tile.style.width=seg.width+"%";tile.style.top=(5+seg.lane*21)+"px";
+   tile.title=shiftName(seg.type)+" — "+seg.label+" — "+T.time(seg.start)+"–"+T.time(seg.end)+
+    (seg.rollover?" (prosegue oltre mezzanotte)":"");
+   tile.setAttribute("aria-label",tile.title);
+   tile.setAttribute("role","img");
+   if(seg.width>11)add(tile,"span","",T.time(seg.start));
+  }
+ }
+ add(section,"p","shift-timeline-help","Il giorno 8 compare solo se l'ultimo turno termina dopo mezzanotte. Le fasce sono occupazione oraria, non un grafico delle fasi del sonno.");
+}
+function renderRest(parent,days){
+ const section=add(parent,"section","shift-rest-section");
+ const heading=add(section,"div","shift-section-heading");
+ add(heading,"span","shift-kicker","LE FINESTRE POSSIBILI");
+ add(heading,"h3","","Quando potresti proteggere il riposo.");
+ add(heading,"p","","Le fasce sono esempi di spazio libero da valutare, non orari prescritti. Per un turno mattutino il modello considera la sera precedente; dopo gli altri turni considera il rientro a casa più 45 minuti illustrativi.");
+ const rows=add(section,"div","shift-rest-grid");
+ for(const d of days){
+  const info=add(rows,"article","shift-rest-card"+
+   (d.conflictDay?" shift-rest-conflict":d.scopeUnknown?" shift-rest-outside":d.type==="off"?" shift-rest-off":""));
+  const h=add(info,"div","shift-rest-card-title");
+  add(h,"strong","",d.label+" · "+(d.type==="off"?"Riposo":d.start+"–"+d.end));
+  const mark=d.type==="off"?"GIORNO INDICATO COME RIPOSO":
+    d.conflictDay?"SI SOVRAPPONE A UN TURNO":
+    d.scopeUnknown?"DA CONFERMARE":"FINESTRA ILLUSTRATIVA";
+  add(h,"span","shift-rest-tag",mark);
+  add(info,"p","",d.window);
+ }
+}
+function render(days,isDemo=false){
  current=days;clear(result);
- const work=days.filter(d=>d.type!=="off"),short=work.filter(d=>d.rest!==null&&d.rest<660),conflicts=work.filter(d=>d.conflictDay);
- add(result,"div","st-tag","CALENDARIO DESCRITTIVO · SETTE GIORNI");
- add(result,"h3","st-result-title","La tua settimana di turni");
- const stats=add(result,"div","st-metric-grid");
- metric(stats,"Giorni lavorati",work.length+" / 7");
- metric(stats,"Giorni di riposo",7-work.length);
- metric(stats,"Intervalli sotto 11 ore",short.length);
- metric(stats,"Durata turni complessiva",T.round(work.reduce((s,x)=>s+x.duration,0)/60,1)+" h");
- const scroll=add(result,"div","st-table-scroll"),table=add(scroll,"table","st-table"),header=add(table,"thead");
- const headrow=add(header,"tr");["Giorno","Turno","Intervallo precedente"].forEach(x=>add(headrow,"th","",x));
+ $("shift-report").hidden=false;
+ const work=days.filter(d=>d.type!=="off");
+ const short=work.filter(d=>d.rest!==null&&d.rest<660);
+ const overlaps=work.filter(d=>d.rest!==null&&d.rest<0);
+ const conflicts=work.filter(d=>d.conflictDay);
+ const unknown=work.filter(d=>d.scopeUnknown);
+ if(isDemo)add(result,"div","shift-demo-flag","ESEMPIO DIMOSTRATIVO · SETTIMANA INVENTATA");
+ add(result,"div","st-tag","RIEPILOGO DESCRITTIVO · SETTE GIORNI");
+ const overview=add(result,"div","shift-overview");
+ const metrics=add(overview,"div","shift-stats");
+ metric(metrics,"Turni inseriti",work.length);
+ metric(metrics,"Giorni indicati come riposo",7-work.length);
+ metric(metrics,"Ore lavorate inserite",T.round(work.reduce((s,d)=>s+d.duration,0)/60,1)+" h");
+ metric(metrics,"Pause fra turni inferiori a 11 ore",short.length);
+ const takeaway=add(overview,"div","shift-takeaway"+
+  (short.length||conflicts.length?" shift-takeaway-alert":""));
+ const title=overlaps.length?
+  "Ci sono turni che si sovrappongono":
+  short.length?
+  "Alcune pause fra turni meritano attenzione":
+  conflicts.length?
+  "Alcune finestre di riposo si sovrappongono ai turni":
+  "Non emergono pause ravvicinate nei turni inseriti";
+ add(takeaway,"strong","",title);
+ let desc="Il calcolo descrive soltanto gli orari registrati e non certifica la conformità contrattuale né la qualità del sonno.";
+ if(short.length)desc="Hai "+short.length+" intervall"+(short.length===1?"o":"i")+
+  " inferiore/i a 11 ore tra turni successivi. È un segnale organizzativo da verificare, non una diagnosi né una valutazione legale.";
+ else if(!work.length)desc="Nessun turno di lavoro inserito. Segna gli orari della settimana per ottenere un confronto.";
+ add(takeaway,"p","",desc);
+ renderTimeline(result,days);
+ const tableWrap=add(result,"section","shift-break-section");
+ const heading=add(tableWrap,"div","shift-section-heading");
+ add(heading,"span","shift-kicker","LE PAUSE TRA UN TURNO E L'ALTRO");
+ add(heading,"h3","","Quanto tempo separa un turno dal successivo.");
+ add(heading,"p","","Il calcolo considera anche i giorni marcati come riposo. L'intervallo del primo turno non è noto perché manca il turno precedente alla settimana.");
+ const scroll=add(tableWrap,"div","st-table-scroll");
+ const table=add(scroll,"table","st-table shift-break-table");
+ const thead=add(table,"thead"),header=add(thead,"tr");
+ for(const name of ["Giorno","Turno","Pausa dal turno precedente"])add(header,"th","",name);
  const tbody=add(table,"tbody");
  for(const d of days){
-  const r=add(tbody,"tr");add(r,"td","",d.label);
-  add(r,"td","",d.type==="off"?"Riposo":d.start+"–"+d.end);
-  const rest=d.type==="off"?"—":d.rest===null?"Primo turno":d.rest<0?"Sovrapposizione":T.fmtMinutes(d.rest);
-  add(r,"td",d.rest!==null&&d.rest<660?"st-bad":"",rest);
+  const row=add(tbody,"tr");
+  add(row,"td","",d.label);
+  add(row,"td","",d.type==="off"?"Riposo indicato":d.start+"–"+d.end);
+  let description;
+  if(d.type==="off")description="—";
+  else if(d.rest===null)description="Non calcolabile: primo turno inserito";
+  else if(d.rest<0)description="Sovrapposizione di "+T.fmtMinutes(-d.rest);
+  else description=T.fmtMinutes(d.rest)+(d.rest<660?" · da verificare":"");
+  add(row,"td",d.rest!==null&&d.rest<660?"st-bad":"",description);
  }
- add(result,"h3","st-result-title","Possibili finestre di riposo");
- for(const d of days)item(result,d.label+(d.type==="off"?" · riposo":" · "+d.start+"–"+d.end),d.window);
- if(short.length)note(result,short.length+" intervallo/i di riposo sono inferiori a 11 ore o si sovrappongono. È soltanto un avviso organizzativo: non equivale a una verifica legale o contrattuale dei turni.",true);
- if(conflicts.length)note(result,conflicts.length+" finestra/e illustrative si sovrappongono a turni già indicati. Sono contrassegnate come NON DISPONIBILI: non puoi contare su queste finestre per riposare. Verifica l'organizzazione dei turni.",true);
- note(result,"Le finestre da 7 h 30 min sono esempi di tempo da proteggere, non prescrizioni personalizzate. Non considerano reperibilità, traffico, pause, famiglia, straordinari o cambi dell'ora.");
+ renderRest(result,days);
+ if(short.length)note(result,"Sono presenti "+short.length+" intervalli inferiori a 11 ore (inclusi eventuali turni sovrapposti). Il dato è un riferimento illustrativo per l'organizzazione, non una verifica del CCNL o delle norme applicabili.",true);
+ if(conflicts.length)note(result,conflicts.length+" finestra/e di riposo ipotetiche si sovrappongono a turni già inseriti e risultano NON DISPONIBILI.",true);
+ if(unknown.length)note(result,unknown.length+" finestra/e toccano giorni fuori dalla settimana. Non conosciamo gli eventuali turni precedenti o successivi: sono DA CONFERMARE.",true);
+ note(result,"Le opportunità di riposo durano qui 7 h 30 min per scelta esemplificativa, non come prescrizione. Il sistema non considera reperibilità, straordinari, vita familiare, sonnellini, variazioni di fuso o cambio legale dell'ora.");
  actions.hidden=false;
- status("shift-status","Piano calcolato. Puoi stamparlo o esportare il riepilogo in CSV.");
- result.scrollIntoView({behavior:"smooth",block:"start"});
+ status("shift-status",isDemo?
+  "Settimana di esempio caricata con orari inventati. Puoi modificare i turni e rigenerare il tuo piano.":
+  "Settimana analizzata. Puoi salvare il report in PDF o esportare gli orari in CSV.");
+ $("shift-report").scrollIntoView({behavior:"smooth",block:"start"});
 }
 function invalidateResult(){
  if(current.length||result.children.length){
-  current=[];clear(result);actions.hidden=true;
+  current=[];clear(result);actions.hidden=true;$("shift-report").hidden=true;
   status("shift-status","Turni modificati: premi «Analizza i turni» per aggiornare il piano.");
  }
 }
@@ -146,12 +282,29 @@ function onEdited(event){
 }
 $("shift-form").addEventListener("input",onEdited);
 $("shift-form").addEventListener("change",onEdited);
+$("shift-demo").addEventListener("click",()=>{
+ // Settimana inventata: un intervallo di 8 ore, una notte che termina
+ // nel giorno segnato di riposo, due giorni completamente liberi.
+ const sample=["m","p","m","off","n","off","off"];
+ $("shift-date").value="";
+ $("shift-commute").value="30";
+ [...body.querySelectorAll("tr")].forEach((tr,index)=>{
+  const select=tr.querySelector("select");
+  select.value=sample[index];
+  select.dispatchEvent(new Event("change",{bubbles:true}));
+ });
+ try{render(analyze(),true)}catch(error){status("shift-status",error.message,true)}
+});
+$("shift-clear").addEventListener("click",()=>{
+ current=[];clear(result);actions.hidden=true;$("shift-report").hidden=true;
+ status("shift-status","Report chiuso. I tuoi orari restano nel modulo, pronti per nuove modifiche.");
+});
 $("shift-form").addEventListener("submit",event=>{
  event.preventDefault();
  try{render(analyze())}catch(e){status("shift-status",e.message,true)}
 });
 $("shift-form").addEventListener("reset",()=>setTimeout(()=>{
- createWeek();clear(result);current=[];actions.hidden=true;status("shift-status","");
+ createWeek();clear(result);current=[];actions.hidden=true;$("shift-report").hidden=true;status("shift-status","");
 },0));
 $("shift-export").addEventListener("click",()=>{
  if(!current.length)return;

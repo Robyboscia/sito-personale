@@ -165,11 +165,16 @@ function renderTimeline(parent,days){
  for(let index=0;index<rows;index++){
   const row=add(grid,"div","shift-day-row");
   const day=days[index],label=day?day.label:"Giorno 8";
+  const {segments,laneCount}=weekSegments(days,index);
   const lab=add(row,"div","shift-day-label");
   add(lab,"strong","",label);
-  add(lab,"small","",day&&day.type==="off"?"Segnato riposo":index===7?"Fine turno della domenica":shiftName(day?.type));
+  const offWithWork=day?.type==="off"&&segments.length>0;
+  const dayInfo=index===7?"Prosegue il turno notturno":
+    offWithWork?"Riposo indicato · finisce turno precedente":
+    day?.type==="off"?"Segnato riposo":shiftName(day?.type);
+  add(lab,"small","",dayInfo);
   const bar=add(row,"div","shift-day-track");
-  const {segments,laneCount}=weekSegments(days,index);
+  if(offWithWork)row.classList.add("shift-day-rollover");
   bar.style.minHeight=(laneCount*21+12)+"px";
   if(!segments.length){
    const empty=add(bar,"span","shift-day-empty","Nessun turno indicato");

@@ -29,9 +29,9 @@ Due riferimenti `srcset="img/foto-roberto-boscia.webp"` erano relativi alla cart
 - **Test del codice:** validazione HTML, composizione URL `mailto:`, caratteri speciali, form invalidi e assenza di falsi messaggi di successo verificati con dati di fantasia. Non equivale a test completo iPhone con un client email configurato.
 - **BLOCCO ANCORA APERTO:** questa è una soluzione temporanea, NON un modulo che invia autonomamente. Per un vero sistema di raccolta richieste servono servizio/backend scelto dall'utente, disponibilità della casella destinataria, antispam, informativa, politiche di conservazione, e messaggi verificati sulla risposta del server. Non inventare credenziali o URL di consegna; non presentare il ripiego `mailto:` come ricezione garantita.
 
-### P0 — Informative privacy e analytics: GA4 sospeso nel ramo di sviluppo, policy ancora da predisporre
+### P0 — Informative privacy e analytics: bozze redatte e collegate; validazione legale e verifica reale ancora pendenti
 
-- Non è ancora presente un'informativa privacy generale completa facilmente raggiungibile da tutte le pagine.
+- **Bozze ora disponibili nel ramo di sviluppo:** `privacy/index.html` e `cookie/index.html`, collegate dal footer di tutte le pagine principali. Sono marcate **BOZZA / NON DEFINITIVE** e `robots=noindex,follow`; contengono i trattamenti rilevati e segnalano esplicitamente i dati mancanti. Non vanno presentate come informative GDPR complete e validate.
 - **Problema storico nel sito originale (`main`):** GA4 caricato automaticamente dopo tre secondi. **Correzione sviluppo (26 ottobre):** blocco GA4 completamente rimosso dal file `assetto-biologico/index.html`; nessun tag manager viene lanciato in automatico dal codice della landing nel ramo di sviluppo. Non è stato installato un banner fittizio.
 - Una ricognizione testuale delle pagine HTML e degli script del portale nel ramo di sviluppo non ha evidenziato altri chiamanti GA4, Facebook Pixel o analytics equivalenti negli script esaminati. **Non è un audit di rete dei domini esterni**: verificare richieste effettive (inclusi font/CDN, analytics del provider e altre risorse), cookie e storage con strumenti del browser.
 - **Azione:** scegliere una strategia di analisi minimizzata o un sistema di consenso effettivo secondo i requisiti applicabili, con inventario completo dei tracciatori, tempi di conservazione e fornitori. Per riferimento: [FAQ cookie del Garante](https://www.garanteprivacy.it/faq/Cookie).
@@ -64,7 +64,7 @@ Due riferimenti `srcset="img/foto-roberto-boscia.webp"` erano relativi alla cart
 
 ## 5. Stato
 
-**Non ancora idoneo al rilascio pubblico.** Nel ramo di sviluppo la falsa conferma del modulo è stata eliminata e l'avvio automatico di GA4 è stato sospeso, ma mancano la privacy generale, la validazione legale e la scelta dell'eventuale backend reale. Il ripiego manuale `mailto:` NON equivale a invio automatico.
+**Non ancora idoneo al rilascio pubblico.** Nel ramo di sviluppo la falsa conferma del modulo è stata eliminata e l'avvio automatico di GA4 è stato sospeso; le bozze Privacy e Cookie sono state create e collegate. Restano la validazione dei soggetti/fornitori, le basi giuridiche definitive, retention, eventuali trasferimenti, la scansione cookie/Network sul dominio reale, i test iPhone e la scelta dell'eventuale backend di ricezione. Il ripiego manuale `mailto:` NON equivale a invio automatico.
 
 Tutte le correzioni di questa fase rimangono sul ramo `sviluppo-nuovo-portale`. Il sito pubblico `main` è invariato.
 
@@ -94,3 +94,10 @@ Tutte le correzioni di questa fase rimangono sul ramo `sviluppo-nuovo-portale`. 
 - Le 19 pagine preesistenti presentano link a Privacy e Cookie nel footer. Le due nuove informative sono intercollegate e contengono `robots=noindex,follow` e avviso visibile che sono bozze.
 - Contesti specifici: nota Privacy nel modulo Assetto Biologico™, accanto al salvataggio opzionale nel Diario e vicino all'importazione CSV del Diario PRO.
 - **Metodo:** verifica statica sul repository, NON validazione formale W3C, NON browser Safari iPhone e NON inventario cookie dinamico. Prima di pubblicare restano i test di rete e l'identificazione effettiva dei fornitori.
+
+## Revisione delle bozze privacy: collaudo desktop del 26 ottobre 2026
+- Verificate 21 pagine del portale nel ramo di sviluppo; nessun link interno mancante fra i file HTML esaminati. Footer Privacy/Cookie presenti su tutte le pagine pertinenti.
+- Aperte in browser desktop le bozze Privacy e Cookie: entrambe leggibili, Privacy con 8 capitoli navigabili, avviso preparatorio chiaro e collegamento incrociato funzionante.
+- Il contenuto distingue l'opt-in `localStorage` del Diario dalle richieste HTTP a hosting/risorse esterne e dall'invio email manuale `mailto:`; l'informativa cookie non implementa un banner fittizio.
+- Non sono ancora noti i cookie e i log realmente presenti sul dominio di produzione; `raw.githack.com` è un host di anteprima esterno e NON rappresenta l'hosting definitivo.
+- Tutti i dettagli e i dati da chiedere al titolare in `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`. Nessuna attestazione di conformità, nessuna modifica al ramo pubblico.

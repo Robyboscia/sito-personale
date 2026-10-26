@@ -215,7 +215,7 @@ function render(answers,isDemo=false){
  status("check-status",isDemo?
   "Hai aperto un esempio dimostrativo: nessuna risposta personale è stata utilizzata.":
   "Il report aggiornato è pronto: le barre sono positive e il grafico finale riassume le quattro aree.");
- report.scrollIntoView({behavior:"smooth",block:"start"});
+ report.scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"start"});
 }
 $("check-demo").addEventListener("click",()=>{
  // Tre aree favorevoli, una con qualche aspetto da osservare.
@@ -234,7 +234,7 @@ form.addEventListener("submit",event=>{
   group.style.outline="3px solid #b64634";
   group.style.outlineOffset="4px";
   status("check-status","Completa la domanda "+(missing+1)+" evidenziata in rosso.",true);
-  group.scrollIntoView({behavior:"smooth",block:"center"});
+  group.scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"center"});
   group.querySelector("input").focus({preventScroll:true});
   return;
  }

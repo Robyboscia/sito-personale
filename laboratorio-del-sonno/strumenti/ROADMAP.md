@@ -78,3 +78,10 @@ La sezione **Consulenze** resta separatamente marcata «Ancora da costruire».
 **Limite onesto della verifica visiva:** il browser automatizzato ha mostrato la pagina caffeina, il pulsante di rimozione e il valore 80 mg, ma non è riuscito a manipolare in modo affidabile il selettore nativo `input[type=time]`. Di conseguenza **non ha verificato un calcolo completo sulla pagina** né il flusso Turnisti in quella sessione. Non è una prova di malfunzionamento Safari; restano da effettuare il collaudo reale su iPhone e i click/export completi. Il nuovo esempio precompilato rende possibile un controllo rapido del calcolo senza usare il selettore degli orari.
 
 **Restano da completare:** test reali Safari iPhone per tutti e quattro gli strumenti, stampa e salvataggio PDF, scaricamento CSV/TXT, importazione da diario reale, revisione scientifica/legale e privacy. **Non pubblicare ancora.**
+
+## Nota UX — perché tre scenari nel calcolatore della caffeina (26 ottobre 2026)
+- Inserita una spiegazione permanente **prima del calcolo** e una sintesi **insieme ai risultati**: tre scenari perché il metabolismo della caffeina varia individualmente; offrire una sola ora di smaltimento sarebbe fuorviante.
+- Dicitura accessibile: rapido, intermedio, lento; la quantità si dimezza rispettivamente ogni **3, 5, 7 ore**; non presentare questi valori come limiti fisiologici assoluti o previsione diagnostica.
+- Fattori informativi: variabilità individuale/genetica, metabolismo epatico, alcuni farmaci, fumo, gravidanza; nessuna classificazione automatica del visitatore.
+- Fonti citate nella pagina: CDC/NIOSH (in genere circa 5–6 ore) e revisione scientifica `https://pmc.ncbi.nlm.nih.gov/articles/PMC5445139/` (circa 3–7 ore negli adulti, con variabilità anche maggiore).
+- Mantenere il calcolo senza arresto a mezzanotte e l'etichetta «quasi completamente smaltita» = meno del 5% della dose per il modello, non zero reale.

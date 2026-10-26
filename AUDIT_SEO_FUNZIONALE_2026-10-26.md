@@ -115,3 +115,11 @@ Fonti operative Google:
 - **Accessibilità**: le animazioni JS GSAP sulla landing ora rispettano `prefers-reduced-motion`; inoltre gli scorrimenti automatici dei 4 strumenti e del Diario standard diventano `auto` con la preferenza attiva. Test con `matchMedia` simulato + controllo sintassi 8/8 JS. Necessario controllo su dispositivi reali e VoiceOver/TalkBack.
 - Copertina del libro carica tuttora da dominio terzo e non ha width/height confermate. Il futuro audit di rete/privacy deve tenerne conto.
 - La casella email professionale resta da attivare in seguito. `main` non modificato dal presente QA.
+
+## 11. Audit scientifico e professionale contenuti (21 pagine) — 26 ottobre 2026
+
+- Vedi `AUDIT_SCIENTIFICO_PROFESSIONALE_2026-10-26.md` per inventario tutte le 21 pagine, prima/dopo, fonti scientifiche e aspetti professionali. Correzioni centrali su landing Assetto Biologico™: niente diagnosi implicita delle cause della stanchezza, misurazione dell'architettura sonno con wearable, BIA come diagnosi di membrane cellulari, misure di «recupero sistema nervoso» senza parametro. Rimossa fascia social-proof non verificata.
+- CTA «Prenota» / «Richiedi» incoerenti con modulo disabilitato ora sostituite con informazione e stato sospeso; controllo urgente conversione/accessibilità prima dell'eventuale riattivazione. Review professionale del protocollo Assetto e coerenza dei €497/2 follow-up ancora obbligatoria.
+- Articolo Diario: aggiunta indicazione CBT-I come prima scelta nell'insonnia cronica, con riferimento VA/DoD 2025. Home/anteprima/Laboratorio aggiornati allo stato reale dei prototipi.
+- Pagine legali del dev aggiornate per recapito postale parzialmente confermato e rimozione di testo obsoleto su GA4 pubblico.
+- **Main intatto**; non considerare queste correzioni autorizzazione a pubblicare l'intero portale.

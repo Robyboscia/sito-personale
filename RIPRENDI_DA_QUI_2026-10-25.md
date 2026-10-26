@@ -153,3 +153,24 @@ Dopo il collaudo del pianificatore Turni & Sonno, l'utente ha scritto «Continua
 Un `mailto:` è solo un ripiego onesto su sito statico: **non è un backend di contatto, non conferma la consegna e non garantisce che ogni visitatore abbia un'app email configurata**. Prima di sostituirlo con un modulo automatico bisogna scegliere il servizio/endpoint e credenziali con l'utente; quindi implementare antispam, privacy, gestione errori e verifiche reali. Non inventare un provider o un URL.
 
 Aggiornato il documento `AUDIT_PREPUBBLICAZIONE_2026-10-25.md` con fatti, correzioni e blocchi residui. **La regola permanente: non modificare `main`.**
+
+
+## 13. Privacy e cookie — bozze site-wide 26 ottobre 2026
+
+L'utente ha selezionato il punto «1» (privacy e cookie), dopo il riepilogo delle attività ancora mancanti.
+
+**Implementazione completata nel SOLO ramo `sviluppo-nuovo-portale`:**
+- Creata `privacy/index.html`: pagina GDPR generale preparatoria e **visibilmente marcata bozza**, `noindex,follow`. Spiega privacy di accesso al sito, log web/hosting da verificare, modulo `mailto:` manuale, strumenti nel browser, dati del Diario, import PRO, diritti, email di contatto `info@robertoboscia.it`, CDN GSAP e copertina esterna.
+- Creata `cookie/index.html`: pagina preparatoria sulle tecnologie locali, nessun elenco cookie inventato; `localStorage` del Diario facoltativo, analytics GA4 disattivato nel ramo di sviluppo, banner non inserito in assenza di tracciatori non tecnici verificati. Browser/network audit ancora mancante.
+- Link Privacy e Cookie aggiunti **nei footer di tutte le 19 pagine HTML preesistenti**, inclusa `anteprima.html`. Le due nuove pagine si collegano tra loro e alla homepage. Link contestuali anche presso form Assetto, toggle Diario e import Diario PRO.
+- Aggiunto `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`: checklist dettagliata delle informazioni mancanti su titolare, recapito, hosting, log, DPA, casella email, retention, trasferimenti extra-SEE, provider terzi, analytics e cookie.
+- Aggiornato `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`: stato **P0 parzialmente mitigato**, ma non ancora conforme/pubblicabile.
+
+**Principi da preservare:**
+1. Non scrivere che il sito è GDPR compliant finché le bozze non sono validate. Art. 13 GDPR chiede identità titolare, finalità/basi, destinatari, durata e altro; non indovinare soggetto giuridico, fornitori o tempi.
+2. Non suggerire che «nessun dato viene trattato»: il Diario e gli altri tool calcolano dati nel browser, ma la visita al sito comporta almeno richieste di risorse/server, da verificare lato provider.
+3. Nessun banner cookie fittizio, e non riattivare GA4 senza verifica giuridica e tecnica; se emergeranno tracciatori non tecnici che richiedono consenso, bloccarli fino al consenso o rimuoverli.
+4. `main`, `CNAME`, deploy, DNS e GitHub Pages **NON TOCCATI**.
+5. Prima di lanciare il portale: ottenere dal titolare i dati elencati nella checklist, fare test reali di rete/cookie (anche iPhone), completare l'informativa e verificare basi giuridiche e possibile trattamento dei dati relativi alla salute.
+
+**Riferimenti normativi ufficiali:** `https://www.garanteprivacy.it/faq/Cookie` e `https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679`.

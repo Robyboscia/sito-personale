@@ -269,9 +269,9 @@ function render(days,isDemo=false){
   add(row,"td",d.rest!==null&&d.rest<660?"st-bad":"",description);
  }
  renderRest(result,days);
- if(short.length)note(result,"Sono presenti "+short.length+" intervalli inferiori a 11 ore (inclusi eventuali turni sovrapposti). Il dato è un riferimento illustrativo per l'organizzazione, non una verifica del CCNL o delle norme applicabili.",true);
- if(conflicts.length)note(result,conflicts.length+" finestra/e di riposo ipotetiche si sovrappongono a turni già inseriti e risultano NON DISPONIBILI.",true);
- if(unknown.length)note(result,unknown.length+" finestra/e toccano giorni fuori dalla settimana. Non conosciamo gli eventuali turni precedenti o successivi: sono DA CONFERMARE.",true);
+ if(short.length)note(result,"Sono presenti "+short.length+" "+(short.length===1?"intervallo inferiore":"intervalli inferiori")+" a 11 ore (inclusi eventuali turni sovrapposti). È un riferimento illustrativo per l'organizzazione, non una verifica del CCNL o delle norme applicabili.",true);
+ if(conflicts.length)note(result,conflicts.length+" "+(conflicts.length===1?"finestra di riposo ipotetica che si sovrappone":"finestre di riposo ipotetiche che si sovrappongono")+" a turni già inseriti: "+(conflicts.length===1?"è NON DISPONIBILE.":"sono NON DISPONIBILI."),true);
+ if(unknown.length)note(result,unknown.length+" "+(unknown.length===1?"finestra tocca":"finestre toccano")+" giorni fuori dalla settimana. Non conosciamo gli eventuali turni precedenti o successivi: "+(unknown.length===1?"è DA CONFERMARE.":"sono DA CONFERMARE."),true);
  note(result,"Le opportunità di riposo durano qui 7 h 30 min per scelta esemplificativa, non come prescrizione. Il sistema non considera reperibilità, straordinari, vita familiare, sonnellini, variazioni di fuso o cambio legale dell'ora.");
  actions.hidden=false;
  status("shift-status",isDemo?

@@ -298,3 +298,169 @@ body.sleep-app{background:#eff1e9;color:#193543}
  .sleep-app .pro-week-fill.pro-week-second{background:#aaa!important}
  .sleep-app .pro-signal,.sleep-app .pro-trend{break-inside:avoid}
 }
+
+/* Check-up 2026-10-26: barre con lettura positiva e donut a quarti uguali. */
+.sleep-app .check-intro-panel{
+  background:#eaf0eb;border-top-color:#4c8177;overflow:hidden
+}
+.sleep-app .check-intro-panel h2{font-size:clamp(29px,3.3vw,43px);margin:19px 0 16px}
+.sleep-app .check-intro-panel h2 em{color:#99794d}
+.sleep-app .check-intro-panel p{line-height:1.76;font-size:15px;color:#4d6868}
+.sleep-app .check-intro-panel strong{color:#1e4f4d}
+.sleep-app .check-intro-art{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;
+  max-width:220px;aspect-ratio:1;margin:12px auto 33px;transform:rotate(-6deg)
+}
+.sleep-app .check-intro-art span{
+  display:flex;align-items:center;justify-content:center;min-width:0;
+  color:#f5f3e8;font:500 42px Georgia,serif;background:#2a796e
+}
+.sleep-app .check-intro-art span:nth-child(2){background:#bc9654}
+.sleep-app .check-intro-art span:nth-child(3){background:#c37847}
+.sleep-app .check-intro-art span:nth-child(4){background:#a4534c}
+.sleep-app .check-report{
+  margin-top:25px;padding:clamp(20px,3.5vw,44px);background:#fbfaf4;
+  border-top:6px solid #4b8277
+}
+.sleep-app .check-report>h2{
+  font-size:clamp(34px,4.7vw,62px);margin:14px 0;color:#1a4047
+}
+.sleep-app .check-report>h2 em{color:#92734e}
+.sleep-app .check-report-intro{
+  max-width:760px;font-size:15px;line-height:1.75;color:#4c6668;margin:0 0 25px
+}
+.sleep-app .check-map-opening{
+  color:#526a68;max-width:770px;font-size:14px;line-height:1.68;margin:10px 0 27px
+}
+.sleep-app .check-area-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:39px}
+.sleep-app .check-area{
+  padding:clamp(18px,2.4vw,28px);border:1px solid #d4dfd7;
+  border-top:5px solid var(--check-level-color);background:#f4f6f0;
+  display:flex;flex-direction:column;gap:0;min-width:0
+}
+.sleep-app .check-area-level-0{--check-level-color:#27736b;--check-level-soft:#e0eee9}
+.sleep-app .check-area-level-1{--check-level-color:#ba9451;--check-level-soft:#f4ead3}
+.sleep-app .check-area-level-2{--check-level-color:#c47743;--check-level-soft:#f8e8da}
+.sleep-app .check-area-level-3{--check-level-color:#a94e45;--check-level-soft:#f7e3df}
+.sleep-app .check-area-head{min-height:89px;margin:0 0 13px}
+.sleep-app .check-area-head h3{
+  font-size:clamp(26px,3.4vw,36px);color:#1b4049;line-height:1.2;margin:0 0 12px
+}
+.sleep-app .check-level-badge{
+  display:inline-block;border-radius:99px;background:var(--check-level-soft);
+  border:1px solid var(--check-level-color);padding:7px 12px;
+  color:#223c3d;font:700 12px/1.45 Arial,sans-serif;
+}
+.sleep-app .check-positive-track{
+  width:100%;height:17px;border-radius:10px;background:#d8e4de;
+  overflow:hidden;border:1px solid #c6d6cf;margin:10px 0 13px
+}
+.sleep-app .check-positive-fill{
+  display:block;height:100%;border-radius:9px;
+  background:var(--check-level-color);
+  transition:width .35s ease-out
+}
+.sleep-app .check-area-description{
+  font-size:15px;line-height:1.65;color:#314e54;margin:5px 0 0
+}
+.sleep-app .check-area-detail{
+  font-size:12px;line-height:1.65;color:#56706d;margin:12px 0 17px
+}
+.sleep-app .check-area-action{
+  font-size:13px;font-weight:700;line-height:1.5;
+  color:#265c5a;text-decoration:underline;text-underline-offset:4px;margin-top:auto
+}
+.sleep-app .check-summary{
+  padding:clamp(21px,3.4vw,42px);background:#193d46;color:#f6f3e8;
+  margin:28px 0 24px;overflow:hidden;border-radius:5px
+}
+.sleep-app .check-summary-eyebrow{color:#e2bf86;letter-spacing:.15em;font-size:11px;font-weight:800}
+.sleep-app .check-summary>h3{
+  font-size:clamp(27px,4vw,47px);line-height:1.18;color:#f4efdc;margin:14px 0 30px
+}
+.sleep-app .check-donut-layout{display:grid;grid-template-columns:minmax(205px,0.9fr) minmax(0,1.1fr);align-items:center;gap:35px}
+.sleep-app .check-donut-wrap{display:grid;place-items:center;min-width:0}
+.sleep-app .check-donut{
+  width:min(100%,330px);aspect-ratio:1;border-radius:50%;display:grid;
+  place-items:center;position:relative;box-shadow:0 0 0 1px #d9d8c650;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact
+}
+.sleep-app .check-donut-hole{
+  width:55%;height:55%;border-radius:50%;background:#193d46;color:#f5eed9;
+  display:flex;align-items:center;flex-direction:column;justify-content:center;
+  text-align:center;padding:9px;gap:4px
+}
+.sleep-app .check-donut-overline{font:800 9px/1.4 Arial,sans-serif;letter-spacing:.15em;color:#d6b781}
+.sleep-app .check-donut-hole strong{font:500 clamp(22px,3.2vw,36px)/1.1 Georgia,serif}
+.sleep-app .check-donut-hole small{font-size:11px;line-height:1.4;color:#bcd5d0}
+.sleep-app .check-donut-legend{display:flex;flex-direction:column;gap:12px}
+.sleep-app .check-legend-row{
+  display:grid;grid-template-columns:18px minmax(0,1fr);gap:14px;
+  align-items:center;padding:10px 0;border-bottom:1px solid #ecf1e329
+}
+.sleep-app .check-legend-dot{width:16px;height:16px;border-radius:4px}
+.sleep-app .check-legend-row strong{
+  display:block;font:500 20px/1.25 Georgia,serif;color:#f2f1e5
+}
+.sleep-app .check-legend-row span:not(.check-legend-dot){
+  display:block;font:13px/1.6 Arial,sans-serif;color:#cbdfd8;margin-top:2px
+}
+.sleep-app .check-summary-takeaway{
+  background:#e8efe9;color:#1c4148;margin:34px 0 19px;padding:24px 28px;
+  border-left:5px solid #b99761
+}
+.sleep-app .check-takeaway-tag{letter-spacing:.14em;font:800 10px/1.6 Arial,sans-serif;color:#746044}
+.sleep-app .check-summary-takeaway h4{
+  font:500 clamp(25px,3.4vw,39px)/1.19 Georgia,serif;margin:11px 0;color:#1d4144
+}
+.sleep-app .check-summary-takeaway p{color:#49635f;line-height:1.73;margin:12px 0 0}
+.sleep-app .check-summary-takeaway .check-takeaway-focus{font-size:13px;font-weight:600}
+.sleep-app .check-donut-explain{
+  color:#bfd2cf!important;font-size:12px;line-height:1.75;margin:9px 0 0
+}
+.sleep-app .check-next-links{margin:23px 0 9px}
+.sleep-app .check-report-actions{border-top:1px solid #d5ded6;padding-top:23px;margin-top:15px}
+@media(max-width:840px){
+ .sleep-app .check-area-grid{grid-template-columns:1fr}
+ .sleep-app .check-area-head{min-height:0}
+}
+@media(max-width:640px){
+ .sleep-app .check-report{padding:19px;margin-top:20px}
+ .sleep-app .check-donut-layout{grid-template-columns:1fr;gap:23px}
+ .sleep-app .check-summary{padding:23px 18px}
+ .sleep-app .check-summary>h3{margin-bottom:20px}
+ .sleep-app .check-donut{width:min(86vw,300px)}
+ .sleep-app .check-donut-legend{gap:2px}
+ .sleep-app .check-legend-row{padding:12px 0}
+ .sleep-app .check-summary-takeaway{margin-top:23px;padding:20px}
+ .sleep-app .check-area{padding:18px}
+}
+@media(prefers-reduced-motion:reduce){
+ .sleep-app .check-positive-fill{transition:none}
+}
+@media print{
+ .sleep-app .check-intro-panel{display:none!important}
+ .sleep-app .check-report{margin:0;border:none;padding:0!important}
+ .sleep-app .check-area-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .sleep-app .check-area{padding:12px;break-inside:avoid}
+ .sleep-app .check-area-head h3{font-size:23px}
+ .sleep-app .check-summary{
+  background:#fff!important;color:#111!important;border:1px solid #555;
+  padding:20px;break-inside:avoid
+ }
+ .sleep-app .check-summary>h3,.sleep-app .check-legend-row strong{
+  color:#111!important
+ }
+ .sleep-app .check-donut-layout{grid-template-columns:minmax(190px,0.8fr) 1.2fr;gap:20px}
+ .sleep-app .check-donut{width:210px}
+ .sleep-app .check-donut-hole{background:#fff!important;color:#111!important;border:1px solid #888}
+ .sleep-app .check-donut-hole strong,.sleep-app .check-donut-hole small,.sleep-app .check-donut-overline,
+ .sleep-app .check-summary-eyebrow,.sleep-app .check-donut-explain,
+ .sleep-app .check-legend-row span:not(.check-legend-dot){color:#111!important}
+ .sleep-app .check-legend-row{border-bottom-color:#ccc}
+ .sleep-app .check-summary-takeaway{background:#fff!important;border:1px solid #888}
+ .sleep-app .check-positive-fill,.sleep-app .check-legend-dot,.sleep-app .check-donut{
+  -webkit-print-color-adjust:exact;print-color-adjust:exact
+ }
+ .sleep-app .check-area-action,.sleep-app .check-next-links{display:none!important}
+}

@@ -192,3 +192,15 @@ L'utente ha selezionato il punto «1» (privacy e cookie), dopo il riepilogo del
 - **Non si tratta di verifica dei cookie sull'effettivo dominio**: il servizio di anteprima GitHub di terzi può inserire risorse proprie, che non rappresentano il provider finale. Devono ancora essere verificati hosting, rete, log, cookie, Safari/iPhone e il testo legale.
 - Checklist operativa in `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`; l'audit aggiornato in `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`.
 - **Non modificare il ramo pubblico `main`, CNAME o DNS senza esplicita autorizzazione.**
+
+## 14. Audit SEO e funzionale completo in sviluppo — 26 ottobre 2026
+
+L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 HTML di portale (esclusa verifica Google), 8 JS, 9 CSS. Interventi salvati in `sviluppo-nuovo-portale`, sito pubblico `main` INVARIATO.
+- Creato **`AUDIT_SEO_FUNZIONALE_2026-10-26.md`**: documento autorevole per elenco di correzioni e test.
+- Nuovo `sitemap.xml`: 12 pagine indicizzabili coincidenti con canonical; nove pagine con noindex fuori; no `lastmod` non verificabili.
+- Metadati OG/social completi nelle 12 pagine, URL canonici e OG URL corrispondenti. Added `WebSite/Person/WebPage` sulla homepage; `BreadcrumbList` su 3 articoli Accademia. La landing è stata ripulita dai doppi schema aggressivi nel passaggio precedente.
+- `script.js` ora tollera mancanza di GSAP/ScrollTrigger senza eccezioni e aggiorna correttamente `aria-expanded` del menu al click.
+- Test: 8/8 JS validi; 6/6 Caffeina, 7/7 parser Diario PRO, 8/8 modello Diario digitale, più Check-up e Turni testati prima; check statico di link/ID/immagini, smoke navigation desktop.
+- **Attenzione:** il report del browser automatizzato comprendeva affermazioni sbagliate circa slider nel Check-up e banner cookie inesistente: non considerarle prove. Il codice reale usa tre radio per domanda nel Check-up e non contiene un banner cookie finché non sia giustificato.
+- I link esterni (copertina da dormirefacile.com, mentalpro.it) richiedono verifica in una vera connessione prima del rilascio. Mancano test iPhone/Safari, Lighthouse/Web Vitals, Search Console/redirect HTTPS sul dominio e review legale della privacy.
+- NON fare merge su `main` né submit sitemap dal sito live senza autorizzazione. Le modifiche al vecchio sito pubblico non devono essere pubblicate implicitamente.

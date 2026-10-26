@@ -2,6 +2,7 @@
 function toggleIncludes(btn) {
   const hidden = document.getElementById('includes-hidden');
   const label = btn.querySelector('.btn-label');
+  if (!hidden || !btn || !label) return;
   hidden.classList.toggle('expanded');
   btn.classList.toggle('open');
   label.textContent = hidden.classList.contains('expanded')
@@ -10,21 +11,30 @@ function toggleIncludes(btn) {
 
 // Header scroll
 const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+if (header) {
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+}
 
 // Mobile menu
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', navMenu.classList.contains('open'));
-});
-navMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navMenu.classList.remove('open'));
-});
+if (hamburger && navMenu) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', navMenu.classList.contains('open'));
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
 
+// Progressive enhancement: never crash when CDN/animation library is unavailable.
+if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
 // GSAP
 gsap.registerPlugin(ScrollTrigger);
 
@@ -143,3 +153,4 @@ gsap.from('.process-step', {
 
 // Contatti: gestiti separatamente da contact-mailto.js.
  // Questo file NON deve simulare un invio e NON deve confermare ricezioni.
+}

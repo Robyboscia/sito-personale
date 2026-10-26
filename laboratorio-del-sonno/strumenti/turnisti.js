@@ -96,6 +96,14 @@ function render(days){
  status("shift-status","Piano calcolato. Puoi stamparlo o esportare il riepilogo in CSV.");
  result.scrollIntoView({behavior:"smooth",block:"start"});
 }
+function invalidateResult(){
+ if(current.length||result.children.length){
+  current=[];clear(result);actions.hidden=true;
+  status("shift-status","Turni modificati: premi «Analizza i turni» per aggiornare il piano.");
+ }
+}
+$("shift-form").addEventListener("input",invalidateResult);
+$("shift-form").addEventListener("change",invalidateResult);
 $("shift-form").addEventListener("submit",event=>{
  event.preventDefault();
  try{render(analyze())}catch(e){status("shift-status",e.message,true)}

@@ -34,9 +34,17 @@ function resetUI(){
  clear(doses);counter=0;newDose("08:00",80);newDose("14:00",80);
  clear(result);$("caff-actions").hidden=true;status("caff-status","");
 }
+function invalidateResult(){
+ if(result.children.length||!$("caff-actions").hidden){
+  clear(result);$("caff-actions").hidden=true;
+  status("caff-status","Dati modificati: premi «Calcola i tre scenari» per aggiornare i risultati.");
+ }
+}
+$("caff-form").addEventListener("input",invalidateResult);
+$("caff-form").addEventListener("change",invalidateResult);
 $("caff-add").addEventListener("click",()=>{
  if(doses.children.length>=8){status("caff-status","Puoi inserire fino a otto bevande.",true);return}
- newDose("15:00",80);
+ newDose("15:00",80);invalidateResult();
 });
 $("caff-form").addEventListener("reset",()=>setTimeout(resetUI,0));
 /* Ogni bevanda appartiene alla giornata simulata. Se il sonno è fra

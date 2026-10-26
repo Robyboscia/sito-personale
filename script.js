@@ -34,7 +34,10 @@ if (hamburger && navMenu) {
 }
 
 // Progressive enhancement: never crash when CDN/animation library is unavailable.
-if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+// Rispetta la preferenza di accessibilità: contenuti subito visibili, senza animazioni.
+const prefersReducedMotion = typeof window.matchMedia === 'function' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion && typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
 // GSAP
 gsap.registerPlugin(ScrollTrigger);
 

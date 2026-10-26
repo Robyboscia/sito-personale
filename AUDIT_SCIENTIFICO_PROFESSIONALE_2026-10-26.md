@@ -116,3 +116,9 @@ L'utente ha chiarito che le statistiche numeriche originarie erano esclusivament
 Dopo ulteriore verifica diretta del file Assetto Biologico™, i numeri di confronto e scarsità residui **€1.800+** («Valore totale») e **massimo 6 nuove valutazioni al mese** erano ancora nel markup. Sono stati eliminati **solo nel ramo sviluppo**, commit `f46bbed013c5995c768e98a99bef4d012dfa179e`. Il prezzo proposto **€497**, la prima chiamata di **15 min** e **due follow-up** sono rimasti invariati, senza assumerne una conferma commerciale definitiva. Il modulo commerciale resta disabilitato, ora anche a livello di tutti e quattro i campi, non soltanto sul pulsante.
 
 **Unica prova sociale sensibile ancora presente:** una citazione attribuita a «Imprenditore, 49 anni — paziente di Roberto Boscia». L'autenticità e l'autorizzazione alla pubblicazione non sono state verificate. Va confermata dall'interessato oppure eliminata prima del lancio; non presentarla come testimonianza verificata. Non serve riprogettare l'offerta già presente nel sito.
+
+## Precisazione commerciale confermata: quattro incontri da un'ora
+
+L'utente ha precisato direttamente che Assetto Biologico™ comprende **quattro sedute da 60 minuti** ciascuna, dedicate a misurazioni, indagine e test per individuare una direzione da seguire. Il precedente copy «due follow-up» è stato eliminato dalla landing, sostituito da quattro sedute esplicite in descrizione del processo, riepilogo dell'offerta e riquadro investimento. Le tre fasi del diagramma illustrano la metodologia, non tre appuntamenti separati.
+
+Il prezzo indicato €497 resta il prezzo del percorso esposto in pagina; prima chiamata gratuita di 15 minuti invariata, modulo ancora inattivo. La revisione mantiene prudenza sulle inferenze scientifiche (nessuna diagnosi automatica/certezza eziologica). Commit dev `37d44d08363f10c8dcfa12f2e0c0d1db864bb338`. Nessuna pubblicazione effettuata.

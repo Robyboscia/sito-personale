@@ -73,3 +73,11 @@ Documento di pianificazione: nessuna modifica al sito pubblico.
 - **Test svolti:** JS sintatticamente valido, validazione HTML email, URL `mailto:` con caratteri speciali, link locali landing presenti, ID non duplicati. Non equivalente a prova con email client iPhone.
 - **Documenti fonte:** `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`, `laboratorio-del-sonno/strumenti/ROADMAP.md`, `RIPRENDI_DA_QUI_2026-10-25.md`.
 - **Non pubblicare ancora:** per il modulo con consegna automatica serve una scelta di backend/provider; per il sito restano documentazione privacy, QA iPhone, SEO e revisione professionale. `main` non deve essere modificato.
+
+## Stato privacy e cookie — 26 ottobre 2026
+
+- Privacy generale e Cookie: **bozze complete per le parti tecnicamente conoscibili**, presenti in `privacy/index.html` e `cookie/index.html`, entrambe `noindex,follow` e non giuridicamente validate.
+- Diciannove pagine del portale preesistente collegate dal footer alle due pagine; aggiunti anche avvisi vicino a contatti, salvataggio Diario e importazione Diario PRO.
+- Scansione statica 21 HTML: nessun link locale rotto e nessun ID ripetuto negli HTML analizzati.
+- Checklist per finalizzare: `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`. Restano conferme di titolare, hosting/CDN, log, provider mail, data retention, eventuali cookie e trasferimenti; test su Safari iPhone.
+- Nessun tracciatore nuovo, nessun banner fittizio, nessun deploy. `main` invariato.

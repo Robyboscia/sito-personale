@@ -148,13 +148,18 @@ function render(data,source){
  status("pro-status","Importate "+total+" notti da "+source+". Puoi scaricare il report o stamparlo.");
  result.scrollIntoView({behavior:"smooth",block:"start"});
 }
+function invalidateReport(){
+ rows=[];report="";clear(result);actions.hidden=true;
+}
 $("pro-file").addEventListener("change",async event=>{
+ invalidateReport();
  const file=event.target.files?.[0];if(!file)return;
  if(file.size>1024*1024){status("pro-status","File oltre 1 MB. Seleziona un CSV del Diario del Sonno.",true);return}
  try{render(importCSV(await file.text()),"CSV selezionato")}
  catch(error){status("pro-status","Importazione fallita: "+error.message,true)}
 });
 $("pro-local").addEventListener("click",()=>{
+ invalidateReport();
  try{render(importSaved(),"schede salvate nel browser")}
  catch(error){status("pro-status","Lettura non riuscita: "+error.message,true)}
 });

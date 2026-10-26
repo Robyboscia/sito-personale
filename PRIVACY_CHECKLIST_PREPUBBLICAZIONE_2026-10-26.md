@@ -54,3 +54,17 @@ Questa è una ricognizione statica, non una scansione certificata di cookie e ri
 
 ### Nota metodologica
 Il cookie banner NON va inventato «per sicurezza». Il bisogno di consenso dipende da ciò che è effettivamente implementato; eventuali strumenti non tecnici vanno bloccati fino alla scelta ove richiesta. Questa checklist non è un parere legale, e non costituisce accertamento di conformità.
+
+
+## Verifica aggiuntiva del 26 ottobre 2026 — navigazione e collegamenti
+
+Controllo successivo all'implementazione delle pagine Privacy e Cookie, **sempre e solo nel ramo di sviluppo**:
+
+- **Inventario statico dei collegamenti interni:** ricontrollate 21 pagine del portale distribuite in homepage, pagina Assetto, Contatti, Chi sono, Consulenze, Libro, Progetti, Accademia, Laboratorio, Diario e strumenti, anteprima, Privacy e Cookie. Nessuna risorsa interna mancante fra i link esaminati. La pagina Cookie non ha un link *a se stessa* ed è corretto che sia così; tutte le altre pagine pertinenti espongono Privacy e Cookie nel footer.
+- **Browser desktop, anteprima del ramo di sviluppo:** entrambe le pagine si caricano; gli avvisi «bozza non definitiva» sono visibili, gli 8 capitoli del testo Privacy sono navigabili; sono esplicitate la memorizzazione locale opt-in del Diario, l'email manuale `mailto:`, le basi giuridiche ancora da verificare, e i tempi di conservazione non ancora definiti. Il link verso la pagina Cookie funziona.
+- **Cookie:** il testo segnala che GA4 è stato tolto nel ramo di sviluppo, distingue localStorage e cookie ed evita un finto banner di consenso. Non è ancora accertato se l'hosting o le risorse esterne producano altri cookie/tracciamenti.
+- **Riferimenti controllati (materiale ufficiale):** articolo 13 GDPR da EUR-Lex (https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679) e linee guida cookie del Garante (https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9677876). I cookie tecnici richiedono informazione; quelli non tecnici soggetti a consenso devono essere bloccati prima di ottenere la scelta dell'utente.
+- **Ambito del test:** browser desktop di anteprima `raw.githack.com`, che è un host di visualizzazione terzo e non il dominio reale del sito. Non usare i suoi eventuali servizi o pubblicità per inferire i cookie del dominio definitivo. Non è un test privacy di rete o Safari iPhone.
+- **Priorità ancora aperta prima di togliere `noindex` e i banner di bozza:** confermare soggetto titolare, sede e contatto ufficiale; verificare effettivi provider di hosting e email, log e periodi di conservazione, altri destinatari e trasferimenti, presupposti art. 6 e art. 9 ove pertinenti; eseguire verifica cookie/network su una sessione pulita del dominio effettivo; sottoporre il testo a revisione specialistica.
+
+**Esito:** documenti testati come navigabili e coerenti con le funzionalità del prototipo. **Non costituisce certificazione GDPR, né autorizza la pubblicazione.**

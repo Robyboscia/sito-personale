@@ -309,3 +309,9 @@ L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 
 - Aggiornato `assetto-biologico/index.html` in `sviluppo-nuovo-portale`: titolo «Quattro sedute. Una direzione», sottotitolo esplicito 4 incontri × 60 min; le **tre fasi illustrate** sono ora (1) indagine iniziale, (2) misurazioni e test orientativi, (3) restituzione della direzione, con nota che **le fasi si svolgono nelle quattro sedute**. Area «Cosa include» e riquadro contatti riportano le 4 sedute da 60 minuti; «Investimento per il percorso» distingue l'offerta completa da un acconto.
 - Non promettere una diagnosi o l'identificazione certa della causa della stanchezza: «direzione concreta» = priorità da osservare e quando parlare col medico. **Preservati** prezzo €497 e chiamata conoscitiva gratuita 15 min. Nessun invio contatti riattivato, nessun lavoro su `main`, DNS o CNAME.
 - Commit modifiche: `37d44d08363f10c8dcfa12f2e0c0d1db864bb338`. Lo svolgimento minuto per minuto e gli strumenti specifici non sono stati inventati né devono bloccare il completamento editoriale.
+
+
+## 27. Rimozione testimonianza segnaposto (conferma utente)
+- L'utente ha precisato esplicitamente «Segnaposto» in risposta alla domanda sull'autenticità della testimonianza «Imprenditore, 49 anni — paziente di Roberto Boscia». Era un contenuto fittizio, non un case study reale.
+- Rimossa **interamente** dal markup di `assetto-biologico/index.html` la sezione `<!-- PULL QUOTE 3 -->` con citazione e attribuzione; nessun'altra testimonianza è stata inventata o aggiunta. Commit ramo `sviluppo-nuovo-portale`: `51c6325849f9d16445dbd57b33c9cf36786d1d87`.
+- Prezzo €497 e quattro sedute individuali da 60 minuti preservati; form contatti ancora disabilitato e nessuna modifica a `main`. Non reintrodurre segnaposto come testimonianze o statistiche nel sito finale.

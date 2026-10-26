@@ -106,3 +106,12 @@ La sezione **Consulenze** resta separatamente marcata «Ancora da costruire».
 - Al cambiamento di qualsiasi risposta o reset, il report precedente scompare. Mantenute stampa/PDF dal browser, messaggi di errore e nessuna trasmissione dei dati al server.
 - TEST LOGICI: 4 scenari (tutti favorevoli, tutti critici, fasce miste e prevalentemente favorevoli) con corrispondenza livelli, barre invertite, grafico a quarti uguali e sintesi; input incompleti rifiutati: superati. Test manuale iPhone e stampa PDF ancora da confermare.
 - **Non pubblicare** senza QA e revisione scientifica/privacy. Modificato esclusivamente il ramo sviluppo-nuovo-portale.
+
+
+**Test browser interattivo della revisione del Check-up** — 26 ottobre 2026:
+- Anteprima GitHub caricata e pulsante «Guarda un esempio del report» cliccato, senza compilare dati personali.
+- Report dimostrativo visibile: Regolarità 100% riempimento descrittivo, Ambiente circa 83%, Esperienza percepita 100%, Abitudini 50%. Tre aree «abbastanza favorevoli», una «Qualche aspetto da osservare»; nessuna voce «Poco segnalato».
+- Donut renderizzato come quattro spicchi uguali; legenda completa e messaggio «Prevalgono aree abbastanza favorevoli».
+- La dimostrazione non precompila i campi del questionario. Se si prova a inviare solo una risposta, viene evidenziata la successiva domanda mancante.
+- **Nota sulla verifica:** il browser di prova era desktop; iPhone/Safari effettivo non è stato emulato. Il codice associa ogni cambiamento al nascondimento del precedente report (`hideReport`), ma la testimonianza visiva automatizzata non è sufficiente a dimostrare questo specifico dettaglio su ogni browser: ritestare su iPhone.
+- Controllo statico aggiuntivo: script valido, nessun link locale interrotto nell'HTML, nessuna chiamata di rete nello script; regole responsive e stampa presenti.

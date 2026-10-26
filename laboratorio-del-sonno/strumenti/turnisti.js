@@ -287,9 +287,9 @@ function onEdited(event){
 $("shift-form").addEventListener("input",onEdited);
 $("shift-form").addEventListener("change",onEdited);
 $("shift-demo").addEventListener("click",()=>{
- // Settimana inventata: un intervallo di 8 ore, una notte che termina
- // nel giorno segnato di riposo, due giorni completamente liberi.
- const sample=["m","p","m","off","n","off","off"];
+ // Settimana inventata: 5 turni da 8 ore, un intervallo di sole 8 ore;
+ // il turno di venerdì notte termina sabato, segnato come giorno di riposo.
+ const sample=["m","p","m","m","n","off","off"];
  $("shift-date").value="";
  $("shift-commute").value="30";
  [...body.querySelectorAll("tr")].forEach((tr,index)=>{

@@ -251,3 +251,12 @@ L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 
 ## 21. Conferma recapito postale e collaudo — 26 ottobre 2026
 - L'utente ha confermato espressamente il recapito **Via Siciliano 45, 84014 Nocera Inferiore (SA)**. Non è più una località/CAP presunta. I testi dello sviluppo sono stati adeguati; il sito pubblico già mostrava tale recapito.
 - Avviato collaudo su ramo `sviluppo-nuovo-portale`, senza pubblicare il portale. Da tenere distinta analisi statica e test logici eseguiti in isolamento da prove runtime reali su dispositivi/browser.
+
+
+## 22. Collaudo statico e dei calcoli — 26 ottobre 2026
+- Eseguito controllo sistematico di **21 pagine HTML** e **8 file JS** del nuovo portale. Nessun link locale verso file inesistenti, ancoraggio interno mancante, ID HTML duplicato, img senza alt, `aria-labelledby`/`aria-describedby` statico irrisolto, `target=_blank` senza noopener. Tutti e 8 i file JavaScript compilati dal motore V8 senza errori sintattici.
+- **26 scenari di calcolo specifici** coperti nei moduli Caffeina, Check-up, Diario 14 notti, Diario PRO/CSV e Turnisti, inclusi mezzanotte, stime parziali, rigetto di dati incoerenti, escaping CSV/anti-injection, riepilogo favorevole, settimana di turni e intersezioni. Rilanciati i casi di mezzanotte dopo aver corretto l'aspettativa dell'harness (il calcolo del sito era corretto).
+- **Correzione reale accessibilità:** `laboratorio-del-sonno/strumenti/check-up.js`, il titolo generato del grafico riepilogativo ha ora `id="check-summary-title"` corrispondente all'elemento con `aria-labelledby` (commit `fd1a4ef7a96f3351eab2dfe3595dde76a47673ba`).
+- Verificate le risorse remote dichiarate nelle bozze privacy: `cdnjs.cloudflare.com` per animazioni e `www.dormirefacile.com/images/book_cover.webp` per la copertina; questi accessi non sono cookie necessariamente, ma richiedono network test.
+- REPORT COMPLETO salvato in `COLLAUDO_NUOVO_PORTALE_2026-10-26.md` (commit `d28cf7f5910aaf74d591999cec8fca79394aa767`).
+- **Limiti importanti:** senza pubblicare una preview separata del ramo di sviluppo, non è stato possibile testare layout/dispositivi reali, i browser e gli eventi end-to-end su un sito effettivamente reso né tracce cookie/network. Non dichiarare collaudo completo browser o produzione. `main` non modificato da questo collaudo. Prima del rilascio occorrono prova su dispositivo reale, attivazione/test della casella email e verifica privacy dei fornitori.

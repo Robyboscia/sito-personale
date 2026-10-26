@@ -21,21 +21,23 @@ Due riferimenti `srcset="img/foto-roberto-boscia.webp"` erano relativi alla cart
 
 ## 3. Bloccanti prima del rilascio
 
-### P0 — Il modulo Assetto Biologico™ conferma un invio che non avviene
+### P0 — Modulo contatti: falsa conferma ELIMINATA nel ramo di sviluppo; invio automatico ancora assente
 
-- Nel file `script.js` il listener `submit` di `#contact-form` invoca `preventDefault()`, cambia il testo in «Richiesta inviata» e resetta dopo 4 secondi.
-- Non effettua chiamate HTTP, salvataggio o altre operazioni di consegna dei dati.
-- Comportamento **preesistente anche in `main`** (confronto testuale del file JS effettuato).
-- **Azione:** concordare un sistema reale di ricezione delle richieste, implementare invio e messaggi di errore/successo basati sul risultato effettivo, protezioni antiabuso e minimizzazione dei dati richiesti. Testare end-to-end senza includere dati reali di pazienti. Non pubblicare il portale con la falsa conferma.
+- **Situazione originale (`main`, non modificato):** `script.js` mostrava «Richiesta inviata» e poi resettava il modulo, senza consegnare nulla. È un problema preesistente.
+- **Correzione completata soltanto su `sviluppo-nuovo-portale` (26 ottobre):** eliminato il falso listener da `script.js`, aggiunto `contact-mailto.js` autonomo. Il modulo richiede nome ed email, prepara una **bozza mailto:** verso `info@robertoboscia.it` e dice chiaramente che il visitatore deve controllare il messaggio e premere **Invia** nella sua app di posta. Nessun messaggio viene dichiarato spedito; nessun reset automatico.
+- Aggiunto indirizzo email di fallback visibile, cambiata la CTA mobile «Richiedi info», sostituito il numero fittizio `tel:+39XXXXXXXXXX` con email e limitata la domanda libera, chiedendo di **non inserire referti o dati sanitari riservati**. Pagina Contatti aggiornata coerentemente.
+- **Test del codice:** validazione HTML, composizione URL `mailto:`, caratteri speciali, form invalidi e assenza di falsi messaggi di successo verificati con dati di fantasia. Non equivale a test completo iPhone con un client email configurato.
+- **BLOCCO ANCORA APERTO:** questa è una soluzione temporanea, NON un modulo che invia autonomamente. Per un vero sistema di raccolta richieste servono servizio/backend scelto dall'utente, disponibilità della casella destinataria, antispam, informativa, politiche di conservazione, e messaggi verificati sulla risposta del server. Non inventare credenziali o URL di consegna; non presentare il ripiego `mailto:` come ricezione garantita.
 
-### P0 — Informative privacy e analytics
+### P0 — Informative privacy e analytics: GA4 sospeso nel ramo di sviluppo, policy ancora da predisporre
 
-- Non è presente un'informativa privacy generale completa facilmente raggiungibile da tutte le pagine.
-- Nella landing Assetto Biologico™ uno script GA4 viene avviato dopo un timeout di tre secondi anche senza un'interazione consapevole.
-- **Azione:** censire effettivi cookie e tracciatori, scegliere configurazione analytics corretta; predisporre informativa e, se necessari, banner/consenso e blocco preventivo secondo le regole applicabili. Non è sufficiente dichiarare «anonymize_ip» nel codice.
-- Le schede del Diario del Sonno possono contenere informazioni personali e potenzialmente sanitarie. Valutare e documentare il loro trattamento, l'archiviazione locale opzionale, la condivisione via email e il contenuto di eventuali messaggi di contatto.
-- La nota `laboratorio-del-sonno/diario/privacy/index.html` descrive **il funzionamento tecnico**, non sostituisce l'informativa generale GDPR.
-- La revisione legale deve confermare titolare, contatti, finalità, basi giuridiche, fornitori, conservazione, trasferimenti ed esercizio dei diritti.
+- Non è ancora presente un'informativa privacy generale completa facilmente raggiungibile da tutte le pagine.
+- **Problema storico nel sito originale (`main`):** GA4 caricato automaticamente dopo tre secondi. **Correzione sviluppo (26 ottobre):** blocco GA4 completamente rimosso dal file `assetto-biologico/index.html`; nessun tag manager viene lanciato in automatico dal codice della landing nel ramo di sviluppo. Non è stato installato un banner fittizio.
+- Una ricognizione testuale delle pagine HTML e degli script del portale nel ramo di sviluppo non ha evidenziato altri chiamanti GA4, Facebook Pixel o analytics equivalenti negli script esaminati. **Non è un audit di rete dei domini esterni**: verificare richieste effettive (inclusi font/CDN, analytics del provider e altre risorse), cookie e storage con strumenti del browser.
+- **Azione:** scegliere una strategia di analisi minimizzata o un sistema di consenso effettivo secondo i requisiti applicabili, con inventario completo dei tracciatori, tempi di conservazione e fornitori. Per riferimento: [FAQ cookie del Garante](https://www.garanteprivacy.it/faq/Cookie).
+- Le schede del Diario del Sonno possono contenere informazioni personali e potenzialmente sanitarie. Valutare e documentare trattamento locale, salvataggio opzionale, esportazione e condivisione email; minimizzare il contenuto delle richieste di contatto.
+- La nota `laboratorio-del-sonno/diario/privacy/index.html` spiega **il funzionamento tecnico**, non sostituisce l'informativa generale GDPR.
+- La revisione deve confermare titolare, contatti, finalità, basi giuridiche, destinatari, fornitori, conservazione, trasferimenti e modalità di esercizio dei diritti. **Non affermare conformità GDPR finché tali dati non sono completati e verificati.**
 
 ## 4. Da verificare prima di pubblicare
 
@@ -62,5 +64,6 @@ Due riferimenti `srcset="img/foto-roberto-boscia.webp"` erano relativi alla cart
 
 ## 5. Stato
 
-**Non idoneo al rilascio pubblico per i blocchi P0 sul modulo di contatto e sulla privacy.**
-Tutte le correzioni di questa fase rimangono sul ramo `sviluppo-nuovo-portale`. 
+**Non ancora idoneo al rilascio pubblico.** Nel ramo di sviluppo la falsa conferma del modulo è stata eliminata e l'avvio automatico di GA4 è stato sospeso, ma mancano la privacy generale, la validazione legale e la scelta dell'eventuale backend reale. Il ripiego manuale `mailto:` NON equivale a invio automatico.
+
+Tutte le correzioni di questa fase rimangono sul ramo `sviluppo-nuovo-portale`. Il sito pubblico `main` è invariato.

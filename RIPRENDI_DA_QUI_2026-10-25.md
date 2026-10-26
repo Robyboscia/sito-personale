@@ -174,3 +174,12 @@ L'utente ha selezionato il punto «1» (privacy e cookie), dopo il riepilogo del
 5. Prima di lanciare il portale: ottenere dal titolare i dati elencati nella checklist, fare test reali di rete/cookie (anche iPhone), completare l'informativa e verificare basi giuridiche e possibile trattamento dei dati relativi alla salute.
 
 **Riferimenti normativi ufficiali:** `https://www.garanteprivacy.it/faq/Cookie` e `https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679`.
+
+## 14. QA statico privacy, cookie e navigazione — 26 ottobre 2026
+
+- Esaminati 21 file HTML in tre blocchi per rispettare i limiti degli strumenti connessi. In tutte le pagine, ogni link interno `href` e `src` verificato corrisponde a un elemento dell'albero Git; non rilevati ID duplicati o assenza dei tag base di chiusura `html` / `footer`.
+- Le 19 pagine HTML già esistenti hanno i due link Privacy/Cookie in fondo; le nuove pagine sono intercollegate, marcate `noindex,follow` e visibilmente indicate come **bozze**.
+- Inseriti anche link contestuali presso il form Assetto Biologico™, il toggle di salvataggio Diario e l'importazione CSV Diario PRO.
+- Checklist operativa in `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`. Stato riportato in `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`.
+- Non è stato ancora eseguito un audit dinamico con strumenti di rete/cookie né un test Safari iPhone reale. **Non trasformare le bozze in un'informativa definitiva senza i dati del titolare e dell'hosting**.
+- Non modificare né distribuire `main` senza autorizzazione.

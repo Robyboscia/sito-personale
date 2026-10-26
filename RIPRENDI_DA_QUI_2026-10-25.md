@@ -107,3 +107,12 @@ L'utente ha approvato un risultato grafico d'impatto. Implementato e salvato nel
 - Nessun punteggio clinico: soglie di regolarità solo editoriali, nessuna valutazione di salute; ore stimate con asterisco quando le informazioni sui risvegli sono mancanti.
 - Test matematici 7/7 superati; test browser interattivo riuscito per demo, rimozione e riapertura. Mancano QA reale iPhone, esportazione e stampa end-to-end.
 - Main/pubblico invariato. Riferimenti dettagliati nel file laboratorio-del-sonno/strumenti/ROADMAP.md.
+
+## 9. Check-up del Sonno: risultato positivo + ciambella — 26 ottobre 2026
+**Aggiornamento UX richiesto dopo screenshot iPhone:** il precedente report etichettava risultati favorevoli come «Poco segnalato» e mostrava barre quasi vuote; l'utente le leggeva erroneamente come fallimenti.
+- Modificato `laboratorio-del-sonno/strumenti/check-up.js`: barre invertite e positive, quattro fasce editoriali (0-1 favorevole; 2-3 qualche aspetto; 4-5 più elementi; 6 da attenzionare), spiegazioni per area, sintesi dinamica e ciambella di quattro spicchi UGUALI.
+- Modificato `laboratorio-del-sonno/strumenti/check-up/index.html`: report full width sotto il questionario, pulsante dimostrativo con risposte inventate senza modificare quelle selezionate.
+- Modificato `laboratorio-del-sonno/strumenti/strumenti.css`: layout responsivo, colori non unici veicoli informativi, legenda testuale e stampa.
+- Non generare un punteggio medico complessivo o percentuali di salute: donut con quarti uguali perché le quattro aree non costituiscono porzioni di una grandezza unica. Tutte le fasce sono scelte editoriali non validate clinicamente.
+- Test del codice/risultati per risposte favorevoli, critiche, miste: eseguiti. Resta collaudo manuale iPhone e stampa.
+- I riferimenti e la regola del quinto progetto Wearable Decoder restano invariati. Sito pubblico `main` intatto.

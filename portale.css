@@ -265,6 +265,13 @@ body.home-v2 nav.home-nav-desktop{width:auto;max-width:none;min-height:0;margin:
 .home-product-feature h3{font-size:30px;line-height:1.14;color:#213348;margin:0 0 17px}
 .home-product-feature p{font-size:16px;line-height:1.7;color:#586171;margin:0 0 33px}
 .home-product-feature .home-text-link{margin-top:auto;align-self:flex-start}
+/* Mental Pro: la confezione reale sostituisce il monogramma provvisorio */
+.home-product-image-link{display:flex;align-items:center;justify-content:center;min-height:165px;margin:15px 0 18px;text-decoration:none}
+.home-product-packshot{display:block;max-width:75%;max-height:180px;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 10px 16px rgba(25,30,41,.2));transition:transform .2s ease}
+.home-product-image-link:hover .home-product-packshot{transform:translateY(-3px)}
+.home-product-feature h3 em{font-style:italic;color:#906839}
+.home-product-secondary-link{align-self:flex-start;color:#69523c;margin-top:14px;font-size:12px;line-height:1.5;text-decoration:underline;text-underline-offset:3px}
+@media(prefers-reduced-motion:reduce){.home-product-packshot{transition:none}}
 /* 07 | contact: deep navy, spacious final action */
 .home-contact{background:linear-gradient(145deg,#101c2e,#09131f);color:#f9f2e5}
 .home-contact-grid{padding-block:115px 120px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.7fr);gap:85px;align-items:center}

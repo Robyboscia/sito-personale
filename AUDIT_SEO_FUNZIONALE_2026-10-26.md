@@ -106,3 +106,12 @@ Fonti operative Google:
 - Verificate le risorse remote dichiarate nelle bozze privacy: `cdnjs.cloudflare.com` per animazioni e `www.dormirefacile.com/images/book_cover.webp` per la copertina; questi accessi non sono cookie necessariamente, ma richiedono network test.
 - REPORT COMPLETO salvato in `COLLAUDO_NUOVO_PORTALE_2026-10-26.md` (commit `d28cf7f5910aaf74d591999cec8fca79394aa767`).
 - **Limiti importanti:** senza pubblicare una preview separata del ramo di sviluppo, non è stato possibile testare layout/dispositivi reali, i browser e gli eventi end-to-end su un sito effettivamente reso né tracce cookie/network. Non dichiarare collaudo completo browser o produzione. `main` non modificato da questo collaudo. Prima del rilascio occorrono prova su dispositivo reale, attivazione/test della casella email e verifica privacy dei fornitori.
+
+## 10. QA accessibilità, immagini e browser pubblico — 26 ottobre 2026
+
+- Report dettagliato: `QA_MOBILE_ACCESSIBILITA_PRIVACY_2026-10-26.md`.
+- Test di navigazione in browser remoto **sul vecchio sito pubblico**: `/`, `/privacy/`, `/cookie/` raggiungibili; moduli sospesi. Non era disponibile controllo DevTools Network/Storage né emulazione affidabile esatta 390px. Cookie e richieste runtime restano da verificare, non dichiarare inesistenti.
+- **CLS/prestazioni**: formato file del WebP `img/foto-roberto-boscia-casual.webp` confermato 1023×1537, ma homepage, Chi sono e anteprima indicavano 750×960. Attributi intrinseci corretti in tutti e tre i file dev. Non dichiarare CLS=0 senza test visivo/metriche.
+- **Accessibilità**: le animazioni JS GSAP sulla landing ora rispettano `prefers-reduced-motion`; inoltre gli scorrimenti automatici dei 4 strumenti e del Diario standard diventano `auto` con la preferenza attiva. Test con `matchMedia` simulato + controllo sintassi 8/8 JS. Necessario controllo su dispositivi reali e VoiceOver/TalkBack.
+- Copertina del libro carica tuttora da dominio terzo e non ha width/height confermate. Il futuro audit di rete/privacy deve tenerne conto.
+- La casella email professionale resta da attivare in seguito. `main` non modificato dal presente QA.

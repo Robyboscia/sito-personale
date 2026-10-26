@@ -194,10 +194,11 @@ function renderDonut(parent,areas){
   "I quattro spicchi sono uguali: nessuna area pesa più delle altre e il grafico non rappresenta percentuali né la qualità complessiva del sonno. I colori riassumono soltanto le risposte dichiarate.");
  return section;
 }
-function render(answers){
+function render(answers,isDemo=false){
  const areas=modelFromAnswers(answers);
  hideReport();
  report.hidden=false;
+ if(isDemo)add(result,"div","check-demo-flag","ESEMPIO DIMOSTRATIVO · RISPOSTE INVENTATE");
  add(result,"div","st-tag","MAPPA EDUCATIVA · 12 RISPOSTE");
  add(result,"p","check-map-opening","Partiamo dalle quattro aree. Qui una barra più piena indica meno difficoltà riferite, non un voto sulla salute.");
  const grid=add(result,"div","check-area-grid");
@@ -210,9 +211,17 @@ function render(answers){
  const learn=add(row,"a","st-button st-alt","Approfondisci nell'Accademia ↗");
  learn.href="../../../accademia/index.html";
  actions.hidden=false;
- status("check-status","Il report aggiornato è pronto: le barre sono positive e il grafico finale riassume le quattro aree.");
+ status("check-status",isDemo?
+  "Hai aperto un esempio dimostrativo: nessuna risposta personale è stata utilizzata.":
+  "Il report aggiornato è pronto: le barre sono positive e il grafico finale riassume le quattro aree.");
  report.scrollIntoView({behavior:"smooth",block:"start"});
 }
+$("check-demo").addEventListener("click",()=>{
+ // Tre aree favorevoli, una con qualche aspetto da osservare.
+ // Le risposte eventualmente selezionate nel modulo rimangono inalterate.
+ render([0,0,0,0,1,0,1,1,1,0,0,0],true);
+ status("check-status","Esempio con risposte inventate: puoi tornare al modulo e generare la tua vera mappa.");
+});
 form.addEventListener("submit",event=>{
  event.preventDefault();
  const inputs=questions.map((_,i)=>form.querySelector('input[name="q'+i+'"]:checked'));

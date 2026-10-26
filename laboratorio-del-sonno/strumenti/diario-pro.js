@@ -290,7 +290,7 @@ function render(data,source,isDemo=false){
   result.innerText+"\n\nDocumento educativo e orientativo, non diagnostico.";
  actions.hidden=false;
  status("pro-status","Importate "+total+" notti da "+source+". Puoi scaricare il report o stamparlo.");
- result.scrollIntoView({behavior:"smooth",block:"start"});
+ result.scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"start"});
 }
 function invalidateReport(){
  rows=[];report="";clear(result);actions.hidden=true;$("pro-report").hidden=true;

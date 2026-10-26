@@ -84,6 +84,6 @@ Controllo successivo all'implementazione delle pagine Privacy e Cookie, **sempre
 
 - Provider di **hosting statico**: GitHub Pages (`main` pubblico e portale in sviluppo previsto sulla stessa infrastruttura). La documentazione ufficiale dichiara raccolta e conservazione IP dei visitatori per sicurezza. La durata specifica non è confermata e non va inventata.
 - Provider **risorsa CDN esterna**: cdnjs via Cloudflare per animazioni GSAP/ScrollTrigger. Il servizio documenta headers tecnici NEL per salute e disponibilità della rete; richiede ancora verifica runtime di eventuali cookie. Non automaticamente una prova di profilazione.
-- **Titolare**: Roberto Boscia persona fisica, comunicato dall'utente. Recapito postale: Via Siciliano 45; Nocera Inferiore/84014 rimangono elementi ricavati dal contesto da confermare prima della finalizzazione.
+- **Titolare**: Roberto Boscia persona fisica, comunicato dall'utente. Recapito postale: Via Siciliano 45; indirizzo completo confermato dall'utente il 26 ottobre 2026.
 - **Recapito elettronico non disponibile**: attivazione con provider rimandata dall'utente. Landing pubblica e nuovo portale in sviluppo non devono consentire invio verso email inesistente; moduli disabilitati. Non pubblicare alcun indirizzo elettronico personale senza consenso.
 - Resta necessario un test cookie/network reale per attestare cookie e headers effettivi, distinguendo analytics disattivati da dati tecnici di hosting e CDN; consultare ancora requisiti artt. 13/28 GDPR e normativa ePrivacy.

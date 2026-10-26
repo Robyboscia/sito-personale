@@ -85,3 +85,13 @@ La sezione **Consulenze** resta separatamente marcata «Ancora da costruire».
 - Fattori informativi: variabilità individuale/genetica, metabolismo epatico, alcuni farmaci, fumo, gravidanza; nessuna classificazione automatica del visitatore.
 - Fonti citate nella pagina: CDC/NIOSH (in genere circa 5–6 ore) e revisione scientifica `https://pmc.ncbi.nlm.nih.gov/articles/PMC5445139/` (circa 3–7 ore negli adulti, con variabilità anche maggiore).
 - Mantenere il calcolo senza arresto a mezzanotte e l'etichetta «quasi completamente smaltita» = meno del 5% della dose per il modello, non zero reale.
+
+## Dashboard visivo Diario PRO — 26 ottobre 2026
+**Richiesta approvata:** un risultato grafico comprensibile con tre grandi schede e un confronto fra settimane. Implementato solo sul ramo di sviluppo.
+- **Regolarità:** massima oscillazione fra orari di coricamento e risveglio, scala descrittiva 0–180 minuti. Intervalli editoriali <=45, 46–90 e >90 min, NON clinicamente validati; con meno di quattro notti appare 'Poche notti registrate'.
+- **Durata:** media stimata in ore e minuti, grafico 0–12 ore che NON rappresenta un obiettivo; asterisco e spiegazione quando mancano i dati sui risvegli.
+- **Risvegli:** numero notti con durata dei risvegli dichiarata / notti registrate, più 14 pallini per notti complete, parziali o non compilate. NON misura la continuità fisiologica.
+- **Trend:** due barre, prima e seconda settimana; freccia solo con almeno tre registrazioni per ciascuna settimana; descrive esclusivamente una variazione di durata stimata, non miglioramento/peggioramento.
+- **Demo:** un click mostra 14 notti chiaramente inventate, etichettate come demo anche nel report TXT. Non vengono salvate né inviate.
+- **Test:** 7/7 casi unitari superati. Il browser ha verificato il report full width, tre schede, 12/14 notti con risvegli riportati, due stime parziali, una media di circa 7 ore, incremento circa 47 minuti, rimozione e riapertura della demo.
+- **Resta da verificare:** iPhone reale, stampa e download end-to-end, revisione scientifica e privacy prima del rilascio. Nessun checkout attivo; main invariato.

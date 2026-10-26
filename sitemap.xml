@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://drrobertoboscia.com/</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://drrobertoboscia.com/</loc></url>
+  <url><loc>https://drrobertoboscia.com/chi-sono/</loc></url>
+  <url><loc>https://drrobertoboscia.com/assetto-biologico/</loc></url>
+  <url><loc>https://drrobertoboscia.com/laboratorio-del-sonno/</loc></url>
+  <url><loc>https://drrobertoboscia.com/laboratorio-del-sonno/diario/</loc></url>
+  <url><loc>https://drrobertoboscia.com/accademia/</loc></url>
+  <url><loc>https://drrobertoboscia.com/accademia/diario-del-sonno/</loc></url>
+  <url><loc>https://drrobertoboscia.com/accademia/luce-e-ritmo-circadiano/</loc></url>
+  <url><loc>https://drrobertoboscia.com/accademia/wearable-e-sonno/</loc></url>
+  <url><loc>https://drrobertoboscia.com/libro/</loc></url>
+  <url><loc>https://drrobertoboscia.com/shop/</loc></url>
+  <url><loc>https://drrobertoboscia.com/contatti/</loc></url>
 </urlset>

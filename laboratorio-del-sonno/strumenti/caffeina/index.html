@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calcolatore della Caffeina | Laboratorio del Sonno — Dott. Roberto Boscia</title>
+<meta name="description" content="Calcola scenari teorici di riduzione della caffeina da bevande, orari e ora di coricarsi.">
+<meta name="theme-color" content="#102d39">
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="../../../portale.css">
+<link rel="stylesheet" href="../strumenti.css">
+<script src="../strumenti.js" defer></script>
+</head>
+<body class="home-v2 sleep-app" data-tool="caffeina">
+<a class="home-skip" href="#contenuto">Vai al contenuto</a>
+<header class="home-header"><div class="home-header-inner">
+<a class="home-brand" href="../../../index.html" aria-label="Dott. Roberto Boscia — Homepage"><span class="home-brand-pre">Dott.</span> Roberto <em>Boscia</em><small>Farmacista · Divulgazione e benessere</small></a>
+<nav class="home-nav-desktop" aria-label="Aree del portale">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav>
+<details class="home-mobile-menu"><summary aria-label="Apri il menu">Menu <span aria-hidden="true">☰</span></summary>
+<nav aria-label="Menu mobile">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav></details></div></header>
+<main id="contenuto">
+<section class="st-head" aria-labelledby="tool-heading"><div class="home-wrap">
+<nav class="st-breadcrumb" aria-label="Percorso"><a href="../../../index.html">Home</a><span>/</span><a href="../../index.html">Laboratorio</a><span>/</span><span aria-current="page">Calcolatore della Caffeina</span></nav>
+<div class="st-heading"><div><p class="st-label">LABORATORIO DEL SONNO · STRUMENTO 02</p>
+<h1 id="tool-heading">Calcolatore <em>della Caffeina.</em></h1><p class="st-lede">Scopri quanta caffeina potrebbe essere ancora presente quando vai a dormire e a che ora il tuo corpo potrebbe averne smaltita quasi tutta. Non è una misurazione del sangue.</p><p class="st-head-note">I tuoi dati sono elaborati in questa pagina, senza account né invio al portale. I risultati sono educativi e orientativi, non diagnosi o piani di cura.</p></div>
+<div class="st-head-side" aria-hidden="true">½</div></div></div></section>
+<section class="st-workspace"><div class="home-wrap">
+
+<div class="st-grid">
+<div class="st-panel st-input-panel"><span class="st-tag">GRATUITO · SIMULAZIONE</span><h2>Quando bevi <em>caffeina?</em></h2>
+<p>Inserisci le bevande che hai preso <strong>oggi</strong> oppure quelle che consumi abitualmente in una <strong>giornata tipo</strong>. Non serve indicare una data. Puoi inserire fino a otto bevande; i mg sono stime che variano molto in base alla preparazione.</p>
+<form id="caff-form" novalidate>
+<div class="st-field"><label for="caff-bed">A che ora pensi di coricarti?</label><input type="time" id="caff-bed" value="23:00" required></div>
+<div id="caff-doses"></div>
+<div class="st-row"><button id="caff-add" class="st-button st-alt" type="button">+ Aggiungi una bevanda</button><button id="caff-example" class="st-button st-alt" type="button">Prova un esempio (80 mg alle 14:00)</button></div>
+<div class="st-note">Simuliamo una <strong>sola giornata, reale o abituale</strong>, senza chiederti una data. Se prevedi di dormire fra mezzanotte e le 05:59, lo consideriamo il mattino successivo alla giornata simulata: per esempio, una bevanda alle 00:30 precede un coricamento alle 01:00. Il calcolo dello smaltimento prosegue <strong>anche per uno o più giorni dopo mezzanotte</strong>. Non aggiungiamo automaticamente caffè di altre giornate: se domani ne bevi ancora, cambierà la quantità presente. Se un orario risulta dopo il coricamento previsto, ti chiediamo di ricontrollarlo.</div>
+<div class="st-note" id="caff-why-three">
+<strong>Perché facciamo tre calcoli diversi?</strong> Perché <strong>non tutti smaltiamo la caffeina alla stessa velocità</strong>. Nel caso rapido la quantità si dimezza ogni <strong>3 ore</strong>, nel caso intermedio ogni <strong>5 ore</strong>, nel caso lento ogni <strong>7 ore</strong>. Dipende soprattutto da come lavora il fegato, ma possono influire anche genetica, alcuni farmaci, fumo e condizioni come la gravidanza.
+<strong>Non sappiamo quale dei tre casi sia il tuo</strong>: li confrontiamo per non darti un solo orario apparentemente preciso. Sono esempi orientativi, non i limiti minimo e massimo possibili.
+</div>
+<div class="st-row" style="margin-top:20px"><button type="submit" class="st-button">Calcola i tre scenari ↗</button><button type="reset" class="st-button st-alt">Azzera</button></div>
+</form>
+<p id="caff-status" class="st-status" role="status" aria-live="polite"></p>
+</div>
+<aside class="st-panel"><h2>Quanto resta, <em>e fino a quando?</em></h2><div id="caff-result" class="st-result" aria-live="polite"></div>
+<div id="caff-actions" class="st-row st-no-print" hidden><button id="caff-print" type="button" class="st-button st-alt">Stampa / salva PDF</button></div></aside>
+</div>
+<div class="st-source-note"><strong>Che cosa significa “quasi tutta smaltita”?</strong> Nel calcolatore scegliamo come riferimento il momento in cui resta <strong>meno del 5% di ciascuna dose inserita</strong>: vuol dire che oltre il 95% è stato eliminato dal modello. Non possiamo prevedere l'istante in cui la caffeina raggiunge esattamente zero, né la velocità del tuo metabolismo. Mostriamo tre velocità possibili, non una previsione personalizzata: la caffeina impiega normalmente diverse ore a ridursi, con ampie differenze fra individui e condizioni. Il CDC/NIOSH indica generalmente circa 5–6 ore per dimezzarne la quantità; una revisione scientifica descrive negli adulti un intervallo frequente di circa 3–7 ore, ma sono possibili valori esterni a questi esempi. <a href="https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod6/11.html" target="_blank" rel="noopener noreferrer">Fonte CDC/NIOSH ↗</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5445139/" target="_blank" rel="noopener noreferrer">Revisione scientifica ↗</a>.</div>
+<div class="st-source-note"><strong>Perché conta anche se ti addormenti facilmente?</strong> La caffeina può modificare la durata e la continuità del sonno senza che tu percepisca necessariamente un peggioramento. Il rischio dipende da dose, orario e sensibilità individuale: studi con dosi elevate hanno osservato effetti anche a 6–12 ore dal riposo. <a href="https://pubmed.ncbi.nlm.nih.gov/24235903/" target="_blank" rel="noopener noreferrer">Studio sul consumo fino a 6 ore prima ↗</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39377163/" target="_blank" rel="noopener noreferrer">Studio su dosi, orari e sonno percepito ↗</a>.</div>
+
+<div class="st-source-note">Non è uno strumento medico diagnostico. Il sonno dipende da molti fattori: se i disturbi persistono, se hai forte sonnolenza, russamento con pause respiratorie osservate o problemi di sicurezza sul lavoro/alla guida, rivolgiti a un professionista sanitario competente. <a href="../../index.html">Torna al Laboratorio del Sonno ↗</a></div>
+</div></section></main>
+<footer class="home-footer"><div class="home-wrap"><div class="home-footer-row"><span>Dott. Roberto Boscia</span><a href="../../index.html">Torna al Laboratorio ↗</a></div><p>Versione prototipo nel ramo di sviluppo. Nessun dato sanitario viene trasmesso dal modulo a un server del portale. I contenuti richiedono revisione scientifica e privacy prima del rilascio pubblico.</p></div><nav class="portal-legal-links" aria-label="Informazioni legali" style="margin-top:25px;padding-top:16px;border-top:1px solid rgba(197,170,115,.25);display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center;font:13px/1.65 Arial,sans-serif;"><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../privacy/index.html">Privacy</a><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../cookie/index.html">Cookie e tecnologie locali</a></nav></footer>
+</body></html>

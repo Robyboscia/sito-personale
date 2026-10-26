@@ -2,6 +2,7 @@
 function toggleIncludes(btn) {
   const hidden = document.getElementById('includes-hidden');
   const label = btn.querySelector('.btn-label');
+  if (!hidden || !btn || !label) return;
   hidden.classList.toggle('expanded');
   btn.classList.toggle('open');
   label.textContent = hidden.classList.contains('expanded')
@@ -10,21 +11,33 @@ function toggleIncludes(btn) {
 
 // Header scroll
 const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+if (header) {
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+}
 
 // Mobile menu
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', navMenu.classList.contains('open'));
-});
-navMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navMenu.classList.remove('open'));
-});
+if (hamburger && navMenu) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', navMenu.classList.contains('open'));
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
 
+// Progressive enhancement: never crash when CDN/animation library is unavailable.
+// Rispetta la preferenza di accessibilità: contenuti subito visibili, senza animazioni.
+const prefersReducedMotion = typeof window.matchMedia === 'function' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion && typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
 // GSAP
 gsap.registerPlugin(ScrollTrigger);
 
@@ -140,3 +153,7 @@ gsap.from('.process-step', {
   scrollTrigger: { trigger: '.process-steps', start: 'top 80%', once: true },
   opacity: 0, y: 40, duration: 0.7, stagger: 0.2, ease: 'power2.out'
 });
+
+// Contatti: gestiti separatamente da contact-mailto.js.
+ // Questo file NON deve simulare un invio e NON deve confermare ricezioni.
+}

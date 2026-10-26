@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Turni &amp; Sonno | Laboratorio del Sonno — Dott. Roberto Boscia</title>
+<meta name="description" content="Pianificatore educativo per lavoratori su turni con calendario, intervalli fra turni ed esportazione.">
+<meta name="theme-color" content="#102d39">
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="../../../portale.css">
+<link rel="stylesheet" href="../strumenti.css">
+<script src="../strumenti.js" defer></script>
+</head>
+<body class="home-v2 sleep-app" data-tool="turnisti">
+<a class="home-skip" href="#contenuto">Vai al contenuto</a>
+<header class="home-header"><div class="home-header-inner">
+<a class="home-brand" href="../../../index.html" aria-label="Dott. Roberto Boscia — Homepage"><span class="home-brand-pre">Dott.</span> Roberto <em>Boscia</em><small>Farmacista · Divulgazione e benessere</small></a>
+<nav class="home-nav-desktop" aria-label="Aree del portale">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav>
+<details class="home-mobile-menu"><summary aria-label="Apri il menu">Menu <span aria-hidden="true">☰</span></summary>
+<nav aria-label="Menu mobile">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav></details></div></header>
+<main id="contenuto">
+<section class="st-head" aria-labelledby="tool-heading"><div class="home-wrap">
+<nav class="st-breadcrumb" aria-label="Percorso"><a href="../../../index.html">Home</a><span>/</span><a href="../../index.html">Laboratorio</a><span>/</span><span aria-current="page">Turni &amp; Sonno</span></nav>
+<div class="st-heading"><div><p class="st-label">LABORATORIO DEL SONNO · STRUMENTO 04</p>
+<h1 id="tool-heading">Turni <em>&amp; Sonno.</em></h1><p class="st-lede">Inserisci una settimana di lavoro, osserva gli intervalli fra turni e crea un promemoria orientativo delle opportunità di riposo. Non è un programma terapeutico né un certificato di conformità dei turni.</p><p class="st-head-note">I tuoi dati sono elaborati in questa pagina, senza account né invio al portale. I risultati sono educativi e orientativi, non diagnosi o piani di cura.</p></div>
+<div class="st-head-side" aria-hidden="true">7</div></div></div></section>
+<section class="st-workspace"><div class="home-wrap">
+
+<div class="st-grid">
+<div class="st-panel st-input-panel"><span class="st-tag st-pro">PROTOTIPO · NESSUN PAGAMENTO</span><h2>La tua settimana <em>di turni.</em></h2>
+<p>Puoi scegliere mattina, pomeriggio, notte, riposo o inserire orari personalizzati. I suggerimenti non sostituiscono il piano aziendale né un confronto medico per chi ha sonnolenza importante.</p>
+<form id="shift-form" novalidate>
+<div class="st-2col">
+<div class="st-field"><label for="shift-date">Primo giorno della settimana (facoltativo)</label><input type="date" id="shift-date"></div>
+<div class="st-field"><label for="shift-commute">Tempo di rientro a casa (minuti)</label><input type="number" min="0" max="180" value="30" step="5" id="shift-commute" required></div>
+</div>
+<div class="st-table-scroll"><table class="st-table shift-input-table"><thead><tr><th>Giorno</th><th>Tipo turno</th><th>Inizio</th><th>Fine</th></tr></thead><tbody id="shift-days"></tbody></table></div>
+<p class="st-help">Il turno notturno finisce automaticamente <strong>il giorno seguente</strong>. Gli orari sono quelli della tua giornata tipo e puoi cambiarli singolarmente.</p>
+<div class="st-row"><button class="st-button" type="submit">Analizza i turni ↗</button><button class="st-button st-alt" type="reset">Ricomincia</button></div>
+<div class="shift-demo-entry"><button id="shift-demo" type="button" class="st-button st-alt">Guarda una settimana di esempio ↗</button><small>Usa sette giorni inventati con mattina, pomeriggio, notte e riposo. Non utilizza né salva dati personali.</small></div>
+</form><p id="shift-status" class="st-status" role="status" aria-live="polite"></p>
+<div class="st-note st-warning">Il calcolo delle pause confronta solo gli orari digitati; <strong>non verifica l'applicabilità di una specifica disciplina contrattuale o legale</strong>, né spostamenti effettivi, reperibilità e straordinari. Se hai sonnolenza durante la guida o in attività rischiose, metti prima la sicurezza.</div>
+</div>
+<aside class="st-panel shift-preview-panel">
+ <span class="st-tag st-pro">IL RISULTATO</span>
+ <h2>La settimana, <em>senza decifrare tabelle.</em></h2>
+ <div class="shift-preview-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+ <p>Vedrai <strong>una linea delle 24 ore per ogni giorno</strong>, con i turni colorati e il passaggio della mezzanotte ben visibile.</p>
+ <p>Sotto troverai le pause fra i turni, eventuali sovrapposizioni e le finestre di riposo soltanto indicative.</p>
+ <p class="st-help">Niente valutazioni diagnostiche, niente obblighi contrattuali dedotti automaticamente.</p>
+</aside></div>
+<section class="st-panel shift-report" id="shift-report" aria-labelledby="shift-report-title" hidden>
+ <span class="st-tag st-pro">PANORAMICA DEI TURNI</span>
+ <h2 id="shift-report-title">La tua settimana, <em>a colpo d'occhio.</em></h2>
+ <p class="shift-report-intro">Ogni fascia colorata rappresenta un turno di lavoro inserito da te. Le parti non colorate non equivalgono automaticamente a ore di sonno.</p>
+ <p class="st-print-only">Turni &amp; Sonno — Report descrittivo — Dott. Roberto Boscia</p>
+ <div id="shift-result" class="st-result" aria-live="polite"></div>
+ <div id="shift-actions" class="st-row st-no-print shift-actions" hidden>
+  <button id="shift-print" type="button" class="st-button">Stampa / salva PDF</button>
+  <button id="shift-export" type="button" class="st-button st-alt">Esporta CSV</button>
+  <button id="shift-clear" type="button" class="st-button st-alt">Chiudi il report</button>
+ </div>
+</section>
+<div class="st-source-note"><strong>Riferimenti:</strong> il CDC/NIOSH discute sonnellini pianificati, gestione della caffeina, opportunità di riposo e sicurezza nel lavoro a turni. Le indicazioni generali non sono un piano individuale di adattamento circadiano. <a href="https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod9/05.html" target="_blank" rel="noopener noreferrer">Sonno dopo il turno notturno ↗</a> e <a href="https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod6/04.html" target="_blank" rel="noopener noreferrer">Preparazione al sonno ↗</a>.</div>
+
+<div class="st-source-note">Non è uno strumento medico diagnostico. Il sonno dipende da molti fattori: se i disturbi persistono, se hai forte sonnolenza, russamento con pause respiratorie osservate o problemi di sicurezza sul lavoro/alla guida, rivolgiti a un professionista sanitario competente. <a href="../../index.html">Torna al Laboratorio del Sonno ↗</a></div>
+</div></section></main>
+<footer class="home-footer"><div class="home-wrap"><div class="home-footer-row"><span>Dott. Roberto Boscia</span><a href="../../index.html">Torna al Laboratorio ↗</a></div><p>Versione prototipo nel ramo di sviluppo. Nessun dato sanitario viene trasmesso dal modulo a un server del portale. I contenuti richiedono revisione scientifica e privacy prima del rilascio pubblico.</p></div><nav class="portal-legal-links" aria-label="Informazioni legali" style="margin-top:25px;padding-top:16px;border-top:1px solid rgba(197,170,115,.25);display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center;font:13px/1.65 Arial,sans-serif;"><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../privacy/index.html">Privacy</a><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../cookie/index.html">Cookie e tecnologie locali</a></nav></footer>
+</body></html>

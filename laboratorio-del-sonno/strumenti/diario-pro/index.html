@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diario del Sonno PRO | Laboratorio del Sonno — Dott. Roberto Boscia</title>
+<meta name="description" content="Analisi avanzata orientativa del Diario del Sonno: regolarità, durata, confronti e report stampabile.">
+<meta name="theme-color" content="#102d39">
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="../../../portale.css">
+<link rel="stylesheet" href="../strumenti.css">
+<script src="../strumenti.js" defer></script>
+</head>
+<body class="home-v2 sleep-app" data-tool="diario-pro">
+<a class="home-skip" href="#contenuto">Vai al contenuto</a>
+<header class="home-header"><div class="home-header-inner">
+<a class="home-brand" href="../../../index.html" aria-label="Dott. Roberto Boscia — Homepage"><span class="home-brand-pre">Dott.</span> Roberto <em>Boscia</em><small>Farmacista · Divulgazione e benessere</small></a>
+<nav class="home-nav-desktop" aria-label="Aree del portale">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav>
+<details class="home-mobile-menu"><summary aria-label="Apri il menu">Menu <span aria-hidden="true">☰</span></summary>
+<nav aria-label="Menu mobile">
+<a href="../../../chi-sono/index.html">Chi sono</a><a href="../../../assetto-biologico/index.html">Metodo</a><a href="../../index.html" aria-current="page">Laboratorio</a><a href="../../../accademia/index.html">Accademia</a><a href="../../../libro/index.html">Il libro</a><a href="../../../shop/index.html">Progetti</a><a href="../../../contatti/index.html">Contatti</a>
+</nav></details></div></header>
+<main id="contenuto">
+<section class="st-head" aria-labelledby="tool-heading"><div class="home-wrap">
+<nav class="st-breadcrumb" aria-label="Percorso"><a href="../../../index.html">Home</a><span>/</span><a href="../../index.html">Laboratorio</a><span>/</span><span aria-current="page">Diario del Sonno PRO</span></nav>
+<div class="st-heading"><div><p class="st-label">LABORATORIO DEL SONNO · STRUMENTO 03</p>
+<h1 id="tool-heading">Diario del Sonno <em>PRO.</em></h1><p class="st-lede">Importa i dati già compilati nel Diario del Sonno, confronta le notti e crea un report descrittivo stampabile in PDF. Prototipo dimostrativo: nessun pagamento attivo.</p><p class="st-head-note">I tuoi dati sono elaborati in questa pagina, senza account né invio al portale. I risultati sono educativi e orientativi, non diagnosi o piani di cura.</p></div>
+<div class="st-head-side" aria-hidden="true">14</div></div></div></section>
+<section class="st-workspace"><div class="home-wrap">
+
+<div class="st-grid">
+<div class="st-panel st-input-panel"><span class="st-tag st-pro">PROTOTIPO PRO · ACCESSO DI PROVA GRATUITO</span><h2>Analizza le tue <em>14 notti.</em></h2>
+<p>Non devi riscrivere i dati. Puoi usare un CSV esportato dal <a href="../../diario/index.html">Diario del Sonno digitale</a> oppure caricare esplicitamente le schede salvate in questo browser.</p>
+<div class="st-field"><label for="pro-file">Importa un CSV esportato dal diario</label><input type="file" id="pro-file" accept=".csv,text/csv" aria-describedby="pro-file-note"><small id="pro-file-note">Formato CSV ufficiale con separatore «;». Il file viene letto soltanto nel browser e non caricato su un server. Dimensione massima 1 MB. <a href="../../../privacy/index.html">Informazioni privacy (bozza)</a>.</small></div>
+<div class="st-row"><button id="pro-local" class="st-button st-alt" type="button">Leggi le schede salvate su questo dispositivo</button><a href="../../diario/index.html" class="st-button st-alt">Apri il Diario</a></div>
+<div class="pro-demo-entry">
+  <p><strong>Vuoi vedere come funziona prima di inserire i tuoi dati?</strong></p>
+  <button type="button" id="pro-demo" class="st-button st-alt">Mostrami un report di esempio ↗</button>
+  <small>Utilizza 14 notti completamente inventate. Nessun dato personale viene richiesto o salvato.</small>
+</div>
+<p id="pro-status" class="st-status" role="status" aria-live="polite">Nessun diario ancora importato.</p>
+<div class="st-note st-warning"><strong>Nota sui dati mancanti:</strong> se nel diario non è stata indicata la durata dei risvegli, il report mantiene la dicitura «stima parziale». Non interpreta i minuti non dichiarati come zero e non attribuisce maggiore precisione ai risultati.</div>
+<div class="st-note">La versione PRO è in prova per verificare utilità e attendibilità. <strong>Non esiste ancora un checkout e non viene richiesto alcun pagamento.</strong></div>
+</div>
+<aside class="st-panel pro-help-panel" aria-label="Cosa potrai vedere nel report">
+  <div class="pro-help-graphic" aria-hidden="true">
+    <span class="pro-help-moon">◕</span>
+    <span class="pro-help-number">14</span>
+    <span class="pro-help-caption">NOTTI · UNA STORIA</span>
+  </div>
+  <p class="st-tag st-pro">IL RISULTATO</p>
+  <h2>Capire il sonno, <em>a colpo d'occhio.</em></h2>
+  <p>Tre indicatori visivi — <strong>orari, durata e completezza dei risvegli</strong> — più il confronto fra le due settimane. Poi tutti i dettagli, senza punteggi medici.</p>
+</aside>
+</div>
+<section id="pro-report" class="st-panel pro-report" aria-labelledby="pro-visual-title" hidden>
+  <div class="pro-report-head">
+    <span class="st-tag st-pro">IL TUO QUADRO VISIVO</span>
+    <h2 id="pro-visual-title">Il tuo sonno, <em>in un colpo d'occhio.</em></h2>
+    <p>Quattro viste per leggere il diario senza interpretazioni cliniche automatiche. I numeri provengono dalle notti registrate e possono contenere stime parziali.</p>
+  </div>
+  <p class="st-print-only">Report del Diario del Sonno — Dott. Roberto Boscia</p>
+  <div id="pro-result" class="st-result" aria-live="polite"></div>
+  <div id="pro-actions" class="st-row st-no-print pro-actions" hidden>
+    <button id="pro-print" type="button" class="st-button">Stampa / salva PDF</button>
+    <button id="pro-txt" type="button" class="st-button st-alt">Scarica report TXT</button>
+    <button id="pro-clear" type="button" class="st-button st-alt">Rimuovi i dati</button>
+  </div>
+</section>
+
+<div class="st-source-note">Non è uno strumento medico diagnostico. Il sonno dipende da molti fattori: se i disturbi persistono, se hai forte sonnolenza, russamento con pause respiratorie osservate o problemi di sicurezza sul lavoro/alla guida, rivolgiti a un professionista sanitario competente. <a href="../../index.html">Torna al Laboratorio del Sonno ↗</a></div>
+</div></section></main>
+<footer class="home-footer"><div class="home-wrap"><div class="home-footer-row"><span>Dott. Roberto Boscia</span><a href="../../index.html">Torna al Laboratorio ↗</a></div><p>Versione prototipo nel ramo di sviluppo. Nessun dato sanitario viene trasmesso dal modulo a un server del portale. I contenuti richiedono revisione scientifica e privacy prima del rilascio pubblico.</p></div><nav class="portal-legal-links" aria-label="Informazioni legali" style="margin-top:25px;padding-top:16px;border-top:1px solid rgba(197,170,115,.25);display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center;font:13px/1.65 Arial,sans-serif;"><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../privacy/index.html">Privacy</a><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../cookie/index.html">Cookie e tecnologie locali</a></nav></footer>
+</body></html>

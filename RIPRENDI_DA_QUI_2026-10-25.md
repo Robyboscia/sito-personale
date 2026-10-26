@@ -246,3 +246,8 @@ L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 
 - Pagina `privacy/index.html` e `cookie/index.html` su `main` aggiornate per nominare esplicitamente GitHub Pages e cdnjs/Cloudflare; documentazione di IP logs e retention ignota. Google Analytics rimane eliminato dal codice. Il modulo di contatto pubblico rimane sospeso.
 - Nel ramo **sviluppo-nuovo-portale** aggiornati anche `assetto-biologico/index.html`, `contact-mailto.js`, `contatti/index.html`: il modulo non è più attivabile (campi disabilitati e submit bloccato), non ci sono link mailto a recapito inesistente; i contenuti spiegano il blocco. Aggiornate anche `privacy/index.html` e `cookie/index.html` del ramo con titolare persona fisica, recapito postale provvisorio e hosting concreto.
 - **Nessuna casella creata né richiesta a un provider**. Per riattivare modulo bisogna: creare e collaudare indirizzo reale, poi aggiornare informativa, contatti e trattamento email. Per legal/privacy definitivi restano test runtime rete-cookie in browser pulito, retention GitHub/cdnjs e qualificazioni fornitori/transfer, conferma indirizzo postale completo, revisione specialistica.
+
+
+## 21. Conferma recapito postale e collaudo — 26 ottobre 2026
+- L'utente ha confermato espressamente il recapito **Via Siciliano 45, 84014 Nocera Inferiore (SA)**. Non è più una località/CAP presunta. I testi dello sviluppo sono stati adeguati; il sito pubblico già mostrava tale recapito.
+- Avviato collaudo su ramo `sviluppo-nuovo-portale`, senza pubblicare il portale. Da tenere distinta analisi statica e test logici eseguiti in isolamento da prove runtime reali su dispositivi/browser.

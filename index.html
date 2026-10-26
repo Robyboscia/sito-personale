@@ -2089,7 +2089,7 @@
           </div>
         </div>
 
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,3vw,2rem); font-weight:700; color:#0A1C52; margin-bottom:.4rem; line-height:1.2;">Prenota la tua valutazione</h3>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,3vw,2rem); font-weight:700; color:#0A1C52; margin-bottom:.4rem; line-height:1.2;">Richiedi informazioni sulla valutazione</h3>
         <p style="font-size:.88rem; color:#64748B; margin-bottom:.5rem;">Prima chiamata conoscitiva (15 min) gratuita — decidi solo dopo.</p>
 
         <!-- Prezzo -->
@@ -2102,22 +2102,31 @@
           <div class="form-row">
             <div class="form-group">
               <label for="name">Nome</label>
-              <input type="text" id="name" name="name" placeholder="Mario Rossi" required />
+              <input type="text" id="name" name="name" placeholder="Mario Rossi" autocomplete="name" maxlength="80" required />
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="mario@email.com" required />
+              <input type="email" id="email" name="email" placeholder="mario@email.com" autocomplete="email" maxlength="254" required />
             </div>
           </div>
           <div class="form-group">
             <label for="phone">Numero di telefono</label>
-            <input type="tel" id="phone" name="phone" placeholder="+39 333 000 0000" />
+            <input type="tel" id="phone" name="phone" placeholder="+39 333 000 0000" autocomplete="tel" maxlength="35" />
           </div>
           <div class="form-group">
-            <label for="message">Descrivi brevemente la tua situazione</label>
-            <textarea id="message" name="message" placeholder="Es: mi sveglio stanco, calo di energia nel pomeriggio, difficoltà di concentrazione…"></textarea>
+            <label for="message">Una domanda generale (facoltativa)</label>
+            <textarea id="message" name="message" maxlength="500" placeholder="Per esempio: vorrei conoscere come funziona la prima chiamata. Non inserire referti o informazioni sanitarie."></textarea>
           </div>
-          <button type="submit" class="form-submit">Prenota la valutazione →</button>
+          <p style="font-size:.81rem; line-height:1.7; color:#536b83; margin:1rem 0;">
+              <strong>Come funziona:</strong> questo modulo non invia dati dal sito. Prepara una bozza nella tua app di posta, che dovrai controllare e inviare tu.
+              Nome ed email sono necessari per rispondere; telefono e domanda sono facoltativi. Non inserire dati sanitari, diagnosi o referti.
+              Leggi <a href="/privacy/" style="text-decoration:underline;color:#1B3A8C;">Privacy</a> e <a href="/cookie/" style="text-decoration:underline;color:#1B3A8C;">Cookie</a>.
+            </p>
+            <button type="submit" class="form-submit">Prepara la richiesta via email →</button>
+            <p id="contact-form-status" role="status" aria-live="polite" style="font-size:.8rem; line-height:1.65; color:#1B3A8C; margin:.75rem 0;">Il messaggio sarà inviato solo dopo che avrai premuto «Invia» nella tua app di posta.</p>
+            <p style="font-size:.8rem; line-height:1.65; margin:.5rem 0 1rem;">
+              <a id="contact-direct-email" href="mailto:info@robertoboscia.it?subject=Informazioni%20Assetto%20Biologico" style="text-decoration:underline;color:#1B3A8C;">Oppure scrivi direttamente a info@robertoboscia.it</a>
+            </p>
           <p style="text-align:center; font-size:.75rem; color:#94A3B8; margin-top:.8rem; line-height:1.6;">
             Assetto Biologico™ non sostituisce esami clinici e non diagnostica malattie.<br>
             Via Attilio Barbarulo 60, Nocera Inferiore (SA) · info@robertoboscia.it
@@ -2138,6 +2147,10 @@
       <div class="footer-meta">
         <div>P.IVA: — · Ordine Farmacisti SA n. —</div>
         <div>© 2026 Roberto Boscia · Tutti i diritti riservati</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;">
+          <a href="/privacy/" style="color:#ead2a7;text-decoration:underline;">Privacy</a>
+          <a href="/cookie/" style="color:#ead2a7;text-decoration:underline;">Cookie e tecnologie locali</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -2145,15 +2158,13 @@
   <!-- STICKY MOBILE CTA BAR -->
   <div class="mobile-cta-bar" id="mobileCta">
     <a href="#form-contatto" class="mobile-cta-btn mobile-cta-primary">Prenota ora →</a>
-    <a href="tel:+39XXXXXXXXXX" class="mobile-cta-btn mobile-cta-phone">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-      Chiamami
-    </a>
+    <a href="mailto:info@robertoboscia.it?subject=Informazioni%20Assetto%20Biologico" class="mobile-cta-btn mobile-cta-phone">Scrivimi</a>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="contact-mailto.js" defer></script>
 
   <!-- STICKY MOBILE CTA — mostra dopo 300px scroll, nasconde vicino al form -->
   <script>
@@ -2175,32 +2186,6 @@
   })();
   </script>
 
-  <!-- GA4 — caricamento differito, non impatta PageSpeed -->
-  <script>
-  (function(){
-    var loaded = false;
-    var GA_ID = 'G-NKGHWHXYHZ';
-    function loadGA() {
-      if (loaded) return;
-      loaded = true;
-      var s = document.createElement('script');
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-      s.async = true;
-      document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', GA_ID, {
-        anonymize_ip: true,
-        cookie_flags: 'SameSite=None;Secure'
-      });
-    }
-    ['click','scroll','keydown','touchstart'].forEach(function(e){
-      document.addEventListener(e, loadGA, {once:true, passive:true});
-    });
-    setTimeout(loadGA, 3000);
-  })();
-  </script>
+
 </body>
 </html>

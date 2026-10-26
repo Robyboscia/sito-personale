@@ -101,3 +101,15 @@ Tutte le correzioni di questa fase rimangono sul ramo `sviluppo-nuovo-portale`. 
 - Il contenuto distingue l'opt-in `localStorage` del Diario dalle richieste HTTP a hosting/risorse esterne e dall'invio email manuale `mailto:`; l'informativa cookie non implementa un banner fittizio.
 - Non sono ancora noti i cookie e i log realmente presenti sul dominio di produzione; `raw.githack.com` è un host di anteprima esterno e NON rappresenta l'hosting definitivo.
 - Tutti i dettagli e i dati da chiedere al titolare in `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`. Nessuna attestazione di conformità, nessuna modifica al ramo pubblico.
+
+## 7. Audit SEO e funzionale — 26 ottobre 2026
+
+**Completata la revisione statico-funzionale dei 21 HTML di sito; modifiche soltanto in `sviluppo-nuovo-portale`.** Il rapporto dettagliato, inclusi scenari di test, numeri, limiti e interventi, è in **`AUDIT_SEO_FUNZIONALE_2026-10-26.md`**.
+
+- **Sitemap aggiornata a 12 URL assoluti canonici**, omessi nove documenti `noindex`; eliminate date `lastmod` non dimostrabili e `priority/changefreq` inutili. `robots.txt` già corretto.
+- Metadati Open Graph e social completati; 12/12 URL `canonical` = `og:url` = sitemap. Dati strutturati essenziali e coerenti: `Person/WebSite/WebPage` homepage, `Person/WebPage` landing, `BreadcrumbList` nei tre articoli Accademia.
+- Verificati link/asset locali e ID HTML: nessun link locale mancante o ID duplicato rilevato; HTML con un `h1`, titolo, descrizione; immagini con `alt`. Rimangono alcuni `width/height` HTML mancanti da valutare dopo conferma dimensioni.
+- Script: 8/8 sintatticamente validi; irrobustito `script.js` (fallback se librerie GSAP esterne assenti, guardie elementi DOM, aggiornamento `aria-expanded` nel menu).
+- Test logici isolati: 6/6 Caffeina, 7/7 Diario PRO, 8/8 Diario digitale; Check-up e Turni già testati nei turni precedenti. Smoke test desktop dei percorsi principali su anteprima GitHub. **Alcune descrizioni restituite dal browser automatico erano non aderenti al codice; sono state escluse dalle conclusioni.**
+- Link/risorse esterne non certificate da questo audit; verificare disponibilità della copertina remota e di `mentalpro.it` (fetch esterno ha indicato errore 526), HTTPS, CDN, redirect, PageSpeed e Search Console **sul dominio definitivo**.
+- **Bloccanti di lancio invariati:** privacy legale/hosting/log/cookie, invio email backend opzionale, QA reale Safari iPhone, claim scientifici e professionali. **`main` intatto, nessun deploy.**

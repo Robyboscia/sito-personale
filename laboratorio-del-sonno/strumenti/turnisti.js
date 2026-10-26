@@ -224,7 +224,11 @@ function render(days,isDemo=false){
  metric(metrics,"Pause fra turni inferiori a 11 ore",short.length);
  const takeaway=add(overview,"div","shift-takeaway"+
   (short.length||conflicts.length?" shift-takeaway-alert":""));
- const title=overlaps.length?
+ const title=work.length===0?
+  "Nessun turno di lavoro inserito":
+  work.length===1?
+  "Un turno inserito: non abbiamo una pausa da confrontare":
+  overlaps.length?
   "Ci sono turni che si sovrappongono":
   short.length?
   "Alcune pause fra turni meritano attenzione":
@@ -234,7 +238,7 @@ function render(days,isDemo=false){
  add(takeaway,"strong","",title);
  let desc="Il calcolo descrive soltanto gli orari registrati e non certifica la conformità contrattuale né la qualità del sonno.";
  if(short.length)desc="Hai "+short.length+" intervall"+(short.length===1?"o":"i")+
-  " inferiore/i a 11 ore tra turni successivi. È un segnale organizzativo da verificare, non una diagnosi né una valutazione legale.";
+  " inferior"+(short.length===1?"e":"i")+" a 11 ore tra turni successivi. È un segnale organizzativo da verificare, non una diagnosi né una valutazione legale.";
  else if(!work.length)desc="Nessun turno di lavoro inserito. Segna gli orari della settimana per ottenere un confronto.";
  add(takeaway,"p","",desc);
  renderTimeline(result,days);

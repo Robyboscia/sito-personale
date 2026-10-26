@@ -84,15 +84,31 @@ function analyze(){
   else if(d.type==="m"||d.startAbs%1440<600)from=d.startAbs-540;
   else from=d.endAbs+commute+45;
   const until=from+450;
+  d.windowStart=from;d.windowEnd=until;
   d.window="Finestra indicativa da proteggere: dalle "+T.time(from)+" ("+relativeDay(from,d.day)+")"+
    " alle "+T.time(until)+" ("+relativeDay(until,d.day)+"). "+
    "È uno spazio teorico di 7 h 30 min, non il sonno previsto.";
+ }
+ // Una finestra non può essere presentata come disponibile se intercetta
+ // un altro turno già inserito (es. notte seguita subito da mattina).
+ for(const d of days){
+  if(d.type==="off")continue;
+  const conflict=days.find(other=>other!==d&&other.type!=="off"&&
+    other.startAbs<d.windowEnd&&other.endAbs>d.windowStart);
+  if(conflict){
+   d.conflictDay=conflict.day;
+   d.window="Finestra ipotetica NON DISPONIBILE: dalle "+T.time(d.windowStart)+
+    " ("+relativeDay(d.windowStart,d.day)+") alle "+T.time(d.windowEnd)+
+    " ("+relativeDay(d.windowEnd,d.day)+"). Si sovrappone al turno di "+
+    conflict.label+" ("+conflict.start+"–"+conflict.end+"). "+
+    "Non considerarla un'opportunità reale di riposo.";
+  }
  }
  return days;
 }
 function render(days){
  current=days;clear(result);
- const work=days.filter(d=>d.type!=="off"),short=work.filter(d=>d.rest!==null&&d.rest<660);
+ const work=days.filter(d=>d.type!=="off"),short=work.filter(d=>d.rest!==null&&d.rest<660),conflicts=work.filter(d=>d.conflictDay);
  add(result,"div","st-tag","CALENDARIO DESCRITTIVO · SETTE GIORNI");
  add(result,"h3","st-result-title","La tua settimana di turni");
  const stats=add(result,"div","st-metric-grid");
@@ -112,6 +128,7 @@ function render(days){
  add(result,"h3","st-result-title","Possibili finestre di riposo");
  for(const d of days)item(result,d.label+(d.type==="off"?" · riposo":" · "+d.start+"–"+d.end),d.window);
  if(short.length)note(result,short.length+" intervallo/i di riposo sono inferiori a 11 ore o si sovrappongono. È soltanto un avviso organizzativo: non equivale a una verifica legale o contrattuale dei turni.",true);
+ if(conflicts.length)note(result,conflicts.length+" finestra/e illustrative si sovrappongono a turni già indicati. Sono contrassegnate come NON DISPONIBILI: non puoi contare su queste finestre per riposare. Verifica l'organizzazione dei turni.",true);
  note(result,"Le finestre da 7 h 30 min sono esempi di tempo da proteggere, non prescrizioni personalizzate. Non considerano reperibilità, traffico, pause, famiglia, straordinari o cambi dell'ora.");
  actions.hidden=false;
  status("shift-status","Piano calcolato. Puoi stamparlo o esportare il riepilogo in CSV.");

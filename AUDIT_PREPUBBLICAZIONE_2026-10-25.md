@@ -87,3 +87,10 @@ Tutte le correzioni di questa fase rimangono sul ramo `sviluppo-nuovo-portale`. 
 **Ancora indispensabili per finalizzare:** conferma titolare e indirizzo, provider hosting/CDN/mail, nomi e durata log/cookie, conservazione email, basi giuridiche, dati sanitari e art. 9 ove pertinente, trasferimenti extra-SEE, review legale e test browser reali. Vedi `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`.
 
 **Non pubblicare l'informativa come definitiva e non pubblicare il nuovo portale senza la verifica. `main` invariato.**
+
+### Verifica statica delle bozze e dei link — 26 ottobre 2026
+- Inventario attuale: **21 file HTML di sito**, contando le nuove pagine Privacy e Cookie (escluso il file di verifica Google).
+- Verificate a blocchi tutte le 21 pagine: link locali `href` e `src` risolti nell'albero Git, senza risorse mancanti; nessun ID HTML ripetuto; chiusura base di `html` e `footer` presente.
+- Le 19 pagine preesistenti presentano link a Privacy e Cookie nel footer. Le due nuove informative sono intercollegate e contengono `robots=noindex,follow` e avviso visibile che sono bozze.
+- Contesti specifici: nota Privacy nel modulo Assetto Biologico™, accanto al salvataggio opzionale nel Diario e vicino all'importazione CSV del Diario PRO.
+- **Metodo:** verifica statica sul repository, NON validazione formale W3C, NON browser Safari iPhone e NON inventario cookie dinamico. Prima di pubblicare restano i test di rete e l'identificazione effettiva dei fornitori.

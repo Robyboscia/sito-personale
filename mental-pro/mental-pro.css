@@ -1,0 +1,49 @@
+/* Mental Pro — pagina autonoma, riutilizza le basi tipografiche di Progetti. */
+.mental-pro-page .pr-hero h1{max-width:760px}
+.mental-pro-page .pr-hero-layout{grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr)}
+.mental-pro-page .pr-hero-visual{isolation:isolate}
+.mental-pro-page .mp-hero-packshot{
+  position:relative;z-index:2;display:block;
+  width:auto;height:auto;max-width:min(77%,350px);max-height:365px;
+  object-fit:contain;filter:drop-shadow(0 22px 28px rgba(0,0,0,.38));
+}
+.mental-pro-page .pr-hero-index{gap:18px}
+.mental-pro-page .mp-principles{background:#102632;color:#f4f0e8}
+.mental-pro-page .mp-principles>.home-wrap{padding-block:clamp(70px,8vw,115px)}
+.mental-pro-page .mp-principles h2{
+  max-width:880px;color:#f2e9da;
+  font:500 clamp(38px,5.3vw,70px)/1.08 Georgia,'Times New Roman',serif;
+  letter-spacing:-.042em;margin:16px 0 22px;
+}
+.mental-pro-page .mp-principles h2 em{color:#edc996}
+.mental-pro-page .mp-principles-lede{
+  max-width:800px;color:#c4d1d2;font-size:clamp(16px,1.5vw,19px);line-height:1.7;margin:0 0 40px;
+}
+.mental-pro-page .mp-principles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.mental-pro-page .mp-principles-grid article{
+  border:1px solid rgba(237,201,150,.30);border-top:3px solid #d5ab72;
+  padding:clamp(23px,2.6vw,35px);
+  background:linear-gradient(155deg,rgba(235,217,186,.08),rgba(28,64,77,.22));
+  min-width:0;
+}
+.mental-pro-page .mp-principles-grid article span{
+  color:#e0bd87;font-weight:700;font-size:11px;letter-spacing:.15em;
+}
+.mental-pro-page .mp-principles-grid article h3{
+  color:#f4e7d5;font:500 clamp(27px,2.8vw,37px)/1.2 Georgia,'Times New Roman',serif;
+  margin:20px 0 12px;
+}
+.mental-pro-page .mp-principles-grid article p{color:#c3cfd1;line-height:1.75;font-size:15px;margin:0}
+.mental-pro-page .pr-footer-cta h2{color:#21313c}
+@media(max-width:900px){
+  .mental-pro-page .mp-principles-grid{grid-template-columns:1fr}
+  .mental-pro-page .mp-principles-grid article{padding:26px}
+}
+@media(max-width:760px){
+  .mental-pro-page .pr-hero-layout{grid-template-columns:1fr}
+  .mental-pro-page .pr-hero-visual{max-width:340px}
+  .mental-pro-page .mp-hero-packshot{max-height:295px}
+}
+@media(prefers-reduced-motion:reduce){
+  .mental-pro-page *, .mental-pro-page *::before,.mental-pro-page *::after{scroll-behavior:auto!important}
+}

@@ -62,3 +62,19 @@ La sezione **Consulenze** resta separatamente marcata «Ancora da costruire».
 - Avviso scientifico: caffeina tardiva può influenzare il sonno anche quando l'utente sente di addormentarsi e riposare bene. Non attribuire soglie individuali di sicurezza né sostenere che un espresso singolo abbia gli stessi effetti delle dosi elevate degli studi. Fonti: https://pubmed.ncbi.nlm.nih.gov/24235903/ e https://pubmed.ncbi.nlm.nih.gov/39377163/.
 - Test matematici eseguiti e superati per scenari che terminano **il giorno seguente** e **due giorni dopo**, con 80 mg alle 14:00, una bevanda alle 23:30 prima del sonno alle 01:00 e una bevanda alle 00:30 prima del sonno alle 01:00.
 - La logica `giornata tipo` non identifica date vere: documentare sempre il criterio di collocazione degli orari, senza spacciarlo per un log cronologico verificato.
+
+## Revisione e collaudo — 26 ottobre 2026
+
+**Intervento eseguito senza modificare il sito pubblico (`main`).** Nel ramo `sviluppo-nuovo-portale` sono stati migliorati tutti e quattro gli strumenti:
+- **Check-up del Sonno:** dopo aver modificato una risposta, il vecchio risultato scompare finché non viene generata nuovamente la mappa.
+- **Calcolatore della Caffeina:** un cambio di orario, dose o bevanda invalida il vecchio report. Aggiunto il pulsante **«Prova un esempio (80 mg alle 14:00)»**: compila una sola bevanda alle 14:00, coricamento alle 23:00 ed esegue il calcolo in modo esplicito. È anche un test accessibile senza manipolare il selettore nativo del browser.
+- **Diario PRO:** un tentativo di nuova importazione CSV/locale rimuove il vecchio report prima di mostrare il risultato o l'errore; questo evita report apparentemente riferiti al nuovo file ma in realtà appartenenti al precedente.
+- **Turni & Sonno:** se cambi un turno vengono rimossi vecchi risultati e CSV precedenti; gli orari errati sono evidenziati. Le finestre notturne riportano «giorno precedente / giorno del turno / giorno seguente». Se l'ipotetica finestra di riposo si sovrappone a un altro turno registrato, viene dichiarata **NON DISPONIBILE**, anziché proposta come praticabile.
+
+**Test di calcolo (isolati dal browser) eseguiti in questo aggiornamento:**
+- Diario PRO: **6/6 superati** per importazione CSV, fasce facoltative, verifica dei calcoli, rifiuto giorni duplicati, salvataggio locale e compatibilità minuti esatti storici.
+- Turnisti: **4/4 superati** per notte seguita da mattina, mattine consecutive, pomeriggio prima del turno mattutino e notte isolata; sia i conflitti sia i giorni relativi risultano riconosciuti.
+
+**Limite onesto della verifica visiva:** il browser automatizzato ha mostrato la pagina caffeina, il pulsante di rimozione e il valore 80 mg, ma non è riuscito a manipolare in modo affidabile il selettore nativo `input[type=time]`. Di conseguenza **non ha verificato un calcolo completo sulla pagina** né il flusso Turnisti in quella sessione. Non è una prova di malfunzionamento Safari; restano da effettuare il collaudo reale su iPhone e i click/export completi. Il nuovo esempio precompilato rende possibile un controllo rapido del calcolo senza usare il selettore degli orari.
+
+**Restano da completare:** test reali Safari iPhone per tutti e quattro gli strumenti, stampa e salvataggio PDF, scaricamento CSV/TXT, importazione da diario reale, revisione scientifica/legale e privacy. **Non pubblicare ancora.**

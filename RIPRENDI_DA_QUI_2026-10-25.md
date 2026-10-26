@@ -86,3 +86,15 @@ Documento autorevole: `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`.
 6. Chiedere all'utente di scegliere la prossima funzionalità da revisionare **solo se non emerge già una richiesta concreta**. In caso contrario, procedere direttamente.
 
 **Ultimo intervento dell'utente prima di questo checkpoint:** «comincia a salvare tutte ste modifiche, non vorrei che finisse la chat per spazio». Il codice è già nei commit GitHub: l'obiettivo di questo documento e del backup è garantire che si possa riprendere senza dipendere dalla cronologia della chat.
+
+## 7. Aggiornamento dopo il checkpoint — 26 ottobre 2026
+
+L'utente ha scritto «Andiamo avanti» e il lavoro è ripreso dalla verifica dei quattro strumenti già realizzati.
+
+- Codici di Check-up, Caffeina, Diario PRO e Turni: modificati per nascondere i **risultati precedenti** quando cambiano gli input, evitando calcoli non aggiornati.
+- Diario PRO: **sei test d'importazione superati**; il vecchio report viene rimosso se si tenta di importare altri dati.
+- Turni: finestre di riposo con specificazione chiara del giorno relativo, messaggi **«NON DISPONIBILE»** per finestre incompatibili con altri turni, evidenziazione dei campi di orario errati; **quattro casi testati con esito positivo**.
+- Caffeina: aggiunto un **esempio rapido interattivo** (80 mg alle ore 14:00, coricamento alle ore 23:00) con ricalcolo tramite pulsante, per rendere la verifica più semplice anche quando il selettore nativo di orario è difficile da automatizzare.
+- La verifica tramite browser automatizzato **non è riuscita a modificare `input[type=time]`**, quindi NON si può affermare che l'intero flusso caffeina e turni sia stato ricontrollato end-to-end. Servono prove manuali reali su Safari iPhone.
+- Ulteriori dettagli, limiti e test in `laboratorio-del-sonno/strumenti/ROADMAP.md`.
+- **Resta vietata qualsiasi modifica a `main` senza esplicita approvazione.** L'attuale sito pubblico è separato dal ramo di sviluppo.

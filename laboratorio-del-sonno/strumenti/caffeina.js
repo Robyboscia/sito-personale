@@ -47,6 +47,12 @@ $("caff-add").addEventListener("click",()=>{
  newDose("15:00",80);invalidateResult();
 });
 $("caff-form").addEventListener("reset",()=>setTimeout(resetUI,0));
+$("caff-example").addEventListener("click",()=>{
+ clear(doses);counter=0;
+ newDose("14:00",80);
+ $("caff-bed").value="23:00";
+ $("caff-form").requestSubmit();
+});
 /* Ogni bevanda appartiene alla giornata simulata. Se il sonno è fra
    mezzanotte e le 05:59 lo consideriamo nella notte successiva;
    le bevande fra le 00 e quell'ora si riferiscono alla stessa notte.

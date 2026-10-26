@@ -95,3 +95,14 @@ La sezione **Consulenze** resta separatamente marcata «Ancora da costruire».
 - **Demo:** un click mostra 14 notti chiaramente inventate, etichettate come demo anche nel report TXT. Non vengono salvate né inviate.
 - **Test:** 7/7 casi unitari superati. Il browser ha verificato il report full width, tre schede, 12/14 notti con risvegli riportati, due stime parziali, una media di circa 7 ore, incremento circa 47 minuti, rimozione e riapertura della demo.
 - **Resta da verificare:** iPhone reale, stampa e download end-to-end, revisione scientifica e privacy prima del rilascio. Nessun checkout attivo; main invariato.
+
+## Revisione Check-up con indicatori positivi e donut — 26 ottobre 2026
+**Richiesta approvata:** correggere il risultato che con buone risposte mostrava barre troppo corte e diciture negative («Poco segnalato»), e concludere con un grafico a torta/ciambella di quattro parti uguali.
+- Nuova lettura per area: tre domande con valori Mai/quasi=0, A volte=1, Spesso=2; somma grezza 0–6 conservata solo nel codice. La lunghezza grafica viene INVERTITA: `(6 - somma) / 6`, quindi meno difficoltà riferite = barra più piena. Non esibire questo numero come indice di salute.
+- Quattro livelli REDAZIONALI, non cutoff clinici: 0–1 «Area abbastanza favorevole»; 2–3 «Qualche aspetto da osservare»; 4–5 «Più elementi da rivedere»; 6 «Area da attenzionare». Colori petrolio/ocra/arancio/rame, accompagnati sempre da etichette testuali.
+- Le spiegazioni sono specifiche per Regolarità, Ambiente, Abitudini ed Esperienza percepita. Collegamenti a Diario, Calcolatore Caffeina e articoli realmente esistenti.
+- Grafico finale donut: 4 quarti uguali, con colori derivati da ciascun livello; NON rappresenta quote di un totale, pesi differenti, punteggi o percentuali di salute. Legenda testuale completa accessibile. Sintesi dinamica basata sulla quantità di aree per livello, sempre qualificata come lettura delle risposte.
+- Report ora a tutta larghezza sotto il questionario per una migliore leggibilità mobile. Anteprima di un esempio inventato tramite pulsante senza alterare risposte compilate; ben etichettata come dimostrativa.
+- Al cambiamento di qualsiasi risposta o reset, il report precedente scompare. Mantenute stampa/PDF dal browser, messaggi di errore e nessuna trasmissione dei dati al server.
+- TEST LOGICI: 4 scenari (tutti favorevoli, tutti critici, fasce miste e prevalentemente favorevoli) con corrispondenza livelli, barre invertite, grafico a quarti uguali e sintesi; input incompleti rifiutati: superati. Test manuale iPhone e stampa PDF ancora da confermare.
+- **Non pubblicare** senza QA e revisione scientifica/privacy. Modificato esclusivamente il ramo sviluppo-nuovo-portale.

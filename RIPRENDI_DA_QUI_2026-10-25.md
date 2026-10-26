@@ -122,3 +122,13 @@ L'utente ha approvato un risultato grafico d'impatto. Implementato e salvato nel
 Il report reale è stato aperto nel browser di anteprima con il pulsante dimostrativo (risposte inventate). Confermati: etichetta DEMO; Regolarità favorevole con barra piena; 3 aree favorevoli / 1 area da osservare; ciambella con quattro quarti uguali, testo di sintesi non clinico e legenda completa. Test sul desktop; manca controllo effettivo Safari iPhone. Risultati dettagliati in `laboratorio-del-sonno/strumenti/ROADMAP.md`.
 
 Tutte le modifiche risiedono nel ramo `sviluppo-nuovo-portale`, non nel sito pubblico `main`.
+
+## 11. Turni & Sonno: settimana visiva e demo — 26 ottobre 2026
+L'utente ha chiesto «andiamo avanti» dopo il Check-up, e il lavoro è proseguito sull'ultimo strumento già creato: **Turni & Sonno**.
+- Modificato `laboratorio-del-sonno/strumenti/turnisti/index.html`: risultato a tutta larghezza sotto il modulo, demo settimanale inventata e pulsante Chiudi il report; metadata title corretto.
+- Modificato `laboratorio-del-sonno/strumenti/turnisti.js`: timeline 24 ore/7 giorni (8 se l'ultima notte prosegue), conteggi, separazione delle ore oltre mezzanotte, condizioni per pause ravvicinate, sovrapposizioni e finestre fuori dalla settimana. Demo con 5 turni/40 ore e una pausa di 8 ore. CSV e stampa conservati.
+- Modificato `laboratorio-del-sonno/strumenti/strumenti.css`: design responsive, input riorganizzati in card sotto i 560 px, timeline e report stampabile.
+- Test unitari 7/7 superati, test interattivo browser conferma 5 turni, 2 giorni di riposo segnati, 40 ore, 1 pausa sotto 11 ore, notte divisa tra Giorno 5 e 6, messaggio «finisce turno precedente», download CSV e chiusura report senza perdere input.
+- Test browser **desktop** soltanto: ancora necessario verificare Safari iPhone reale e l'effettiva qualità del PDF/CSV esportato. Regole scientifiche/legali sempre indicative, non diagnosi o verifica di CCNL.
+- Tutto salvato sul ramo `sviluppo-nuovo-portale`. Non modificato `main`. Il progetto Wearable Decoder rimane rinviato alla revisione dei materiali formativi.
+- Dettagli in `laboratorio-del-sonno/strumenti/ROADMAP.md`.

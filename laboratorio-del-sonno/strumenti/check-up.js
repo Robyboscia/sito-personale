@@ -163,7 +163,8 @@ function renderDonut(parent,areas){
  const section=add(parent,"section","check-summary");
  section.setAttribute("aria-labelledby","check-summary-title");
  add(section,"span","check-summary-eyebrow","QUADRO COMPLESSIVO");
- add(section,"h3","", "Le quattro aree, insieme.");
+ const chartTitle=add(section,"h3","", "Le quattro aree, insieme.");
+ chartTitle.id="check-summary-title";
  const layout=add(section,"div","check-donut-layout");
  const wrap=add(layout,"div","check-donut-wrap");
  const chart=add(wrap,"div","check-donut");

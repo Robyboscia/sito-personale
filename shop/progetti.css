@@ -58,6 +58,25 @@ body.projects-page{background:#101e29;color:#f6f1e7}
 .projects-page .pr-feature-copy>p.pr-feature-lede{font-size:19px;color:#324b56}
 .projects-page .pr-feature-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:33px}
 .projects-page .pr-feature-actions small{color:#727b7b;font-size:12px}
+/* MENTAL PRO — prodotto reale: packshot e prova commerciale senza numeri inventati */
+.projects-page .pr-product-packshot{
+ position:relative;z-index:2;display:block;width:auto;max-width:min(83%,440px);
+ max-height:395px;object-fit:contain;filter:drop-shadow(0 16px 28px rgba(0,0,0,.42));
+}
+.projects-page .pr-product-facts{display:flex;flex-wrap:wrap;gap:8px 9px;margin:10px 0 0}
+.projects-page .pr-product-facts span{
+ border:1px solid rgba(131,99,50,.35);background:rgba(255,255,255,.35);
+ color:#5c462b;padding:8px 10px;font:700 10px/1.45 Arial,sans-serif;letter-spacing:.07em;
+}
+.projects-page .pr-price-link{
+ color:#725027;font-weight:700;font-size:14px;line-height:1.5;
+ text-decoration:underline;text-underline-offset:5px;
+}
+.projects-page .pr-price-link:hover{color:#332316}
+@media(max-width:600px){
+ .projects-page .pr-product-packshot{max-width:min(77%,340px);max-height:245px}
+ .projects-page .pr-product-facts span{font-size:9px}
+}
 /* BOOK — single beautiful ivory strip linking to the complete book page */
 .projects-page .pr-book{background:#f8f4ec;color:#172d3c}
 .projects-page .pr-book-layout{display:grid;grid-template-columns:minmax(0,1.24fr) minmax(220px,.76fr);gap:clamp(60px,9vw,130px);align-items:center;padding-block:100px 108px}

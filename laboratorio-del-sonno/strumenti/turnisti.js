@@ -31,11 +31,25 @@ function dayLabel(base,i){
  d.setDate(d.getDate()+i);
  return d.toLocaleDateString("it-IT",{weekday:"short",day:"2-digit",month:"2-digit"});
 }
+function relativeDay(abs,turnDay){
+ const offset=Math.floor(abs/1440)-(turnDay-1);
+ if(offset===-1)return "giorno precedente";
+ if(offset===0)return "giorno del turno";
+ if(offset===1)return "giorno seguente";
+ if(offset===2)return "due giorni dopo";
+ return offset<0?Math.abs(offset)+" giorni prima":offset+" giorni dopo";
+}
 function analyze(){
  const commute=T.number($("shift-commute").value,0,180);
- if(!Number.isInteger(commute))throw Error("Inserisci da 0 a 180 minuti per il rientro a casa.");
+ if(!Number.isInteger(commute)){
+  $("shift-commute").setAttribute("aria-invalid","true");$("shift-commute").focus();
+  throw Error("Inserisci da 0 a 180 minuti per il rientro a casa.");
+ }
  const date=$("shift-date").value;
- if(date&&!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(date))throw Error("La data iniziale non è valida.");
+ if(date&&!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(date)){
+  $("shift-date").setAttribute("aria-invalid","true");$("shift-date").focus();
+  throw Error("La data iniziale non è valida.");
+ }
  const days=[];
  for(const [i,tr] of [...body.querySelectorAll("tr")].entries()){
   const type=tr.querySelector("select").value;
@@ -47,10 +61,15 @@ function analyze(){
    continue;
   }
   const a=T.parseTime(times[0].value),b=T.parseTime(times[1].value);
-  if(!Number.isFinite(a)||!Number.isFinite(b)||a===b)
+  if(!Number.isFinite(a)||!Number.isFinite(b)||a===b){
+   times.forEach(field=>field.setAttribute("aria-invalid","true"));times[0].focus();
    throw Error("Nel giorno "+(i+1)+" l'inizio e la fine del turno devono essere orari validi e diversi.");
+  }
   const duration=T.forward(a,b);
-  if(duration>960)throw Error("Il turno del giorno "+(i+1)+" supera 16 ore: verifica il giorno di fine turno.");
+  if(duration>960){
+   times.forEach(field=>field.setAttribute("aria-invalid","true"));times[0].focus();
+   throw Error("Il turno del giorno "+(i+1)+" supera 16 ore: verifica il giorno di fine turno.");
+  }
   days.push({day:i+1,label,type,start:times[0].value,end:times[1].value,
    startAbs:i*1440+a,endAbs:i*1440+a+duration,duration,rest:null});
  }
@@ -64,8 +83,10 @@ function analyze(){
   if(d.type==="n"||crossesMidnight)from=d.endAbs+commute+45;
   else if(d.type==="m"||d.startAbs%1440<600)from=d.startAbs-540;
   else from=d.endAbs+commute+45;
-  d.window="Finestra indicativa da proteggere: "+T.time(from)+"–"+T.time(from+450)+
-   ". È uno spazio teorico di 7 h 30 min, non il sonno previsto.";
+  const until=from+450;
+  d.window="Finestra indicativa da proteggere: dalle "+T.time(from)+" ("+relativeDay(from,d.day)+")"+
+   " alle "+T.time(until)+" ("+relativeDay(until,d.day)+"). "+
+   "È uno spazio teorico di 7 h 30 min, non il sonno previsto.";
  }
  return days;
 }
@@ -102,8 +123,12 @@ function invalidateResult(){
   status("shift-status","Turni modificati: premi «Analizza i turni» per aggiornare il piano.");
  }
 }
-$("shift-form").addEventListener("input",invalidateResult);
-$("shift-form").addEventListener("change",invalidateResult);
+function onEdited(event){
+ if(event.target?.removeAttribute)event.target.removeAttribute("aria-invalid");
+ invalidateResult();
+}
+$("shift-form").addEventListener("input",onEdited);
+$("shift-form").addEventListener("change",onEdited);
 $("shift-form").addEventListener("submit",event=>{
  event.preventDefault();
  try{render(analyze())}catch(e){status("shift-status",e.message,true)}

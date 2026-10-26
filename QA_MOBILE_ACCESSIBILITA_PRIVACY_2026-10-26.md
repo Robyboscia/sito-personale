@@ -76,3 +76,24 @@ Non aggiungere banner per finta, né dichiarare cookie `0` e assenza di tracciam
 5. **Completamento legale** (fornitori, retention, recapito postale completo, casella email valida, trasferimenti e consulenza competente) prima di definire definitive le informative.
 
 **Gate invariato:** il nuovo portale resta sul ramo di sviluppo; nulla da questa fase autorizza copia o merge in `main`.
+
+
+## 26/10/2026 — Post-pubblicazione: tentativo audit rete/cookie e iPhone
+
+**Origine:** dopo il rilascio autorizzato del nuovo portale pubblico, l'utente ha chiesto esplicitamente «fallo» in riferimento a (1) prova su iPhone fisico, (2) ispezione tecnica dei cookie e richieste di rete. Il precedente testo «gate invariato, sito ancora in sviluppo» si riferiva a uno stato superato: il portale è stato pubblicato su `main` il 26/10/2026.
+
+**Effettuato:**
+- Ispezione tramite browser remoto sul vero dominio `https://drrobertoboscia.com/`, sessione documentata: https://agent.tinyfish.ai/runs/6642a91b-55e2-4f1d-8760-784283e63988 (20 passaggi, stato completed).
+- HTML/DOM visibile homepage: immagini remote `www.dormirefacile.com/images/book_cover.webp` e `mentalpro.it/images/product.webp` e link a `mentalpro.it`. Nessun script Google Analytics, gtag, Meta Pixel o iframe rilevato nella homepage; non dedurre da questo l'assenza globale di richieste HTTP.
+- Revisione statica di 37 sorgenti `html/js/css` sul `main`: nelle pagine del portale non sono emerse chiamate applicative a `fetch`, `XMLHttpRequest`, `sendBeacon`, `document.cookie` o tracker comuni; il Diario usa `localStorage` opzionale (e il Diario PRO può leggerlo su azione esplicita), non un upload server. Questa analisi per pattern non è un HAR o inventario browser.
+- **Altri fornitori di rete già esplicitati**: la pagina Assetto Biologico™ carica GSAP e ScrollTrigger da `cdnjs.cloudflare.com` (non presente nella homepage), e le immagini del libro/Mental Pro usano host separati. GitHub Pages registra IP per sicurezza secondo documentazione GitHub https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages .
+- Verificato nel codice live GitHub che **entrambe** le informative `privacy/index.html` e `cookie/index.html` menzionano già esplicitamente `mentalpro.it`, oltre a `www.dormirefacile.com` e `cdnjs.cloudflare.com`; nessuna modifica aggiuntiva necessaria. Il codice `main` è stato aggiornato da altre modifiche successive al rilascio; recuperare sempre HEAD fresco prima di scrivere.
+- Font self-hosted nel portale; homepage meta viewport presente. Nessuna prova che il CSS sia privo di overflow a 390px.
+
+**Limiti non superati dal browser remoto:**
+- NO accesso a DevTools Network (headers `Set-Cookie`, domini richiesti, tracce HAR, cookie HttpOnly, header CSP, CORS).
+- NO accesso a `document.cookie`, pannelli Application/Storage o `localStorage` prima/dopo l'uso.
+- NO modifica verificabile di viewport a 390px e nessuna prova touch su iPhone reale/Safari/WebKit; impossibile controllare un iPhone fisico dall'istanza ChatGPT.
+- NO inventario cookie con nome, dominio, scadenza; NO conclusione «0 cookie», «GDPR completamente conforme», «nessun tracciamento possibile»; niente banner CMP finché non vi siano tracker non tecnici che lo richiedano. Un banner assente non prova cookie assenti. Fonte: https://www.garanteprivacy.it/faq/Cookie .
+
+**Residuo minimo per chiudere:** prova manuale reale Safari/iPhone, meglio con screenshot, e acquisizione HAR + Storage/Cookies da un browser con DevTools accessibili. Senza tali evidenze questa porzione dell'audit resta **parziale** anche se il codice statico è favorevole.

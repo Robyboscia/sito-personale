@@ -98,3 +98,12 @@ L'utente ha scritto «Andiamo avanti» e il lavoro è ripreso dalla verifica dei
 - La verifica tramite browser automatizzato **non è riuscita a modificare `input[type=time]`**, quindi NON si può affermare che l'intero flusso caffeina e turni sia stato ricontrollato end-to-end. Servono prove manuali reali su Safari iPhone.
 - Ulteriori dettagli, limiti e test in `laboratorio-del-sonno/strumenti/ROADMAP.md`.
 - **Resta vietata qualsiasi modifica a `main` senza esplicita approvazione.** L'attuale sito pubblico è separato dal ramo di sviluppo.
+
+## 8. Cruscotto visivo Diario PRO — 26 ottobre 2026
+L'utente ha approvato un risultato grafico d'impatto. Implementato e salvato nel ramo sviluppo-nuovo-portale.
+- File HTML: laboratorio-del-sonno/strumenti/diario-pro/index.html — report full width e pulsante per esempio con 14 notti inventate.
+- File JS: laboratorio-del-sonno/strumenti/diario-pro.js — modello descrittivo, tre schede (regolarità/durata/dati risvegli), freccia di andamento fra settimane, gestione notti incomplete, etichetta demo nel TXT.
+- File CSS: laboratorio-del-sonno/strumenti/strumenti.css — cruscotto dark teal, card avorio, 14 pallini, due barre, responsive e stampa.
+- Nessun punteggio clinico: soglie di regolarità solo editoriali, nessuna valutazione di salute; ore stimate con asterisco quando le informazioni sui risvegli sono mancanti.
+- Test matematici 7/7 superati; test browser interattivo riuscito per demo, rimozione e riapertura. Mancano QA reale iPhone, esportazione e stampa end-to-end.
+- Main/pubblico invariato. Riferimenti dettagliati nel file laboratorio-del-sonno/strumenti/ROADMAP.md.

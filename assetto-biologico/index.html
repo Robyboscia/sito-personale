@@ -610,6 +610,76 @@
     .closing-form-box .contact-form input:focus,
     .closing-form-box .contact-form textarea:focus { border-color: #1B3A8C; box-shadow: 0 0 0 3px rgba(27,58,140,.1); }
 
+    /* FASCIA DI POSIZIONAMENTO: risposta diretta + differenziazione */
+    .decision-strip {
+      background: #fff;
+      color: #0a1c52;
+      border-top: 1px solid rgba(27,58,140,.12);
+      border-bottom: 1px solid rgba(27,58,140,.12);
+      padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.25rem, 4vw, 2.5rem);
+    }
+    .decision-strip-inner { max-width: 1180px; margin: 0 auto; }
+    .decision-strip-eyebrow {
+      color: #845a1f;
+      font: 700 .75rem/1.4 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin: 0 0 .7rem;
+    }
+    .decision-strip h2 {
+      max-width: 890px;
+      font: 700 clamp(2.25rem, 4.5vw, 4.2rem)/1.04 'Cormorant Garamond', Georgia, serif;
+      color: #0a1c52;
+      letter-spacing: -.02em;
+      margin: 0 0 .9rem;
+    }
+    .decision-strip h2 em { color: #1b3a8c; font-weight: 600; }
+    .decision-strip-intro {
+      max-width: 780px;
+      color: #405068;
+      font: 400 clamp(.98rem, 1.35vw, 1.1rem)/1.7 'Plus Jakarta Sans', sans-serif;
+      margin: 0 0 2rem;
+    }
+    .decision-strip-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+    .decision-step {
+      min-width: 0;
+      border: 1px solid #dce3f0;
+      border-top: 4px solid #c9923a;
+      background: linear-gradient(180deg,#f9fbff,#f1f5fd);
+      border-radius: 8px;
+      padding: clamp(1.35rem, 2.2vw, 2rem);
+      box-shadow: 0 4px 18px rgba(13,34,96,.04);
+    }
+    .decision-step-number {
+      display: block;
+      color: #7c561f;
+      font: 700 .72rem/1.5 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: .12em;
+      margin-bottom: 1.3rem;
+    }
+    .decision-step-number span { color: #9ba9bc; padding: 0 .25rem; }
+    .decision-step h3 {
+      color: #10265d;
+      font: 700 clamp(1.65rem, 2.2vw, 2.15rem)/1.08 'Cormorant Garamond', Georgia, serif;
+      margin: 0 0 .8rem;
+    }
+    .decision-step p {
+      color: #354660;
+      font: 400 .94rem/1.7 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      overflow-wrap: break-word;
+    }
+    @media (max-width: 860px) {
+      .decision-strip-grid { grid-template-columns: 1fr; gap: .85rem; }
+      .decision-step { padding: 1.4rem; }
+      .decision-step-number { margin-bottom: .55rem; }
+    }
+    @media (max-width: 480px) {
+      .decision-strip { padding-block: 3rem; }
+      .decision-strip h2 { font-size: clamp(2.2rem, 10vw, 3.1rem); }
+      .decision-strip-intro { margin-bottom: 1.5rem; }
+    }
+
     /* STATS BAR */
     .stats-bar {
       background: var(--navy-mid);
@@ -1458,7 +1528,31 @@
     </svg>
   </section>
 
-  <!-- STATS BAR: contatori di esperienza, persone seguite e disponibilità commerciale sospesi finché non documentati/verificati. -->
+  <!-- DIRECT RESPONSE + DIFFERENZIAZIONE: alternativa A + D ai contatori provvisori -->
+  <section class="decision-strip" aria-labelledby="decision-strip-title">
+    <div class="decision-strip-inner">
+      <p class="decision-strip-eyebrow">PRIMA DI UN ALTRO TENTATIVO</p>
+      <h2 id="decision-strip-title">Prima di provare ancora, <em>cambia la domanda.</em></h2>
+      <p class="decision-strip-intro">Più integratori, più routine, più numeri non significano automaticamente più chiarezza. Ecco da dove preferisco cominciare.</p>
+      <div class="decision-strip-grid">
+        <article class="decision-step">
+          <span class="decision-step-number" aria-hidden="true">01 <span>/</span> BASTA TENTATIVI</span>
+          <h3>Hai già provato abbastanza.</h3>
+          <p>Un altro integratore. Un'altra routine. L'ennesimo consiglio. Prima di aggiungere qualcosa, guardiamo che cosa hai già tentato e quali informazioni hai raccolto.</p>
+        </article>
+        <article class="decision-step">
+          <span class="decision-step-number" aria-hidden="true">02 <span>/</span> OLTRE I NUMERI</span>
+          <h3>Un punteggio non sei tu.</h3>
+          <p>Il numero sul wearable è una stima, non un verdetto. E anche un esame ha bisogno di contesto: nessun singolo dato racconta tutta la tua situazione.</p>
+        </article>
+        <article class="decision-step">
+          <span class="decision-step-number" aria-hidden="true">03 <span>/</span> UNA DIREZIONE</span>
+          <h3>Prima la chiarezza. Poi le decisioni.</h3>
+          <p>Distinguiamo ciò che sappiamo, ciò che stiamo solo ipotizzando e ciò che merita un approfondimento medico. Senza diagnosi improvvisate né promesse miracolose.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- SELF-CHECK -->
   <section class="self-check">

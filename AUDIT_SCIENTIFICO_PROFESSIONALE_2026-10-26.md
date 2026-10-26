@@ -110,3 +110,9 @@ Commit: `a8f7073b4071bb2242e9ac57adc43a0ef90759b2`.
 L'utente ha chiarito che le statistiche numeriche originarie erano esclusivamente **segnaposto di layout**, non affermazioni reali da verificare. Di conseguenza, il problema non è «documentare 500 persone seguite» ma **non pubblicare cifre inventate**.
 
 È stata scelta e implementata la combinazione copywriting di direct response **A + D**, rimpiazzando i contatori con tre promesse editoriali limitate a ciò che la pagina può sostenere: 1) smettere di accumulare tentativi senza contesto, 2) non trasformare gli score dei wearable o singoli esami in verdetti, 3) privilegiare chiarezza e approfondimento medico quando opportuno. La modifica è nel ramo sviluppo al commit `924e3e6b3054645d9bd49c19c031ac8a98cfdc75`; la struttura è responsive e senza numeri inventati. Restano da testare resa su browser mobile e protocollo concreto delle consulenze prima del lancio.
+
+## Chiusura operativa dei numeri provvisori nella landing — 26 ottobre 2026
+
+Dopo ulteriore verifica diretta del file Assetto Biologico™, i numeri di confronto e scarsità residui **€1.800+** («Valore totale») e **massimo 6 nuove valutazioni al mese** erano ancora nel markup. Sono stati eliminati **solo nel ramo sviluppo**, commit `f46bbed013c5995c768e98a99bef4d012dfa179e`. Il prezzo proposto **€497**, la prima chiamata di **15 min** e **due follow-up** sono rimasti invariati, senza assumerne una conferma commerciale definitiva. Il modulo commerciale resta disabilitato, ora anche a livello di tutti e quattro i campi, non soltanto sul pulsante.
+
+**Unica prova sociale sensibile ancora presente:** una citazione attribuita a «Imprenditore, 49 anni — paziente di Roberto Boscia». L'autenticità e l'autorizzazione alla pubblicazione non sono state verificate. Va confermata dall'interessato oppure eliminata prima del lancio; non presentarla come testimonianza verificata. Non serve riprogettare l'offerta già presente nel sito.

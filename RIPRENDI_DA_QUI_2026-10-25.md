@@ -204,3 +204,12 @@ L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 
 - **Attenzione:** il report del browser automatizzato comprendeva affermazioni sbagliate circa slider nel Check-up e banner cookie inesistente: non considerarle prove. Il codice reale usa tre radio per domanda nel Check-up e non contiene un banner cookie finché non sia giustificato.
 - I link esterni (copertina da dormirefacile.com, mentalpro.it) richiedono verifica in una vera connessione prima del rilascio. Mancano test iPhone/Safari, Lighthouse/Web Vitals, Search Console/redirect HTTPS sul dominio e review legale della privacy.
 - NON fare merge su `main` né submit sitemap dal sito live senza autorizzazione. Le modifiche al vecchio sito pubblico non devono essere pubblicate implicitamente.
+
+
+## 16. Continuazione audit SEO: metadati e immagini (26 ottobre 2026)
+- Ripreso il lavoro leggendo il repository e la versione attuale del ramo di sviluppo, **senza modificare main**, DNS o sito pubblico.
+- Confermata sitemap con 12 URL indicizzabili, robots con direttiva Sitemap e 9 pagine protette da noindex. I 12 documenti indicizzabili sono stati ricontrollati: title, description, canonical, og:url e og:image presenti, canonical = og:url.
+- Individuate tre immagini locali della landing Assetto Biologico senza dimensioni HTML; letto il contenuto binario originale dal repository per verificare le misure reali. Corrette le immagini: `foto-roberto-boscia-casual.jpg` 1023×1537, `foto-roberto-boscia.jpg` 1024×1535 (2 usi). Modifica nella landing, commit `de2615f19aaf872ad149f035ccb2a15a844cbece`.
+- Le quattro occorrenze di `https://www.dormirefacile.com/images/book_cover.webp` restano senza misure, perché non ancora verificabili. Non attribuire loro una dimensione a intuito.
+- Aggiornato `AUDIT_SEO_FUNZIONALE_2026-10-26.md` con queste verifiche.
+- **Residui:** test Safari iPhone, test reali su host dopo pubblicazione autorizzata, privacy e cookie definitivi, disponibilità risorse remote e PageSpeed. La versione live non è stata modificata.

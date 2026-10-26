@@ -132,7 +132,7 @@
     const first=names.length?form.elements.namedItem(names[0]):null;
     if(first) {
       first.focus({preventScroll:true});
-      first.scrollIntoView({behavior:"smooth",block:"center",inline:"nearest"});
+      first.scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"center",inline:"nearest"});
     }
   }
 

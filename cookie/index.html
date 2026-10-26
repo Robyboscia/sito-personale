@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cookie e tecnologie locali — Dott. Roberto Boscia | Bozza</title>
+<meta name="description" content="Bozza sulle tecnologie locali del portale: cookie, memoria del Diario del Sonno e risorse esterne. Verifiche ancora necessarie.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#102d39">
+<link rel="stylesheet" href="../portale.css">
+<style>
+.cookie-page{background:#edf2eb;color:#1b3e46}
+.cookie-page .ck-hero{background:linear-gradient(125deg,#133441,#335d55);border-bottom:5px solid #caab79;color:#f9f5e9;padding:43px 0 64px}
+.cookie-page .ck-hero h1{font:500 clamp(43px,6vw,76px)/1.1 Georgia,serif;letter-spacing:-.045em;max-width:850px;margin:22px 0}
+.cookie-page .ck-hero h1 em{color:#e6c891}
+.cookie-page .ck-hero p{color:#caddd4;font-size:16px;line-height:1.8;max-width:790px}
+.cookie-page .ck-label{font-size:11px;letter-spacing:.16em;font-weight:800;color:#edca91}
+.cookie-page .ck-body{max-width:900px;margin:0 auto;padding:42px 0 85px}
+.cookie-page .ck-draft{border-left:5px solid #b4864a;background:#f7ead4;color:#55442b;padding:20px 24px;margin:0 0 31px}
+.cookie-page .ck-draft strong{font-size:15px}
+.cookie-page .ck-draft p{font-size:14px;line-height:1.7;margin:8px 0 0;color:#685742}
+.cookie-page .ck-body section{padding:0 0 29px;margin:0 0 32px;border-bottom:1px solid #c3d3c8}
+.cookie-page .ck-body h2{font:500 clamp(28px,3.8vw,43px)/1.16 Georgia,serif;letter-spacing:-.03em;margin:0 0 18px;color:#21484f}
+.cookie-page .ck-body p,.cookie-page .ck-body li{font-size:15px;line-height:1.85;color:#496468}
+.cookie-page .ck-body a{color:#2c6c67;text-underline-offset:4px}
+.cookie-page .ck-body ul{padding-left:23px}
+.cookie-page .ck-body li+li{margin-top:10px}
+.cookie-page .ck-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:21px 0}
+.cookie-page .ck-card{background:#f9faf4;border:1px solid #d2dfd6;border-top:4px solid #669487;padding:22px}
+.cookie-page .ck-card strong{display:block;font:500 23px Georgia,serif;color:#285654;margin-bottom:7px}
+.cookie-page .ck-card p{font-size:13px;line-height:1.7;margin:0}
+.cookie-page .ck-card:last-child{border-top-color:#b28b57}
+.cookie-page .ck-list{display:grid;gap:11px}
+.cookie-page .ck-service{display:grid;grid-template-columns:minmax(0,.4fr) minmax(0,1fr);gap:16px;padding:18px 20px;background:#f9faf4;border:1px solid #d3ded4}
+.cookie-page .ck-service strong{color:#214f4e;font-size:15px}
+.cookie-page .ck-service p{margin:0;font-size:13px}
+.cookie-page .ck-bottom{padding:22px;background:#dcebe1;border-left:4px solid #568574}
+.cookie-page .ck-bottom p{margin:0}
+@media(max-width:700px){.cookie-page .ck-body{width:calc(100% - 36px)}.cookie-page .ck-cards{grid-template-columns:1fr}.cookie-page .ck-service{grid-template-columns:1fr;gap:6px}.cookie-page .ck-hero{padding:31px 0 48px}}
+</style>
+</head>
+<body class="home-v2 cookie-page">
+<a class="home-skip" href="#contenuto">Vai al contenuto</a>
+<header class="home-header"><div class="home-header-inner"><a class="home-brand" href="../index.html" aria-label="Dott. Roberto Boscia — Homepage"><span class="home-brand-pre">Dott.</span> Roberto <em>Boscia</em><small>Farmacista · Divulgazione e benessere</small></a>
+<nav class="home-nav-desktop" aria-label="Aree del portale"><a href="../chi-sono/index.html">Chi sono</a><a href="../consulenze/index.html">Consulenze</a><a href="../assetto-biologico/index.html">Metodo</a><a href="../laboratorio-del-sonno/index.html">Laboratorio</a><a href="../accademia/index.html">Accademia</a><a href="../libro/index.html">Il libro</a><a href="../shop/index.html">Progetti</a><a href="../contatti/index.html">Contatti</a></nav>
+<details class="home-mobile-menu"><summary aria-label="Apri il menu">Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Menu mobile"><a href="../chi-sono/index.html">Chi sono</a><a href="../consulenze/index.html">Consulenze</a><a href="../assetto-biologico/index.html">Metodo</a><a href="../laboratorio-del-sonno/index.html">Laboratorio</a><a href="../accademia/index.html">Accademia</a><a href="../libro/index.html">Il libro</a><a href="../shop/index.html">Progetti</a><a href="../contatti/index.html">Contatti</a></nav></details>
+</div></header>
+<main id="contenuto">
+<section class="ck-hero"><div class="home-wrap"><p class="ck-label">TRASPARENZA · STRUMENTI DEL BROWSER</p><h1>Cookie, memoria locale <em>e altri strumenti.</em></h1><p>Non tutto ciò che viene salvato sul telefono è un cookie, e non tutti i cookie servono a tracciare le persone. Qui distinguiamo le tecnologie effettivamente presenti nel codice da quelle ancora da verificare.</p></div></section>
+<div class="ck-body">
+<div class="ck-draft" role="note"><strong>Documento preparatorio — 26 ottobre 2026, NON ancora definitivo.</strong><p>Descrive il ramo di sviluppo. Il sito pubblico attuale non è stato modificato. Prima del rilascio dobbiamo verificare in una sessione reale le richieste di rete, i cookie emessi da hosting e servizi esterni e la configurazione del dominio definitivo.</p></div>
+<section><h2>1. Cookie e memoria locale: qual è la differenza?</h2>
+<div class="ck-cards"><div class="ck-card"><strong>Cookie</strong><p>Piccoli dati che un sito o un suo fornitore può memorizzare nel browser e, in determinate circostanze, ritrasmettere ai server. Alcuni servono al funzionamento; altri potrebbero servire per statistiche o profilazione.</p></div>
+<div class="ck-card"><strong>LocalStorage</strong><p>Uno spazio nel browser utilizzato dal Diario del Sonno <strong>soltanto se scegli di salvare le schede</strong>. Non è un cookie e, per come è programmato lo strumento, le schede non vengono caricate automaticamente su un server del portale.</p></div></div>
+<p>Le regole sui cookie e sugli altri strumenti di tracciamento dipendono dall'uso concreto. Un'operazione tecnicamente simile può richiedere informativa e, in alcune circostanze, consenso preventivo.</p></section>
+<section><h2>2. Che cosa abbiamo trovato nel nuovo portale?</h2>
+<div class="ck-list">
+<div class="ck-service"><strong>Diario del Sonno</strong><p><strong>Memoria locale facoltativa:</strong> quando spunti la scelta di salvataggio, il browser conserva il diario con la chiave tecnica <code>roberto-boscia.sleep-diary.v1</code>. Disattivando il salvataggio o cancellando tutte le schede puoi eliminare i dati locali. Non è un sistema di monitoraggio pubblicitario.</p></div>
+<div class="ck-service"><strong>Diario PRO e altri calcolatori</strong><p>Il Diario PRO può leggere i dati già conservati nel browser <strong>solo dopo la tua azione</strong>. Il Check-up, il Calcolatore Caffeina e Turni &amp; Sonno effettuano i calcoli nella pagina; i loro script esaminati non eseguono richieste di invio dei valori a un server del portale.</p></div>
+<div class="ck-service"><strong>Google Analytics</strong><p>Nel <strong>ramo di sviluppo</strong> lo script GA4 precedentemente inserito nella pagina Assetto Biologico™ è stato disattivato. Non abbiamo inserito un banner per raccogliere consensi a un servizio che qui non è attivato. Il sito pubblico attuale ha ancora il codice precedente fino a eventuale pubblicazione autorizzata.</p></div>
+<div class="ck-service"><strong>Hosting e sicurezza</strong><p>Il fornitore che eroga il sito può utilizzare cookie strettamente tecnici o raccogliere log per funzionamento e sicurezza. <strong>Il provider e l'elenco dei cookie realmente presenti devono essere verificati.</strong> Questa bozza non li dichiara assenti.</p></div>
+<div class="ck-service"><strong>Animazioni della landing</strong><p>La pagina Assetto Biologico™ carica librerie JavaScript da <code>cdnjs.cloudflare.com</code>. Il browser effettua quindi richieste verso tale dominio; devono essere verificati eventuali cookie, localizzazione e informative pertinenti.</p></div>
+<div class="ck-service"><strong>Copertina del libro</strong><p>In alcune pagine la copertina è caricata direttamente da <code>www.dormirefacile.com</code>. Anche un'immagine remota comporta una richiesta al server che la ospita; il trattamento tecnico va valutato.</p></div>
+</div></section>
+<section><h2>3. Perché non compare un banner di consenso?</h2><p>Un banner non è obbligatorio solo per il fatto che esiste un sito web. Se vengono utilizzati esclusivamente cookie o strumenti strettamente tecnici, il Garante prevede comunque un'adeguata informazione, ma il consenso preventivo per tali cookie non è normalmente richiesto. Diversamente, gli strumenti non tecnici che richiedono consenso devono essere bloccati prima della scelta dell'utente.</p>
+<p><strong>Questa non è una conclusione definitiva per il portale:</strong> prima della pubblicazione serve una verifica del comportamento reale delle pagine. Se vengono trovati tracciatori non tecnici, installeremo un meccanismo di consenso effettivo con scelta libera e possibilità di modifica, oppure elimineremo quei tracciatori.</p>
+<p>Non consideriamo lo scorrimento, il semplice proseguimento della navigazione o l'attesa di alcuni secondi come consenso automatico.</p></section>
+<section><h2>4. Come gestire i dati salvati nel browser</h2><ul>
+<li><strong>Diario digitale:</strong> usa l'opzione di salvataggio per decidere se conservare le 14 schede; il pulsante per cancellare tutti i dati rimuove anche la copia locale prevista dallo strumento.</li>
+<li><strong>Browser:</strong> puoi eliminare i dati del sito dalle impostazioni di Safari, Chrome o del browser che utilizzi. La procedura varia a seconda del dispositivo.</li>
+<li><strong>CSV o file scaricati:</strong> cancellare i dati del sito non elimina automaticamente i file che hai esportato o inviato manualmente via email.</li>
+<li><strong>Funzioni condividi/email:</strong> queste passano dalle app o dai servizi da te scelti. Controlla sempre destinatari e contenuti.</li></ul></section>
+<section><h2>5. Contatti e verifiche prima del rilascio</h2><p>Per informazioni sulla protezione dei dati puoi scrivere a <a href="mailto:info@robertoboscia.it">info@robertoboscia.it</a>. La <a href="../privacy/index.html">pagina generale Privacy</a> descrive i trattamenti noti, i diritti e le informazioni che dobbiamo ancora completare prima della pubblicazione.</p><div class="ck-bottom"><p><strong>Verifiche aperte:</strong> nome dell'hosting, elenco di cookie con nome/finalità/dominio/scadenza, eventuali servizi esterni, possibili trasferimenti internazionali, durata dei log, necessità di consenso e scelta su analytics. Non abbiamo inventato nomi di cookie o tempi di durata non verificati.</p></div>
+<p>Riferimenti: <a href="https://www.garanteprivacy.it/faq/Cookie" target="_blank" rel="noopener noreferrer">FAQ cookie del Garante</a> e <a href="https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9677876" target="_blank" rel="noopener noreferrer">Linee guida del 10 giugno 2021</a>.</p></section>
+</div>
+</main>
+<footer class="home-footer"><div class="home-wrap"><div class="home-footer-row"><span>Dott. Roberto Boscia</span><a href="../index.html">Torna alla homepage ↗</a></div><p>Bozza nel ramo di sviluppo · <a href="../privacy/index.html">Privacy generale</a> · <a href="../contatti/index.html">Contatti</a>.</p></div></footer>
+</body>
+</html>

@@ -116,3 +116,9 @@ L'utente ha approvato un risultato grafico d'impatto. Implementato e salvato nel
 - Non generare un punteggio medico complessivo o percentuali di salute: donut con quarti uguali perché le quattro aree non costituiscono porzioni di una grandezza unica. Tutte le fasce sono scelte editoriali non validate clinicamente.
 - Test del codice/risultati per risposte favorevoli, critiche, miste: eseguiti. Resta collaudo manuale iPhone e stampa.
 - I riferimenti e la regola del quinto progetto Wearable Decoder restano invariati. Sito pubblico `main` intatto.
+
+## 10. Test browser Check-up positivo — 26 ottobre 2026
+
+Il report reale è stato aperto nel browser di anteprima con il pulsante dimostrativo (risposte inventate). Confermati: etichetta DEMO; Regolarità favorevole con barra piena; 3 aree favorevoli / 1 area da osservare; ciambella con quattro quarti uguali, testo di sintesi non clinico e legenda completa. Test sul desktop; manca controllo effettivo Safari iPhone. Risultati dettagliati in `laboratorio-del-sonno/strumenti/ROADMAP.md`.
+
+Tutte le modifiche risiedono nel ramo `sviluppo-nuovo-portale`, non nel sito pubblico `main`.

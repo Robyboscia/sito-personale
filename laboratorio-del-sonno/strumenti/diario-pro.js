@@ -148,7 +148,7 @@ function overviewGraphic(parent,model,data,isDemo){
  hero.setAttribute("aria-label","Riepilogo visivo del diario");
  if(isDemo)add(hero,"div","pro-demo-flag","ESEMPIO DIMOSTRATIVO · DATI INVENTATI");
  const heading=add(hero,"div","pro-dashboard-intro");
- add(heading,"span","pro-dashboard-overline","IL TUO SONNO IN 14 NOTTI");
+ add(heading,"span","pro-dashboard-overline","IL TUO SONNO · FINO A 14 NOTTI");
  add(heading,"h3","","Tre segnali. Un quadro più chiaro.");
  add(heading,"p","","Sono confronti descrittivi basati sui dati compilati, non voti, diagnosi o valutazioni mediche.");
  const trio=add(hero,"div","pro-signal-grid");
@@ -196,10 +196,10 @@ function overviewGraphic(parent,model,data,isDemo){
  const outcome=add(header,"div","pro-trend-outcome pro-trend-"+model.trendType);
  add(outcome,"span","pro-trend-arrow",model.trendSymbol);
  add(outcome,"strong","",model.trendLabel);
- if(model.difference!==null){
+ if(model.enoughTrend&&model.difference!==null){
   add(outcome,"small","",
    (model.difference>=0?"+":"−")+changeLabel(model.difference)+" di sonno medio stimato");
- }else add(outcome,"small","","Occorrono notti registrate in entrambe le settimane.");
+ }else add(outcome,"small","","Occorrono almeno tre notti registrate in ciascuna settimana.");
  const bars=add(trend,"div","pro-week-bars");
  for(const [week,label,n,average] of [[1,"Giorni 1–7",model.firstCount,model.firstMean],[2,"Giorni 8–14",model.secondCount,model.secondMean]]){
   const row=add(bars,"div","pro-week");
@@ -226,12 +226,17 @@ function demoNights(){
  const wake=["07:05","07:20","06:50","07:30","07:10","07:30","07:00",
   "07:10","07:00","07:20","07:30","07:20","07:25","07:00"];
  const minutes=[382,398,375,411,391,415,404,428,444,421,450,462,443,454];
- return Array.from({length:14},(_,i)=>({
-  day:i+1,date:"",bed:bedtime[i],wake:wake[i],
-  tib:520,tst:minutes[i],latency:20,
-  quality:[3,3,2,3,3,3,3,3,4,3,4,4,4,4][i],
-  partial:i===3||i===10
- }));
+ return Array.from({length:14},(_,i)=>{
+  // Le notti di esempio rispettano gli orari riportati nel grafico.
+  // Per semplicità, il tentativo di dormire coincide con l'ora a letto.
+  const tib=T.forward(T.parseTime(bedtime[i]),T.parseTime(wake[i]));
+  const latency=20,partial=i===3||i===10;
+  const tst=partial?tib-latency:minutes[i];
+  if(!Number.isInteger(tib)||tib<60||tib>1080||tst<0||tst>tib-latency)
+   throw Error("Esempio dimostrativo incoerente al giorno "+(i+1));
+  return {day:i+1,date:"",bed:bedtime[i],wake:wake[i],tib,tst,latency,
+   quality:[3,3,2,3,3,3,3,3,4,3,4,4,4,4][i],partial};
+ });
 }
 function render(data,source,isDemo=false){
  rows=data;clear(result);
@@ -270,14 +275,14 @@ function render(data,source,isDemo=false){
  item(details,"Variazione degli orari di coricamento",bedtimeSpread===null?"Servono almeno due notti.":"Ampiezza oraria osservata: "+T.fmtMinutes(bedtimeSpread)+". Non indica il cronotipo.");
  item(details,"Variazione dei risvegli finali",wakingSpread===null?"Servono almeno due notti.":"Ampiezza oraria osservata: "+T.fmtMinutes(wakingSpread)+". Può essere influenzata da turni e giorni liberi.");
  const first=data.filter(x=>x.day<=7),second=data.filter(x=>x.day>=8);
- if(first.length&&second.length){
+ if(first.length>=3&&second.length>=3){
   const a=T.mean(first.map(x=>x.tst)),b=T.mean(second.map(x=>x.tst)),delta=b-a;
   item(details,"Confronto dei due blocchi settimanali",
    "Notti 1–7: "+T.fmtMinutes(a)+" (su "+first.length+" registrazioni); notti 8–14: "+
    T.fmtMinutes(b)+" (su "+second.length+" registrazioni). Differenza: "+
    (delta>=0?"+":"−")+changeLabel(delta)+
    ". Un aumento della durata non significa necessariamente miglioramento.");
- }else item(details,"Confronto delle due settimane","Disponibile quando registri almeno una notte per ciascuno dei due blocchi.");
+ }else item(details,"Confronto delle due settimane","Servono almeno tre notti compilate in ciascuna settimana. Registrate: "+first.length+" nella prima e "+second.length+" nella seconda.");
  if(partial)note(details,partial+" "+(partial===1?"notte":"notti")+" su "+total+" non includono una stima dei risvegli. Per tali notti la durata potrebbe essere sovrastimata. Le medie mescolano stime complete e parziali.",true);
  note(details,"Dati elaborati da "+source+" sul tuo dispositivo. Questo report esclude le note personali. Non è una misurazione clinica.");
  report="DIARIO DEL SONNO PRO — Dott. Roberto Boscia\n"+

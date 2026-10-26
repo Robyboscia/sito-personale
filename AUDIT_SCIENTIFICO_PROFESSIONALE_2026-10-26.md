@@ -91,3 +91,16 @@
 - **NON pronto alla pubblicazione integrale del nuovo portale.**
 - Bloccanti non editoriali confermati: email professionale funzionante e verificata; protocollo/limiti della prestazione remunerata; verifica privacy, cookie e rete in browser; conferma recapito postale completo; testi dei servizi e fattibilità operativa; collaudo UI mobile/desktop effettivo.
 - Nessuna copia su `main`, nessuna azione su CNAME o DNS.
+
+
+## Aggiornamento: stato delle prenotazioni coerente con email sospesa
+
+Nel controllo successivo è emerso che la landing Assetto Biologico™, benché avesse il modulo disabilitato, manteneva pulsanti commerciali «Prenota la valutazione», «Prenota la tua valutazione», «Richiedi info», una voce menu «Prenota» e un'intestazione del form «Richiedi una prima chiamata». Per evitare di simulare una prenotazione attiva:
+- I pulsanti della hero e della presentazione ora aprono la sezione informativa «Come funziona il percorso»; la barra mobile usa «Scopri il percorso».
+- Il menu porta alla sezione «Contatti», il cui titolo comunica che le richieste sono temporaneamente sospese.
+- I dati strutturati JSON-LD della pagina descrivono la sospensione dei contatti, non una chiamata richiedibile in quel momento.
+- La chiusura del testo precisa l'obiettivo educativo e rinvia alla valutazione clinica per le cause della stanchezza.
+
+Commit: `a8f7073b4071bb2242e9ac57adc43a0ef90759b2`.
+
+**Resta da definire** come verranno realmente richieste le consulenze, con quali prerequisiti e quale conferma esplicita di ricezione: nessun modulo di invio automatico o calendario è stato attivato.

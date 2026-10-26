@@ -277,7 +277,7 @@ function render(days,isDemo=false){
  status("shift-status",isDemo?
   "Settimana di esempio caricata con orari inventati. Puoi modificare i turni e rigenerare il tuo piano.":
   "Settimana analizzata. Puoi salvare il report in PDF o esportare gli orari in CSV.");
- $("shift-report").scrollIntoView({behavior:"smooth",block:"start"});
+ $("shift-report").scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"start"});
 }
 function invalidateResult(){
  if(current.length||result.children.length){

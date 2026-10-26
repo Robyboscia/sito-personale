@@ -38,6 +38,12 @@ questions.forEach(([domain,q],i)=>{
  });
 });
 const form=$("check-form"),result=$("check-result"),actions=$("check-actions");
+form.addEventListener("change",()=>{
+ if(result.children.length){
+  clear(result);actions.hidden=true;
+  status("check-status","Hai modificato una risposta. Premi «Genera la mia mappa» per vedere il nuovo risultato.");
+ }
+});
 form.addEventListener("reset",()=>{clear(result);actions.hidden=true;status("check-status","");container.querySelectorAll("fieldset").forEach(x=>x.style.outline="")});
 form.addEventListener("submit",event=>{
  event.preventDefault();

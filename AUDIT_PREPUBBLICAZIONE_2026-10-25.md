@@ -67,3 +67,23 @@ Due riferimenti `srcset="img/foto-roberto-boscia.webp"` erano relativi alla cart
 **Non ancora idoneo al rilascio pubblico.** Nel ramo di sviluppo la falsa conferma del modulo è stata eliminata e l'avvio automatico di GA4 è stato sospeso, ma mancano la privacy generale, la validazione legale e la scelta dell'eventuale backend reale. Il ripiego manuale `mailto:` NON equivale a invio automatico.
 
 Tutte le correzioni di questa fase rimangono sul ramo `sviluppo-nuovo-portale`. Il sito pubblico `main` è invariato.
+
+
+## 6. Privacy generale e cookie — bozza sviluppata il 26 ottobre 2026
+
+**Stato: PARZIALMENTE RISOLTO.** Nel solo ramo di sviluppo sono state create e collegate due pagine leggibili, ma **non ancora giuridicamente validate**:
+- `privacy/index.html` — bozza informativa generale su titolarità, basi giuridiche provvisorie, navigazione, email manuale, memoria locale del Diario, Diario PRO, altri strumenti, destinatari, conservazione, diritti e rischi dati del sonno.
+- `cookie/index.html` — descrizione cookie/localStorage, inventario statico delle risorse, stato GA4 disattivato, differenza fra cookie tecnici e non tecnici.
+- Ogni pagina è contrassegnata come **bozza, noindex,follow**. Non sono state inventate identità giuridiche, accordi con fornitori, cookie, scadenze di conservazione o la nomina di un DPO.
+- Inseriti link Privacy/Cookie in tutte le pagine HTML del portale (compresa la pagina tecnica del Diario e l'anteprima), e avvisi contestuali presso il modulo contatti, il toggle di salvataggio locale del Diario e l'import CSV del Diario PRO.
+- Nessun banner fake o consenso fittizio: scegliere una configurazione realmente conforme solo dopo l'inventario delle richieste di rete e dei cookie.
+
+**Ricognizione dal codice:**
+- Salvataggio opzionale Diario in `localStorage` con chiave `roberto-boscia.sleep-diary.v1`; revocare l'opzione rimuove la copia persistente. Le bozze email e i CSV partono dall'azione dell'utente.
+- Check-up/Caffeina/Turni e Diario PRO non mostrano chiamate client a endpoint di ricezione dei risultati; non equiparare ciò all'assenza di log del web host.
+- La landing carica GSAP da `cdnjs.cloudflare.com`; alcune pagine richiedono la copertina remota da `www.dormirefacile.com`.
+- Non rilevati altri script analytics noti negli HTML e JS esaminati nel ramo di sviluppo; **serve collaudo di rete/cookie reale** anche dei fornitori di infrastruttura.
+
+**Ancora indispensabili per finalizzare:** conferma titolare e indirizzo, provider hosting/CDN/mail, nomi e durata log/cookie, conservazione email, basi giuridiche, dati sanitari e art. 9 ove pertinente, trasferimenti extra-SEE, review legale e test browser reali. Vedi `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`.
+
+**Non pubblicare l'informativa come definitiva e non pubblicare il nuovo portale senza la verifica. `main` invariato.**

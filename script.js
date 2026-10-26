@@ -141,18 +141,5 @@ gsap.from('.process-step', {
   opacity: 0, y: 40, duration: 0.7, stagger: 0.2, ease: 'power2.out'
 });
 
-// Contact form
-const form = document.getElementById('contact-form');
-if (form) {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('.form-submit');
-    btn.textContent = 'Richiesta inviata ✓ Ti rispondo entro 24 ore';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Prenota la valutazione Assetto Biologico™';
-      btn.disabled = false;
-      form.reset();
-    }, 4000);
-  });
-}
+// Contatti: gestiti separatamente da contact-mailto.js.
+ // Questo file NON deve simulare un invio e NON deve confermare ricezioni.

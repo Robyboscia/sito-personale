@@ -681,3 +681,11 @@ body.sleep-app main section.shift-rest-section{padding:0 0 15px}
  .sleep-app .shift-break-section{break-inside:avoid}
  .sleep-app .shift-takeaway{break-inside:avoid}
 }
+
+/* Fine di turno notturno in un giorno contrassegnato come riposo. */
+.sleep-app .shift-day-rollover .shift-day-label small{
+ color:#efcf97;font-weight:700
+}
+.sleep-app .shift-day-rollover .shift-day-track{
+ border-color:#c6a773
+}

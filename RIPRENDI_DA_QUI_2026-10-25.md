@@ -183,3 +183,12 @@ L'utente ha selezionato il punto «1» (privacy e cookie), dopo il riepilogo del
 - Checklist operativa in `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`. Stato riportato in `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`.
 - Non è stato ancora eseguito un audit dinamico con strumenti di rete/cookie né un test Safari iPhone reale. **Non trasformare le bozze in un'informativa definitiva senza i dati del titolare e dell'hosting**.
 - Non modificare né distribuire `main` senza autorizzazione.
+
+## 15. QA browser desktop Privacy e Cookie — 26 ottobre 2026
+- Verificata in browser desktop l'anteprima delle nuove pagine `privacy/index.html` e `cookie/index.html` nel solo ramo di sviluppo.
+- Privacy: apertura riuscita, 8 sezioni raggiungibili dalla navigazione interna, avviso «bozza non definitiva» ben visibile, contenuto sul salvataggio locale del Diario e `mailto:`, fornitore hosting e retention esplicitamente da verificare.
+- Cookie: apertura attraverso il collegamento dalla pagina Privacy, nessun falso banner di consenso, GA4 disattivato soltanto nel ramo di sviluppo, differenza cookie e localStorage illustrata.
+- Nessun problema evidente di impaginazione desktop o link rotti osservato; controllo statico dei 21 file HTML già registrato.
+- **Non si tratta di verifica dei cookie sull'effettivo dominio**: il servizio di anteprima GitHub di terzi può inserire risorse proprie, che non rappresentano il provider finale. Devono ancora essere verificati hosting, rete, log, cookie, Safari/iPhone e il testo legale.
+- Checklist operativa in `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`; l'audit aggiornato in `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`.
+- **Non modificare il ramo pubblico `main`, CNAME o DNS senza esplicita autorizzazione.**

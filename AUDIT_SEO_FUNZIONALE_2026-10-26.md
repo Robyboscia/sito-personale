@@ -38,7 +38,7 @@
 | 21 pagine: `title`, descrizione, un solo `h1` | OK | Esame statico |
 | Link e risorse locali `href/src` | Nessun percorso locale mancante nell'inventario esaminato | Non certifica gli URL esterni |
 | ID duplicati nei 21 HTML | Nessuno | Esame statico |
-| Immagini senza `alt` | Nessuna fra le immagini HTML esaminate | Alcune immagini mancano di dimensioni HTML dichiarate |
+| Immagini senza `alt` | Nessuna fra le immagini HTML esaminate | I tre ritratti locali privi di dimensioni sono stati corretti; restano le copertine esterne, con dimensioni non verificate |
 | Modelli JS | 8/8 sintatticamente validi | Non sostituisce test browser end-to-end |
 | Landing Assetto | Previsto fallback se GSAP/ScrollTrigger non sono disponibili; menu mobile aggiornato correttamente con `aria-expanded=false` alla chiusura da link | Da testare su telefoni reali |
 | Modulo Contatti | `mailto:` preparato sul dispositivo, nessun falso invio; unit test con valori fittizi, inclusi caratteri speciali | Non c'è invio server; manca prova con client email iPhone |
@@ -75,3 +75,11 @@ Fonti operative Google:
 - Nessun titolo duplicato fra le 12 pagine indicizzabili; tutte le meta-description presenti. Tre pagine ripulite da ridondanze, senza modificare i contenuti scientifici.
 - La homepage collega direttamente le sezioni principali e i tre articoli; l'Accademia collega gli articoli; il Laboratorio collega diario e quattro strumenti. Raggiungibilità strutturale dal portale verificata sui menu e collegamenti espliciti.
 - La meta-description della landing Assetto Biologico™ supera 170 caratteri: non è un errore tecnico bloccante, ma il contenuto/promesse commerciali vanno rivisti insieme alla revisione professionale prima del rilascio.
+
+## 7. Verifica aggiuntiva e ottimizzazione immagini — 26 ottobre 2026
+- Riesaminate **12/12 pagine destinate all'indicizzazione** direttamente dal ramo `sviluppo-nuovo-portale`: tutte hanno `title`, meta-description, `canonical` assoluto, `og:url` coerente col canonical e `og:image`. Nessuna discordanza rilevata nel controllo puntuale. **La modifica è nel ramo sviluppo, non nel sito pubblico.**
+- Le immagini JPEG locali della pagina `assetto-biologico/index.html` sono state decodificate dai file Git per verificare le dimensioni intrinseche: `img/foto-roberto-boscia-casual.jpg` è **1023 × 1537 px**; `img/foto-roberto-boscia.jpg` è **1024 × 1535 px**.
+- Aggiunti attributi HTML `width` e `height` alle **tre occorrenze** dei due ritratti (uno casual e due professionali), senza intervenire sul CSS o alterare l'aspetto previsto. Commit `de2615f19aaf872ad149f035ccb2a15a844cbece`.
+- Nelle pagine esaminate le uniche altre immagini senza dimensioni dichiarate sono le **quattro occorrenze** della copertina caricata da `https://www.dormirefacile.com/images/book_cover.webp` (homepage, anteprima, libro, progetti). Poiché non sono state verificate le dimensioni native né la disponibilità dal contesto di audit, **non** sono stati inventati valori. Da verificare e, possibilmente, ospitare localmente con diritti e proporzioni corretti prima del lancio.
+- Il file `sitemap.xml` nel ramo sviluppo conserva **12 URL**, e `robots.txt` fa riferimento all'indirizzo canonico; la sitemap della versione live è una verifica separata post-deploy, non superata da questo controllo.
+- Stato dei blocchi: invariato. Restano privacy/hosting/consenso, QA reale iPhone-Safari, verifiche HTTP e Lighthouse/Search Console dopo eventuale pubblicazione autorizzata. Non usare il risultato dell'audit statico come misura Core Web Vitals.

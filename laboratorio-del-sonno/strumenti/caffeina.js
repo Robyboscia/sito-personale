@@ -159,7 +159,7 @@ $("caff-form").addEventListener("submit",event=>{
  }
  $("caff-actions").hidden=false;
  status("caff-status","Calcolo completato, anche oltre mezzanotte. Nessun dato è stato inviato a un server.");
- result.scrollIntoView({behavior:"smooth",block:"start"});
+ result.scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"start"});
 });
 resetUI();
 T.print("caff-print");

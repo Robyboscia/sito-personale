@@ -69,3 +69,9 @@
 Fonti operative Google:  
 - https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap  
 - https://developers.google.com/search/docs/crawling-indexing/block-indexing
+
+## 6. Ultima rifinitura titoli e raggiungibilità
+- Tre titoli SEO corretti dopo controllo lunghezze e duplicazioni: «Chi sono» non ripete più il nome due volte; i titoli degli articoli «Luce e ritmo circadiano» e «Wearable e sonno» sono ora più sintetici, con `og:title` aggiornato coerentemente.
+- Nessun titolo duplicato fra le 12 pagine indicizzabili; tutte le meta-description presenti. Tre pagine ripulite da ridondanze, senza modificare i contenuti scientifici.
+- La homepage collega direttamente le sezioni principali e i tre articoli; l'Accademia collega gli articoli; il Laboratorio collega diario e quattro strumenti. Raggiungibilità strutturale dal portale verificata sui menu e collegamenti espliciti.
+- La meta-description della landing Assetto Biologico™ supera 170 caratteri: non è un errore tecnico bloccante, ma il contenuto/promesse commerciali vanno rivisti insieme alla revisione professionale prima del rilascio.

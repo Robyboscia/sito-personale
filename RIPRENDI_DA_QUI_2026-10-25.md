@@ -132,3 +132,24 @@ L'utente ha chiesto «andiamo avanti» dopo il Check-up, e il lavoro è prosegui
 - Test browser **desktop** soltanto: ancora necessario verificare Safari iPhone reale e l'effettiva qualità del PDF/CSV esportato. Regole scientifiche/legali sempre indicative, non diagnosi o verifica di CCNL.
 - Tutto salvato sul ramo `sviluppo-nuovo-portale`. Non modificato `main`. Il progetto Wearable Decoder rimane rinviato alla revisione dei materiali formativi.
 - Dettagli in `laboratorio-del-sonno/strumenti/ROADMAP.md`.
+
+## 12. Sicurezza del modulo contatti e analytics — 26 ottobre 2026
+
+Dopo il collaudo del pianificatore Turni & Sonno, l'utente ha scritto «Continua». È stato affrontato uno dei due blocchi P0 originali nel ramo `sviluppo-nuovo-portale`, **senza modificare il sito pubblico**.
+
+### Modulo Assetto Biologico™: nessuna falsa conferma
+- `script.js` **non** contiene più il listener che simulava l'avvenuto invio e resettava il modulo dopo 4 secondi.
+- Nuovo file `contact-mailto.js`: JS indipendente dalle animazioni GSAP e senza chiamate di rete. Alla conferma valida prepara un URL `mailto:` destinato a `info@robertoboscia.it`, con oggetto fisso e corpo che include i dati inseriti. **Non invia messaggi** e non mostra mai «Richiesta inviata». Nessun reset; visibile un link email di riserva.
+- `assetto-biologico/index.html`: testo del modulo reso accurato («Prepara la richiesta via email», «Premi Invia nella tua app di posta»). Campo domanda generale facoltativo limitato e avviso a **non inserire referti o informazioni mediche riservate**. Il pulsante mobile fittizio `tel:+39XXXXXXXXXX` è stato sostituito da un link email reale, e la CTA non promette più una prenotazione immediata.
+- `contatti/index.html`: descrive esplicitamente la preparazione della bozza email, senza duplicare il modulo.
+- Test unitari dell'invio `mailto:`: form valido genera destinatario, oggetto, corpo e messaggio corretto; form invalido non apre mailto; caratteri speciali codificati correttamente. **Da collaudare su iPhone con app posta configurata.**
+
+### Analytics/Privacy
+- **Rimosso nel solo ramo di sviluppo** lo script della landing che caricava GA4 `G-NKGHWHXYHZ` automaticamente dopo 3 secondi o interazione. Non attivare altri tracciatori senza validazione privacy e consenso, se necessario.
+- Scansione testuale delle principali pagine HTML/JS del sito di sviluppo: nessun altro `gtag`, GA4, `fbq`, Hotjar o analoghi rilevati; **rimane necessario verificare le richieste di rete, gli eventuali cookie, le risorse CDN e l'hosting effettivo**.
+- Informativa privacy generale **ANCORA ASSENTE**; la nota del Diario non la sostituisce. Non presentare il portale come GDPR-compliant finché dati reali su titolare, basi giuridiche, conservazione, processori e diritti non vengono definiti e validati.
+
+### Blocco ancora aperto
+Un `mailto:` è solo un ripiego onesto su sito statico: **non è un backend di contatto, non conferma la consegna e non garantisce che ogni visitatore abbia un'app email configurata**. Prima di sostituirlo con un modulo automatico bisogna scegliere il servizio/endpoint e credenziali con l'utente; quindi implementare antispam, privacy, gestione errori e verifiche reali. Non inventare un provider o un URL.
+
+Aggiornato il documento `AUDIT_PREPUBBLICAZIONE_2026-10-25.md` con fatti, correzioni e blocchi residui. **La regola permanente: non modificare `main`.**

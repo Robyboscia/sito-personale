@@ -213,3 +213,11 @@ L'utente ha chiesto «completa audit SEO e funzionale». Inventario attuale: 21 
 - Le quattro occorrenze di `https://www.dormirefacile.com/images/book_cover.webp` restano senza misure, perché non ancora verificabili. Non attribuire loro una dimensione a intuito.
 - Aggiornato `AUDIT_SEO_FUNZIONALE_2026-10-26.md` con queste verifiche.
 - **Residui:** test Safari iPhone, test reali su host dopo pubblicazione autorizzata, privacy e cookie definitivi, disponibilità risorse remote e PageSpeed. La versione live non è stata modificata.
+
+## 17. Privacy e cookie: secondo passaggio — 26 ottobre 2026
+
+- Su richiesta «vai» per «Privacy e cookie definitivi» è stato ripreso il codice esistente. **Solo sviluppo**, non `main`.
+- Privacy migliorata secondo il quadro informativo art. 13 GDPR: 10 sezioni, verifica giuridica di titolare e sede, destinatari, trattamenti extra-SEE, necessità/facoltatività dei campi, decisioni automatizzate. Cookie migliorata con tabella dei dati localStorage del Diario e regole consenso/Eprivacy.
+- Pagina pubblica corrente: homepage ancora versione precedente; il codice `main/index.html` contiene GA4 attivabile automaticamente, e le URL pubbliche `/privacy/` e `/cookie/` sono state rilevate 404. Non attribuire questo comportamento automaticamente a un consenso valido né dichiarare violazioni senza network audit.
+- QA HTML: privacy 10 sezioni con ancore esistenti; entrambe noindex/bozza. **Restano mancanti** identità e sede del titolare, provider email, log/retention, adeguatezza fornitori e trasferimenti, test cookie/hosting live, revisione professionale e autorizzazione per pubblicare.
+- Documenti aggiornati: `PRIVACY_CHECKLIST_PREPUBBLICAZIONE_2026-10-26.md`, `AUDIT_SEO_FUNZIONALE_2026-10-26.md`.

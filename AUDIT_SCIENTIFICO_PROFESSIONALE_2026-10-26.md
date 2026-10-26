@@ -104,3 +104,9 @@ Nel controllo successivo è emerso che la landing Assetto Biologico™, benché 
 Commit: `a8f7073b4071bb2242e9ac57adc43a0ef90759b2`.
 
 **Resta da definire** come verranno realmente richieste le consulenze, con quali prerequisiti e quale conferma esplicita di ricezione: nessun modulo di invio automatico o calendario è stato attivato.
+
+## Nota editoriale successiva: sostituzione definitiva dei contatori dimostrativi
+
+L'utente ha chiarito che le statistiche numeriche originarie erano esclusivamente **segnaposto di layout**, non affermazioni reali da verificare. Di conseguenza, il problema non è «documentare 500 persone seguite» ma **non pubblicare cifre inventate**.
+
+È stata scelta e implementata la combinazione copywriting di direct response **A + D**, rimpiazzando i contatori con tre promesse editoriali limitate a ciò che la pagina può sostenere: 1) smettere di accumulare tentativi senza contesto, 2) non trasformare gli score dei wearable o singoli esami in verdetti, 3) privilegiare chiarezza e approfondimento medico quando opportuno. La modifica è nel ramo sviluppo al commit `924e3e6b3054645d9bd49c19c031ac8a98cfdc75`; la struttura è responsive e senza numeri inventati. Restano da testare resa su browser mobile e protocollo concreto delle consulenze prima del lancio.

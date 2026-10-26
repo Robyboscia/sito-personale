@@ -79,3 +79,11 @@ Controllo successivo all'implementazione delle pagine Privacy e Cookie, **sempre
 - Prima di dichiarare le informative definitive occorrono le conferme su: (1) titolare giuridico e indirizzo; (2) hosting, provider email, soggetti che ricevono dati e relativi ruoli/contratti; (3) tempi di conservazione dei log e delle email, trasferimenti fuori SEE; (4) test reale rete/storage/cookie e basi giuridiche corrispondenti; (5) verifica specialistica dell'informativa.
 - **Decisione prudenziale:** nessun banner fittizio aggiunto. Non è stato modificato `main` né pubblicato il portale. Se il titolare autorizzerà un intervento sul sito pubblico esistente, trattarlo come hotfix distinto, con priorità all'effettiva informativa e a eventuale blocco del tracciamento non tecnico privo di consenso.
 - Fonte aggiuntiva: EDPB, Guidelines 2/2023, versione finale del 16/10/2024, https://www.edpb.europa.eu/documents/guideline/guidelines-22023-on-technical-scope-of-art-53-of-eprivacy-directive_en
+
+## Fornitori verificati e recapiti — aggiornamento 26 ottobre 2026
+
+- Provider di **hosting statico**: GitHub Pages (`main` pubblico e portale in sviluppo previsto sulla stessa infrastruttura). La documentazione ufficiale dichiara raccolta e conservazione IP dei visitatori per sicurezza. La durata specifica non è confermata e non va inventata.
+- Provider **risorsa CDN esterna**: cdnjs via Cloudflare per animazioni GSAP/ScrollTrigger. Il servizio documenta headers tecnici NEL per salute e disponibilità della rete; richiede ancora verifica runtime di eventuali cookie. Non automaticamente una prova di profilazione.
+- **Titolare**: Roberto Boscia persona fisica, comunicato dall'utente. Recapito postale: Via Siciliano 45; Nocera Inferiore/84014 rimangono elementi ricavati dal contesto da confermare prima della finalizzazione.
+- **Recapito elettronico non disponibile**: attivazione con provider rimandata dall'utente. Landing pubblica e nuovo portale in sviluppo non devono consentire invio verso email inesistente; moduli disabilitati. Non pubblicare alcun indirizzo elettronico personale senza consenso.
+- Resta necessario un test cookie/network reale per attestare cookie e headers effettivi, distinguendo analytics disattivati da dati tecnici di hosting e CDN; consultare ancora requisiti artt. 13/28 GDPR e normativa ePrivacy.

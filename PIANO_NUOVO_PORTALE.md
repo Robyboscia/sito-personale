@@ -65,3 +65,11 @@ Documento di pianificazione: nessuna modifica al sito pubblico.
 - **Quinto progetto Wearable Decoder:** da **non sviluppare finché non vengono recuperate le dispense dei corsi specifici che l'utente afferma di aver seguito**. Non attribuire nomi di corsi non verificati.
 - Fonte di verità per criteri e backlog: **`laboratorio-del-sonno/strumenti/ROADMAP.md`**.
 - QA, revisione scientifica e privacy indispensabili prima della pubblicazione.
+
+## Avanzamento del 26 ottobre — Turni, contatti e analytics
+- **Turni & Sonno completato come prototipo:** timeline grafica 24 ore x 7 giorni con passaggio delle notti oltre mezzanotte, indicatori semplici, finestre non disponibili, avvisi di pause ravvicinate, esempio inventato (5 turni / 40 ore / 2 giorni marcati riposo / una pausa sotto 11 ore), esportazione CSV. Browser desktop verificato, Safari iPhone reale ancora da testare.
+- **Modifica prioritaria sicurezza informazioni:** eliminata sul ramo di sviluppo la falsa conferma «Richiesta inviata» del form Assetto Biologico™. Ora il form prepara una bozza email con `contact-mailto.js`, confermando apertamente che l'utente deve inviarla dalla propria app. Nessun backend, nessuna prova di consegna. CTA mobile telefonica fittizia rimossa.
+- **Privacy:** caricamento automatico GA4 della landing rimosso nel ramo di sviluppo; prima di riattivarlo servono revisione privacy/cookie e relativi adempimenti. Informativa privacy generale ancora da predisporre.
+- **Test svolti:** JS sintatticamente valido, validazione HTML email, URL `mailto:` con caratteri speciali, link locali landing presenti, ID non duplicati. Non equivalente a prova con email client iPhone.
+- **Documenti fonte:** `AUDIT_PREPUBBLICAZIONE_2026-10-25.md`, `laboratorio-del-sonno/strumenti/ROADMAP.md`, `RIPRENDI_DA_QUI_2026-10-25.md`.
+- **Non pubblicare ancora:** per il modulo con consegna automatica serve una scelta di backend/provider; per il sito restano documentazione privacy, QA iPhone, SEO e revisione professionale. `main` non deve essere modificato.

@@ -23,7 +23,7 @@ const sorted=()=>records.slice().sort((a,b)=>a.date.localeCompare(b.date));
 const text=(parent,tag,cls,value)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.textContent=String(value);parent.appendChild(e);return e};
 const clear=node=>node.replaceChildren();
 const status=(id,message,error=false)=>{const el=$(id);if(el){el.textContent=message;el.classList.toggle("is-error",error)}};
-const saveFile=(name,body,type)=>{const url=URL.createObjectURL(new Blob([body],{type:type||"text/plain;charset=utf-8"}));const a=document.createElement("a");a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)};
+const saveFile=(name,body,type)=>{const url=URL.createObjectURL(new Blob([body],{type:type||"text/plain;charset=utf-8"}));const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),12000)};
 const yes=v=>/^(sì|si)$/i.test(String(v||"").trim());
 const asNum=v=>v===""||v==null?null:Number(String(v).replace(",","."));
 function evaluate(rec){
@@ -477,7 +477,7 @@ $("dp-clear").addEventListener("click",()=>{
  if(!records.length)return;
  if(!confirm("Eliminare tutte le schede PRO da questa pagina e dall'archivio locale? È irreversibile senza un backup."))return;
  const wasDemo=demo;records=[];demo=false;if(!wasDemo){try{localStorage.removeItem(KEY)}catch(err){}}
- render();status("dp-status","Diario PRO cancellato. Il diario gratuito non è stato modificato.");
+ render();status("dp-status",wasDemo?"Esempio eliminato. L’eventuale diario personale già salvato nel browser non è stato cancellato.":"Diario PRO cancellato. Il diario gratuito non è stato modificato.");
 });
 $("dp-backup").addEventListener("click",downloadBackup);
 $("dp-export-json").addEventListener("click",downloadBackup);

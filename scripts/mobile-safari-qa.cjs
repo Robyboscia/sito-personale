@@ -205,6 +205,7 @@ async function main(){
    await page.locator('#dp-waso').selectOption('20');
    await page.locator('#dp-wake').fill('16:00');
    await page.locator('#dp-out').fill('16:05');
+   await page.locator('#dp-form details').nth(1).locator('summary').click();
    await page.locator('#dp-shift').selectOption('night');
    await page.locator('#dp-form button[type="submit"]').click();
    assert((await page.locator('#dp-total').innerText()).includes('2 / 90'),'Notte diurna non registrata');

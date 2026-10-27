@@ -8,6 +8,18 @@ on:
     paths:
       - '.github/workflows/mobile-webkit-qa.yml'
       - 'scripts/mobile-safari-qa.cjs'
+      - 'index.html'
+      - 'portale.css'
+      - 'script.js'
+      - 'assetto-biologico/**'
+      - 'laboratorio-del-sonno/**'
+      - 'mental-pro/**'
+      - 'chi-sono/**'
+      - 'accademia/**'
+      - 'libro/**'
+      - 'contatti/**'
+      - 'privacy/**'
+      - 'cookie/**'
 
 permissions:
   contents: read

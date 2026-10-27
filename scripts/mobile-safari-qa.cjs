@@ -179,6 +179,49 @@ async function main(){
    return {dashboard:true};
   });
 
+
+  await test('Diario PRO v2: compilazione, backup, importazione e turni',iphone,async page=>{
+   await open(page,'/laboratorio-del-sonno/strumenti/diario-pro/');
+   await page.locator('#dp-persist').check();
+   await page.locator('#dp-date').fill('2026-10-20');
+   await page.locator('#dp-bed').fill('23:00');
+   await page.locator('#dp-try').fill('23:15');
+   await page.locator('#dp-latency').fill('20');
+   await page.locator('#dp-waso').selectOption('20');
+   await page.locator('#dp-wake').fill('07:00');
+   await page.locator('#dp-out').fill('07:15');
+   await page.locator('#dp-quality').selectOption('4');
+   await page.locator('#dp-energy-morning').selectOption('3');
+   await page.locator('#dp-form button[type="submit"]').click();
+   assert((await page.locator('#dp-total').innerText()).includes('1 / 90'),'Notte 1 non salvata');
+   assert(await page.locator('#pro-report').isVisible(),'Report non visibile dopo una notte');
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.waitForTimeout(300);
+   assert((await page.locator('#dp-total').innerText()).includes('1 / 90'),'Notte non ritrovata dopo ricarica con opt-in');
+   await page.locator('#dp-date').fill('2026-10-21');
+   await page.locator('#dp-bed').fill('09:00');
+   await page.locator('#dp-try').fill('09:10');
+   await page.locator('#dp-latency').fill('15');
+   await page.locator('#dp-waso').selectOption('20');
+   await page.locator('#dp-wake').fill('16:00');
+   await page.locator('#dp-out').fill('16:05');
+   await page.locator('#dp-shift').selectOption('night');
+   await page.locator('#dp-form button[type="submit"]').click();
+   assert((await page.locator('#dp-total').innerText()).includes('2 / 90'),'Notte diurna non registrata');
+   assert(await page.locator('#dp-rhythm-list .dp-rhythm-row:first-child .dp-rhythm-segment').count()===2,'Intervallo diurno oltre mezzogiorno non spezzato sulla mappa');
+   await page.locator('#dp-last-date').fill('2026-10-22');
+   const csv='Giorno;Data risveglio;Ora a letto;Tentativo di dormire;Latenza min;Minuti orientativi sottratti;Risveglio finale;Ora alzata;Sonno orientativo min;Calcolo parziale\n1;;23:30;23:40;20;20;07:00;07:15;400;No\n';
+   await page.locator('#dp-import-csv').setInputFiles({name:'esempio-diario.csv',mimeType:'text/csv',buffer:Buffer.from(csv)});
+   await page.waitForTimeout(200);
+   assert((await page.locator('#dp-total').innerText()).includes('3 / 90'),'Import CSV con data scelta fallito');
+   const downloadPromise=page.waitForEvent('download');
+   await page.locator('#dp-export-json').click();
+   const download=await downloadPromise;
+   assert(download.suggestedFilename().endsWith('.json'),'Backup JSON non scaricabile');
+   await screenshot(page,'iphone-diario-pro-v2-mappa.png');
+   return {savedNights:3,legacyCsvImport:true,persist:true,daytimeSleep:true,backup:true};
+  });
+
   await test('Turnisti: settimana dimostrativa e risultato',iphone,async page=>{
    await open(page,'/laboratorio-del-sonno/strumenti/turnisti/');
    await page.locator('#shift-demo').click();

@@ -1517,7 +1517,13 @@
       #portale-navigazione .portale-mobile-links a{display:block;padding:12px 11px;border-bottom:1px solid rgba(255,255,255,.12);white-space:nowrap}
       #portale-navigazione .portale-mobile-links a:last-child{border-bottom:0}
     }
-    @media(max-width:420px){#portale-navigazione{gap:8px;padding-inline:12px}#portale-navigazione .portale-current-label{font-size:11px}#portale-navigazione .portale-home-link{font-size:12px}}
+    @media(max-width:420px){
+      #portale-navigazione{gap:8px;padding-inline:12px}
+      #portale-navigazione .portale-current-label{display:none}
+      #portale-navigazione .portale-home-link{font-size:12px;min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis}
+      #portale-navigazione .portale-mobile-menu{flex-shrink:0;margin-left:auto}
+      #portale-navigazione .portale-mobile-menu>summary{gap:5px;padding:8px 9px}
+    }
   </style>
 
 </head>

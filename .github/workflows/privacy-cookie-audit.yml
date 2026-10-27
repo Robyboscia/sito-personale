@@ -1,0 +1,57 @@
+name: Audit privacy e cookie (Chromium)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/privacy-cookie-audit.yml'
+      - 'scripts/privacy-cookie-audit.cjs'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Analisi cookie, rete e storage del sito pubblico
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Scarica il codice del sito
+        uses: actions/checkout@v4
+
+      - name: Prepara Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installa Playwright
+        run: npm install --no-save --no-package-lock playwright@1.56.1
+
+      - name: Installa Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Rileva cookie, richieste e memoria locale
+        run: node scripts/privacy-cookie-audit.cjs
+        env:
+          AUDIT_BASE_URL: https://drrobertoboscia.com
+
+      - name: Mostra il riepilogo nel workflow
+        if: always()
+        shell: bash
+        run: |
+          if [ -f audit-output/report.md ]; then
+            cat audit-output/report.md >> "$GITHUB_STEP_SUMMARY"
+          elif [ -f audit-output/error.txt ]; then
+            cat audit-output/error.txt >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Conserva report tecnico senza valori di cookie
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-privacy-cookie
+          path: audit-output/
+          if-no-files-found: warn
+          retention-days: 30

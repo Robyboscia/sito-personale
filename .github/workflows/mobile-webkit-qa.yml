@@ -1,0 +1,51 @@
+name: Collaudo mobile WebKit (iPhone)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/mobile-webkit-qa.yml'
+      - 'scripts/mobile-safari-qa.cjs'
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-qa:
+    name: Navigazione e strumenti su WebKit iPhone simulato
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+    steps:
+      - name: Scarica il codice
+        uses: actions/checkout@v4
+
+      - name: Installa Playwright
+        run: npm install --no-save --no-package-lock playwright@1.56.1
+
+      - name: Esegui i test mobile con WebKit
+        run: node scripts/mobile-safari-qa.cjs
+        env:
+          QA_BASE_URL: https://drrobertoboscia.com
+
+      - name: Mostra riepilogo
+        if: always()
+        shell: bash
+        run: |
+          if [ -f mobile-qa-output/report.md ]; then
+            cat mobile-qa-output/report.md >> "$GITHUB_STEP_SUMMARY"
+          elif [ -f mobile-qa-output/error.txt ]; then
+            cat mobile-qa-output/error.txt >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Salva report e schermate campione
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collaudo-mobile-webkit
+          path: mobile-qa-output/
+          if-no-files-found: warn
+          retention-days: 30

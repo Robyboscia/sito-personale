@@ -97,11 +97,13 @@
  <div class="dp-tabs" aria-label="Periodo da visualizzare"><button type="button" data-period="14" aria-pressed="false">Ultime 14</button><button type="button" data-period="28" aria-pressed="true">Ultime 28</button><button type="button" data-period="90" aria-pressed="false">Tutto lo storico</button></div>
  <div class="dp-metrics" id="dp-metrics" aria-live="polite"></div>
  <h3>Quando vai a letto e quando ti alzi</h3>
- <p class="dp-muted">Una riga per ogni notte; l'asse va da mezzogiorno a mezzogiorno. Il colore ocra distingue i turni notturni dichiarati.</p>
+ <p class="dp-muted">Fino alle 28 notti più recenti del periodo selezionato; l'asse va da mezzogiorno a mezzogiorno. Il colore ocra distingue i turni notturni dichiarati.</p>
  <div class="dp-rhythm"><div class="dp-axis"><span></span><small><span>12</span><span>18</span><span>00</span><span>06</span><span>12</span></small></div><div id="dp-rhythm-list"></div></div>
  <div class="dp-legend"><span><i></i>Altri giorni</span><span class="dp-night-legend"><i></i>Turno notturno</span></div>
  <h3 style="margin-top:25px">Quanto varia il sonno stimato</h3>
  <div id="dp-duration-chart" class="dp-bars" aria-label="Grafico delle durate orientative"></div>
+ <h3 style="margin-top:28px">La tua energia, giorno per giorno</h3><p class="dp-muted">Ogni colonna contiene le tre valutazioni di mattina, pomeriggio e sera. Le caselle vuote indicano dati non inseriti; il colore rappresenta l’energia dichiarata, non un punteggio di salute.</p>
+ <div class="dp-energy-grid" id="dp-energy-chart" role="group" aria-label="Diario dell’energia per data"></div><div class="dp-legend"><span>1 = energia molto bassa</span><span>5 = energia molto alta</span><span>— = non compilata</span></div>
  <div class="dp-insights" id="dp-observations" aria-live="polite"></div>
  <div id="dp-caffeine" class="dp-caffeine"></div>
 </section>

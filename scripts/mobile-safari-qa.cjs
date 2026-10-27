@@ -93,6 +93,10 @@ async function main(){
   await test('Dimensioni ridotte: homepage e menu',compact,async page=>{
    await open(page,'/');
    const home=await layout(page);
+   if(home.horizontalOverflowPx>4){
+     const suspects=await page.evaluate(()=>[...document.querySelectorAll('body *')].map(el=>({tag:el.tagName,cls:String(el.className||'').slice(0,80),right:Math.round(el.getBoundingClientRect().right),left:Math.round(el.getBoundingClientRect().left),width:Math.round(el.getBoundingClientRect().width)})).filter(x=>x.right>innerWidth+3).slice(0,12));
+     console.log('Layout diagnostica iPhone SE:',JSON.stringify({home,suspects}));
+   }
    assert(home.horizontalOverflowPx<=4,'Homepage eccede lo schermo di '+home.horizontalOverflowPx+'px');
    const summary=page.locator('#menu-button');
    await summary.click();

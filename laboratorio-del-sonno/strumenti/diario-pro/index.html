@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Diario del Sonno PRO | Laboratorio del Sonno — Dott. Roberto Boscia</title>
-<meta name="description" content="Analisi avanzata orientativa del Diario del Sonno: regolarità, durata, confronti e report stampabile.">
+<meta name="description" content="Mappa dei ritmi, energia, abitudini, turni, diario continuativo e report descrittivo: scopri il Diario del Sonno PRO in prova.">
 <meta name="theme-color" content="#102d39">
 <meta name="robots" content="noindex,follow">
 <link rel="stylesheet" href="../../../portale.css">
 <link rel="stylesheet" href="../strumenti.css">
-<script src="../strumenti.js" defer></script>
+<link rel="stylesheet" href="../diario-pro-v2.css">
+<script src="../diario-pro-v2.js" defer></script>
 </head>
 <body class="home-v2 sleep-app" data-tool="diario-pro">
 <a class="home-skip" href="#contenuto">Vai al contenuto</a>
@@ -25,51 +26,107 @@
 <section class="st-head" aria-labelledby="tool-heading"><div class="home-wrap">
 <nav class="st-breadcrumb" aria-label="Percorso"><a href="../../../index.html">Home</a><span>/</span><a href="../../index.html">Laboratorio</a><span>/</span><span aria-current="page">Diario del Sonno PRO</span></nav>
 <div class="st-heading"><div><p class="st-label">LABORATORIO DEL SONNO · STRUMENTO 03</p>
-<h1 id="tool-heading">Diario del Sonno <em>PRO.</em></h1><p class="st-lede">Importa i dati già compilati nel Diario del Sonno, confronta le notti e crea un report descrittivo stampabile in PDF. Prototipo dimostrativo: nessun pagamento attivo.</p><p class="st-head-note">I tuoi dati sono elaborati in questa pagina, senza account né invio al portale. I risultati sono educativi e orientativi, non diagnosi o piani di cura.</p></div>
-<div class="st-head-side" aria-hidden="true">14</div></div></div></section>
-<section class="st-workspace"><div class="home-wrap">
+<h1 id="tool-heading">Diario del Sonno <em>PRO.</em></h1><p class="st-lede">Osserva i tuoi ritmi, confronta fino a 90 notti e scopri come cambiano sonno, energia e abitudini. Prova gratuitamente la nuova versione prima del lancio.</p><p class="st-head-note">Dati elaborati sul tuo dispositivo, senza account. Nessun pagamento attivo: versione dimostrativa non diagnostica.</p></div>
+<div class="st-head-side" aria-hidden="true">90</div></div></div></section>
 
-<div class="st-grid">
-<div class="st-panel st-input-panel"><span class="st-tag st-pro">PROTOTIPO PRO · ACCESSO DI PROVA GRATUITO</span><h2>Analizza le tue <em>14 notti.</em></h2>
-<p>Non devi riscrivere i dati. Puoi usare un CSV esportato dal <a href="../../diario/index.html">Diario del Sonno digitale</a> oppure caricare esplicitamente le schede salvate in questo browser.</p>
-<div class="st-field"><label for="pro-file">Importa un CSV esportato dal diario</label><input type="file" id="pro-file" accept=".csv,text/csv" aria-describedby="pro-file-note"><small id="pro-file-note">Formato CSV ufficiale con separatore «;». Il file viene letto soltanto nel browser e non caricato su un server. Dimensione massima 1 MB. <a href="../../../privacy/index.html">Informazioni privacy</a>.</small></div>
-<div class="st-row"><button id="pro-local" class="st-button st-alt" type="button">Leggi le schede salvate su questo dispositivo</button><a href="../../diario/index.html" class="st-button st-alt">Apri il Diario</a></div>
-<div class="pro-demo-entry">
-  <p><strong>Vuoi vedere come funziona prima di inserire i tuoi dati?</strong></p>
-  <button type="button" id="pro-demo" class="st-button st-alt">Mostrami un report di esempio ↗</button>
-  <small>Utilizza 14 notti completamente inventate. Nessun dato personale viene richiesto o salvato.</small>
-</div>
-<p id="pro-status" class="st-status" role="status" aria-live="polite">Nessun diario ancora importato.</p>
-<div class="st-note st-warning"><strong>Nota sui dati mancanti:</strong> se nel diario non è stata indicata la durata dei risvegli, il report mantiene la dicitura «stima parziale». Non interpreta i minuti non dichiarati come zero e non attribuisce maggiore precisione ai risultati.</div>
-<div class="st-note">La versione PRO è in prova per verificare utilità e attendibilità. <strong>Non esiste ancora un checkout e non viene richiesto alcun pagamento.</strong></div>
-</div>
-<aside class="st-panel pro-help-panel" aria-label="Cosa potrai vedere nel report">
-  <div class="pro-help-graphic" aria-hidden="true">
-    <span class="pro-help-moon">◕</span>
-    <span class="pro-help-number">14</span>
-    <span class="pro-help-caption">NOTTI · UNA STORIA</span>
+<section class="dp-main" aria-label="Diario del Sonno PRO"><div class="home-wrap">
+<div class="dp-intro"><div><span class="dp-tag">PRO IN PROVA · GRATIS</span><h2 style="margin:13px 0 8px">La mappa <em>dei tuoi ritmi.</em></h2><p>Non un voto al tuo sonno: strumenti per osservare le variazioni di orari, durata, energia e abitudini. Le analisi sono descrittive e non equivalgono a diagnosi.</p></div>
+<a class="dp-btn dp-light" href="../../diario/index.html">Preferisci il diario gratuito? ↗</a></div>
+<nav class="dp-jump" aria-label="Sezioni del diario PRO"><a href="#dp-start">Inizia</a><a href="#dp-entry">Registra una notte</a><a href="#dp-dashboard">La tua mappa</a><a href="#dp-progress">28 giorni</a><a href="#dp-history">Storico</a><a href="#pro-report">Report</a></nav>
+<div class="dp-shell">
+<section id="dp-start" class="dp-panel" aria-labelledby="dp-start-title">
+ <p class="dp-section-label">01 / PARTI DAI TUOI DATI</p><h2 id="dp-start-title">Inizia da dove sei.</h2>
+ <p class="dp-muted dp-lede">Puoi continuare a registrare fino a 90 notti oppure importare il CSV del <a href="../../diario/index.html">diario gratuito</a>. Il calendario si basa sulla <strong>data del risveglio</strong>; se nel diario originale non l'avevi indicata, puoi assegnare tu la data dell'ultima notte.</p>
+ <div class="dp-collection">
+  <div class="dp-stack">
+   <div class="dp-field"><label for="dp-import-csv">Importa un CSV del Diario del Sonno</label><input id="dp-import-csv" type="file" accept=".csv,text/csv"><small>Il file resta sul dispositivo. Puoi importare più periodi, fino a 90 notti complessive.</small></div>
+   <div class="dp-field"><label for="dp-last-date">Se mancano le date: data di risveglio dell'ultima notte del file</label><input id="dp-last-date" type="date"><small>Facoltativo. Non vengono inventate date: se il campo è vuoto, le righe prive di data non saranno importate.</small></div>
+   <div class="dp-actions"><button id="dp-local" type="button" class="dp-btn dp-light">Leggi le schede del diario gratuito</button><button id="pro-demo" type="button" class="dp-btn">Mostrami 28 notti d'esempio</button></div>
+   <div class="dp-field"><label for="dp-import-backup">Hai già un backup PRO? Importa il tuo JSON</label><input id="dp-import-backup" type="file" accept=".json,application/json"></div>
   </div>
-  <p class="st-tag st-pro">IL RISULTATO</p>
-  <h2>Capire il sonno, <em>a colpo d'occhio.</em></h2>
-  <p>Tre indicatori visivi — <strong>orari, durata e completezza dei risvegli</strong> — più il confronto fra le due settimane. Poi tutti i dettagli, senza punteggi medici.</p>
-</aside>
-</div>
-<section id="pro-report" class="st-panel pro-report" aria-labelledby="pro-visual-title" hidden>
-  <div class="pro-report-head">
-    <span class="st-tag st-pro">IL TUO QUADRO VISIVO</span>
-    <h2 id="pro-visual-title">Il tuo sonno, <em>in un colpo d'occhio.</em></h2>
-    <p>Quattro viste per leggere il diario senza interpretazioni cliniche automatiche. I numeri provengono dalle notti registrate e possono contenere stime parziali.</p>
+  <div class="dp-stack">
+   <div class="dp-alert"><strong>Il diario resta tuo.</strong> Nessun dato del sonno viene inviato dal modulo ai server del portale. L'archivio nel browser è facoltativo: su dispositivi condivisi è preferibile non attivarlo.</div>
+   <label class="dp-option"><input type="checkbox" id="dp-persist"><span><strong>Ricorda il mio diario su questo dispositivo</strong><br>Memorizza i dati nel browser finché non li elimini. Senza questa scelta i dati si perdono al ricaricamento della pagina; esporta una copia prima di uscire.</span></label>
+   <div class="dp-actions"><button type="button" id="dp-backup" class="dp-btn dp-light">Scarica backup JSON</button><button type="button" id="dp-clear" class="dp-btn dp-warn">Cancella il diario PRO</button></div>
+   <p class="dp-muted" id="dp-total">0 notti nel PRO</p>
   </div>
-  <p class="st-print-only">Report del Diario del Sonno — Dott. Roberto Boscia</p>
-  <div id="pro-result" class="st-result" aria-live="polite"></div>
-  <div id="pro-actions" class="st-row st-no-print pro-actions" hidden>
-    <button id="pro-print" type="button" class="st-button">Stampa / salva PDF</button>
-    <button id="pro-txt" type="button" class="st-button st-alt">Scarica report TXT</button>
-    <button id="pro-clear" type="button" class="st-button st-alt">Rimuovi i dati</button>
-  </div>
+ </div><p id="dp-status" class="dp-status" role="status" aria-live="polite">Puoi iniziare registrando una notte oppure vedere l'esempio.</p>
 </section>
-
-<div class="st-source-note">Non è uno strumento medico diagnostico. Il sonno dipende da molti fattori: se i disturbi persistono, se hai forte sonnolenza, russamento con pause respiratorie osservate o problemi di sicurezza sul lavoro/alla guida, rivolgiti a un professionista sanitario competente. <a href="../../index.html">Torna al Laboratorio del Sonno ↗</a></div>
-</div></section></main>
+<section id="dp-entry" class="dp-panel dp-editor" aria-labelledby="dp-entry-title">
+ <p class="dp-section-label">02 / UN MINUTO AL GIORNO</p><h2 id="dp-entry-title">Registra la tua notte.</h2>
+ <p class="dp-muted">Compila al mattino senza inseguire precisioni impossibili. Gli orari possono attraversare la mezzanotte. Le domande sulle abitudini sono facoltative.</p>
+ <form id="dp-form" novalidate>
+  <div class="dp-grid">
+   <div class="dp-field"><label for="dp-date">Data del risveglio *</label><input type="date" id="dp-date" required></div>
+   <div class="dp-field"><label for="dp-bed">Ora a letto *</label><input type="time" id="dp-bed" required></div>
+   <div class="dp-field"><label for="dp-try">Quando hai provato a dormire? *</label><input type="time" id="dp-try" required></div>
+   <div class="dp-field"><label for="dp-latency">Minuti per addormentarti *</label><input type="number" id="dp-latency" min="0" max="600" step="1" required placeholder="Es. 20"></div>
+   <div class="dp-field"><label for="dp-waso">Veglia durante la notte (stima)</label><select id="dp-waso"><option value="">Non saprei / non indicata</option><option value="0">Nessun risveglio — 0 min</option><option value="5">Meno di 10 min — circa 5</option><option value="20">10–30 min — circa 20</option><option value="45">30–60 min — circa 45</option><option value="90">Oltre 60 min — circa 90</option></select></div>
+   <div class="dp-field"><label for="dp-awakenings">Quanti risvegli?</label><input type="number" id="dp-awakenings" min="0" max="30" step="1" placeholder="Facoltativo"></div>
+   <div class="dp-field"><label for="dp-wake">Risveglio definitivo *</label><input type="time" id="dp-wake" required></div>
+   <div class="dp-field"><label for="dp-out">Ora in cui ti sei alzato *</label><input type="time" id="dp-out" required></div>
+   <div class="dp-field"><label for="dp-quality">Qualità percepita (1–5)</label><select id="dp-quality"><option value="">Non indicata</option><option value="1">1 · molto scarsa</option><option value="2">2 · scarsa</option><option value="3">3 · media</option><option value="4">4 · buona</option><option value="5">5 · ottima</option></select></div>
+   <div class="dp-field"><label for="dp-naps">Sonnellini nel giorno precedente (min)</label><input type="number" id="dp-naps" min="0" max="600" step="1" placeholder="Facoltativo"></div>
+  </div>
+  <details style="margin-top:18px" open><summary>Energia durante la giornata</summary><p class="dp-muted">Puoi tornare sulla stessa data e aggiornare i valori più tardi. Sono autovalutazioni, non misurazioni.</p>
+  <div class="dp-grid">
+   <div class="dp-field"><label for="dp-energy-morning">Mattina</label><select id="dp-energy-morning"><option value="">Non indicata</option><option value="1">1 · molto bassa</option><option value="2">2 · bassa</option><option value="3">3 · media</option><option value="4">4 · buona</option><option value="5">5 · molto alta</option></select></div>
+   <div class="dp-field"><label for="dp-energy-afternoon">Pomeriggio</label><select id="dp-energy-afternoon"><option value="">Non indicata</option><option value="1">1 · molto bassa</option><option value="2">2 · bassa</option><option value="3">3 · media</option><option value="4">4 · buona</option><option value="5">5 · molto alta</option></select></div>
+   <div class="dp-field"><label for="dp-energy-evening">Sera</label><select id="dp-energy-evening"><option value="">Non indicata</option><option value="1">1 · molto bassa</option><option value="2">2 · bassa</option><option value="3">3 · media</option><option value="4">4 · buona</option><option value="5">5 · molto alta</option></select></div>
+  </div></details>
+  <details style="margin-top:13px"><summary>Abitudini, turni e caffeina (facoltativo)</summary>
+   <p class="dp-muted">Per la caffeina considera l'ultima assunzione prima di andare a letto, anche quando il sonno avviene di giorno. Lascia vuoto ciò che non sai.</p>
+   <div class="dp-grid">
+    <div class="dp-field"><label for="dp-shift">Tipo di giornata precedente</label><select id="dp-shift"><option value="">Non indicato</option><option value="day">Lavoro diurno</option><option value="night">Turno notturno</option><option value="off">Riposo / giorno libero</option><option value="other">Altro / turno variabile</option></select></div>
+    <div class="dp-field"><label for="dp-stress">Stress percepito (1–5)</label><select id="dp-stress"><option value="">Non indicato</option><option value="1">1 · molto basso</option><option value="2">2 · basso</option><option value="3">3 · medio</option><option value="4">4 · alto</option><option value="5">5 · molto alto</option></select></div>
+    <div class="dp-field"><label for="dp-activity">Attività fisica precedente</label><select id="dp-activity"><option value="">Non indicata</option><option value="yes">Sì</option><option value="no">No</option></select></div>
+    <div class="dp-field"><label for="dp-light">Luce naturale entro 2 ore dal risveglio</label><select id="dp-light"><option value="">Non indicata</option><option value="yes">Sì</option><option value="no">No</option></select></div>
+    <div class="dp-field"><label for="dp-caffeine-time">Ora dell'ultima caffeina prima del sonno</label><input type="time" id="dp-caffeine-time"></div>
+    <div class="dp-field"><label for="dp-caffeine-mg">Caffeina stimata in quell'assunzione (mg)</label><input type="number" id="dp-caffeine-mg" min="0" max="500" step="1" placeholder="Es. 80"></div>
+   </div>
+   <p class="dp-muted">Il modulo considera una sola assunzione per la stima illustrativa; per consumi multipli usa il <a href="../caffeina/index.html">simulatore della caffeina</a>.</p>
+  </details>
+  <div class="dp-field" style="margin-top:18px"><label for="dp-notes">Note personali (facoltative)</label><textarea id="dp-notes" maxlength="280" placeholder="Una cosa che vuoi ricordare, senza inserire informazioni identificative inutili"></textarea></div>
+  <div class="dp-actions"><button type="submit" class="dp-btn">Salva / aggiorna questa notte</button><button type="button" id="dp-form-reset" class="dp-btn dp-light">Nuova scheda</button></div>
+  <p id="dp-form-status" class="dp-status" role="status" aria-live="polite"></p>
+ </form>
+</section>
+<section id="dp-dashboard" class="dp-panel" aria-labelledby="dp-dashboard-title">
+ <p class="dp-section-label">03 / LEGGI GLI ANDAMENTI</p><h2 id="dp-dashboard-title">La mappa dei tuoi ritmi.</h2>
+ <p class="dp-muted">Gli indicatori descrivono i dati registrati. Se mancano i minuti dei risvegli, la durata e l'efficienza possono essere sovrastimate.</p>
+ <div class="dp-tabs" aria-label="Periodo da visualizzare"><button type="button" data-period="14" aria-pressed="false">Ultime 14</button><button type="button" data-period="28" aria-pressed="true">Ultime 28</button><button type="button" data-period="90" aria-pressed="false">Tutto lo storico</button></div>
+ <div class="dp-metrics" id="dp-metrics" aria-live="polite"></div>
+ <h3>Quando vai a letto e quando ti alzi</h3>
+ <p class="dp-muted">Una riga per ogni notte; l'asse va da mezzogiorno a mezzogiorno. Il colore ocra distingue i turni notturni dichiarati.</p>
+ <div class="dp-rhythm"><div class="dp-axis"><span></span><small><span>12</span><span>18</span><span>00</span><span>06</span><span>12</span></small></div><div id="dp-rhythm-list"></div></div>
+ <div class="dp-legend"><span><i></i>Altri giorni</span><span class="dp-night-legend"><i></i>Turno notturno</span></div>
+ <h3 style="margin-top:25px">Quanto varia il sonno stimato</h3>
+ <div id="dp-duration-chart" class="dp-bars" aria-label="Grafico delle durate orientative"></div>
+ <div class="dp-insights" id="dp-observations" aria-live="polite"></div>
+ <div id="dp-caffeine" class="dp-caffeine"></div>
+</section>
+<section id="dp-progress" class="dp-panel" aria-labelledby="dp-progress-title">
+ <p class="dp-section-label">04 / OSSERVAZIONE GUIDATA</p><h2 id="dp-progress-title">28 giorni, due periodi a confronto.</h2>
+ <p class="dp-muted">Prime 14 notti e successive 14: controlla come cambiano gli indicatori. Non equivale a una sperimentazione clinica e non permette di dimostrare cause.</p>
+ <div class="dp-grid"><div class="dp-field"><label for="dp-focus">Che cosa vuoi osservare nelle prossime settimane?</label><select id="dp-focus"><option value="regularity">Regolarità degli orari</option><option value="caffeine">Caffeina e addormentamento</option><option value="energy">Energia diurna</option><option value="stress">Stress percepito</option><option value="light">Luce del mattino</option></select></div><div class="dp-field"><label for="dp-compare-start">Data iniziale del periodo di 28 giorni</label><input id="dp-compare-start" type="date"><small>Seleziona una data per confrontare due finestre consecutive da 14 giorni di calendario.</small></div></div>
+ <div id="dp-progress-result" class="dp-insights" aria-live="polite"></div>
+</section>
+<section id="dp-history" class="dp-panel" aria-labelledby="dp-history-title">
+ <p class="dp-section-label">05 / LO STORICO È TUO</p><h2 id="dp-history-title">Le tue notti, fino a 90.</h2>
+ <div class="dp-actions"><button id="dp-export-csv" type="button" class="dp-btn dp-light">Esporta CSV PRO</button><button id="dp-export-json" type="button" class="dp-btn dp-light">Backup JSON</button><a href="../turnisti/index.html" class="dp-btn dp-light">Esplora Turni &amp; Sonno ↗</a></div>
+ <p class="dp-muted">Puoi modificare o cancellare ogni scheda. L'eliminazione è definitiva sul dispositivo; usa il backup JSON per conservare una copia dei dati inseriti.</p>
+ <div class="dp-table-scroller"><table class="dp-table"><thead><tr><th>Risveglio</th><th>Sonno stimato</th><th>Orari</th><th>Energia</th><th>Turno</th><th>Azioni</th></tr></thead><tbody id="dp-history-body"><tr><td colspan="6">Nessuna notte registrata.</td></tr></tbody></table></div>
+</section>
+<section id="pro-report" class="dp-panel dp-report" aria-labelledby="dp-report-title" hidden>
+ <p class="dp-section-label dp-print-head">DOTT. ROBERTO BOSCIA · DIARIO DEL SONNO PRO</p>
+ <p class="dp-section-label">06 / UNA SINTESI DA CONSERVARE</p><h2 id="dp-report-title">Il tuo report ragionato.</h2>
+ <p class="dp-muted">Informazioni descrittive basate su autovalutazioni. I dati mancanti restano mancanti; nessuna interpretazione è una diagnosi.</p>
+ <div id="pro-result" aria-live="polite"></div>
+ <div class="dp-actions dp-no-print"><button type="button" id="dp-print" class="dp-btn">Stampa / salva PDF</button><button type="button" id="dp-report-txt" class="dp-btn dp-light">Scarica report TXT</button></div>
+ <p class="dp-footer-note">La variabilità degli orari e l'efficienza sono stime descrittive; i confronti tra abitudini indicano associazioni, non rapporti di causa-effetto. In caso di disturbi persistenti o sonnolenza importante, rivolgiti a un professionista sanitario competente.</p>
+</section>
+</div></div></section>
+<noscript><div class="home-wrap dp-alert">Per utilizzare il Diario PRO interattivo occorre attivare JavaScript. Il diario gratuito offre anche un PDF stampabile.</div></noscript>
+</main>
 <footer class="home-footer"><div class="home-wrap"><div class="home-footer-row"><span>Dott. Roberto Boscia</span><a href="../../index.html">Torna al Laboratorio ↗</a></div><p>Strumento educativo e orientativo, non diagnostico. I valori inseriti sono elaborati nel browser senza invio automatico a un server del portale. Per i dettagli sul trattamento dei dati, consulta le informative Privacy e Cookie.</p></div><nav class="portal-legal-links" aria-label="Informazioni legali" style="margin-top:25px;padding-top:16px;border-top:1px solid rgba(197,170,115,.25);display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center;font:13px/1.65 Arial,sans-serif;"><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../privacy/index.html">Privacy</a><a style="color:#ead2a7;text-decoration:underline;text-underline-offset:4px;" href="../../../cookie/index.html">Cookie e tecnologie locali</a></nav></footer>
 </body></html>

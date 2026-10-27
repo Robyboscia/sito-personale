@@ -73,7 +73,7 @@ function loadLocal(){
  }catch(err){status("dp-status","Archivio PRO non leggibile. Non è stato sovrascritto: prova a importare un backup.",true)}
 }
 function resetForm(){
- $("dp-form").reset();$("dp-date").value=new Date().toLocaleDateString("en-CA");
+ const today=new Date();$("dp-form").reset();$("dp-date").value=[today.getFullYear(),String(today.getMonth()+1).padStart(2,"0"),String(today.getDate()).padStart(2,"0")].join("-");
  status("dp-form-status","");
 }
 function getForm(){
@@ -118,12 +118,13 @@ function importCSV(raw){
  const header=data.shift().map(x=>x.trim()),pos=Object.fromEntries(header.map((x,i)=>[x,i]));
  for(const f of ["Giorno","Data risveglio","Ora a letto","Tentativo di dormire","Latenza min","Risveglio finale","Ora alzata"])if(!(f in pos))throw Error("Il CSV non sembra provenire dal Diario gratuito: manca "+f+".");
  const last=$("dp-last-date").value;let skipped=0;
+ const maxDay=Math.max(...data.map(row=>asNum(row[pos["Giorno"]])||0));
  const converted=data.map((row,i)=>{
   if(row.length!==header.length)throw Error("Numero di colonne non valido alla riga "+(i+2));
   const get=k=>pos[k]===undefined?"":String(row[pos[k]]??"").trim();
   const ix=asNum(get("Giorno"));
   if(!Number.isInteger(ix)||ix<1||ix>14)throw Error("Giorno fuori intervallo nel CSV.");
-  const date=get("Data risveglio")||(validDate(last)?dateAdd(last,ix-14):"");
+  const date=get("Data risveglio")||(validDate(last)?dateAdd(last,ix-maxDay):"");
   if(!validDate(date)){skipped++;return null}
   const w=get("Minuti orientativi sottratti");
   const partial=yes(get("Calcolo parziale"))||w==="";
@@ -140,9 +141,10 @@ function importOriginalLocal(){
  const raw=localStorage.getItem(LEGACY);if(!raw)throw Error("Nessun diario gratuito salvato in questo browser.");
  const data=JSON.parse(raw);if(data.version!==1||!Array.isArray(data.entries)||data.entries.length!==14)throw Error("Formato del diario gratuito non riconosciuto.");
  const last=$("dp-last-date").value;let skipped=0;
+ const lastRecorded=data.entries.reduce((acc,entry,i)=>entry?i:acc,-1);
  const converted=data.entries.map((r,i)=>{
   if(!r)return null;
-  const date=r.wakeDate||(validDate(last)?dateAdd(last,i-13):"");
+  const date=r.wakeDate||(validDate(last)?dateAdd(last,i-lastRecorded):"");
   if(!validDate(date)){skipped++;return null}
   return cleanRecord({date,bed:r.bedTime,try:r.tryTime,latency:r.latency,waso:r.waso,awakenings:r.awakenings,
    wake:r.finalWake,out:r.outTime,quality:r.quality,energyGeneric:r.energy,naps:r.naps,notes:r.notes});
@@ -247,11 +249,11 @@ function renderObservations(s){
  if(withMorning.length>=3&&withEvening.length>=3)
   insight(target,"Energia nella giornata","Mattina "+fmt(avg(withMorning,r=>Number(r.energyMorning)))+"/5; sera "+fmt(avg(withEvening,r=>Number(r.energyEvening)))+"/5, fra le rilevazioni disponibili.");
  else insight(target,"Energia nella giornata","Compila energia mattina, pomeriggio e sera per visualizzare i tuoi andamenti. Evitiamo previsioni circadiane basate su dati insufficienti.");
- const late=s.filter(r=>r.caffeineTime&&time(r.caffeineTime)>=15*60);
- const early=s.filter(r=>r.caffeineTime&&time(r.caffeineTime)<15*60);
+ const late=s.filter(r=>lastCaffeine(r)&&lastCaffeine(r).passed<=6);
+ const early=s.filter(r=>lastCaffeine(r)&&lastCaffeine(r).passed>6);
  if(late.length>=3&&early.length>=3)
-  insight(target,"Ultima caffeina","Latenza media riferita "+fmt(avg(late,r=>Number(r.latency)))+" min con ultima assunzione alle 15 o dopo, contro "+fmt(avg(early,r=>Number(r.latency)))+" min prima delle 15. Il confronto non dimostra una causa.");
- else insight(target,"Caffeina e addormentamento","Annota l'ultima assunzione per confrontare la latenza fra gruppi. Servono almeno tre notti per gruppo, e l'orario da solo non spiega tutta l'esposizione.");
+  insight(target,"Ultima caffeina","Latenza media riferita "+fmt(avg(late,r=>Number(r.latency)))+" min quando l’ultima caffeina precede il sonno di 6 ore o meno, contro "+fmt(avg(early,r=>Number(r.latency)))+" min oltre 6 ore. Associazione descrittiva, non causale.");
+ else insight(target,"Caffeina e addormentamento","Annota l'ultima caffeina prima del sonno: servono almeno tre notti entro e oltre le 6 ore per confrontare i gruppi, senza inferire cause.");
  insight(target,"Qualità delle stime",noteFor(s));
 }
 function renderCaffeine(s){
@@ -400,7 +402,7 @@ $("pro-demo").addEventListener("click",()=>{
 $("dp-clear").addEventListener("click",()=>{
  if(!records.length)return;
  if(!confirm("Eliminare tutte le schede PRO da questa pagina e dall'archivio locale? È irreversibile senza un backup."))return;
- records=[];demo=false;try{localStorage.removeItem(KEY)}catch(err){}
+ const wasDemo=demo;records=[];demo=false;if(!wasDemo){try{localStorage.removeItem(KEY)}catch(err){}}
  render();status("dp-status","Diario PRO cancellato. Il diario gratuito non è stato modificato.");
 });
 $("dp-backup").addEventListener("click",downloadBackup);

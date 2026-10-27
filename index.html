@@ -71,6 +71,11 @@ h1,.serif{font-family:Georgia,'Times New Roman',serif}h1{font-weight:400;letter-
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button-main,.card{transition:none}}
 
 
+/* Prevent highlighted editorial phrases overflowing compact iPhones */
+@media(max-width:390px){
+.explore .marker,.bottom-cta .marker{white-space:normal;background:linear-gradient(transparent 72%,rgba(221,166,74,.59) 72%);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.explore .marker:after,.bottom-cta .marker:after{display:none}
+}
 /* Production accessibility & responsive navigation */
 .skip-link{position:absolute;z-index:999;left:12px;top:-120px;background:#fffdf7;color:#163440;padding:13px 20px;border:2px solid #c48e39;font-weight:700}
 .skip-link:focus{top:12px}

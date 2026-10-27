@@ -77,10 +77,10 @@ async function main(){
 
   await test('Menu mobile: apertura e navigazione a Mental Pro',iphone,async page=>{
    await open(page,'/');
-   const summary=page.locator('details.home-mobile-menu summary');
+   const summary=page.locator('#menu-button');
    assert(await summary.isVisible(),'Menu mobile non visibile');
    await summary.click();
-   const link=page.locator('nav[aria-label="Menu mobile"] a[href*="mental-pro"]');
+   const link=page.locator('#nav-items a[href*="mental-pro"]');
    await link.waitFor({state:'visible',timeout:8000});
    await screenshot(page,'iphone-menu-aperto.png');
    await link.click();
@@ -94,9 +94,9 @@ async function main(){
    await open(page,'/');
    const home=await layout(page);
    assert(home.horizontalOverflowPx<=4,'Homepage eccede lo schermo di '+home.horizontalOverflowPx+'px');
-   const summary=page.locator('details.home-mobile-menu summary');
+   const summary=page.locator('#menu-button');
    await summary.click();
-   assert(await page.locator('nav[aria-label="Menu mobile"] a[href*="laboratorio-del-sonno"]').isVisible(),'Collegamento Laboratorio nascosto nel menu');
+   assert(await page.locator('#nav-items a[href*="laboratorio-del-sonno"]').isVisible(),'Collegamento Laboratorio nascosto nel menu');
    await screenshot(page,'iphone-compatto-menu.png');
    return home;
   });

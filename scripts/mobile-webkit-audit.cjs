@@ -58,7 +58,7 @@ async function sectionGeometry(page) {
    const r=el.getBoundingClientRect(),s=getComputedStyle(el);
    const phases=[...el.querySelectorAll('.process-step')].map(item=>{
      const d=item.getBoundingClientRect();
-     return {left:Math.round(d.left),right:Math.round(d.right),width:Math.round(d.width),height:Math.round(d.height)}
+     return {left:Math.round(d.left),right:Math.round(d.right),top:Math.round(d.top),width:Math.round(d.width),height:Math.round(d.height)}
    });
    return {columns:s.gridTemplateColumns,rect:{left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)},
       phases,orientation:phases.length>1&&phases[1].top>phases[0].top,

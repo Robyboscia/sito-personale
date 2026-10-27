@@ -218,6 +218,23 @@ function renderBars(s){
   b.setAttribute("role","img");b.setAttribute("aria-label",b.title);
  }
 }
+
+function renderEnergy(s){
+ const target=$("dp-energy-chart");clear(target);
+ if(!s.length){text(target,"p","dp-muted","Le valutazioni dell'energia appariranno qui.");return}
+ for(const r of s.slice(-28)){
+  const day=text(target,"div","dp-energy-day","");
+  day.title=showDate(r.date);
+  const vals=[r.energyMorning,r.energyAfternoon,r.energyEvening];
+  for(let i=0;i<3;i++){
+   const val=n(vals[i],1,5);
+   const tile=text(day,"div","dp-energy-tile"+(val!==null?" dp-e"+val:""),"");
+   tile.title=showDate(r.date)+" · "+["mattina","pomeriggio","sera"][i]+": "+(val===null?"non compilata":val+"/5");
+   tile.setAttribute("role","img");tile.setAttribute("aria-label",tile.title);
+  }
+  text(day,"span","",r.date.slice(8));
+ }
+}
 function evidenceSplit(s,predicate,label,metricValue){
  const withIt=s.filter(predicate),without=s.filter(r=>predicate(r)===false);
  const a=avg(withIt,metricValue),b=avg(without,metricValue);
@@ -254,6 +271,22 @@ function renderObservations(s){
  if(late.length>=3&&early.length>=3)
   insight(target,"Ultima caffeina","Latenza media riferita "+fmt(avg(late,r=>Number(r.latency)))+" min quando l’ultima caffeina precede il sonno di 6 ore o meno, contro "+fmt(avg(early,r=>Number(r.latency)))+" min oltre 6 ore. Associazione descrittiva, non causale.");
  else insight(target,"Caffeina e addormentamento","Annota l'ultima caffeina prima del sonno: servono almeno tre notti entro e oltre le 6 ore per confrontare i gruppi, senza inferire cause.");
+
+ const high=s.filter(r=>Number(r.stress)>=4),low=s.filter(r=>r.stress!==""&&Number(r.stress)<=2);
+ if(high.length>=3&&low.length>=3)
+  insight(target,"Stress percepito e durata","Notti con stress alto riferito: "+fmtM(avg(high,r=>r.tst))+" di sonno stimato, contro "+fmtM(avg(low,r=>r.tst))+" con stress basso. Associazione osservata, non effetto dimostrato.");
+ const active=s.filter(r=>r.activity==="yes"),inactive=s.filter(r=>r.activity==="no");
+ if(active.length>=3&&inactive.length>=3)
+  insight(target,"Attività fisica e sonno","Durata media stimata: "+fmtM(avg(active,r=>r.tst))+" dopo giornate con attività e "+fmtM(avg(inactive,r=>r.tst))+" senza. Non significa che l'attività sia la causa della differenza.");
+ const lit=s.filter(r=>r.light==="yes"&&r.energyMorning!==""),dark=s.filter(r=>r.light==="no"&&r.energyMorning!=="");
+ if(lit.length>=3&&dark.length>=3)
+  insight(target,"Luce e energia mattutina","Energia media: "+fmt(avg(lit,r=>Number(r.energyMorning)))+"/5 con luce naturale segnalata, contro "+fmt(avg(dark,r=>Number(r.energyMorning)))+"/5 senza. Confronto descrittivo.");
+ const both=s.filter(r=>r.energy!==null);
+ if(both.length>=6){
+  const pairedSleep=avg(both,r=>r.tst),pairedEnergy=avg(both,r=>r.energy);
+  const mismatch=both.filter(r=>r.tst>=pairedSleep&&r.energy<pairedEnergy);
+  if(mismatch.length>=2)insight(target,"Durata ed energia non sempre coincidono",mismatch.length+" giornate presentano un sonno stimato almeno pari alla tua media del periodo, ma un'energia riferita sotto la media. È una discrepanza da osservare, non una spiegazione medica.");
+ }
  insight(target,"Qualità delle stime",noteFor(s));
 }
 function renderCaffeine(s){
@@ -283,7 +316,39 @@ function renderProgress(){
   insight(target,"Confronto della durata","La media stimata è "+(diff>=0?"aumentata":"diminuita")+" di "+fmtM(Math.abs(diff))+". È un confronto tra periodi, non una prova di miglioramento né di causalità.");
  }else insight(target,"Per confrontare i periodi","Occorrono almeno 3 notti in ciascuna finestra. Più notti valide renderanno il quadro descrittivo più rappresentativo.");
  const desc={regularity:"gli orari di letto e risveglio",caffeine:"l'orario dell'ultima caffeina e la latenza",energy:"le valutazioni dell'energia durante il giorno",stress:"lo stress percepito",light:"la luce naturale dopo il risveglio"}[focus]||"i ritmi del sonno";
- insight(target,"Il tuo approfondimento","Osserva "+desc+" nei due periodi. Una coincidenza tra fattori non basta per stabilire un rapporto di causa-effetto.");
+
+ const cap=(rows,fn)=>rows.map(fn).filter(Number.isFinite);
+ let firstValues=[],secondValues=[],unit="",title="Approfondimento scelto";
+ if(focus==="regularity"){
+  const a=clockSpread(first.map(r=>r.wake)),b=clockSpread(second.map(r=>r.wake));
+  if(a!==null&&b!==null&&first.length>=4&&second.length>=4){
+   insight(target,"Regolarità del risveglio","Ampiezza osservata: "+fmtM(a)+" nei primi 14 giorni contro "+fmtM(b)+" nei successivi. Il valore più piccolo indica orari più vicini tra loro, non una diagnosi.");
+  }else insight(target,"Regolarità del risveglio","Servono almeno quattro notti per ciascun periodo per confrontare l'ampiezza degli orari.");
+  return;
+ }
+ if(focus==="caffeine"){
+  firstValues=cap(first,r=>lastCaffeine(r)?.passed);secondValues=cap(second,r=>lastCaffeine(r)?.passed);
+  title="Intervallo tra ultima caffeina e sonno";unit=" ore";
+ }else if(focus==="energy"){
+  firstValues=cap(first,r=>asNum(r.energyMorning));secondValues=cap(second,r=>asNum(r.energyMorning));
+  title="Energia riferita al mattino";unit="/5";
+ }else if(focus==="stress"){
+  firstValues=cap(first,r=>asNum(r.stress));secondValues=cap(second,r=>asNum(r.stress));
+  title="Stress percepito";unit="/5";
+ }else if(focus==="light"){
+  firstValues=cap(first,r=>r.light==="yes"?1:r.light==="no"?0:NaN);
+  secondValues=cap(second,r=>r.light==="yes"?1:r.light==="no"?0:NaN);
+  title="Giornate con luce naturale dopo il risveglio";unit="%";
+ }
+ if(firstValues.length<3||secondValues.length<3){
+  insight(target,title,"Non ci sono abbastanza dati su "+desc+" per il confronto. Servono almeno tre rilevazioni in entrambe le finestre; i campi non compilati non valgono zero.");
+ }else{
+  const a=mean(firstValues),b=mean(secondValues);
+  const aLabel=focus==="light"?fmt(Math.round(a*100))+unit:fmt(a)+unit;
+  const bLabel=focus==="light"?fmt(Math.round(b*100))+unit:fmt(b)+unit;
+  insight(target,title,"Primi 14 giorni: "+aLabel+" ("+firstValues.length+" rilevazioni). Secondi 14 giorni: "+bLabel+" ("+secondValues.length+" rilevazioni). Variazioni descrittive, non prova di causa-effetto.");
+ }
+
 }
 function renderHistory(){
  const body=$("dp-history-body");clear(body);const all=sorted().map(values).reverse();
@@ -316,6 +381,15 @@ function makeReport(){
  insight(observations,"Energia",m.energy===null?"Nessuna valutazione disponibile.":"Energia percepita media "+fmt(m.energy)+"/5. Il valore non è una misurazione fisiologica.");
  insight(observations,"Completezza del diario",noteFor(s));
  insight(observations,"Come leggere i risultati","Non sono stati applicati punteggi clinici o diagnosticati disturbi. Per approfondire osserva più periodi e condividi le tue annotazioni con un professionista qualificato, se necessario.");
+ text(inner,"h3","","Durata orientativa, notte per notte");
+ const reportBars=text(inner,"div","dp-bars","");
+ for(const rec of s.slice(-28)){
+  const b=text(reportBars,"div",rec.partial?"is-partial":"","");
+  b.style.height=Math.max(4,Math.min(112,rec.tst/720*112))+"px";
+  b.title=showDate(rec.date)+" · "+fmtM(rec.tst);
+  b.setAttribute("aria-label",b.title);b.setAttribute("role","img");
+ }
+ text(inner,"p","dp-muted","Ogni colonna è una notte registrata. Le colonne color ocra indicano stime parziali.");
  const lines=["DIARIO DEL SONNO PRO — Dott. Roberto Boscia",demo?"ESEMPIO DIMOSTRATIVO · DATI INVENTATI":"",
  "Notti registrate: "+records.length,"Periodo selezionato: ultime "+Math.min(period,records.length)+" notti",
  "Sonno medio stimato: "+fmtM(m.sleep),"Latenza media riferita: "+(m.lat===null?"—":fmt(m.lat)+" min"),
@@ -328,7 +402,7 @@ function makeReport(){
 function render(){
  const all=sorted();
  $("dp-total").textContent=all.length+" / "+LIMIT+" notti nel Diario PRO"+(demo?" · DATI DIMOSTRATIVI":"");
- const s=latest();renderMetrics(s);renderRhythm(s);renderBars(s);renderObservations(s);renderCaffeine(s);renderProgress();renderHistory();makeReport();
+ const s=latest();renderMetrics(s);renderRhythm(s);renderBars(s);renderEnergy(s);renderObservations(s);renderCaffeine(s);renderProgress();renderHistory();makeReport();
  const periodButtons=[...document.querySelectorAll("[data-period]")];
  periodButtons.forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.period)===period)));
 }

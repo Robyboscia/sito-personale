@@ -16,21 +16,15 @@ jobs:
   audit:
     name: Analisi cookie, rete e storage del sito pubblico
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
     timeout-minutes: 20
     steps:
       - name: Scarica il codice del sito
         uses: actions/checkout@v4
 
-      - name: Prepara Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Installa Playwright
+      - name: Installa libreria Playwright corrispondente al browser
         run: npm install --no-save --no-package-lock playwright@1.56.1
-
-      - name: Installa Chromium
-        run: npx playwright install --with-deps chromium
 
       - name: Rileva cookie, richieste e memoria locale
         run: node scripts/privacy-cookie-audit.cjs

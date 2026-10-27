@@ -112,3 +112,13 @@
  .sleep-app #pro-report .dp-metric span,.sleep-app #pro-report .dp-metric strong,.sleep-app #pro-report .dp-metric small{color:#111!important}
  .sleep-app .dp-print-head{display:block}
 }
+
+.sleep-app .dp-energy-grid{display:flex;gap:7px;overflow-x:auto;background:#fff;border:1px solid #d7e1dc;border-radius:11px;padding:14px;min-height:112px}
+.sleep-app .dp-energy-day{flex:0 0 32px;display:grid;gap:4px;text-align:center;min-width:0}
+.sleep-app .dp-energy-day span{font:10px/1.4 Arial,sans-serif;color:#566f74;white-space:nowrap}
+.sleep-app .dp-energy-tile{height:17px;border-radius:4px;background:#edf0ed;border:1px dashed #cad8d1}
+.sleep-app .dp-energy-tile.dp-e1{background:#e2ece8;border:1px solid #c4d7d0}
+.sleep-app .dp-energy-tile.dp-e2{background:#c3ddd6;border:1px solid #a1c6bd}
+.sleep-app .dp-energy-tile.dp-e3{background:#97c5bc;border:1px solid #83b5aa}
+.sleep-app .dp-energy-tile.dp-e4{background:#5c9c91;border:1px solid #4b8e83}
+.sleep-app .dp-energy-tile.dp-e5{background:#21665f;border:1px solid #1f5c55}

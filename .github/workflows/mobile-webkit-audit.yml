@@ -1,0 +1,49 @@
+name: Collaudo mobile WebKit (Safari)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/mobile-webkit-audit.yml'
+      - 'scripts/mobile-webkit-audit.cjs'
+      - 'assetto-biologico/index.html'
+
+permissions:
+  contents: read
+
+jobs:
+  webkit-mobile:
+    name: iPhone simulato — navigazione, grafici e strumenti
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Installa Playwright compatibile con il browser
+        run: npm install --no-save --no-package-lock playwright@1.56.1
+
+      - name: Collauda sito online con WebKit
+        run: node scripts/mobile-webkit-audit.cjs
+        env:
+          TEST_BASE_URL: https://drrobertoboscia.com
+
+      - name: Report nel riepilogo GitHub Actions
+        if: always()
+        shell: bash
+        run: |
+          if [ -f mobile-test-output/mobile-report.md ]; then
+            cat mobile-test-output/mobile-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Conserva report e screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collaudo-mobile-webkit
+          path: mobile-test-output/
+          if-no-files-found: warn
+          retention-days: 30

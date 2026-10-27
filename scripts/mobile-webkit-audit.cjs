@@ -78,6 +78,15 @@ async function assettoTest(width) {
      JSON.stringify({viewport:g.viewport,columns:g.columns,rect:g.rect,phases:g.phases}));
    const d=await dimensions(page);
    record('Nessun overflow orizzontale Assetto '+width,!d.overflowing,JSON.stringify(d));
+   const navBounds=await page.locator('#portale-navigazione').evaluate(el=>{
+     const home=el.querySelector('.portale-home-link').getBoundingClientRect();
+     const summary=el.querySelector('.portale-mobile-menu>summary').getBoundingClientRect();
+     const viewport=document.documentElement.clientWidth;
+     return {viewport,homeRight:Math.round(home.right),menuLeft:Math.round(summary.left),menuRight:Math.round(summary.right),menuWidth:Math.round(summary.width)};
+   });
+   record('Navigazione superiore interamente visibile '+width,
+     navBounds.homeRight<=navBounds.menuLeft+1 && navBounds.menuRight<=navBounds.viewport+1 && navBounds.menuLeft>=0,
+     JSON.stringify(navBounds));
    if(width===390 || width===320)record('Screenshot sezione Assetto '+width,Boolean(await screenshotAssetto(page,width)));
    if(width===390) {
       await page.locator('#portale-navigazione .portale-mobile-menu summary').click();

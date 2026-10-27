@@ -1,0 +1,114 @@
+
+/* Diario del Sonno PRO — Mappa dei ritmi, edizione di prova */
+.sleep-app .dp-main{padding:38px 0 72px}
+.sleep-app .dp-intro{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;margin-bottom:24px}
+.sleep-app .dp-intro p{max-width:690px;line-height:1.65;margin:0;color:#46616a}
+.sleep-app .dp-tag{display:inline-flex;align-items:center;gap:7px;font:700 11px/1.35 Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 12px;border-radius:99px;background:#ead7af;color:#243f4b}
+.sleep-app .dp-shell{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+.sleep-app .dp-panel{padding:clamp(18px,3.4vw,38px);background:#fcfbf5;border:1px solid #d7e0d9;border-radius:15px;box-shadow:0 10px 26px #1f45410c;min-width:0}
+.sleep-app .dp-panel h2{margin:0 0 10px;color:#163943;font-size:clamp(29px,3.6vw,46px)}
+.sleep-app .dp-panel h3{margin:0 0 12px;color:#183b45;font-size:clamp(22px,2.5vw,30px)}
+.sleep-app .dp-panel p{line-height:1.65}
+.sleep-app .dp-panel .dp-muted,.sleep-app .dp-muted{color:#557079;font-size:14px;line-height:1.65}
+.sleep-app .dp-lede{max-width:820px}
+.sleep-app .dp-jump{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 28px}
+.sleep-app .dp-jump a{border:1px solid #c6d5cf;background:#fff;color:#244852;padding:10px 13px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:700}
+.sleep-app .dp-jump a:focus-visible,.sleep-app .dp-btn:focus-visible,.sleep-app .dp-panel input:focus-visible,.sleep-app .dp-panel select:focus-visible,.sleep-app .dp-panel textarea:focus-visible{outline:3px solid #a7793b;outline-offset:3px}
+.sleep-app .dp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.sleep-app .dp-collection{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(250px,.85fr);gap:22px}
+.sleep-app .dp-stack{display:grid;gap:15px;min-width:0}
+.sleep-app .dp-field{display:grid;gap:7px;min-width:0}
+.sleep-app .dp-field label,.sleep-app .dp-label{font:700 13px/1.5 Arial,sans-serif;color:#294752}
+.sleep-app .dp-field small{line-height:1.45;color:#567178;font-size:12px}
+.sleep-app .dp-field input,.sleep-app .dp-field select,.sleep-app .dp-field textarea{width:100%;min-width:0;max-width:100%;padding:12px 13px;color:#173b44;background:#fff;border:1px solid #b8c9c5;border-radius:9px;font:15px/1.4 Arial,sans-serif}
+.sleep-app .dp-field input[type="file"]{font-size:13px}
+.sleep-app .dp-field textarea{resize:vertical;min-height:70px}
+.sleep-app .dp-field input[type="checkbox"]{width:auto;min-width:18px;height:18px;accent-color:#216b62}
+.sleep-app .dp-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:15px}
+.sleep-app .dp-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #285e63;border-radius:9px;background:#183b47;color:#fff!important;padding:11px 16px;min-height:44px;text-decoration:none!important;cursor:pointer;font:700 13px/1.4 Arial,sans-serif}
+.sleep-app .dp-btn:hover{background:#2b5e63}
+.sleep-app .dp-btn.dp-light{background:#f9f8f2;border-color:#aec8be;color:#20434c!important}
+.sleep-app .dp-btn.dp-light:hover{background:#e7f0e9}
+.sleep-app .dp-btn.dp-warn{background:#fff8f4;color:#84452e!important;border-color:#ddb9aa}
+.sleep-app .dp-btn:disabled{opacity:.6;cursor:not-allowed}
+.sleep-app .dp-option{display:flex;align-items:flex-start;gap:12px;border:1px solid #ccdad3;background:#eff6f0;border-radius:10px;padding:13px;margin-top:15px;font:14px/1.6 Arial,sans-serif;color:#294752}
+.sleep-app .dp-option input{margin-top:2px;width:18px;height:18px;accent-color:#216b62;flex:none}
+.sleep-app .dp-alert{border-left:4px solid #ca9b57;background:#fff8e9;color:#604c31;padding:13px 16px;border-radius:6px;font-size:13px;line-height:1.6}
+.sleep-app .dp-alert.dp-good{border-color:#4b9b88;background:#eaf5f0;color:#285b50}
+.sleep-app .dp-status{min-height:22px;margin:10px 0 0;color:#326b61;font-size:13px;line-height:1.6}
+.sleep-app .dp-status.is-error{color:#a03e30}
+.sleep-app .dp-editor details{border:1px solid #d9e1da;border-radius:11px;padding:15px;background:#f6f7f2}
+.sleep-app .dp-editor details summary{font-weight:800;cursor:pointer;color:#234851;padding:4px 0}
+.sleep-app .dp-section-label{color:#806641;font:bold 11px/1.4 Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+.sleep-app .dp-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:18px 0 24px}
+.sleep-app .dp-metric{min-width:0;padding:20px 15px;border-radius:11px;background:#173b46;color:#fff}
+.sleep-app .dp-metric span{font:700 10px/1.5 Arial,sans-serif;letter-spacing:.11em;text-transform:uppercase;color:#c0d8d0}
+.sleep-app .dp-metric strong{display:block;font:500 clamp(24px,2.9vw,38px)/1.25 Georgia,serif;color:#f8eacb;margin-top:10px;overflow-wrap:anywhere}
+.sleep-app .dp-metric small{display:block;font:12px/1.5 Arial,sans-serif;color:#bed0cd;margin-top:6px}
+.sleep-app .dp-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 18px}
+.sleep-app .dp-tabs button{border:1px solid #c4d3cc;background:#f2f6f0;color:#27464d;border-radius:40px;padding:9px 13px;font-weight:700;cursor:pointer}
+.sleep-app .dp-tabs button[aria-pressed="true"]{background:#275c61;color:#fff}
+.sleep-app .dp-rhythm{background:#fff;border:1px solid #d7e1dc;border-radius:11px;padding:15px;overflow-x:auto}
+.sleep-app .dp-axis,.sleep-app .dp-rhythm-row{display:grid;grid-template-columns:minmax(70px,110px) minmax(300px,1fr);align-items:center;gap:10px}
+.sleep-app .dp-axis{margin-bottom:9px}
+.sleep-app .dp-axis small{display:flex;justify-content:space-between;color:#547075;font-size:11px}
+.sleep-app .dp-rhythm-row{padding:7px 0;border-top:1px solid #edf0ea}
+.sleep-app .dp-rhythm-row>span{color:#425c62;font-size:12px;font-variant-numeric:tabular-nums}
+.sleep-app .dp-rhythm-track{height:18px;position:relative;border-radius:4px;background:repeating-linear-gradient(90deg,#edf3ed 0,#edf3ed calc(25% - 1px),#ccdcd5 25%);overflow:hidden}
+.sleep-app .dp-rhythm-segment{position:absolute;top:2px;bottom:2px;background:#43877e;border-radius:4px}
+.sleep-app .dp-rhythm-segment.is-shift{background:#c59d65}
+.sleep-app .dp-legend{display:flex;flex-wrap:wrap;gap:14px;color:#547079;font-size:12px;margin-top:12px}
+.sleep-app .dp-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;background:#43877e;margin-right:5px;vertical-align:-2px}
+.sleep-app .dp-legend .dp-night-legend i{background:#c59d65}
+.sleep-app .dp-bars{display:flex;align-items:flex-end;gap:4px;min-height:125px;padding:12px 5px 22px;border-bottom:1px solid #c9d5cd}
+.sleep-app .dp-bars div{flex:1;min-width:4px;background:#478c81;border-radius:3px 3px 0 0;position:relative;max-width:40px}
+.sleep-app .dp-bars div.is-partial{background:#cfa36b}
+.sleep-app .dp-bars div[title]{cursor:help}
+.sleep-app .dp-insights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.sleep-app .dp-insight{min-width:0;background:#eef3ed;border-left:4px solid #65958b;border-radius:6px;padding:16px}
+.sleep-app .dp-insight strong{color:#244852;display:block;line-height:1.5;font-size:15px}
+.sleep-app .dp-insight p{font-size:13px;margin:7px 0 0;color:#49646c}
+.sleep-app .dp-report{background:#173844;color:#fff}
+.sleep-app .dp-report h2,.sleep-app .dp-report h3{color:#f7ead5}
+.sleep-app .dp-report .dp-muted{color:#c8d8d1}
+.sleep-app .dp-report .dp-insight{background:#234d55;border-left-color:#d8af75}
+.sleep-app .dp-report .dp-insight strong{color:#f5ead4}
+.sleep-app .dp-report .dp-insight p{color:#d1e0d9}
+.sleep-app .dp-report .dp-metric{background:#244f58}
+.sleep-app .dp-report .dp-alert{color:#624c32}
+.sleep-app .dp-caffeine{margin-top:15px;padding:17px;border-radius:12px;background:#edf3ec;border:1px solid #c9d8ce}
+.sleep-app .dp-table-scroller{width:100%;overflow:auto}
+.sleep-app .dp-table{width:100%;border-collapse:collapse;font-size:12px;min-width:690px}
+.sleep-app .dp-table th{text-align:left;color:#4b6870;background:#eaf0ec}
+.sleep-app .dp-table td,.sleep-app .dp-table th{padding:10px;border-bottom:1px solid #d8e2da;white-space:nowrap}
+.sleep-app .dp-table button{background:transparent;color:#8e4734;border:0;text-decoration:underline;cursor:pointer}
+.sleep-app .dp-print-head{display:none}
+.sleep-app .dp-footer-note{font-size:12px;line-height:1.65;color:#587078}
+@media(max-width:850px){
+ .sleep-app .dp-collection{grid-template-columns:minmax(0,1fr)}
+ .sleep-app .dp-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .sleep-app .dp-insights{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:520px){
+ .sleep-app .dp-main{padding:24px 0 44px}
+ .sleep-app .dp-grid{grid-template-columns:minmax(0,1fr)}
+ .sleep-app .dp-metrics{gap:8px}
+ .sleep-app .dp-metric{padding:16px 12px}
+ .sleep-app .dp-jump a{flex:1;text-align:center}
+ .sleep-app .dp-panel{padding:17px}
+ .sleep-app .dp-actions .dp-btn{width:100%}
+ .sleep-app .dp-axis,.sleep-app .dp-rhythm-row{grid-template-columns:78px minmax(280px,1fr)}
+}
+@media print{
+ .sleep-app .home-header,.sleep-app .home-footer,.sleep-app .st-head,.sleep-app .dp-intro,.sleep-app .dp-jump,.sleep-app #dp-start,.sleep-app #dp-entry,.sleep-app #dp-progress,.sleep-app #dp-history,.sleep-app #dp-dashboard,.sleep-app .dp-no-print{display:none!important}
+ .sleep-app,.sleep-app main{background:#fff!important;color:#111!important;overflow:visible!important}
+ .sleep-app .dp-main{padding:0}
+ .sleep-app .dp-shell{display:block}
+ .sleep-app #pro-report,.sleep-app #pro-report[hidden]{display:block!important;background:#fff!important;border:0!important;box-shadow:none!important;padding:0!important;color:#111!important}
+ .sleep-app #pro-report h2,.sleep-app #pro-report h3,.sleep-app #pro-report strong,.sleep-app #pro-report p{color:#111!important}
+ .sleep-app #pro-report .dp-insight{background:#fff!important;border:1px solid #bbb;break-inside:avoid}
+ .sleep-app #pro-report .dp-insight p{color:#111!important}
+ .sleep-app #pro-report .dp-metric{background:#f3f3f3!important;color:#111!important}
+ .sleep-app #pro-report .dp-metric span,.sleep-app #pro-report .dp-metric strong,.sleep-app #pro-report .dp-metric small{color:#111!important}
+ .sleep-app .dp-print-head{display:block}
+}

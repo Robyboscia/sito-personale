@@ -1409,6 +1409,67 @@
       body { padding-bottom: 62px; }
     }
 
+
+    /* Mobile: tre fasi come timeline verticale, senza colonne tagliate su Safari/iPhone. */
+    @media (max-width: 768px) {
+      .process-section { padding: 3.5rem 1.25rem; }
+      .process-inner { max-width: 100%; min-width: 0; }
+      .process-steps {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .process-steps::before {
+        top: 39px;
+        bottom: 39px;
+        left: 39px;
+        right: auto;
+        width: 1px;
+        height: auto;
+        background: linear-gradient(to bottom, #1B3A8C, rgba(27,58,140,.3), #1B3A8C);
+      }
+      .process-step {
+        display: grid;
+        grid-template-columns: 80px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        column-gap: 1.1rem;
+        row-gap: .4rem;
+        align-content: start;
+        text-align: left;
+        padding: 0;
+        min-width: 0;
+      }
+      .process-step .process-num-wrap {
+        grid-column: 1;
+        grid-row: 1 / 3;
+        width: 80px;
+        height: 80px;
+        margin: 0;
+      }
+      .process-step h4 {
+        grid-column: 2;
+        margin: 0;
+        font-size: clamp(1.45rem, 5vw, 1.8rem);
+        line-height: 1.15;
+      }
+      .process-step p {
+        grid-column: 2;
+        margin: 0;
+        font-size: .95rem;
+        line-height: 1.65;
+        overflow-wrap: break-word;
+      }
+    }
+    @media (max-width: 360px) {
+      .process-section { padding-inline: 1rem; }
+      .process-step {
+        grid-template-columns: 68px minmax(0, 1fr);
+        column-gap: .8rem;
+      }
+      .process-step .process-num-wrap { width: 68px; height: 68px; }
+      .process-steps::before { left: 33px; }
+    }
+
   </style>
 
   <!-- Noscript: rende visibili tutti gli elementi animati da GSAP -->

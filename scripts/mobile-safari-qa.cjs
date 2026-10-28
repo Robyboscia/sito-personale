@@ -180,6 +180,29 @@ async function main(){
   });
 
 
+  await test('Diario PRO: grafici comparativi, 12 microlezioni e quiz educativo',iphone,async page=>{
+   await open(page,'/laboratorio-del-sonno/strumenti/diario-pro/');
+   assert(await page.locator('#dp-lessons .dp-lesson').count()===12,'Manca una delle 12 microlezioni');
+   await page.locator('#pro-demo').click();
+   assert(await page.locator('#dp-scatter svg circle').count()>=14,'Grafico energia e durata non popolato');
+   assert((await page.locator('#dp-factor-chart').innerText()).includes('notti'),'Confronto abitudini non visibile');
+   await page.locator('#dp-factor').selectOption('stress');
+   assert((await page.locator('#dp-factor-chart').innerText()).includes('notti'),'Confronto stress non aggiornato');
+   await page.locator('#dp-focus').selectOption('energy');
+   assert((await page.locator('#dp-progress-result').innerText()).includes('Energia riferita al mattino'),'Il focus sui 28 giorni non modifica la spiegazione');
+   const lesson=page.locator('#dp-lessons details[data-lesson="caffeine"]');
+   await lesson.locator('summary').click();
+   const href=await lesson.locator('.dp-source a').getAttribute('href');
+   assert(href.includes('pubmed.ncbi.nlm.nih.gov'),'Fonte scientifica non collegata alla lezione');
+   await lesson.locator('.dp-quiz-option').nth(1).click();
+   assert((await lesson.locator('.dp-quiz-feedback').innerText()).includes('Esatto'),'Quiz non fornisce riscontro corretto');
+   await lesson.locator('.dp-lesson-done').click();
+   assert((await page.locator('#dp-learning-summary').innerText()).includes('1 di 12'),'Progresso lezioni non aggiornato');
+   assert((await page.locator('#dp-report-education').innerText()).length>100,'Manca approfondimento nel report');
+   await screenshot(page,'iphone-diario-pro-microaccademia.png');
+   return {lessons:12,scatter:true,habitChart:true,quiz:true,contextualReport:true};
+  });
+
   await test('Diario PRO v2: compilazione, backup, importazione e turni',iphone,async page=>{
    await open(page,'/laboratorio-del-sonno/strumenti/diario-pro/');
    await page.locator('#dp-persist').check();

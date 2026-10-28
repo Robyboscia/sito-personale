@@ -122,3 +122,83 @@
 .sleep-app .dp-energy-tile.dp-e3{background:#97c5bc;border:1px solid #83b5aa}
 .sleep-app .dp-energy-tile.dp-e4{background:#5c9c91;border:1px solid #4b8e83}
 .sleep-app .dp-energy-tile.dp-e5{background:#21665f;border:1px solid #1f5c55}
+
+
+/* PRO contrast audit: light report card inside the dark report, mobile + desktop. */
+.sleep-app #pro-report{
+  color:#f7f8f3;
+}
+.sleep-app #pro-report > .dp-section-label{
+  color:#f3d19a;
+}
+.sleep-app #pro-report > .dp-muted,
+.sleep-app #pro-report > .dp-footer-note{
+  color:#e6efeb;
+}
+/* The dashboard report contains a cream-coloured card: do not inherit the
+   ivory text rules intended for the dark report background. */
+.sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel{
+  background:#fcfbf5;
+  color:#253f49;
+  border-color:#cad8d2;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel > h3,
+.sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel > h2{
+  color:#254550;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel > p,
+.sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel > .dp-muted{
+  color:#3e5962;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel > p.dp-muted{
+  color:#415a62;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-bars{
+  border-bottom-color:#b4c8be;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-bars div{
+  background:#367e75;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-bars div.is-partial{
+  background:#ab7542;
+}
+/* Keep text on actual dark inset cards light, clearly distinct from cream. */
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-insight{
+  background:#214d56;
+  border-left-color:#efc084;
+  color:#f1f6f2;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-insight strong{
+  color:#fff2db;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-insight p{
+  color:#e7f0ec;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-metric{
+  background:#244f58;
+}
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-metric span,
+.sleep-app #pro-report #pro-result .pro-dashboard .dp-metric small{
+  color:#e0ebe7;
+}
+/* Avoid illegible light-on-light output when saving the report to PDF. */
+@media print{
+ .sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel,
+ .sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel > h3,
+ .sleep-app #pro-report #pro-result .pro-dashboard > .dp-panel > p{
+   background:#fff!important;
+   color:#111!important;
+ }
+ .sleep-app #pro-report #pro-result .pro-dashboard .dp-insight,
+ .sleep-app #pro-report #pro-result .pro-dashboard .dp-metric{
+   background:#fff!important;
+   border:1px solid #888!important;
+ }
+ .sleep-app #pro-report #pro-result .pro-dashboard .dp-insight strong,
+ .sleep-app #pro-report #pro-result .pro-dashboard .dp-insight p,
+ .sleep-app #pro-report #pro-result .pro-dashboard .dp-metric strong,
+ .sleep-app #pro-report #pro-result .pro-dashboard .dp-metric span,
+ .sleep-app #pro-report #pro-result .pro-dashboard .dp-metric small{
+   color:#111!important;
+ }
+}

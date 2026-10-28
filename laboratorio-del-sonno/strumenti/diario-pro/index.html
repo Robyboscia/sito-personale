@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="../../../portale.css">
 <link rel="stylesheet" href="../strumenti.css">
 <link rel="stylesheet" href="../diario-pro-v2.css">
+<link rel="stylesheet" href="../diario-pro-education.css">
 <script src="../diario-pro-v2.js" defer></script>
+<script src="../diario-pro-education.js" defer></script>
 </head>
 <body class="home-v2 sleep-app" data-tool="diario-pro">
 <a class="home-skip" href="#contenuto">Vai al contenuto</a>
@@ -32,7 +34,7 @@
 <section class="dp-main" aria-label="Diario del Sonno PRO"><div class="home-wrap">
 <div class="dp-intro"><div><span class="dp-tag">PRO IN PROVA · GRATIS</span><h2 style="margin:13px 0 8px">La mappa <em>dei tuoi ritmi.</em></h2><p>Non un voto al tuo sonno: strumenti per osservare le variazioni di orari, durata, energia e abitudini. Le analisi sono descrittive e non equivalgono a diagnosi.</p></div>
 <a class="dp-btn dp-light" href="../../diario/index.html">Preferisci il diario gratuito? ↗</a></div>
-<nav class="dp-jump" aria-label="Sezioni del diario PRO"><a href="#dp-start">Inizia</a><a href="#dp-entry">Registra una notte</a><a href="#dp-dashboard">La tua mappa</a><a href="#dp-progress">28 giorni</a><a href="#dp-history">Storico</a><a href="#pro-report">Report</a></nav>
+<nav class="dp-jump" aria-label="Sezioni del diario PRO"><a href="#dp-start">Inizia</a><a href="#dp-entry">Registra una notte</a><a href="#dp-dashboard">La tua mappa</a><a href="#dp-compare">Confronti</a><a href="#dp-progress">28 giorni</a><a href="#dp-learn">Impara</a><a href="#dp-history">Storico</a><a href="#pro-report">Report</a></nav>
 <div class="dp-shell">
 <section id="dp-start" class="dp-panel" aria-labelledby="dp-start-title">
  <p class="dp-section-label">01 / PARTI DAI TUOI DATI</p><h2 id="dp-start-title">Inizia da dove sei.</h2>
@@ -107,12 +109,26 @@
  <div class="dp-insights" id="dp-observations" aria-live="polite"></div>
  <div id="dp-caffeine" class="dp-caffeine"></div>
 </section>
+<section id="dp-compare" class="dp-panel" aria-labelledby="dp-compare-title">
+<p class="dp-section-label">03B / GUARDA OLTRE LE MEDIE</p><h2 id="dp-compare-title">Scopri i tuoi schemi.</h2>
+<p class="dp-muted">Due rappresentazioni diverse: le notti con durata ed energia entrambe registrate e i confronti tra gruppi di abitudini. Non sono test statistici né strumenti per individuare cause.</p>
+<div class="dp-comparison-grid">
+<div class="dp-chart-card"><h3>Durata del sonno ed energia</h3><p class="dp-muted">Ogni punto rappresenta una notte con entrambi i dati. Asse orizzontale: ore di sonno stimate; asse verticale: energia percepita da 1 a 5.</p><div id="dp-scatter" class="dp-scatter" aria-live="polite"></div><p class="dp-muted" id="dp-scatter-note"></p></div>
+<div class="dp-chart-card"><h3>Un fattore alla volta</h3><div class="dp-field"><label for="dp-factor">Cosa vuoi confrontare?</label><select id="dp-factor"><option value="caffeine">Ultima caffeina (entro / oltre 6 ore dal letto)</option><option value="stress">Stress percepito (alto / basso)</option><option value="activity">Attività fisica (sì / no)</option><option value="light">Luce naturale dopo il risveglio (sì / no)</option><option value="shift">Turno notturno / giorno libero</option></select></div><div id="dp-factor-chart" class="dp-factor-chart" aria-live="polite"></div><p class="dp-muted" id="dp-factor-note"></p></div>
+</div><p class="dp-alert">Per confrontare i gruppi occorrono almeno tre notti con dati validi per ciascun gruppo. Le differenze osservate non dimostrano che una certa abitudine abbia causato il risultato.</p></section>
 <section id="dp-progress" class="dp-panel" aria-labelledby="dp-progress-title">
  <p class="dp-section-label">04 / OSSERVAZIONE GUIDATA</p><h2 id="dp-progress-title">28 giorni, due periodi a confronto.</h2>
  <p class="dp-muted">Prime 14 notti e successive 14: controlla come cambiano gli indicatori. Non equivale a una sperimentazione clinica e non permette di dimostrare cause.</p>
  <div class="dp-grid"><div class="dp-field"><label for="dp-focus">Che cosa vuoi osservare nelle prossime settimane?</label><select id="dp-focus"><option value="regularity">Regolarità degli orari</option><option value="caffeine">Caffeina e addormentamento</option><option value="energy">Energia diurna</option><option value="stress">Stress percepito</option><option value="light">Luce del mattino</option></select></div><div class="dp-field"><label for="dp-compare-start">Data iniziale del periodo di 28 giorni</label><input id="dp-compare-start" type="date"><small>Seleziona una data per confrontare due finestre consecutive da 14 giorni di calendario.</small></div></div>
  <div id="dp-progress-result" class="dp-insights" aria-live="polite"></div>
 </section>
+<section id="dp-learn" class="dp-panel" aria-labelledby="dp-learn-title">
+<p class="dp-section-label">05 / MICROACCADEMIA DEL SONNO</p><h2 id="dp-learn-title">Capire prima di interpretare.</h2>
+<p class="dp-muted">12 microlezioni basate su fonti scientifiche e istituzionali. Prima il concetto, poi il collegamento con ciò che hai registrato. Le lezioni sono educative, non piani terapeutici.</p>
+<div id="dp-learning-summary" class="dp-learning-summary" aria-live="polite"></div>
+<div class="dp-learning-controls"><div class="dp-field"><label for="dp-lesson-filter">Esplora gli argomenti</label><select id="dp-lesson-filter"><option value="all">Tutte le lezioni</option><option value="suggested">Consigliate in base ai dati</option><option value="basics">Le basi</option><option value="rhythms">Ritmi e ambiente</option><option value="habits">Abitudini e attenzione</option></select></div><p class="dp-muted">Le letture completate sono segnate soltanto durante questa sessione, senza creare nuove memorie nel browser.</p></div>
+<div id="dp-lessons" class="dp-lessons"></div>
+<h3 style="margin-top:26px">Fonti e metodologia</h3><p class="dp-muted">Ogni lezione cita una fonte verificabile e distingue il messaggio generale dalla lettura dei dati personali. Le spiegazioni non costituiscono validazione clinica del software. <a href="https://pubmed.ncbi.nlm.nih.gov/22294820/" target="_blank" rel="noopener noreferrer">Consensus Sleep Diary (2012)</a> · <a href="https://professional.heart.org/en/science-news/multidimensional-sleep-health-definitions-and-implications-for-cardiometabolic-health/top-things-to-know" target="_blank" rel="noopener noreferrer">American Heart Association (2025)</a>.</p></section>
 <section id="dp-history" class="dp-panel" aria-labelledby="dp-history-title">
  <p class="dp-section-label">05 / LO STORICO È TUO</p><h2 id="dp-history-title">Le tue notti, fino a 90.</h2>
  <div class="dp-actions"><button id="dp-export-csv" type="button" class="dp-btn dp-light">Esporta CSV PRO</button><button id="dp-export-json" type="button" class="dp-btn dp-light">Backup JSON</button><a href="../turnisti/index.html" class="dp-btn dp-light">Esplora Turni &amp; Sonno ↗</a></div>
@@ -125,6 +141,7 @@
  <p class="dp-muted">Informazioni descrittive basate su autovalutazioni. I dati mancanti restano mancanti; nessuna interpretazione è una diagnosi.</p>
  <div id="pro-result" aria-live="polite"></div>
  <div class="dp-actions dp-no-print"><button type="button" id="dp-print" class="dp-btn">Stampa / salva PDF</button><button type="button" id="dp-report-txt" class="dp-btn dp-light">Scarica report TXT</button></div>
+ <div id="dp-report-education" class="dp-report-education"></div>
  <p class="dp-footer-note">La variabilità degli orari e l'efficienza sono stime descrittive; i confronti tra abitudini indicano associazioni, non rapporti di causa-effetto. In caso di disturbi persistenti o sonnolenza importante, rivolgiti a un professionista sanitario competente.</p>
 </section>
 </div></div></section>

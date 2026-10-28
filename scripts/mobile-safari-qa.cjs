@@ -216,7 +216,7 @@ async function main(){
     ['#pro-report > .dp-muted','Introduzione del report',4.5]
    ];
    const results=await page.evaluate(checks=>{
-    const rgb=s=>{const match=s.match(/rgba?\\(([^)]*)\\)/);return match?match[1].split(',').slice(0,3).map(Number):null};
+    const rgb=s=>{const first=s.indexOf('('),last=s.indexOf(')');return first<0||last<=first?null:s.slice(first+1,last).split(',').slice(0,3).map(v=>Number(v.trim()))};
     const luminance=color=>{
       const c=rgb(color);if(!c)return null;
       const a=c.map(v=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});

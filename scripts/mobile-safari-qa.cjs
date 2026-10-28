@@ -203,6 +203,42 @@ async function main(){
    return {lessons:12,scatter:true,habitChart:true,quiz:true,contextualReport:true};
   });
 
+  await test('Diario PRO: contrasto testi nel report su iPhone',iphone,async page=>{
+   await open(page,'/laboratorio-del-sonno/strumenti/diario-pro/');
+   await page.locator('#pro-demo').click();
+   await page.locator('#pro-report').waitFor({state:'visible',timeout:10000});
+   const targets=[
+    ['#pro-report #pro-result .pro-dashboard > .dp-panel > h3','Titolo su crema',3],
+    ['#pro-report #pro-result .pro-dashboard > .dp-panel > p.dp-muted','Nota sotto il grafico su crema',4.5],
+    ['#pro-report #pro-result .pro-dashboard .dp-insight p','Spiegazione su fondo scuro',4.5],
+    ['#pro-report #pro-result .pro-dashboard .dp-insight strong','Titolo su fondo scuro',4.5],
+    ['#pro-report > .dp-footer-note','Nota finale del report',4.5],
+    ['#pro-report > .dp-muted','Introduzione del report',4.5]
+   ];
+   const results=await page.evaluate(checks=>{
+    const rgb=s=>{const match=s.match(/rgba?\\(([^)]*)\\)/);return match?match[1].split(',').slice(0,3).map(Number):null};
+    const luminance=color=>{
+      const c=rgb(color);if(!c)return null;
+      const a=c.map(v=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});
+      return .2126*a[0]+.7152*a[1]+.0722*a[2];
+    };
+    const contrast=(a,b)=>{const x=luminance(a),y=luminance(b);return x===null||y===null?0:(Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+    return checks.map(([selector,label,min])=>{
+      const node=document.querySelector(selector);if(!node)return {label,ratio:0,reason:'missing'};
+      let parent=node,background='rgba(0, 0, 0, 0)';
+      while(parent){const bg=getComputedStyle(parent).backgroundColor;
+        if(bg&&!bg.includes('rgba(0, 0, 0, 0)')&&bg!=='transparent'){background=bg;break}
+        parent=parent.parentElement;
+      }
+      const color=getComputedStyle(node).color;return {label,contrast:contrast(color,background),color,background,min};
+    });
+   },targets);
+   const bad=results.filter(r=>r.contrast<r.min);
+   assert(!bad.length,'Contrasto insufficiente: '+JSON.stringify(bad));
+   await screenshot(page,'iphone-diario-pro-contrasto-report.png');
+   return {measurements:results};
+  });
+
   await test('Diario PRO v2: compilazione, backup, importazione e turni',iphone,async page=>{
    await open(page,'/laboratorio-del-sonno/strumenti/diario-pro/');
    await page.locator('#dp-persist').check();

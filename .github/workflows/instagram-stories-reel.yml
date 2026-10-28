@@ -1,0 +1,43 @@
+name: Generate Instagram Stories and Reel
+on:
+  push:
+    paths:
+      - 'scripts/generate_instagram_stories_reel.py'
+      - '.github/workflows/instagram-stories-reel.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install fonts, Pillow and FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-ebgaramond fonts-inter ffmpeg
+          python3 -m pip install --user pillow --quiet
+      - name: Render vertical Stories and Reel
+        run: |
+          python3 scripts/generate_instagram_stories_reel.py
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('assets/social/stories-reel')
+          files=sorted(p.glob('storia_*.png'))
+          assert len(files)==3, 'Missing story images'
+          for f in files: assert Image.open(f).size==(1080,1920), f
+          assert (p/'reel_laboratorio_sonno.mp4').stat().st_size>100000
+          PY
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 assets/social/stories-reel/reel_laboratorio_sonno.mp4
+      - name: Publish files for Metricool
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/social/stories-reel/storia_*.png assets/social/stories-reel/reel_laboratorio_sonno.mp4
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Instagram Stories and original Reel media"
+            git push
+          fi

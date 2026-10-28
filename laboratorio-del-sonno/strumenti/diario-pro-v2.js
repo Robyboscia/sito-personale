@@ -405,6 +405,8 @@ function render(){
  const s=latest();renderMetrics(s);renderRhythm(s);renderBars(s);renderEnergy(s);renderObservations(s);renderCaffeine(s);renderProgress();renderHistory();makeReport();
  const periodButtons=[...document.querySelectorAll("[data-period]")];
  periodButtons.forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.period)===period)));
+ // The educational layer reads only an in-memory snapshot; no data is transmitted.
+ document.dispatchEvent(new Event("sleep-pro:updated"));
 }
 function setDefaultProgressStart(){
  const s=sorted();if(!s.length){$("dp-compare-start").value="";return}
@@ -497,8 +499,9 @@ $("dp-history-body").addEventListener("click",e=>{
  }
 });
 $("dp-focus").addEventListener("change",e=>{focus=e.target.value;saveLocal();renderProgress()});
-$("dp-compare-start").addEventListener("change",renderProgress);
+$("dp-compare-start").addEventListener("change",()=>{renderProgress();document.dispatchEvent(new Event("sleep-pro:updated"))});
 $("dp-print").addEventListener("click",()=>window.print());
 $("dp-report-txt").addEventListener("click",()=>{if(reportText)saveFile(demo?"ESEMPIO_Report_PRO.txt":"Report_Diario_PRO.txt",reportText)});
+window.SleepDiaryPRO={getSnapshot:()=>({records:sorted().map(values),demo,period,focus,compareStart:$("dp-compare-start").value})};
 resetForm();loadLocal();$("dp-focus").value=focus;setDefaultProgressStart();render();
 })();

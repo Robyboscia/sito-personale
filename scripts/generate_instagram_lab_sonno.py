@@ -4,12 +4,15 @@ D=Path('assets/social/laboratorio-sonno')
 D.mkdir(parents=True,exist_ok=True)
 W,H=1080,1350
 NAVY='#102F3A';NAVY2='#18434C';CREAM='#F8F6EF';PAPER='#FEFCF6';GOLD='#D7A653';GOLDL='#E8C98E';INK='#173944';MUTED='#536D70';GREEN='#4A8A7F';BORDER='#C9D8D1'
-font_ser='/usr/share/fonts/truetype/ebgaramond/EBGaramond12-Regular.ttf'
-font_ital='/usr/share/fonts/truetype/ebgaramond/EBGaramond12-Italic.ttf'
-font_ser_b='/usr/share/fonts/truetype/ebgaramond/EBGaramond12-Bold.ttf'
-font_sans='/usr/share/fonts/opentype/inter/InterDisplay-Regular.otf'
-font_bold='/usr/share/fonts/opentype/inter/InterDisplay-Bold.otf'
-font_med='/usr/share/fonts/opentype/inter/InterDisplay-Medium.otf'
+import subprocess
+def font_match(family,style):
+ return subprocess.check_output(['fc-match','-f','%{file}',family+':style='+style],text=True).strip()
+font_ser=font_match('EB Garamond','Regular')
+font_ital=font_match('EB Garamond','Italic')
+font_ser_b=font_match('EB Garamond','Bold')
+font_sans=font_match('Inter','Regular')
+font_bold=font_match('Inter','Bold')
+font_med=font_match('Inter','Medium')
 def ft(sz,f='sans'):
  return ImageFont.truetype({'ser':font_ser,'ital':font_ital,'sb':font_ser_b,'sans':font_sans,'bold':font_bold,'med':font_med}[f],sz)
 def tw(d,s,f):return d.textbbox((0,0),s,font=f)[2]

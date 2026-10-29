@@ -23,10 +23,13 @@ async function run(browserType,device){
   ok(overflow<=4,'horizontal overflow '+overflow+'px');
  }
  await start();
+ await page.locator('#shift-monitor-date').fill('2026-10-26');
+ ok(await page.locator('#shift-date').inputValue()==='2026-10-26','monitor start date syncs to shift planner');
  await page.locator('#shift-demo').click();
  await page.locator('#shift-report').waitFor({state:'visible'});
  let ptext=await page.locator('#shift-result').innerText();
  ok(ptext.includes('DIMOSTRATIVO'),'sample report displayed');
+ ok(await page.locator('#shift-monitor-date').inputValue()==='2026-10-26','demo preserves selected week');
  ok(ptext.includes('8 h 00 min')||ptext.includes('inferiori a 11 ore'),'short break detected');
  await page.locator('#sleep-start-0').fill('23:00');
  await page.locator('#sleep-end-0').fill('07:00');
@@ -58,6 +61,7 @@ async function run(browserType,device){
  await page.reload({waitUntil:'domcontentloaded'});
  await page.locator('#sleep-start-0').waitFor();
  ok(await page.locator('#sleep-start-0').inputValue()==='23:00','restore save after reload');
+ ok(await page.locator('#shift-monitor-date').inputValue()==='2026-10-26','restore date after reload');
  await page.locator('#shift-monitor-form button[type=submit]').click();
  const downloadPromise=page.waitForEvent('download');
  await page.locator('#shift-monitor-export').click();

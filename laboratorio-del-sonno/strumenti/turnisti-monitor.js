@@ -193,6 +193,7 @@ $("shift-monitor-form").addEventListener("change",event=>{
 });
 $("shift-monitor-form").addEventListener("reset",()=>setTimeout(()=>{
  observations=[];$("shift-monitor-report").hidden=true;out.replaceChildren();reportIsVisible=false;
+ $("shift-monitor-date").value=$("shift-date").value;labels();
  deleteStore();status("Diario svuotato. Anche la copia salvata su questo dispositivo è stata rimossa.");
 },0));
 $("shift-monitor-save").addEventListener("click",()=>{

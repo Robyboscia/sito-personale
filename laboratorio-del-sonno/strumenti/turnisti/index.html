@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../../../portale.css">
 <link rel="stylesheet" href="../strumenti.css">
 <script src="../strumenti.js" defer></script>
+<script src="../turnisti-monitor.js" defer></script>
 </head>
 <body class="home-v2 sleep-app" data-tool="turnisti">
 <a class="home-skip" href="#contenuto">Vai al contenuto</a>
@@ -28,8 +29,8 @@
 <h1 id="tool-heading">Turni <em>&amp; Sonno.</em></h1><p class="st-lede">Inserisci una settimana di lavoro, osserva gli intervalli fra turni e crea un promemoria orientativo delle opportunità di riposo. Non è un programma terapeutico né un certificato di conformità dei turni.</p><p class="st-head-note">I tuoi dati sono elaborati in questa pagina, senza account né invio al portale. I risultati sono educativi e orientativi, non diagnosi o piani di cura.</p></div>
 <div class="st-head-side" aria-hidden="true">7</div></div></div></section>
 <section class="st-workspace"><div class="home-wrap">
-
-<div class="st-grid">
+<nav class="shift-mode-nav" aria-label="Funzioni di Turni e Sonno"><a href="#shift-planner" class="shift-mode-link"><span>01</span><strong>Pianifica i turni</strong><small>Programma le occasioni di riposo</small></a><a href="#shift-monitor" class="shift-mode-link"><span>02</span><strong>Monitora il sonno</strong><small>Registra come hai dormito realmente</small></a></nav>
+<section id="shift-planner" class="shift-main-area" aria-label="Pianifica i tuoi turni"><div class="st-grid">
 <div class="st-panel st-input-panel"><span class="st-tag st-pro">PROTOTIPO · NESSUN PAGAMENTO</span><h2>La tua settimana <em>di turni.</em></h2>
 <p>Puoi scegliere mattina, pomeriggio, notte, riposo o inserire orari personalizzati. I suggerimenti non sostituiscono il piano aziendale né un confronto medico per chi ha sonnolenza importante.</p>
 <form id="shift-form" novalidate>
@@ -37,6 +38,7 @@
 <div class="st-field"><label for="shift-date">Primo giorno della settimana (facoltativo)</label><input type="date" id="shift-date"></div>
 <div class="st-field"><label for="shift-commute">Tempo di rientro a casa (minuti)</label><input type="number" min="0" max="180" value="30" step="5" id="shift-commute" required></div>
 </div>
+<div class="st-field shift-target-field"><label for="shift-rest-target">Durata della finestra di riposo da esplorare (minuti)</label><input type="number" id="shift-rest-target" min="360" max="600" step="30" value="450" required><small>Predefinita: 450 minuti (7 h 30 min). È solo una finestra orientativa da valutare, non una durata prescritta o del sonno previsto.</small></div>
 <div class="st-table-scroll"><table class="st-table shift-input-table"><thead><tr><th>Giorno</th><th>Tipo turno</th><th>Inizio</th><th>Fine</th></tr></thead><tbody id="shift-days"></tbody></table></div>
 <p class="st-help">Il turno notturno finisce automaticamente <strong>il giorno seguente</strong>. Gli orari sono quelli della tua giornata tipo e puoi cambiarli singolarmente.</p>
 <div class="st-row"><button class="st-button" type="submit">Analizza i turni ↗</button><button class="st-button st-alt" type="reset">Ricomincia</button></div>
@@ -62,7 +64,29 @@
   <button id="shift-print" type="button" class="st-button">Stampa / salva PDF</button>
   <button id="shift-export" type="button" class="st-button st-alt">Esporta CSV</button>
   <button id="shift-clear" type="button" class="st-button st-alt">Chiudi il report</button>
+ 
+</section>
+<section id="shift-monitor" class="shift-monitor-section" aria-labelledby="shift-monitor-title">
+ <div class="shift-monitor-header"><span class="st-tag st-pro">02 · MONITORAGGIO DEL SONNO</span><h2 id="shift-monitor-title">Come hai dormito <em>davvero?</em></h2>
+ <p>Il pianificatore descrive gli orari di lavoro; qui annoti il sonno effettivamente riferito, senza confondere i due dati. Puoi usare soltanto il diario, oppure premere «Analizza i turni» sopra per confrontare lavoro e sonno sulla stessa settimana.</p></div>
+ <div class="st-panel shift-monitor-input"><h3>Il tuo diario di sette giorni</h3>
+ <p>Per ciascuna giornata, indica l'ora in cui ti sei addormentato e quella del risveglio. Se ti addormenti alle 23:00 e ti svegli alle 07:00, il sistema interpreta correttamente il risveglio del giorno successivo. Il giorno indicato è quello in cui <strong>inizia</strong> l'episodio di sonno. Lascia vuote le giornate non registrate.</p>
+ <form id="shift-monitor-form" novalidate>
+ <div class="st-table-scroll"><table class="st-table shift-monitor-table">
+ <thead><tr><th>Giorno d'inizio</th><th>Mi addormento</th><th>Mi sveglio</th><th>Qualità percepita</th><th>Sonnellini (min)</th></tr></thead><tbody id="shift-sleep-days"></tbody>
+ </table></div>
+ <p class="st-help">Qualità percepita: da 1 (molto scarsa) a 5 (molto buona). I sonnellini sono separati dal sonno principale. La durata è una stima basata sugli orari da te riferiti, non una misura clinica.</p>
+ <div class="st-row"><button class="st-button" type="submit">Analizza il sonno registrato ↗</button><button class="st-button st-alt" id="shift-monitor-reset" type="reset">Svuota il diario</button></div></form>
+ <div class="shift-monitor-privacy"><strong>Privacy:</strong> gli inserimenti restano nel browser mentre usi la pagina. Li salvi sul dispositivo soltanto premendo «Salva qui»: nessun account e nessun invio automatico al sito. Su un dispositivo condiviso puoi cancellarli.</div>
+ <div class="st-row shift-monitor-save-actions"><button class="st-button st-alt" type="button" id="shift-monitor-save">Salva su questo dispositivo</button><button class="st-button st-alt" type="button" id="shift-monitor-forget">Cancella i dati salvati</button></div>
+ <p class="st-status" id="shift-monitor-status" role="status" aria-live="polite"></p>
  </div>
+ <section class="st-panel shift-monitor-report" id="shift-monitor-report" aria-labelledby="shift-monitor-report-title" hidden>
+ <span class="st-tag st-pro">REPORT DESCRITTIVO</span><h3 id="shift-monitor-report-title">Sonno e turni, <em>senza confonderli.</em></h3>
+ <p>Nel grafico il lavoro indica le ore occupate; il sonno indica i periodi che hai registrato. Il confronto segnala solo coincidenze di orario, non stabilisce che i turni causino un disturbo.</p>
+ <div id="shift-monitor-results" aria-live="polite"></div>
+ <div class="st-row st-no-print"><button id="shift-monitor-print" type="button" class="st-button">Stampa / salva PDF</button><button id="shift-monitor-export" type="button" class="st-button st-alt">Esporta diario CSV</button></div>
+ </section>
 </section>
 <div class="st-source-note"><strong>Riferimenti:</strong> il CDC/NIOSH discute sonnellini pianificati, gestione della caffeina, opportunità di riposo e sicurezza nel lavoro a turni. Le indicazioni generali non sono un piano individuale di adattamento circadiano. <a href="https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod9/05.html" target="_blank" rel="noopener noreferrer">Sonno dopo il turno notturno ↗</a> e <a href="https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod6/04.html" target="_blank" rel="noopener noreferrer">Preparazione al sonno ↗</a>.</div>
 

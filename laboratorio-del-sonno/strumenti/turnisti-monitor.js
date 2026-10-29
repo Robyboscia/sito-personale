@@ -6,7 +6,7 @@ if(!T || !document.getElementById("shift-monitor-form"))return;
 const $=T.$,out=$("shift-monitor-results"),tbody=$("shift-sleep-days");
 const STORAGE_KEY="dott-boscia-turni-sonno-diario-v1";
 const fields=[],opts=[["","Non indicata"],["1","1 · Molto scarsa"],["2","2 · Scarsa"],["3","3 · Discreta"],["4","4 · Buona"],["5","5 · Molto buona"]];
-let planDays=[],observations=[],reportIsVisible=false;
+let planDays=[],observations=[],reportIsVisible=false,planIsDemo=false;
 function el(tag,cls,text){return T.el(tag,cls,text)}
 function add(parent,tag,cls,text){return T.add(parent,tag,cls,text)}
 function status(text,bad=false){T.status("shift-monitor-status",text,bad)}
@@ -133,6 +133,7 @@ function render(data,quiet=false){
  T.metric(stats,"Durata media riferita",meanSleep===null?"—":fmtH(meanSleep));
  T.metric(stats,"Qualità percepita media",quality===null?"—":T.round(quality,1)+" / 5");
  T.metric(stats,"Sonnellini dichiarati",fmtH(naps));
+ if(planIsDemo)T.note(out,"ATTENZIONE: hai caricato una settimana di turni inventata. Il confronto è una dimostrazione, non una valutazione dei tuoi turni reali.",true);
  if(!planDays.length)T.note(out,"Confronto con i turni non attivo: usa «Analizza i turni» nella sezione 01 per aggiungere gli orari di lavoro alla visualizzazione.");
  else if(conflicts.length)T.note(out,conflicts.length+" "+(conflicts.length===1?"episodio di sonno registrato coincide":"episodi di sonno registrati coincidono")+" con almeno un turno indicato. Verifica le date e gli orari: non attribuiamo automaticamente il dato a un disturbo.",true);
  else T.note(out,"Confronto con i turni attivo. Non emergono coincidenze fra gli episodi registrati e gli orari di lavoro inseriti.");
@@ -222,11 +223,11 @@ $("shift-monitor-date").addEventListener("input",()=>{
  labels();invalidate();
 });
 window.addEventListener("shiftplan:updated",event=>{
- planDays=event.detail?.days||[];labels();
+ planDays=event.detail?.days||[];planIsDemo=!!event.detail?.isDemo;labels();
  if(reportIsVisible){try{render(analyze(),true)}catch(e){status(e.message,true);}}
 });
 window.addEventListener("shiftplan:cleared",()=>{
- planDays=[];labels();
+ planDays=[];planIsDemo=false;labels();
  if(reportIsVisible){try{render(analyze(),true)}catch(e){status(e.message,true);}}
 });
 $("shift-date").addEventListener("input",()=>{

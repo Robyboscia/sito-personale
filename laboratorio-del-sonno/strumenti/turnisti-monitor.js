@@ -202,7 +202,7 @@ $("shift-monitor-save").addEventListener("click",()=>{
  }catch(e){status("Impossibile salvare: "+e.message,true);}
 });
 $("shift-monitor-forget").addEventListener("click",()=>{
- status(deleteStore()?"Dati salvati cancellati da questo browser. I valori ancora visibili nel modulo non sono stati modificati.":"Questo browser non consente di cancellare la memoria locale.",!getStore());
+ const ok=deleteStore();status(ok?"Dati salvati cancellati da questo browser. I valori ancora visibili nel modulo non sono stati modificati.":"Questo browser non consente di cancellare la memoria locale.",!ok);
 });
 $("shift-monitor-export").addEventListener("click",()=>{
  if(!observations.length)return;

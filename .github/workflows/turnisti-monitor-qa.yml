@@ -1,0 +1,31 @@
+name: Turni e Sonno · QA senza browser esterno
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/turnisti-monitor-qa.yml'
+      - 'scripts/test-turnisti-monitor.cjs'
+      - 'laboratorio-del-sonno/strumenti/turnisti/index.html'
+      - 'laboratorio-del-sonno/strumenti/turnisti.js'
+      - 'laboratorio-del-sonno/strumenti/turnisti-monitor.js'
+      - 'laboratorio-del-sonno/strumenti/strumenti.css'
+      - 'laboratorio-del-sonno/strumenti/strumenti.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Playwright
+        run: npm install --no-save --no-package-lock playwright@1.56.1
+      - name: Test WebKit iPhone and Chromium iPhone SE (local server)
+        run: |
+          python3 -m http.server 9876 --bind 127.0.0.1 >/tmp/turni-http.log 2>&1 &
+          node scripts/test-turnisti-monitor.cjs
+        env:
+          QA_BASE_URL: http://127.0.0.1:9876

@@ -802,3 +802,6 @@ body.sleep-app main section.shift-monitor-timeline{margin:24px 0;padding:clamp(1
  body.sleep-app.print-monitor .shift-timeline-section .shift-hour-scale *,
  body.sleep-app.print-monitor .shift-timeline-section .shift-legend>*{color:#111!important}
 }
+
+.sleep-app .shift-monitor-date{max-width:310px;margin-bottom:12px}
+.sleep-app .shift-monitor-date input{max-width:250px}

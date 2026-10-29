@@ -45,6 +45,11 @@ function analyze(){
   $("shift-commute").setAttribute("aria-invalid","true");$("shift-commute").focus();
   throw Error("Inserisci da 0 a 180 minuti per il rientro a casa.");
  }
+ const target=T.number($("shift-rest-target").value,360,600);
+ if(!Number.isInteger(target)||target%30!==0){
+  $("shift-rest-target").setAttribute("aria-invalid","true");$("shift-rest-target").focus();
+  throw Error("Scegli una finestra da 360 a 600 minuti, a intervalli di 30 minuti.");
+ }
  const date=$("shift-date").value;
  if(date&&!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(date)){
   $("shift-date").setAttribute("aria-invalid","true");$("shift-date").focus();
@@ -80,14 +85,14 @@ function analyze(){
   previous=d;
   let from;
   const crossesMidnight=d.endAbs%1440<d.startAbs%1440;
-  if(d.type==="n"||crossesMidnight)from=d.endAbs+commute+45;
-  else if(d.type==="m"||d.startAbs%1440<600)from=d.startAbs-540;
+  if(crossesMidnight)from=d.endAbs+commute+45;
+  else if(d.startAbs%1440<600)from=d.startAbs-(target+90);
   else from=d.endAbs+commute+45;
-  const until=from+450;
+  const until=from+target;
   d.windowStart=from;d.windowEnd=until;
   d.window="Finestra indicativa da proteggere: dalle "+T.time(from)+" ("+relativeDay(from,d.day)+")"+
    " alle "+T.time(until)+" ("+relativeDay(until,d.day)+"). "+
-   "È uno spazio teorico di 7 h 30 min, non il sonno previsto.";
+   "È uno spazio teorico di "+T.fmtMinutes(target)+", non il sonno previsto.";
  }
  // Una finestra non può essere presentata come disponibile se intercetta
  // un altro turno già inserito (es. notte seguita subito da mattina).
@@ -272,16 +277,18 @@ function render(days,isDemo=false){
  if(short.length)note(result,"Sono presenti "+short.length+" "+(short.length===1?"intervallo inferiore":"intervalli inferiori")+" a 11 ore (inclusi eventuali turni sovrapposti). È un riferimento illustrativo per l'organizzazione, non una verifica del CCNL o delle norme applicabili.",true);
  if(conflicts.length)note(result,conflicts.length+" "+(conflicts.length===1?"finestra di riposo ipotetica che si sovrappone":"finestre di riposo ipotetiche che si sovrappongono")+" a turni già inseriti: "+(conflicts.length===1?"è NON DISPONIBILE.":"sono NON DISPONIBILI."),true);
  if(unknown.length)note(result,unknown.length+" "+(unknown.length===1?"finestra tocca":"finestre toccano")+" giorni fuori dalla settimana. Non conosciamo gli eventuali turni precedenti o successivi: "+(unknown.length===1?"è DA CONFERMARE.":"sono DA CONFERMARE."),true);
- note(result,"Le opportunità di riposo durano qui 7 h 30 min per scelta esemplificativa, non come prescrizione. Il sistema non considera reperibilità, straordinari, vita familiare, sonnellini, variazioni di fuso o cambio legale dell'ora.");
+ note(result,"La durata delle finestre è stata scelta nel modulo ed è illustrativa, non una prescrizione. Il sistema non considera reperibilità, straordinari, vita familiare, sonnellini, variazioni di fuso o cambio legale dell'ora.");
  actions.hidden=false;
  status("shift-status",isDemo?
   "Settimana di esempio caricata con orari inventati. Puoi modificare i turni e rigenerare il tuo piano.":
   "Settimana analizzata. Puoi salvare il report in PDF o esportare gli orari in CSV.");
+ window.dispatchEvent(new CustomEvent("shiftplan:updated",{detail:{days:days.map(d=>({...d})),date:$("shift-date").value}}));
  $("shift-report").scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"start"});
 }
 function invalidateResult(){
  if(current.length||result.children.length){
   current=[];clear(result);actions.hidden=true;$("shift-report").hidden=true;
+  window.dispatchEvent(new Event("shiftplan:cleared"));
   status("shift-status","Turni modificati: premi «Analizza i turni» per aggiornare il piano.");
  }
 }
@@ -297,6 +304,7 @@ $("shift-demo").addEventListener("click",()=>{
  const sample=["m","p","m","m","n","off","off"];
  $("shift-date").value="";
  $("shift-commute").value="30";
+ $("shift-rest-target").value="450";
  [...body.querySelectorAll("tr")].forEach((tr,index)=>{
   const select=tr.querySelector("select");
   select.value=sample[index];
@@ -306,6 +314,7 @@ $("shift-demo").addEventListener("click",()=>{
 });
 $("shift-clear").addEventListener("click",()=>{
  current=[];clear(result);actions.hidden=true;$("shift-report").hidden=true;
+ window.dispatchEvent(new Event("shiftplan:cleared"));
  status("shift-status","Report chiuso. I tuoi orari restano nel modulo, pronti per nuove modifiche.");
 });
 $("shift-form").addEventListener("submit",event=>{
@@ -313,7 +322,7 @@ $("shift-form").addEventListener("submit",event=>{
  try{render(analyze())}catch(e){status("shift-status",e.message,true)}
 });
 $("shift-form").addEventListener("reset",()=>setTimeout(()=>{
- createWeek();clear(result);current=[];actions.hidden=true;$("shift-report").hidden=true;status("shift-status","");
+ createWeek();clear(result);current=[];actions.hidden=true;$("shift-report").hidden=true;window.dispatchEvent(new Event("shiftplan:cleared"));status("shift-status","");
 },0));
 $("shift-export").addEventListener("click",()=>{
  if(!current.length)return;

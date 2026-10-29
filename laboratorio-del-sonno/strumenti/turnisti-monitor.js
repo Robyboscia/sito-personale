@@ -11,7 +11,7 @@ function el(tag,cls,text){return T.el(tag,cls,text)}
 function add(parent,tag,cls,text){return T.add(parent,tag,cls,text)}
 function status(text,bad=false){T.status("shift-monitor-status",text,bad)}
 function dayLabel(i){
- const base=$("shift-date").value;
+ const base=$("shift-monitor-date").value || $("shift-date").value;
  if(!base || !/^\d{4}-\d{2}-\d{2}$/.test(base))return "Giorno "+(i+1);
  const d=new Date(base+"T12:00:00");
  if(Number.isNaN(d.getTime()))return "Giorno "+(i+1);
@@ -197,7 +197,7 @@ $("shift-monitor-form").addEventListener("reset",()=>setTimeout(()=>{
 },0));
 $("shift-monitor-save").addEventListener("click",()=>{
  try{const data=analyze();if(!data.length){status("Inserisci almeno una giornata prima di salvare.",true);return;}
- window.localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,values:getLocal()}));
+ window.localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,weekStart:$("shift-monitor-date").value,values:getLocal()}));
  status("Diario salvato soltanto in questo browser. Puoi recuperarlo riaprendo la pagina sullo stesso dispositivo.");
  }catch(e){status("Impossibile salvare: "+e.message,true);}
 });
@@ -215,6 +215,11 @@ $("shift-monitor-print").addEventListener("click",()=>{
  document.body.classList.add("print-monitor");window.print();
 });
 window.addEventListener("afterprint",()=>document.body.classList.remove("print-monitor"));
+$("shift-monitor-date").addEventListener("input",()=>{
+ $("shift-date").value=$("shift-monitor-date").value;
+ $("shift-date").dispatchEvent(new Event("input",{bubbles:true}));
+ labels();invalidate();
+});
 window.addEventListener("shiftplan:updated",event=>{
  planDays=event.detail?.days||[];labels();
  if(reportIsVisible){try{render(analyze(),true)}catch(e){status(e.message,true);}}
@@ -223,13 +228,19 @@ window.addEventListener("shiftplan:cleared",()=>{
  planDays=[];labels();
  if(reportIsVisible){try{render(analyze(),true)}catch(e){status(e.message,true);}}
 });
-$("shift-date").addEventListener("input",labels);
+$("shift-date").addEventListener("input",()=>{
+ $("shift-monitor-date").value=$("shift-date").value;
+ labels();
+});
 buildTable();
 const raw=getStore();
 if(raw)try{
  const stored=JSON.parse(raw);
  if(stored.version===1&&Array.isArray(stored.values)&&stored.values.length===7){
-  setLocal(stored.values);
+  if(stored.weekStart && /^\d{4}-\d{2}-\d{2}$/.test(stored.weekStart)){
+   $("shift-monitor-date").value=stored.weekStart;$("shift-date").value=stored.weekStart;
+  }
+  setLocal(stored.values);labels();
   status("Diario recuperato dalla memoria locale di questo dispositivo. Premi «Analizza il sonno registrato» per vedere il report.");
  }
 }catch{status("Non è stato possibile leggere il diario salvato.",true);}

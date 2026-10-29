@@ -282,7 +282,7 @@ function render(days,isDemo=false){
  status("shift-status",isDemo?
   "Settimana di esempio caricata con orari inventati. Puoi modificare i turni e rigenerare il tuo piano.":
   "Settimana analizzata. Puoi salvare il report in PDF o esportare gli orari in CSV.");
- window.dispatchEvent(new CustomEvent("shiftplan:updated",{detail:{days:days.map(d=>({...d})),date:$("shift-date").value}}));
+ window.dispatchEvent(new CustomEvent("shiftplan:updated",{detail:{days:days.map(d=>({...d})),date:$("shift-date").value,isDemo}}));
  $("shift-report").scrollIntoView({behavior:window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches?"auto":"smooth",block:"start"});
 }
 function invalidateResult(){
@@ -302,7 +302,6 @@ $("shift-demo").addEventListener("click",()=>{
  // Settimana inventata: 5 turni da 8 ore, un intervallo di sole 8 ore;
  // il turno di venerdì notte termina sabato, segnato come giorno di riposo.
  const sample=["m","p","m","m","n","off","off"];
- $("shift-date").value="";
  $("shift-commute").value="30";
  $("shift-rest-target").value="450";
  [...body.querySelectorAll("tr")].forEach((tr,index)=>{
@@ -322,7 +321,7 @@ $("shift-form").addEventListener("submit",event=>{
  try{render(analyze())}catch(e){status("shift-status",e.message,true)}
 });
 $("shift-form").addEventListener("reset",()=>setTimeout(()=>{
- createWeek();clear(result);current=[];actions.hidden=true;$("shift-report").hidden=true;window.dispatchEvent(new Event("shiftplan:cleared"));status("shift-status","");
+ createWeek();clear(result);current=[];actions.hidden=true;$("shift-report").hidden=true;window.dispatchEvent(new Event("shiftplan:cleared"));$("shift-date").dispatchEvent(new Event("input",{bubbles:true}));status("shift-status","");
 },0));
 $("shift-export").addEventListener("click",()=>{
  if(!current.length)return;

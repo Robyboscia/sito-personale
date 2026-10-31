@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq fonts-dejavu-core
-          python3 -m pip install --quiet --user reportlab
+          python3 -m pip install --quiet --user reportlab pypdf
       - name: Build and check PDF
         run: |
           python3 scripts/build_mappa_download.py

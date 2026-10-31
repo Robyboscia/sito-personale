@@ -13,13 +13,13 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 root = Path(__file__).resolve().parents[1]
-source = root / "autovalutazione/source/questionari_15_ace_pss.txt"
-target = root / "autovalutazione/la-mappa-del-tuo-benessere-roberto-boscia.pdf"
+source = root / "autovalutazione/source/questionari_15_ace.txt"
+target = root / "autovalutazione/la-mappa-del-tuo-benessere-senza-pss.pdf"
 raw = source.read_text(encoding="utf-8")
-patt = re.compile(r"(?m)^(0[1-9]|1[0-5]) · ([^\n]+)$|^(Appendice [AB]) · ([^\n]+)$")
+patt = re.compile(r"(?m)^(0[1-9]|1[0-5]) · ([^\n]+)$|^(Appendice A) · ([^\n]+)$")
 titles = list(patt.finditer(raw))
-assert len(titles) == 17, f"Expected 15 sections + 2 appendices, got {len(titles)}"
-expected = [27,20,20,27,26,14,11,23,15,17,18,24,23,13,30,10,10]
+assert len(titles) == 16, f"Expected 15 sections + ACE appendix, got {len(titles)}"
+expected = [27,20,20,27,26,14,11,23,15,17,18,24,23,13,30,10]
 sections = []
 rowpatt = re.compile(r"(?m)^[ \t]*(\d{1,2})[ \t]*\n[ \t]*(.+?)[ \t]*\n[ \t]*(?:☐ Sì[ \t]*☐ No|_{4,})[ \t]*$")
 for idx, match in enumerate(titles):
@@ -29,7 +29,7 @@ for idx, match in enumerate(titles):
         raise ValueError(f"Section {idx+1} '{match.group(2) or match.group(4)}': expected {expected[idx]} questions, found {len(questions)}")
     sections.append((match.group(2) or match.group(4), questions))
 assert sections[15][1][0].startswith("Prima dei 18 anni")
-assert "situazione sotto controllo" in sections[16][1][7]
+assert len(sections) == 16 and len(sections[15][1]) == 10
 
 fonts = "/usr/share/fonts/truetype/dejavu/"
 for name, file in (("Sans","DejaVuSans.ttf"),("SansB","DejaVuSans-Bold.ttf"),("Serif","DejaVuSerif.ttf")):
@@ -76,10 +76,10 @@ story += [P("PRIMA DI INIZIARE","eyebrow"),P("Come utilizzare la mappa","title")
           P("Scegli liberamente una o più aree. Per le sezioni 01–15 seleziona Sì se riconosci l'affermazione nella tua esperienza, altrimenti No. Puoi lasciare in sospeso un quesito se non sai rispondere.","body"),
           P("Se ti è utile, conta le risposte Sì della singola sezione, oppure calcolane la percentuale. Questi valori indicano unicamente quante affermazioni hai selezionato: NON corrispondono a gravità, stato di salute o probabilità di malattia. Non esistono soglie cliniche validate per i 15 questionari.","body"),
           P("Alcune condizioni citate richiedono una valutazione indipendente dal questionario. Non rimandare un confronto con un professionista sanitario in presenza di sintomi importanti, persistenti o in peggioramento.","small"),
-          P("ACE e PSS sono in due appendici distinte: hanno domande e metodi di conteggio propri e non devono essere trattati come percentuali delle 15 sezioni.","body"),
+          P("L'appendice ACE usa un conteggio specifico (0–10) e non deve essere confusa con le percentuali delle altre sezioni.","body"),
           Spacer(1,14),P("Indice dei questionari","h2")]
 for i,(name,_) in enumerate(sections):
-    label = f"{i+1:02d} · {name}" if i<15 else f"Appendice {'A' if i==15 else 'B'} · {name}"
+    label = f"{i+1:02d} · {name}" if i<15 else f"Appendice A · {name}"
     story.append(P(label,"small"))
 story.append(PageBreak())
 for i,(name,questions) in enumerate(sections):
@@ -90,15 +90,10 @@ for i,(name,questions) in enumerate(sections):
         story.extend([P("APPENDICE A","eyebrow"),P("Esperienze avverse nell'infanzia (ACE)","h2"),
           P("Riferisciti alle esperienze precedenti ai 18 anni. Sì vale un punto, fino a 10. Puoi scegliere di non rispondere a qualsiasi domanda: in tal caso non calcolare un totale come se fosse un No.","body"),
           P("Le esperienze descritte possono essere delicate. Il punteggio non predice la salute di una persona né considera sostegno sociale, fattori protettivi e altre esperienze fuori dalla famiglia.","small")])
-    else:
-        story.extend([P("APPENDICE B","eyebrow"),P("Scala dello stress percepito (PSS-10)","h2"),
-          P("Rispondi pensando all'ultimo mese: 0 = mai; 1 = quasi mai; 2 = qualche volta; 3 = abbastanza spesso; 4 = molto spesso.","body"),
-          P("Per il totale inverti le risposte agli item 4, 5, 7 e 8 (0↔4, 1↔3, 2 resta 2), quindi somma tutti gli item. Il punteggio va da 0 a 40 e indica il livello di stress riferito, non un parametro biologico né una diagnosi.","body"),
-          P("Nel testo fornito sono indicate fasce descrittive di 0–13, 14–26 e 27–40. Non sono soglie diagnostiche; per interpretare risultati personali serve considerare il contesto.","small")])
-    values=[[P("N.","head"),P("Domanda / affermazione","head"),P("0–4" if i==16 else "Sì / No","head")]]
+    values=[[P("N.","head"),P("Domanda / affermazione","head"),P("Sì / No","head")]]
     for n,q in enumerate(questions,1):
         values.append([P(str(n),"num"),P(q,"ace" if i==15 else "table"),
-                       P("_______" if i==16 else "□ Sì   □ No","check")])
+                       P("□ Sì   □ No","check")])
     table=Table(values,colWidths=[32,397,77],repeatRows=1,hAlign="LEFT")
     table.setStyle(TableStyle([
         ("BACKGROUND",(0,0),(-1,0),NAVY),("ROWBACKGROUNDS",(0,1),(-1,-1),[WHITE,CREAM]),
@@ -115,9 +110,6 @@ for i,(name,questions) in enumerate(sections):
     elif i==15:
         story.extend([P("Somma ACE (solo se tutte le risposte sono presenti): ______ / 10","body"),
             P("Un numero di esperienze più alto è associato, in studi di popolazione, a maggiori difficoltà psicosociali e di salute. Non determina un esito individuale: anche fattori protettivi, opportunità e supporto hanno importanza. I quesiti non considerano tutte le avversità possibili.","small")])
-    else:
-        story.extend([P("Somma PSS (dopo inversione delle domande 4, 5, 7, 8): ______ / 40","body"),
-            P("Persone con situazioni simili possono percepire il proprio stress in modi differenti. Il risultato non indica da solo la necessità di esami o trattamenti.","small")])
     story.append(PageBreak())
 story.extend([P("PER RIFLETTERE","eyebrow"),P("Le tue osservazioni","title"),
     P("Utilizza questo spazio per annotare ciò che noti e cosa desideri approfondire. Una risposta positiva è un'indicazione da contestualizzare, non una conclusione.","body")])

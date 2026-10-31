@@ -33,7 +33,7 @@ jobs:
           text='\n'.join((x.extract_text() or '') for x in r.pages)
           assert len(r.pages)>=20
           assert 'APPENDICE A' in text and 'APPENDICE B' in text
-          assert 'situazione sotto controllo' in text
+          assert 'situazione sotto controllo' in ' '.join(text.split())
           assert 'BOZZA DA APPROVARE' not in text
           print('PDF validation passed',len(r.pages),p.stat().st_size)
           PY

@@ -17,13 +17,14 @@ async function exercise(browserType,profile){
  ok((await page.locator('h1').innerText()).includes('Quanto conosci'),'approved H1');
  ok(await page.locator('.map-area').count()===15,'fifteen areas');
  ok((await page.locator('.map-appendix').innerText()).includes('ACE'),'appendix ACE label');
- ok((await page.locator('.map-appendix').innerText()).includes('PSS'),'appendix PSS label');
+ ok(!(await page.locator('body').innerText()).includes('PSS'),'body does not advertise withdrawn questionnaire');
+ ok(!(await page.locator('.map-appendix').innerText()).includes('PSS'),'withdrawn scale is not presented');
  ok(await page.locator('a[aria-disabled="true"]').count()===0,'PDF links enabled');
  const downloads=page.locator('a[download][type="application/pdf"]');
  ok(await downloads.count()===2,'both PDF download CTAs present');
  const href=await downloads.first().getAttribute('href');
- ok(href==='./la-mappa-del-tuo-benessere-roberto-boscia.pdf','download uses canonical PDF filename');
- const pdfResponse=await page.request.get(BASE+'/autovalutazione/la-mappa-del-tuo-benessere-roberto-boscia.pdf');
+ ok(href==='./la-mappa-del-tuo-benessere-ace.pdf','download uses canonical PDF filename');
+ const pdfResponse=await page.request.get(BASE+'/autovalutazione/la-mappa-del-tuo-benessere-ace.pdf');
  ok(pdfResponse.status()===200,'PDF reachable with HTTP 200');
  const pdfBytes=await pdfResponse.body();
  ok(pdfBytes.length>80000,'PDF file delivered in full');

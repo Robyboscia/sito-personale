@@ -18,7 +18,16 @@ async function exercise(browserType,profile){
  ok(await page.locator('.map-area').count()===15,'fifteen areas');
  ok((await page.locator('.map-appendix').innerText()).includes('ACE'),'appendix ACE label');
  ok((await page.locator('.map-appendix').innerText()).includes('PSS'),'appendix PSS label');
- ok(await page.locator('a[aria-disabled="true"]').count()===2,'PDF gated for content approval');
+ ok(await page.locator('a[aria-disabled="true"]').count()===0,'PDF links enabled');
+ const downloads=page.locator('a[download][type="application/pdf"]');
+ ok(await downloads.count()===2,'both PDF download CTAs present');
+ const href=await downloads.first().getAttribute('href');
+ ok(href==='./la-mappa-del-tuo-benessere-roberto-boscia.pdf','download uses canonical PDF filename');
+ const pdfResponse=await page.request.get(BASE+'/autovalutazione/la-mappa-del-tuo-benessere-roberto-boscia.pdf');
+ ok(pdfResponse.status()===200,'PDF reachable with HTTP 200');
+ const pdfBytes=await pdfResponse.body();
+ ok(pdfBytes.length>80000,'PDF file delivered in full');
+ ok(pdfBytes.subarray(0,5).toString()==='%PDF-','download contains PDF file signature');
  ok(await page.locator('input').count()===0,'no health data form');
  ok(await page.locator('h2').count()>=4,'meaningful headings');
  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);

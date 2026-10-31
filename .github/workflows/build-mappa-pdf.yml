@@ -1,0 +1,48 @@
+name: Build Mappa del benessere PDF
+on:
+  push:
+    branches: ['feature/mappa-benessere-autovalutazione-20261031']
+    paths:
+      - 'scripts/build_mappa_download.py'
+      - 'autovalutazione/source/questionari_15_ace_pss.txt'
+      - '.github/workflows/build-mappa-pdf.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Prepare PDF engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-dejavu-core
+          python3 -m pip install --quiet --user reportlab pypdf
+      - name: Build and check PDF
+        run: |
+          python3 scripts/build_mappa_download.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          p=Path('autovalutazione/la-mappa-del-tuo-benessere-roberto-boscia.pdf')
+          assert p.exists() and p.stat().st_size>80000
+          r=PdfReader(p)
+          text='\n'.join((x.extract_text() or '') for x in r.pages)
+          assert len(r.pages)>=20
+          assert 'APPENDICE A' in text and 'APPENDICE B' in text
+          assert 'situazione sotto controllo' in ' '.join(text.split())
+          assert 'BOZZA DA APPROVARE' not in text
+          print('PDF validation passed',len(r.pages),p.stat().st_size)
+          PY
+      - name: Commit PDF download to review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add autovalutazione/la-mappa-del-tuo-benessere-roberto-boscia.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m 'Include completed Mappa printable PDF for site release'
+            git push
+          fi

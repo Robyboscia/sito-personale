@@ -14,7 +14,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 root = Path(__file__).resolve().parents[1]
 source = root / "autovalutazione/source/questionari_15_ace.txt"
-target = root / "autovalutazione/la-mappa-del-tuo-benessere-senza-pss.pdf"
+target = root / "autovalutazione/la-mappa-del-tuo-benessere-ace.pdf"
 raw = source.read_text(encoding="utf-8")
 patt = re.compile(r"(?m)^(0[1-9]|1[0-5]) · ([^\n]+)$|^(Appendice A) · ([^\n]+)$")
 titles = list(patt.finditer(raw))

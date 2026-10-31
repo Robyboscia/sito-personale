@@ -1,10 +1,10 @@
 name: Build Mappa del benessere PDF
 on:
   push:
-    branches: ['feature/mappa-benessere-autovalutazione-20261031']
+    branches: ['fix/remove-pss-from-public-mappa-20261031', main]
     paths:
       - 'scripts/build_mappa_download.py'
-      - 'autovalutazione/source/questionari_15_ace_pss.txt'
+      - 'autovalutazione/source/questionari_15_ace.txt'
       - '.github/workflows/build-mappa-pdf.yml'
   workflow_dispatch:
 permissions:
@@ -27,13 +27,13 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           from pypdf import PdfReader
-          p=Path('autovalutazione/la-mappa-del-tuo-benessere-roberto-boscia.pdf')
+          p=Path('autovalutazione/la-mappa-del-tuo-benessere-ace.pdf')
           assert p.exists() and p.stat().st_size>80000
           r=PdfReader(p)
           text='\n'.join((x.extract_text() or '') for x in r.pages)
           assert len(r.pages)>=20
-          assert 'APPENDICE A' in text and 'APPENDICE B' in text
-          assert 'situazione sotto controllo' in ' '.join(text.split())
+          assert 'APPENDICE A' in text and 'APPENDICE B' not in text
+          assert 'PSS' not in text and 'Perceived Stress Scale' not in text and 'Scala dello stress percepito' not in text
           assert 'BOZZA DA APPROVARE' not in text
           print('PDF validation passed',len(r.pages),p.stat().st_size)
           PY
@@ -41,7 +41,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add autovalutazione/la-mappa-del-tuo-benessere-roberto-boscia.pdf
+          git add autovalutazione/la-mappa-del-tuo-benessere-ace.pdf
           if ! git diff --cached --quiet; then
             git commit -m 'Include completed Mappa printable PDF for site release'
             git push

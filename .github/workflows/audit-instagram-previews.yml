@@ -1,0 +1,32 @@
+name: Audit Metricool media previews
+on:
+  push:
+    branches: ['diagnostics/instagram-media-20261105']
+    paths:
+      - 'diagnostics/instagram_media_assets.json'
+      - 'scripts/audit_instagram_media.py'
+      - '.github/workflows/audit-instagram-previews.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pillow and ffmpeg
+        run: |
+          python3 -m pip install --user pillow --quiet
+          ffprobe -version | head -1
+      - name: Read hosted Instagram media and inspect thumbnails
+        run: python3 scripts/audit_instagram_media.py
+      - name: Save visual audit on diagnostic branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diagnostics/instagram_media_report.json diagnostics/instagram_media_contact.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "Record read-only visual diagnostics for scheduled media"
+            git push
+          fi

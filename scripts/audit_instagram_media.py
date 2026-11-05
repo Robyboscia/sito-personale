@@ -2,6 +2,10 @@
 """Read-only QA of media prepared for @docboscia publishing, no Instagram mutations."""
 import json, io, subprocess, tempfile, pathlib, urllib.request, statistics
 from PIL import Image, ImageOps, ImageDraw, ImageFont, ImageStat
+def stat(im):
+ sm=im.convert("L");sm.thumbnail((180,320))
+ pix=list(sm.getdata())
+ return {"brightness":statistics.mean(pix),"black_pct":100*sum(n<22 for n in pix)/len(pix),"white_pct":100*sum(n>215 for n in pix)/len(pix),"variance":statistics.pvariance(pix)}
 root=pathlib.Path(__file__).resolve().parents[1]
 entries=json.loads((root/"diagnostics/instagram_media_assets.json").read_text())
 result=[]
@@ -49,10 +53,6 @@ for i,e in enumerate(entries):
 def summarize(r):
  valid=[x for x in r if x.get("ok")]
  return {"total":len(r),"ok":len(valid),"fail":len(r)-len(valid),"black_previews":[{"post":x["post"],"date":x["date"],"kind":x["kind"],"index":x["index"],"black_pct":x["black_pct"]} for x in valid if x["black_pct"]>90],"other_very_dark":[{"post":x["post"],"date":x["date"],"kind":x["kind"],"index":x["index"],"brightness":x["brightness"]} for x in valid if x["brightness"]<30]}
-def stat(im):
- sm=im.convert("L");sm.thumbnail((180,320))
- pix=list(sm.getdata())
- return {"brightness":statistics.mean(pix),"black_pct":100*sum(n<22 for n in pix)/len(pix),"white_pct":100*sum(n>215 for n in pix)/len(pix),"variance":statistics.pvariance(pix)}
 report={"summary":summarize(result),"items":result}
 (root/"diagnostics/instagram_media_report.json").write_text(json.dumps(report,indent=2,ensure_ascii=False))
 if tiles:

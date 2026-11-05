@@ -1,0 +1,257 @@
+[
+  {
+    "post": 409970819,
+    "kind": "carousel",
+    "date": "2026-11-06T20:00:00",
+    "filename": "carousel-409970819.jpg",
+    "orig": {
+      "mean": 53.7,
+      "black_pct": 38.6
+    },
+    "cover": {
+      "mean": 81.1,
+      "black_pct": 3.3
+    },
+    "bytes": 328955,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 413905504,
+    "kind": "reel",
+    "date": "2026-11-08T19:00:00",
+    "filename": "reel-413905504.jpg",
+    "orig": {
+      "mean": 30.7,
+      "black_pct": 75.1
+    },
+    "cover": {
+      "mean": 59.7,
+      "black_pct": 0.5
+    },
+    "bytes": 344443,
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "post": 409970932,
+    "kind": "carousel",
+    "date": "2026-11-10T20:00:00",
+    "filename": "carousel-409970932.jpg",
+    "orig": {
+      "mean": 55.8,
+      "black_pct": 40.2
+    },
+    "cover": {
+      "mean": 81.6,
+      "black_pct": 3.6
+    },
+    "bytes": 347673,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 409971677,
+    "kind": "carousel",
+    "date": "2026-11-12T20:00:00",
+    "filename": "carousel-409971677.jpg",
+    "orig": {
+      "mean": 54.1,
+      "black_pct": 38.8
+    },
+    "cover": {
+      "mean": 82.2,
+      "black_pct": 3.0
+    },
+    "bytes": 351217,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 413905547,
+    "kind": "reel",
+    "date": "2026-11-11T19:00:00",
+    "filename": "reel-413905547.jpg",
+    "orig": {
+      "mean": 32.4,
+      "black_pct": 76.2
+    },
+    "cover": {
+      "mean": 64.5,
+      "black_pct": 0.6
+    },
+    "bytes": 236217,
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "post": 409972032,
+    "kind": "carousel",
+    "date": "2026-11-16T20:00:00",
+    "filename": "carousel-409972032.jpg",
+    "orig": {
+      "mean": 57.6,
+      "black_pct": 44.7
+    },
+    "cover": {
+      "mean": 82.5,
+      "black_pct": 5.5
+    },
+    "bytes": 369338,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 409972122,
+    "kind": "carousel",
+    "date": "2026-11-19T20:00:00",
+    "filename": "carousel-409972122.jpg",
+    "orig": {
+      "mean": 51.8,
+      "black_pct": 46.2
+    },
+    "cover": {
+      "mean": 78.4,
+      "black_pct": 3.4
+    },
+    "bytes": 346856,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 413905576,
+    "kind": "reel",
+    "date": "2026-11-15T19:00:00",
+    "filename": "reel-413905576.jpg",
+    "orig": {
+      "mean": 29.6,
+      "black_pct": 71.9
+    },
+    "cover": {
+      "mean": 59.5,
+      "black_pct": 0.4
+    },
+    "bytes": 333637,
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "post": 413905603,
+    "kind": "reel",
+    "date": "2026-11-18T19:00:00",
+    "filename": "reel-413905603.jpg",
+    "orig": {
+      "mean": 31.6,
+      "black_pct": 71.1
+    },
+    "cover": {
+      "mean": 64.8,
+      "black_pct": 0.4
+    },
+    "bytes": 240017,
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "post": 409972404,
+    "kind": "carousel",
+    "date": "2026-11-23T20:00:00",
+    "filename": "carousel-409972404.jpg",
+    "orig": {
+      "mean": 54.4,
+      "black_pct": 44.8
+    },
+    "cover": {
+      "mean": 79.3,
+      "black_pct": 3.5
+    },
+    "bytes": 372598,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 413905650,
+    "kind": "reel",
+    "date": "2026-11-22T19:00:00",
+    "filename": "reel-413905650.jpg",
+    "orig": {
+      "mean": 32.5,
+      "black_pct": 68.1
+    },
+    "cover": {
+      "mean": 63.2,
+      "black_pct": 0.5
+    },
+    "bytes": 340820,
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "post": 409972522,
+    "kind": "carousel",
+    "date": "2026-11-26T20:00:00",
+    "filename": "carousel-409972522.jpg",
+    "orig": {
+      "mean": 59.0,
+      "black_pct": 37.2
+    },
+    "cover": {
+      "mean": 87.5,
+      "black_pct": 1.7
+    },
+    "bytes": 338549,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 409974479,
+    "kind": "carousel",
+    "date": "2026-11-28T20:00:00",
+    "filename": "carousel-409974479.jpg",
+    "orig": {
+      "mean": 57.7,
+      "black_pct": 43.8
+    },
+    "cover": {
+      "mean": 83.0,
+      "black_pct": 2.7
+    },
+    "bytes": 346844,
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "post": 413905687,
+    "kind": "reel",
+    "date": "2026-11-25T19:00:00",
+    "filename": "reel-413905687.jpg",
+    "orig": {
+      "mean": 32.2,
+      "black_pct": 71.1
+    },
+    "cover": {
+      "mean": 66.1,
+      "black_pct": 0.5
+    },
+    "bytes": 224477,
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "post": 413905741,
+    "kind": "reel",
+    "date": "2026-11-27T19:00:00",
+    "filename": "reel-413905741.jpg",
+    "orig": {
+      "mean": 31.2,
+      "black_pct": 69.9
+    },
+    "cover": {
+      "mean": 63.2,
+      "black_pct": 0.3
+    },
+    "bytes": 320817,
+    "width": 1080,
+    "height": 1920
+  }
+]

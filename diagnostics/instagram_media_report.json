@@ -1,0 +1,591 @@
+{
+  "summary": {
+    "total": 35,
+    "ok": 25,
+    "fail": 10,
+    "black_previews": [],
+    "other_very_dark": []
+  },
+  "items": [
+    {
+      "mime": "image/png",
+      "bytes": 77755,
+      "format": "PNG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 48.35296296296296,
+      "black_pct": 0.009876543209876543,
+      "white_pct": 1.0790123456790124,
+      "variance": 1129.4074418381344,
+      "post": 409342509,
+      "kind": "carousel",
+      "date": "2026-10-28T20:50:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/png",
+      "bytes": 68846,
+      "format": "PNG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 52.88814814814815,
+      "black_pct": 0.0,
+      "white_pct": 0.3111111111111111,
+      "variance": 822.141266941015,
+      "post": 409342509,
+      "kind": "carousel",
+      "date": "2026-10-28T20:50:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 483305,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 48.85750617283951,
+      "black_pct": 56.72592592592593,
+      "white_pct": 0.14320987654320988,
+      "variance": 3810.8130041511963,
+      "post": 411246446,
+      "kind": "carousel",
+      "date": "2026-10-31T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 491123,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 46.767012345679014,
+      "black_pct": 62.67407407407408,
+      "white_pct": 0.4246913580246914,
+      "variance": 3817.548827864045,
+      "post": 411246446,
+      "kind": "carousel",
+      "date": "2026-10-31T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "post": 411246752,
+      "kind": "reel",
+      "date": "2026-10-31T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 279256,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 55.86464197530864,
+      "black_pct": 40.03950617283951,
+      "white_pct": 4.938271604938271,
+      "variance": 3951.4203448718185,
+      "post": 409970192,
+      "kind": "carousel",
+      "date": "2026-11-03T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 254801,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 47.55869135802469,
+      "black_pct": 45.782716049382714,
+      "white_pct": 3.1432098765432097,
+      "variance": 3130.17934544795,
+      "post": 409970192,
+      "kind": "carousel",
+      "date": "2026-11-03T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "post": 413901974,
+      "kind": "reel",
+      "date": "2026-11-02T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "post": 413905468,
+      "kind": "reel",
+      "date": "2026-11-04T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 254965,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 53.736469135802466,
+      "black_pct": 38.58271604938272,
+      "white_pct": 1.871604938271605,
+      "variance": 3008.796304570035,
+      "post": 409970819,
+      "kind": "carousel",
+      "date": "2026-11-06T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 257713,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 53.90274074074074,
+      "black_pct": 37.60246913580247,
+      "white_pct": 1.9777777777777779,
+      "variance": 3103.3695282908093,
+      "post": 409970819,
+      "kind": "carousel",
+      "date": "2026-11-06T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "post": 413905504,
+      "kind": "reel",
+      "date": "2026-11-08T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 343925,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 50.16059027777778,
+      "black_pct": 49.470486111111114,
+      "white_pct": 6.404513888888889,
+      "variance": 4112.696432984905,
+      "post": 417403954,
+      "kind": "story",
+      "date": "2026-11-05T12:30:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 295273,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 43.496753472222224,
+      "black_pct": 52.03993055555556,
+      "white_pct": 4.046875,
+      "variance": 2990.0295033489465,
+      "post": 417404247,
+      "kind": "story",
+      "date": "2026-11-05T12:40:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 299839,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 41.832881944444445,
+      "black_pct": 50.342013888888886,
+      "white_pct": 3.8246527777777777,
+      "variance": 2814.0371062777294,
+      "post": 417404288,
+      "kind": "story",
+      "date": "2026-11-05T12:50:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 266022,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 55.80883950617284,
+      "black_pct": 40.15802469135802,
+      "white_pct": 4.888888888888889,
+      "variance": 3903.2593589001676,
+      "post": 409970932,
+      "kind": "carousel",
+      "date": "2026-11-10T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 246936,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 50.66407407407407,
+      "black_pct": 43.955555555555556,
+      "white_pct": 3.4691358024691357,
+      "variance": 3336.0348327846364,
+      "post": 409970932,
+      "kind": "carousel",
+      "date": "2026-11-10T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 271290,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 54.13316049382716,
+      "black_pct": 38.82716049382716,
+      "white_pct": 1.854320987654321,
+      "variance": 3083.7249596409083,
+      "post": 409971677,
+      "kind": "carousel",
+      "date": "2026-11-12T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 219945,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 45.80533333333333,
+      "black_pct": 48.758024691358024,
+      "white_pct": 1.128395061728395,
+      "variance": 2769.1161295802467,
+      "post": 409971677,
+      "kind": "carousel",
+      "date": "2026-11-12T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "post": 413905547,
+      "kind": "reel",
+      "date": "2026-11-11T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 285142,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 57.605160493827164,
+      "black_pct": 44.66172839506173,
+      "white_pct": 5.232098765432099,
+      "variance": 4231.728077073007,
+      "post": 409972032,
+      "kind": "carousel",
+      "date": "2026-11-16T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 244440,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 48.94202469135802,
+      "black_pct": 46.449382716049385,
+      "white_pct": 3.5975308641975308,
+      "variance": 3426.9166388635877,
+      "post": 409972032,
+      "kind": "carousel",
+      "date": "2026-11-16T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 269054,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 51.77943209876543,
+      "black_pct": 46.20987654320987,
+      "white_pct": 2.1037037037037036,
+      "variance": 3339.0257448626735,
+      "post": 409972122,
+      "kind": "carousel",
+      "date": "2026-11-19T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 243812,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 54.61720987654321,
+      "black_pct": 36.930864197530866,
+      "white_pct": 1.6123456790123456,
+      "variance": 2923.717595178174,
+      "post": 409972122,
+      "kind": "carousel",
+      "date": "2026-11-19T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "post": 413905576,
+      "kind": "reel",
+      "date": "2026-11-15T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "post": 413905603,
+      "kind": "reel",
+      "date": "2026-11-18T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 283967,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 54.421654320987656,
+      "black_pct": 44.81728395061728,
+      "white_pct": 4.85679012345679,
+      "variance": 3986.082775534827,
+      "post": 409972404,
+      "kind": "carousel",
+      "date": "2026-11-23T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 236826,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 51.79483950617284,
+      "black_pct": 46.4320987654321,
+      "white_pct": 4.538271604938272,
+      "variance": 3779.0469709001677,
+      "post": 409972404,
+      "kind": "carousel",
+      "date": "2026-11-23T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "post": 413905650,
+      "kind": "reel",
+      "date": "2026-11-22T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 266190,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 59.0479012345679,
+      "black_pct": 37.21975308641975,
+      "white_pct": 2.123456790123457,
+      "variance": 3319.0423474470354,
+      "post": 409972522,
+      "kind": "carousel",
+      "date": "2026-11-26T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 262696,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 53.88069135802469,
+      "black_pct": 39.538271604938274,
+      "white_pct": 1.960493827160494,
+      "variance": 3182.502703719555,
+      "post": 409972522,
+      "kind": "carousel",
+      "date": "2026-11-26T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 264981,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 57.671654320987656,
+      "black_pct": 43.782716049382714,
+      "white_pct": 5.632098765432099,
+      "variance": 4261.687892818778,
+      "post": 409974479,
+      "kind": "carousel",
+      "date": "2026-11-28T20:00:00",
+      "index": 0,
+      "ok": true
+    },
+    {
+      "mime": "image/jpeg",
+      "bytes": 247990,
+      "format": "JPEG",
+      "mode": "RGB",
+      "icc": false,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "brightness": 48.01614814814815,
+      "black_pct": 45.565432098765434,
+      "white_pct": 3.1580246913580248,
+      "variance": 3176.3045787434844,
+      "post": 409974479,
+      "kind": "carousel",
+      "date": "2026-11-28T20:00:00",
+      "index": 2,
+      "ok": true
+    },
+    {
+      "post": 413905687,
+      "kind": "reel",
+      "date": "2026-11-25T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    },
+    {
+      "post": 413905741,
+      "kind": "reel",
+      "date": "2026-11-27T19:00:00",
+      "index": 0,
+      "ok": false,
+      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+    }
+  ]
+}

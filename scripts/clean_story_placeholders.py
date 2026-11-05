@@ -20,7 +20,7 @@ for entry in manifest:
  if (w,h)!=(1080,1920):raise ValueError(f"Unexpected size {src.size} for {entry['post']}")
  # The internal production-note panel is a lower strip, between a user-facing text box and the footer.
  # Preserve its existing outside border; repaint only the interior note and remove all "STICKER ..." text.
- rect=(118,1552,960,1724)
+ rect=(101,1548,960,1724)
  sampled=[src.getpixel((x,y)) for x in (250,420,600,790) for y in (1630,1680,1700)]
  bg=tuple(int(statistics.median(p[i] for p in sampled)) for i in range(3))
  bg=tuple(max(2,min(25,v)) for v in bg)
@@ -40,8 +40,8 @@ for entry in manifest:
  base=Image.alpha_composite(base,glow)
  draw=ImageDraw.Draw(base)
  draw.rounded_rectangle((x1,y1,x2,y2),radius=48,fill=(*dark,255),outline=(*neon,255),width=5)
- text="CONTINUA" if entry["index"]<2 else "SCOPRI DI PIÙ"
- font=ImageFont.truetype(FONT,47 if entry["index"]<2 else 42)
+ text="SCOPRI DI PIÙ" if "Story 3/3" in (entry.get("alt") or "") else "CONTINUA"
+ font=ImageFont.truetype(FONT,42 if text=="SCOPRI DI PIÙ" else 47)
  arrow="  →"
  # Draw ASCII-safe arrow separately to avoid missing glyphs.
  box=draw.textbbox((0,0),text,font=font);txtw=box[2]-box[0]

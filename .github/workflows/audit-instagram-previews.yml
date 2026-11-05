@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Pillow and ffmpeg
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
           python3 -m pip install --user pillow --quiet
           ffprobe -version | head -1
       - name: Read hosted Instagram media and inspect thumbnails

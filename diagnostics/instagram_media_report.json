@@ -1,10 +1,25 @@
 {
   "summary": {
     "total": 35,
-    "ok": 25,
-    "fail": 10,
+    "ok": 35,
+    "fail": 0,
     "black_previews": [],
-    "other_very_dark": []
+    "other_very_dark": [
+      {
+        "post": 413905468,
+        "date": "2026-11-04T19:00:00",
+        "kind": "reel",
+        "index": 0,
+        "brightness": 29.03
+      },
+      {
+        "post": 413905576,
+        "date": "2026-11-15T19:00:00",
+        "kind": "reel",
+        "index": 0,
+        "brightness": 29.573611111111113
+      }
+    ]
   },
   "items": [
     {
@@ -88,12 +103,59 @@
       "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 4058273,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 720,
+            "height": 1280,
+            "r_frame_rate": "25/1",
+            "nb_frames": "1125"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "970"
+          }
+        ],
+        "format": {
+          "duration": "45.000000",
+          "size": "4058273"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 42.5,
+          "black_pct": 59.2
+        },
+        {
+          "at": "1.00",
+          "brightness": 42.5,
+          "black_pct": 59.3
+        },
+        {
+          "at": "2.00",
+          "brightness": 42.5,
+          "black_pct": 59.3
+        }
+      ],
+      "dimensions": [
+        720,
+        1280
+      ],
+      "brightness": 42.518628472222225,
+      "black_pct": 59.25868055555556,
+      "white_pct": 0.4739583333333333,
+      "variance": 3157.628923813356,
       "post": 411246752,
       "kind": "reel",
       "date": "2026-10-31T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
       "mime": "image/jpeg",
@@ -136,20 +198,114 @@
       "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 3676099,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "3676099"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 24.2,
+          "black_pct": 77.4
+        },
+        {
+          "at": "1.00",
+          "brightness": 31.9,
+          "black_pct": 73.9
+        },
+        {
+          "at": "2.00",
+          "brightness": 31.9,
+          "black_pct": 73.9
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 31.895104166666666,
+      "black_pct": 73.85416666666667,
+      "white_pct": 1.7534722222222223,
+      "variance": 2594.597399641927,
       "post": 413901974,
       "kind": "reel",
       "date": "2026-11-02T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 2832197,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "2832197"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 22.9,
+          "black_pct": 82.0
+        },
+        {
+          "at": "1.00",
+          "brightness": 29.0,
+          "black_pct": 77.2
+        },
+        {
+          "at": "2.00",
+          "brightness": 29.0,
+          "black_pct": 77.2
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 29.03,
+      "black_pct": 77.17534722222223,
+      "white_pct": 1.5798611111111112,
+      "variance": 1995.772225,
       "post": 413905468,
       "kind": "reel",
       "date": "2026-11-04T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
       "mime": "image/jpeg",
@@ -192,12 +348,59 @@
       "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 3592975,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "3592975"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 23.6,
+          "black_pct": 78.9
+        },
+        {
+          "at": "1.00",
+          "brightness": 30.7,
+          "black_pct": 75.3
+        },
+        {
+          "at": "2.00",
+          "brightness": 30.7,
+          "black_pct": 75.3
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 30.679461805555555,
+      "black_pct": 75.30208333333333,
+      "white_pct": 1.5173611111111112,
+      "variance": 2444.9352240159023,
       "post": 413905504,
       "kind": "reel",
       "date": "2026-11-08T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
       "mime": "image/jpeg",
@@ -340,12 +543,59 @@
       "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 2910483,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "2910483"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 24.6,
+          "black_pct": 80.7
+        },
+        {
+          "at": "1.00",
+          "brightness": 32.5,
+          "black_pct": 76.5
+        },
+        {
+          "at": "2.00",
+          "brightness": 32.5,
+          "black_pct": 76.5
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 32.46439236111111,
+      "black_pct": 76.47743055555556,
+      "white_pct": 2.626736111111111,
+      "variance": 2640.459079318275,
       "post": 413905547,
       "kind": "reel",
       "date": "2026-11-11T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
       "mime": "image/jpeg",
@@ -428,20 +678,114 @@
       "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 3430705,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "3430705"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 23.0,
+          "black_pct": 76.5
+        },
+        {
+          "at": "1.00",
+          "brightness": 29.6,
+          "black_pct": 72.2
+        },
+        {
+          "at": "2.00",
+          "brightness": 29.6,
+          "black_pct": 72.2
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 29.573611111111113,
+      "black_pct": 72.15277777777777,
+      "white_pct": 0.9947916666666666,
+      "variance": 2113.791768904321,
       "post": 413905576,
       "kind": "reel",
       "date": "2026-11-15T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 2997108,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "2997108"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 24.2,
+          "black_pct": 75.1
+        },
+        {
+          "at": "1.00",
+          "brightness": 31.6,
+          "black_pct": 71.5
+        },
+        {
+          "at": "2.00",
+          "brightness": 31.6,
+          "black_pct": 71.5
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 31.648142361111113,
+      "black_pct": 71.47916666666667,
+      "white_pct": 1.9722222222222223,
+      "variance": 2254.1817343964,
       "post": 413905603,
       "kind": "reel",
       "date": "2026-11-18T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
       "mime": "image/jpeg",
@@ -484,12 +828,59 @@
       "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 3512339,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "3512339"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 24.4,
+          "black_pct": 76.4
+        },
+        {
+          "at": "1.00",
+          "brightness": 32.5,
+          "black_pct": 68.6
+        },
+        {
+          "at": "2.00",
+          "brightness": 32.5,
+          "black_pct": 68.6
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 32.47203125,
+      "black_pct": 68.64583333333333,
+      "white_pct": 1.6059027777777777,
+      "variance": 2453.8053288601345,
       "post": 413905650,
       "kind": "reel",
       "date": "2026-11-22T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
       "mime": "image/jpeg",
@@ -572,20 +963,114 @@
       "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 2917297,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "2917297"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 24.3,
+          "black_pct": 77.6
+        },
+        {
+          "at": "1.00",
+          "brightness": 32.3,
+          "black_pct": 71.2
+        },
+        {
+          "at": "2.00",
+          "brightness": 32.3,
+          "black_pct": 71.2
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 32.26079861111111,
+      "black_pct": 71.22395833333333,
+      "white_pct": 2.1371527777777777,
+      "variance": 2299.5186854733315,
       "post": 413905687,
       "kind": "reel",
       "date": "2026-11-25T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     },
     {
+      "mime": "video/mp4",
+      "bytes": 3342360,
+      "video": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1",
+            "nb_frames": "360"
+          },
+          {
+            "codec_name": "aac",
+            "r_frame_rate": "0/0",
+            "nb_frames": "324"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "3342360"
+        }
+      },
+      "frames": [
+        {
+          "at": "0.10",
+          "brightness": 23.8,
+          "black_pct": 77.5
+        },
+        {
+          "at": "1.00",
+          "brightness": 31.2,
+          "black_pct": 70.2
+        },
+        {
+          "at": "2.00",
+          "brightness": 31.2,
+          "black_pct": 70.2
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "brightness": 31.181006944444444,
+      "black_pct": 70.15104166666667,
+      "white_pct": 1.0399305555555556,
+      "variance": 2123.3082434305074,
       "post": 413905741,
       "kind": "reel",
       "date": "2026-11-27T19:00:00",
       "index": 0,
-      "ok": false,
-      "error": "[Errno 2] No such file or directory: 'ffprobe'"
+      "ok": true
     }
   ]
 }

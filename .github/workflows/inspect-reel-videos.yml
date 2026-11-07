@@ -1,0 +1,33 @@
+name: Inspect actual scheduled Reel videos
+on:
+  push:
+    branches: ['diagnostics/instagram-media-20261105']
+    paths:
+      - scripts/extract_reel_frames_20261107.py
+      - diagnostics/reel_originals_20261107.json
+      - .github/workflows/inspect-reel-videos.yml
+  workflow_dispatch:
+permissions: 
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python3 -m pip install --quiet --user pillow
+      - name: Inspect original scheduled videos
+        run: python3 scripts/extract_reel_frames_20261107.py
+      - name: Commit contact sheets as text
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/reel_frame_audit
+          if ! git diff --cached --quiet; then
+            git commit -m "Include visual frame audit for scheduled Reels"
+            git push
+          fi

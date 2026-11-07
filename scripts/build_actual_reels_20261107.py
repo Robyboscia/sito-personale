@@ -51,14 +51,15 @@ def card(mode,parts,scene):
  accent=CYAN if mode=="CYBERPUNK" else GOLD
  alt=PINK if mode=="CYBERPUNK" else (170,117,53)
  W,H=1080,1920
- im=Image.new("RGB",(W,H),DARK); px=im.load()
+ im=Image.new("RGB",(W,H),DARK)
+ gd=ImageDraw.Draw(im)
  for y in range(H):
-  q=y/H
-  base=blend((9,20,32) if mode=="CYBERPUNK" else (20,14,27),(4,11,20),q)
-  for x in range(W):
-   cx=(x-W*.75)/(W*1.05);cy=(y-H*.34)/(H*.75)
-   bloom=max(0,1-(cx*cx+cy*cy))*0.27
-   px[x,y]=blend(base,alt,bloom)
+  base=blend((9,20,32) if mode=="CYBERPUNK" else (20,14,27),(4,11,20),y/H)
+  gd.line((0,y,W,y),fill=base)
+ glow=Image.new("RGBA",(W,H),(0,0,0,0))
+ ImageDraw.Draw(glow).ellipse((250,-60,1470,1420),fill=(*alt,55))
+ glow=glow.filter(ImageFilter.GaussianBlur(210))
+ im=Image.alpha_composite(im.convert("RGBA"),glow).convert("RGB")
  d=ImageDraw.Draw(im)
  # futuristic decorative grid and orbital geometry
  for y in range(140,1770,90):d.line((65,y,1015,y),fill=blend(DARK,accent,.095),width=1)

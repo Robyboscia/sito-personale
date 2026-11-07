@@ -1,0 +1,33 @@
+name: Preview corrected Reel cover
+on:
+  workflow_dispatch:
+  push:
+    branches: ['diagnostics/instagram-media-20261105']
+    paths:
+      - .github/workflows/preview-final-reel.yml
+permissions:
+  contents: write
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate text-encoded small cover preview
+        run: |
+          python3 -m pip install --quiet --user pillow
+          python3 - <<'PY'
+          import base64,io
+          from pathlib import Path
+          from PIL import Image
+          f=Path("diagnostics/reels_final/reel-2026-11-08-cover.jpg")
+          im=Image.open(f)
+          im.thumbnail((360,640))
+          o=io.BytesIO(); im.save(o,format="JPEG",quality=73,optimize=True)
+          Path("diagnostics/reels_final/preview-1108.txt").write_text(base64.b64encode(o.getvalue()).decode())
+          PY
+      - name: Save thumbnail preview
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add diagnostics/reels_final/preview-1108.txt
+          if ! git diff --cached --quiet; then git commit -m 'Audit first final Reel cover'; git push; fi

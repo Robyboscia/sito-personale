@@ -1,0 +1,121 @@
+[
+  {
+    "date": "2026-11-08",
+    "video": "reel-2026-11-08.mp4",
+    "thumbnail": "reel-2026-11-08-cover.jpg",
+    "bytes": 310901,
+    "audio": true,
+    "duration": "15.000000",
+    "brightness_samples": [
+      28.6,
+      28.6,
+      29.2,
+      29.2,
+      28.0,
+      28.0,
+      28.0
+    ]
+  },
+  {
+    "date": "2026-11-11",
+    "video": "reel-2026-11-11.mp4",
+    "thumbnail": "reel-2026-11-11-cover.jpg",
+    "bytes": 299798,
+    "audio": true,
+    "duration": "15.000000",
+    "brightness_samples": [
+      29.8,
+      29.8,
+      30.3,
+      30.3,
+      28.5,
+      28.5,
+      28.5
+    ]
+  },
+  {
+    "date": "2026-11-15",
+    "video": "reel-2026-11-15.mp4",
+    "thumbnail": "reel-2026-11-15-cover.jpg",
+    "bytes": 298511,
+    "audio": true,
+    "duration": "15.000000",
+    "brightness_samples": [
+      28.5,
+      28.5,
+      29.4,
+      29.4,
+      28.3,
+      28.3,
+      28.3
+    ]
+  },
+  {
+    "date": "2026-11-18",
+    "video": "reel-2026-11-18.mp4",
+    "thumbnail": "reel-2026-11-18-cover.jpg",
+    "bytes": 306170,
+    "audio": true,
+    "duration": "15.000000",
+    "brightness_samples": [
+      29.9,
+      29.9,
+      29.1,
+      29.1,
+      28.8,
+      28.8,
+      28.8
+    ]
+  },
+  {
+    "date": "2026-11-22",
+    "video": "reel-2026-11-22.mp4",
+    "thumbnail": "reel-2026-11-22-cover.jpg",
+    "bytes": 309148,
+    "audio": true,
+    "duration": "15.000000",
+    "brightness_samples": [
+      29.5,
+      29.5,
+      30.1,
+      30.1,
+      30.1,
+      30.1,
+      30.1
+    ]
+  },
+  {
+    "date": "2026-11-25",
+    "video": "reel-2026-11-25.mp4",
+    "thumbnail": "reel-2026-11-25-cover.jpg",
+    "bytes": 320429,
+    "audio": true,
+    "duration": "15.000000",
+    "brightness_samples": [
+      31.9,
+      31.9,
+      29.4,
+      29.4,
+      30.3,
+      30.3,
+      30.3
+    ]
+  },
+  {
+    "date": "2026-11-27",
+    "video": "reel-2026-11-27.mp4",
+    "thumbnail": "reel-2026-11-27-cover.jpg",
+    "bytes": 316380,
+    "audio": true,
+    "duration": "15.000000",
+    "brightness_samples": [
+      30.8,
+      30.8,
+      30.1,
+      30.1,
+      27.9,
+      27.9,
+      27.9
+    ]
+  }
+]

@@ -9,7 +9,7 @@ Tre funnel indipendenti per linea di prodotto, non tre carrelli generici. Vendit
 
 ## Percorsi da simulare
 ### mentalpro.it
-Acquisto 1 confezione 47 EUR -> upsell sostitutivo 3 confezioni 117 EUR (+70) -> se accetta upsell 6 confezioni 222 EUR (+105); se rifiuta il primo upsell -> proposta 2 confezioni a prezzo standard 94 EUR, senza sconto presunto.
+Acquisto 1 confezione 47 EUR -> upsell aggiuntivo 2 confezioni a +70 EUR (totale ordine 3 confezioni: 117 EUR) -> se accetta, proposta di altre 3 confezioni a +105 EUR (totale finale 6 confezioni: 222 EUR); se rifiuta il primo upsell, downsell di 1 confezione aggiuntiva a +47 EUR (totale 2 confezioni: 94 EUR). Ogni addebito aggiuntivo deve essere espresso e autorizzato singolarmente, senza sostituire contabilmente l'ordine originale; le proposte sono dimostrative, non già approvate.
 **NB**: offerte solo di esempio; nessuna validazione commerciale / IVA / spedizione, nessuna attivazione.
 
 ### dormirefacile.com
@@ -26,8 +26,25 @@ Prodotto formativo base -> programma approfondito -> premium; su rifiuto modulo 
 - Ordini non attivati finché non sono definiti titolare, Partita IVA, rapporti con produttore/fornitore, fatturazione, spedizione e assistenza.
 
 ## Passi successivi
-1. Verificare che il piano SiteGround consenta un sito WordPress separato, senza migrare gli attuali siti statici.
+1. Verificare l'esistenza di un piano SiteGround Hosting attivo tramite Area Cliente > Servizi > Hosting. **SiteGround DNS Zone Editor non dimostra il possesso di un piano hosting.** Se esiste un piano, verificare limite siti e disponibilità WordPress/PHP/MySQL e se si può usare un dominio temporaneo di test, senza migrare gli attuali siti statici.
 2. Testare SureCart in sandbox su un sito WordPress di sviluppo, con Stripe TEST e nessuna vendita reale.
 3. Connettere checkout con CRM (es. Zoho/Brevo) solo dopo definizione di dati minimi, eventi e consensi.
 4. Misurare rapporto dei funnel con prototipo, quindi definire copy e offerte effettive.
 5. Pubblicare dopo revisione legale/commerciale e test completo.
+
+## Verifica infrastruttura — 11 novembre 2026
+- GitHub Pages ospita `drrobertoboscia.com`; SiteGround è utilizzato per il DNS. Non è stata identificata la sottoscrizione di un hosting SiteGround; nessuna email contrattuale SiteGround trovata nella casella Gmail con ricerche per SiteGround. Non assumere che esista un piano a pagamento.
+- Nel Cloudflare account illustrato dall'utente è presente il progetto Pages `vale-rossy`, non un sito WordPress di questo progetto.
+- Controllo account necessario: SiteGround > Area Cliente > **Servizi > Hosting**, verificare piano attivo (StartUp/GrowBig/GoGeek/Cloud), sito usato, eventuali costi di aggiunta di installazione. Non modificare né acquistare nulla durante l'ispezione.
+- **SureCart richiede WordPress** e un account SureCart; Launch $0 fisso + 2,9% commissione sulle vendite (oltre al processor), secondo listino ufficiale SureCart al 11/11/2026. Include order bump e funnel upsell. Il piano senza costo fisso **non rende gratuito il necessario hosting WordPress**.
+- Una singola installazione WordPress e una singola istanza SureCart potrebbero fornire tre pagine checkout/funnel distinte e una gestione centralizzata, con collegamenti da `mentalpro.it`, `dormirefacile.com` e `drrobertoboscia.com`. Non creare tre installazioni WordPress inutilmente.
+- SureCart può nascondere i metodi di pagamento non riutilizzabili quando è attivo un post-purchase funnel. Prima della produzione controllare carte, PayPal, wallets e modalità locali effettivamente disponibili per utenti italiani.
+- **Se SiteGround ha solo gestione DNS senza hosting WordPress:** opzione alternativa da valutare è checkout Stripe personalizzato su Cloudflare Workers (piano Free 100.000 richieste/giorno, limiti applicabili). Richiede implementare rigorosamente prezzi server-side, sessioni, pagamenti, eventi webhook idempotenti, stato dell'ordine, gestione spedizioni, rimborsi, sicurezza, informative. Non è un sostituto immediato con le funzionalità già pronte di SureCart.
+- Nessun plugin/hosting/account pagamenti acquistato o creato; nessuna attivazione di ordini. Decisione tecnica sospesa finché non si legge la schermata **Servizi > Hosting** dell'account SiteGround.
+
+## Fonti tecniche ufficiali
+- SureCart piani: https://surecart.com/pricing/
+- SureCart prerequisiti: https://surecart.com/docs/getting-started/
+- SureCart compatibilità pagamento post acquisto: https://surecart.com/docs/enable-upsell-funnels/
+- SiteGround piano hosting: https://www.siteground.com/kb/add-website-hosting-plan
+- Cloudflare Workers Free: https://developers.cloudflare.com/workers/platform/limits/

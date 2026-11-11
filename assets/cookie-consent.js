@@ -2,7 +2,32 @@
    Future integrations must check acceptedCategory before injecting tracking tags. */
 import * as CookieConsent from 'https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.esm.js';
 window.siteCookieConsent = CookieConsent;
+// Google Consent Mode v2: default to denied. Future Google tags must
+// be loaded only after this default has been established.
+window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+window.gtag('consent', 'default', {
+  ad_storage: 'denied',
+  analytics_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  functionality_storage: 'granted',
+  security_storage: 'granted',
+  wait_for_update: 500
+});
+function syncGoogleConsent() {
+  const analytics = CookieConsent.acceptedCategory('analytics');
+  const marketing = CookieConsent.acceptedCategory('marketing');
+  window.gtag('consent', 'update', {
+    analytics_storage: analytics ? 'granted' : 'denied',
+    ad_storage: marketing ? 'granted' : 'denied',
+    ad_user_data: marketing ? 'granted' : 'denied',
+    ad_personalization: marketing ? 'granted' : 'denied'
+  });
+}
 CookieConsent.run({
+  onConsent: syncGoogleConsent,
+  onChange: syncGoogleConsent,
   guiOptions: { consentModal: { layout: 'box', position: 'bottom right', equalWeightButtons: true }, preferencesModal: { layout: 'box' } },
   categories: {
     necessary: { enabled: true, readOnly: true },

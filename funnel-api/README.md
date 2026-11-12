@@ -30,7 +30,7 @@ Simula tre percorsi distinti: Mental Pro, libri e guide, formazione e consulenze
      -H 'Content-Type: application/json' -H 'x-demo-key: <DEV_KEY>' \\
      -d '{"funnel":"mental"}'
    ```
-   Dalla risposta usare `token` per `/api/demo/state` e `/api/demo/decision`, con payload `{"token":"...","accept":true}` o `{"token":"...","accept":false}`.
+   Dalla risposta usare `token` per `/api/demo/state` e `/api/demo/decision`, con payload `{"token":"...","stage":"upsell1","accept":true}` o `{"token":"...","stage":"upsell1","accept":false}`. Il campo `stage` deve corrispondere alla fase visualizzata e cambia dopo ogni scelta: impedisce che un doppio clic su un’offerta sia interpretato come accettazione della successiva.
 6. Per i tre funnel ripetere scegliendo `mental`, `libro` oppure `formazione`. I prezzi di libri e formazione rimangono `null`, non inventati.
 
 ## Prima di un eventuale deployment

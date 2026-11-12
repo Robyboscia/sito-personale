@@ -6,6 +6,7 @@ on:
       - 'funnel-api/**'
       - 'laboratorio-funnel/**'
       - 'scripts/funnel-demo-visual-qa.cjs'
+      - 'scripts/mental-pro-2-qa.cjs'
       - '.github/workflows/funnel-demo-qa.yml'
   workflow_dispatch:
 
@@ -49,11 +50,15 @@ jobs:
         run: npm install --no-save --no-package-lock playwright@1.56.1
       - name: Simula il checkout su schermo iPhone
         run: node scripts/funnel-demo-visual-qa.cjs
+      - name: Collauda Funnel Mental Pro 2.0 e Dashboard (solo demo)
+        run: node scripts/mental-pro-2-qa.cjs
       - name: Conserva gli screenshot di controllo
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: anteprima-funnel-mobile
-          path: funnel-demo-preview-*.png
+          path: |
+            funnel-demo-preview-*.png
+            mental2-*.png
           if-no-files-found: warn
           retention-days: 7

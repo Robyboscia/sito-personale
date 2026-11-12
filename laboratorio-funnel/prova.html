@@ -123,17 +123,17 @@ details("Per continuare non verrà effettuato alcun addebito."));
 }
 if(stage==="upsell"){
 add(screen,...title(c.upsell.label,c.upsell.headline,c.upsell.body),offerPanel(p.first),p.first.cost===null?el("p","stepinfo","Questa offerta è ancora in progettazione: disponibilità e prezzo non sono confermati."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.first.cost)+". Se rifiuti, il primo acquisto resta invariato."),
-choices(button(c.upsell.yes,"btn-primary",()=>to("upsell2","Prima offerta accettata",p.first.cost)),button(c.upsell.no,"btn-secondary",()=>to("downsell","Prima offerta rifiutata")))),
+choices(button(c.upsell.yes,"btn-primary",()=>to("upsell2","Prima offerta accettata",p.first.cost)),button(c.upsell.no,"btn-secondary",()=>to("downsell","Prima offerta rifiutata"))),
 details("Scelta facoltativa. Nessun pagamento reale."));
 }
 if(stage==="upsell2"){
 add(screen,...title(c.upsell2.label,c.upsell2.headline,c.upsell2.body),offerPanel(p.second),p.second.cost===null?el("p","stepinfo","Il prezzo di questa proposta è ancora da definire."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.second.cost)+"."),
-choices(button(c.upsell2.yes,"btn-primary",()=>to("done","Seconda offerta accettata",p.second.cost)),button(c.upsell2.no,"btn-secondary",()=>to("done","Seconda offerta rifiutata")))),
+choices(button(c.upsell2.yes,"btn-primary",()=>to("done","Seconda offerta accettata",p.second.cost)),button(c.upsell2.no,"btn-secondary",()=>to("done","Seconda offerta rifiutata"))),
 details("Nessun pagamento reale."));
 }
 if(stage==="downsell"){
 add(screen,...title(c.downsell.label,c.downsell.headline,c.downsell.body),offerPanel(p.down),p.down.cost===null?el("p","stepinfo","L'alternativa è da definire prima di una vendita reale."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.down.cost)+"."),
-choices(button(c.downsell.yes,"btn-primary",()=>to("done","Offerta alternativa accettata",p.down.cost)),button(c.downsell.no,"btn-secondary",()=>to("done","Offerta alternativa rifiutata")))),
+choices(button(c.downsell.yes,"btn-primary",()=>to("done","Offerta alternativa accettata",p.down.cost)),button(c.downsell.no,"btn-secondary",()=>to("done","Offerta alternativa rifiutata"))),
 details("Nessun pagamento reale."));
 }
 if(stage==="done"){

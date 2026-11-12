@@ -101,7 +101,7 @@ export async function stripeSignedEvent(raw,header,secret,nowSeconds=Math.floor(
   const ts=params.find(p=>p[0]==="t")?.[1];
   const signatures=params.filter(p=>p[0]==="v1").map(p=>p[1]);
   if(!/^\d{10,}$/.test(ts||"")||Math.abs(nowSeconds-Number(ts))>300||!signatures.length) throw new Error("Expired webhook signature");
-  const key=await crypto.subtle.importKey("raw",enc.encode(secret),"HMAC",{name:"HMAC",hash:"SHA-256"},false,["sign"]);
+  const key=await crypto.subtle.importKey("raw",enc.encode(secret),{name:"HMAC",hash:"SHA-256"},false,["sign"]);
   const data=enc.encode(ts+"."+raw);
   const expected=hex(new Uint8Array(await crypto.subtle.sign("HMAC",key,data)));
   if(!signatures.some(s=>safeHexEqual(s,expected))) throw new Error("Invalid Stripe signature");

@@ -26,6 +26,5 @@ jobs:
         run: |
           node --check funnel-api/src/index.js
           node --check funnel-api/src/flow.js
-          node --check laboratorio-funnel/index.html || true
       - name: Esegui test logica funnel
         run: node --test funnel-api/test/*.test.js

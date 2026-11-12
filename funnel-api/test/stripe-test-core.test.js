@@ -61,7 +61,7 @@ test("HMAC v1 Stripe signature valid, tampered, stale and missing rejected",asyn
   const secret="whsec_webhook_for_tests";
   const raw=JSON.stringify({id:"evt_test_1",type:"checkout.session.completed",data:{object:{livemode:false}}});
   const time=1700000000;
-  const cryptoKey=await crypto.subtle.importKey("raw",new TextEncoder().encode(secret),"HMAC",{name:"HMAC",hash:"SHA-256"},false,["sign"]);
+  const cryptoKey=await crypto.subtle.importKey("raw",new TextEncoder().encode(secret),{name:"HMAC",hash:"SHA-256"},false,["sign"]);
   const sig=Array.from(new Uint8Array(await crypto.subtle.sign("HMAC",cryptoKey,new TextEncoder().encode(time+"."+raw)))).map(b=>b.toString(16).padStart(2,"0")).join("");
   assert.equal((await stripeSignedEvent(raw,"t="+time+",v1="+sig,secret,time)).id,"evt_test_1");
   await assert.rejects(stripeSignedEvent(raw+" ","t="+time+",v1="+sig,secret,time),/signature/i);

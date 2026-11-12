@@ -57,7 +57,8 @@ export function sessionParams({offer,orderId,token,returnOrigin}) {
     "metadata[order_id]":orderId,
     "metadata[offer_stage]":offer.stage,
     "metadata[environment]":mode,
-    success_url:success.href,
+    // Stripe requires the literal {CHECKOUT_SESSION_ID} placeholder, not URL-encoded braces.
+    success_url:success.href.replace('%7BCHECKOUT_SESSION_ID%7D','{CHECKOUT_SESSION_ID}'),
     cancel_url:cancel.href
   });
   return form;

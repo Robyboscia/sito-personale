@@ -37,6 +37,7 @@ test("Stripe test Checkout params include single test line-item and safe callbac
   assert.equal(p.get("client_reference_id"),orderId);
   assert.equal(p.get("metadata[environment]"),"test");
   assert.match(p.get("success_url"),/\/api\/stripe-test\/return/);
+  assert.ok(p.get("success_url").includes("{CHECKOUT_SESSION_ID}"));
   assert.equal(p.get("payment_method_types[0]"),"card");
   assert.throws(()=>returnBase("http://unsafe.example.com"),/HTTPS/);
 });

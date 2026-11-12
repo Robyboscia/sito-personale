@@ -64,6 +64,25 @@ formazione:{
 name:"Formazione sul sonno",origin:"drrobertoboscia.com",kind:"FORMAZIONE E SERVIZI",subtitle:"Percorsi educativi e consulenze",picture:null,symbol:"🎓",
 primary:{title:"Formazione introduttiva",cost:null},first:{title:"Passa al percorso approfondito",cost:null,desc:"Un percorso formativo più completo."},second:{title:"Aggiungi il modulo premium",cost:null,desc:"Ulteriori contenuti o servizi, da definire."},down:{title:"Scegli un singolo modulo",cost:null,desc:"Un'alternativa più contenuta."}
 }};
+const salesCopy={
+mental:{
+checkout:{label:"MENTAL PRO · SI COMINCIA",headline:"Una scelta semplice. Poi decidi quanto conviene.",body:"Parti con una confezione. Dopo la simulazione puoi confrontare le alternative di acquisto."},
+upsell:{label:"PRIMA DI CONCLUDERE · FORMATO RISPARMIO",headline:"Una confezione a 47 €. Tre a 39 € l'una. La differenza si vede.",body:"Con 70 € in più passi a 3 confezioni: 117 € anziché 141 € acquistandole singolarmente. Sono 24 € in meno sui prodotti.",yes:"Sì, passo a 3 confezioni (+70 €)",no:"No, resto con 1 confezione"},
+upsell2:{label:"ULTIMO UPGRADE · PIÙ SCORTA",headline:"Con 6 confezioni scendi a 37 € l'una.",body:"Hai scelto il formato da 3. Aggiungendone altre 3 per 105 € arrivi a 6 confezioni per 222 €: 60 € in meno rispetto a sei confezioni singole.",yes:"Sì, passo a 6 confezioni (+105 €)",no:"No, concludo con 3"},
+downsell:{label:"UN'ALTERNATIVA PIÙ LEGGERA",headline:"Tre sono troppe? Non devi scegliere tutto o niente.",body:"Con una sola confezione in più arrivi a 2 per un totale di 94 €. Nessuno sconto inventato: solo un'alternativa più semplice.",yes:"Sì, aggiungo 1 confezione (+47 €)",no:"No, resto con 1 confezione"}
+},
+libro:{
+checkout:{label:"DORMIRE È FACILE · IL LIBRO",headline:"Comincia dal libro. Il resto viene dopo.",body:"Simula l'acquisto e scopri come potrebbe essere organizzato il percorso di approfondimento."},
+upsell:{label:"DOPO IL LIBRO · POSSIBILE APPROFONDIMENTO",headline:"La lettura è il punto di partenza. E dopo?",body:"Una guida pratica potrebbe affiancare il libro. Contenuti e prezzo sono ancora da definire: stai provando soltanto il percorso.",yes:"Sì, aggiungi la guida (demo)",no:"No, resto con il libro"},
+upsell2:{label:"SECONDA PROPOSTA · APPROFONDIMENTO",headline:"Vuoi esplorare un livello in più?",body:"Qui potremmo proporre un pacchetto editoriale completo. Contenuti e prezzo non sono ancora stabiliti.",yes:"Sì, aggiungi il pacchetto (demo)",no:"No grazie, concludi"},
+downsell:{label:"UN'ALTERNATIVA PIÙ SEMPLICE",headline:"Preferisci qualcosa di più immediato?",body:"Potremmo prevedere una guida introduttiva più essenziale. È un'idea da definire, non un prodotto acquistabile oggi.",yes:"Sì, scegli la guida (demo)",no:"No grazie, concludi"}
+},
+formazione:{
+checkout:{label:"FORMAZIONE · PARTI DALLE BASI",headline:"Non un altro corso da accumulare. Un percorso da seguire.",body:"Simula l'accesso al prodotto introduttivo. Catalogo e condizioni reali saranno definiti prima del lancio."},
+upsell:{label:"PASSAGGIO SUCCESSIVO · APPROFONDIMENTO",headline:"Vuoi fermarti all'introduzione o andare più a fondo?",body:"Potremmo proporti un percorso più strutturato. In questa demo stai valutando il flusso, non comprando un servizio.",yes:"Sì, aggiungi il percorso (demo)",no:"No, resto al livello base"},
+upsell2:{label:"PERCORSO AVANZATO · OPZIONALE",headline:"Cerchi un approfondimento ancora più completo?",body:"Questo passaggio potrebbe contenere un modulo premium, da definire per contenuti, prezzo e disponibilità.",yes:"Sì, aggiungi il modulo (demo)",no:"No grazie, concludi"},
+downsell:{label:"ALTERNATIVA · MODULO SINGOLO",headline:"Non vuoi il percorso completo? Parti da un modulo.",body:"Una proposta più circoscritta, sempre facoltativa. Contenuti e prezzo andranno confermati.",yes:"Sì, scelgo il modulo (demo)",no:"No grazie, concludi"}
+}};
 const money=n=>n===null?"Da definire":new Intl.NumberFormat("it-IT",{style:"currency",currency:"EUR"}).format(n);
 const screen=document.getElementById("screen");
 const tabs=document.getElementById("tabs");
@@ -91,30 +110,30 @@ else box.append(el("div","glyph",p.symbol));
 return box;}
 function offerPanel(offer){return container("offer-card",el("div","offer-icon","✦"),el("h3","",offer.title),el("p","subtext",offer.desc),el("div","amount",offer.cost===null?"Prezzo da definire":"+"+money(offer.cost)),el("p","small","Importo aggiuntivo, solo se scegli di accettare."));}
 function render(){
-const p=products[funnel];screen.replaceChildren();
+const p=products[funnel];const c=salesCopy[funnel];screen.replaceChildren();
 for(const btn of tabs.querySelectorAll("button")){const isOn=btn.dataset.funnel===funnel;btn.setAttribute("aria-current",String(isOn));}
 const step=stage==="checkout"?0:stage==="done"?2:1;
 for(const node of progress.querySelectorAll(".step")){const index=Number(node.dataset.step);node.classList.toggle("active",index===step);node.classList.toggle("done",index<step);}
 if(stage==="checkout"){
-add(screen,...title("PASSAGGIO 1 / ACQUISTO","Il tuo primo passo","Una pagina di acquisto dedicata a "+p.origin+"."),hero(p));
+add(screen,...title(c.checkout.label,c.checkout.headline,c.checkout.body),hero(p));
 const summary=container("summary",row(p.primary.title,money(p.primary.cost)),el("div","divider"),row("Totale prodotto",money(p.primary.cost),"total"));
 add(screen,summary,el("p","stepinfo","In questa prova il pagamento viene soltanto simulato. Non devi inserire carta, indirizzo o email."),
 choices(button("Simula l'acquisto  →","btn-primary",()=>to("upsell","Prodotto principale confermato in simulazione"))),
 details("Per continuare non verrà effettuato alcun addebito."));
 }
 if(stage==="upsell"){
-add(screen,...title("PASSAGGIO 2 / OFFERTA RISERVATA","Aspetta, c'è un'opportunità in più.","Hai già simulato il primo acquisto. Ora puoi scegliere se aggiungere questa offerta."),offerPanel(p.first),p.first.cost===null?el("p","stepinfo","Questa offerta è ancora in progettazione: disponibilità e prezzo non sono confermati."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.first.cost)+". Se rifiuti, il primo acquisto resta invariato."),
-choices(button("Sì, aggiungila all'ordine  →","btn-primary",()=>to("upsell2","Prima offerta accettata",p.first.cost)),button("No grazie, non mi interessa","btn-secondary",()=>to("downsell","Prima offerta rifiutata"))),
+add(screen,...title(c.upsell.label,c.upsell.headline,c.upsell.body),offerPanel(p.first),p.first.cost===null?el("p","stepinfo","Questa offerta è ancora in progettazione: disponibilità e prezzo non sono confermati."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.first.cost)+". Se rifiuti, il primo acquisto resta invariato."),
+choices(button(c.upsell.yes,"btn-primary",()=>to("upsell2","Prima offerta accettata",p.first.cost)),button(c.upsell.no,"btn-secondary",()=>to("downsell","Prima offerta rifiutata")))),
 details("Scelta facoltativa. Nessun pagamento reale."));
 }
 if(stage==="upsell2"){
-add(screen,...title("PASSAGGIO 2 / SECONDA OFFERTA","Vuoi completare anche questa proposta?","Puoi aggiungere un secondo upgrade oppure concludere."),offerPanel(p.second),p.second.cost===null?el("p","stepinfo","Il prezzo di questa proposta è ancora da definire."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.second.cost)+"."),
-choices(button("Sì, aggiungi anche questa  →","btn-primary",()=>to("done","Seconda offerta accettata",p.second.cost)),button("No grazie, concludi","btn-secondary",()=>to("done","Seconda offerta rifiutata"))),
+add(screen,...title(c.upsell2.label,c.upsell2.headline,c.upsell2.body),offerPanel(p.second),p.second.cost===null?el("p","stepinfo","Il prezzo di questa proposta è ancora da definire."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.second.cost)+"."),
+choices(button(c.upsell2.yes,"btn-primary",()=>to("done","Seconda offerta accettata",p.second.cost)),button(c.upsell2.no,"btn-secondary",()=>to("done","Seconda offerta rifiutata")))),
 details("Nessun pagamento reale."));
 }
 if(stage==="downsell"){
-add(screen,...title("PASSAGGIO 2 / OFFERTA ALTERNATIVA","Preferisci qualcosa di più semplice?","Hai rifiutato la prima proposta. Questa è un'alternativa facoltativa."),offerPanel(p.down),p.down.cost===null?el("p","stepinfo","L'alternativa è da definire prima di una vendita reale."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.down.cost)+"."),
-choices(button("Sì, scegli questa alternativa  →","btn-primary",()=>to("done","Offerta alternativa accettata",p.down.cost)),button("No grazie, concludi","btn-secondary",()=>to("done","Offerta alternativa rifiutata"))),
+add(screen,...title(c.downsell.label,c.downsell.headline,c.downsell.body),offerPanel(p.down),p.down.cost===null?el("p","stepinfo","L'alternativa è da definire prima di una vendita reale."):el("p","stepinfo","Totale finale se accetti: "+money(total+p.down.cost)+"."),
+choices(button(c.downsell.yes,"btn-primary",()=>to("done","Offerta alternativa accettata",p.down.cost)),button(c.downsell.no,"btn-secondary",()=>to("done","Offerta alternativa rifiutata")))),
 details("Nessun pagamento reale."));
 }
 if(stage==="done"){

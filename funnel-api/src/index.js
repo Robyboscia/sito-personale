@@ -9,8 +9,7 @@ const json = (data, status = 200) => new Response(JSON.stringify(data), {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
     "X-Content-Type-Options": "nosniff",
-    "Content-Security-Policy": "default-src 'none'",
-    "Access-Control-Allow-Origin": "null" // no cross-origin API use in the prototype
+    "Content-Security-Policy": "default-src 'none'" // no cross-origin API use in the prototype
   }
 });
 function randomToken() {

@@ -93,6 +93,11 @@ export default {
       if (!row) return json({ error: "Sessione inesistente o scaduta" }, 404);
       if (path === "/api/demo/state") return json(describe(row));
 
+      // A retry of an earlier tap must never be mistaken for acceptance of
+      // the NEXT offer, even if the previous transaction already advanced.
+      if (typeof body.stage !== "string" || body.stage !== row.stage) {
+        return json({ error: "Offerta non più attiva: aggiorna il riepilogo" }, 409);
+      }
       if (typeof body.accept !== "boolean") {
         return json({ error: "Specificare accept: true oppure false" }, 400);
       }

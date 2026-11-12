@@ -7,7 +7,7 @@ Tre funnel indipendenti per linea di prodotto, non tre carrelli generici. Vendit
 
 **Direzione di lavoro:** Cloudflare Workers Free + D1 Free, con gateway Stripe in modalità test quando verrà creato un account di prova; per ora si prosegue con prototipo statico e progettazione. Tre funnel diversi sul front-end, architettura ordini condivisa lato server, nessun carrello unico pubblico. Stripe non è ancora collegato, gli importi post-acquisto richiedono autorizzazione esplicita e vanno riconciliati tramite webhook.
 
-**Alternativa pronta senza hosting:** systeme.io; il piano gratuito dichiara tre funnel ma un solo upsell one-click, quindi insufficiente per più offerte successive su tutte e tre le linee. Il piano a pagamento richiederebbe un abbonamento. Riconsiderarlo se la manutenzione del checkout custom diventasse sproporzionata.
+**Criterio esclusivo:** esperienza semplice, moderna e fluida; escludere systeme.io, scartato dall'utente per interfaccia datata e operatività macchinosa. Un eventuale SaaS alternativo va proposto solo se realmente più intuitivo del checkout personalizzato.
 
 **Specifiche e checklist di sicurezza:** vedere `ARCHITETTURA-CHECKOUT.md`.
 

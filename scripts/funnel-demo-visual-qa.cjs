@@ -15,28 +15,31 @@ const path=require("node:path");
   await page.screenshot({path:"funnel-demo-preview-mental.png",fullPage:true});
   await page.getByRole("button",{name:/Simula l.acquisto/}).click();
   assert.match(await page.locator("#screen").innerText(),/70,00/);
+  assert.match(await page.locator("#screen").innerText(),/39 € l\x27una/);
+  assert.match(await page.locator("#screen").innerText(),/24 € in meno/);
   await page.screenshot({path:"funnel-demo-preview-upsell.png",fullPage:true});
-  await page.getByRole("button",{name:/Sì, aggiungila/}).click();
+  await page.locator("#screen .btn-primary").click();
   assert.match(await page.locator("#screen").innerText(),/105,00/);
-  await page.getByRole("button",{name:/Sì, aggiungi anche/}).click();
+  assert.match(await page.locator("#screen").innerText(),/37 € l\x27una/);
+  await page.locator("#screen .btn-primary").click();
   assert.match(await page.locator("#screen").innerText(),/222,00/);
 
   await start("mental");
-  await page.getByRole("button",{name:/No grazie, non mi interessa/}).click();
+  await page.locator("#screen .btn-secondary").click();
   assert.match(await page.locator("#screen").innerText(),/94,00/);
-  await page.getByRole("button",{name:/Sì, scegli questa alternativa/}).click();
+  await page.locator("#screen .btn-primary").click();
   assert.match(await page.locator("#screen").innerText(),/94,00/);
 
   await start("mental");
-  await page.getByRole("button",{name:/No grazie, non mi interessa/}).click();
-  await page.getByRole("button",{name:/No grazie, concludi/}).click();
+  await page.locator("#screen .btn-secondary").click();
+  await page.locator("#screen .btn-secondary").click();
   assert.match(await page.locator("#screen").innerText(),/47,00/);
 
   for(const funnel of ["libro","formazione"]){
     await start(funnel);
     assert.match(await page.locator("#screen").innerText(),/Prezzo da definire/);
-    await page.getByRole("button",{name:/Sì, aggiungila/}).click();
-    await page.getByRole("button",{name:/No grazie, concludi/}).click();
+    await page.locator("#screen .btn-primary").click();
+    await page.locator("#screen .btn-secondary").click();
     assert.match(await page.locator("#screen").innerText(),/Da definire/);
   }
 

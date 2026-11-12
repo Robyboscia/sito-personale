@@ -52,7 +52,7 @@ p{line-height:1.58;color:var(--mute)}
 .grid-main{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;margin:20px 0}
 .card-heading{font-size:13px;font-weight:900;color:#315369;text-transform:uppercase;letter-spacing:.06em}
 .list-plain{list-style:none;padding:0;margin:14px 0;display:grid;gap:12px}
-.list-plain li{display:flex;align-items:flex-start;gap:12px;color:#4e6776;font-size:14px;line-height:1.5}
+.list-plain li,.list-plain > div{display:flex;align-items:flex-start;gap:12px;color:#4e6776;font-size:14px;line-height:1.5}
 .tick{color:#267c5c;background:#e3f4e8;width:25px;height:25px;flex:0 0 25px;border-radius:50%;display:grid;place-items:center;font-weight:900}
 .steps{display:flex;gap:5px;justify-content:space-between;align-items:center;margin:18px 0 20px}
 .steps .step{display:flex;align-items:center;gap:8px;color:#7e909c;font-size:12px;font-weight:850}

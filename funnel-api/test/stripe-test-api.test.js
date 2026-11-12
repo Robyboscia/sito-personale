@@ -112,7 +112,7 @@ async function post(e,path,data,fetcher,header="dev-only-test") {
 }
 async function signature(raw,secret) {
  const ts=Math.floor(Date.now()/1000);
- const key=await crypto.subtle.importKey("raw",new TextEncoder().encode(secret),"HMAC",{name:"HMAC",hash:"SHA-256"},false,["sign"]);
+ const key=await crypto.subtle.importKey("raw",new TextEncoder().encode(secret),{name:"HMAC",hash:"SHA-256"},false,["sign"]);
  const bytes=await crypto.subtle.sign("HMAC",key,new TextEncoder().encode(ts+"."+raw));
  const hex=Array.from(new Uint8Array(bytes),v=>v.toString(16).padStart(2,"0")).join("");
  return "t="+ts+",v1="+hex;

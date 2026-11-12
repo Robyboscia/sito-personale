@@ -1,8 +1,8 @@
-# Motore demo funnel — NESSUN PAGAMENTO
-**Stato:** codice in PR di sviluppo. Non distribuito su Cloudflare, nessun ordine o pagamento reale.
+# Motore funnel — demo senza pagamenti e checkout Stripe solo in test
+**Stato:** codice in PR di sviluppo. Non distribuito su Cloudflare; nessun ordine o pagamento reale. È presente un **secondo Worker disabilitato** per simulare pagamenti Stripe in test mode, documentato in [STRIPE-TEST.md](STRIPE-TEST.md).
 
 ## A cosa serve
-Simula tre percorsi distinti: Mental Pro, libri e guide, formazione e consulenze. Registra una sessione effimera e le scelte upsell/downsell in **Cloudflare D1 locale**. Nessun dato cliente, carta, pagamento Stripe o gestione di spedizioni.
+Il Worker demo standard simula tre percorsi distinti: Mental Pro, libri e guide, formazione e consulenze. Registra una sessione effimera e le scelte upsell/downsell in **Cloudflare D1 locale**. Non richiede Stripe o dati dei clienti. Il Worker **Stripe TEST separato** (`src/stripe-test-worker.js`) prepara Checkout Session test, webhook firmati e pagamenti aggiuntivi distinti; non è attivato né distribuito.
 
 ### Sicurezza deliberata
 - `workers_dev: false` e `DEMO_ENABLED: "false"` per impostazione predefinita: non espone un Worker pubblico.
@@ -49,3 +49,8 @@ Simula tre percorsi distinti: Mental Pro, libri e guide, formazione e consulenze
 - `POST /api/demo/decision`: accetta o rifiuta un upsell/downsell, atomico.
 
 Riferimenti: https://developers.cloudflare.com/d1/reference/migrations/ · https://developers.cloudflare.com/workers/configuration/secrets/
+
+## Worker Stripe TEST separato
+- File di configurazione: `wrangler.stripe-test.jsonc`; stato predefinito `STRIPE_TEST_ENABLED=false`, `workers_dev=false`, D1 segnaposto. Nessun deployment automatico.
+- Test automatizzati: `node --test test/*.test.js`; verifica compilazione: `npx wrangler deploy --config wrangler.stripe-test.jsonc --dry-run --outdir dist-stripe-test`.
+- Per Stripe, Cloudflare, autorizzazioni e collaudo vedere [STRIPE-TEST.md](STRIPE-TEST.md). Non inserire chiavi segrete in GitHub o in chat.

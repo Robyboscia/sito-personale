@@ -51,5 +51,3 @@ Queste rotte NON vanno rese operative prima di test d'integrazione, gestione ord
 - Cloudflare D1 Free: https://developers.cloudflare.com/d1/platform/pricing/
 - Stripe Checkout e webhook: https://docs.stripe.com/payments/existing-customers?platform=web&ui=stripe-hosted
 - Stripe salvataggio dei metodi di pagamento: https://support.stripe.com/questions/prefilling-saved-cards-in-checkout
-- systeme.io pricing: https://systeme.io/pricing
-- systeme.io upsell/downsell: https://help.systeme.io/article/243-how-to-create-an-upsell-and-a-downsell

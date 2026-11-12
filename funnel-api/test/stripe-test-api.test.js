@@ -121,7 +121,7 @@ async function paidWebhook(e,order,session,amount,eventId) {
  const body=JSON.stringify({
   id:eventId, type:"checkout.session.completed",
   data:{object:{
-   id:session.id,livemode:false,mode:"payment",payment_status:"paid",
+   id:session.stripe_session_id,livemode:false,mode:"payment",payment_status:"paid",
    currency:"eur",amount_total:amount,client_reference_id:order.id,
    metadata:{order_id:order.id,offer_stage:session.offer_stage,environment:"test"}
   }}

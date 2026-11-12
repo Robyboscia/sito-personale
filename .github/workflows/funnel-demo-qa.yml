@@ -5,6 +5,7 @@ on:
     paths:
       - 'funnel-api/**'
       - 'laboratorio-funnel/**'
+      - 'scripts/funnel-demo-visual-qa.cjs'
       - '.github/workflows/funnel-demo-qa.yml'
   workflow_dispatch:
 
@@ -28,3 +29,25 @@ jobs:
           node --check funnel-api/src/flow.js
       - name: Esegui test logica funnel
         run: node --test funnel-api/test/*.test.js
+
+  browser:
+    name: Verifica mobile dei tre funnel
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+    timeout-minutes: 15
+    steps:
+      - name: Scarica codice
+        uses: actions/checkout@v4
+      - name: Installa Playwright
+        run: npm install --no-save --no-package-lock playwright@1.56.1
+      - name: Simula il checkout su schermo iPhone
+        run: node scripts/funnel-demo-visual-qa.cjs
+      - name: Conserva gli screenshot di controllo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: anteprima-funnel-mobile
+          path: funnel-demo-preview-*.png
+          if-no-files-found: warn
+          retention-days: 7

@@ -80,20 +80,20 @@ test("Mental Pro: 47 + 70 + 105, sequenza e duplicazione respinta", async () => 
   assert.match(start.data.token,/^[a-f0-9]{64}$/);
   assert.equal(start.headers.get("cache-control"),"no-store");
   const token=start.data.token;
-  const first=await invoke(e,"/api/demo/decision",{token,accept:true});
+  const first=await invoke(e,"/api/demo/decision",{token,stage:"upsell1",accept:true});
   assert.equal(first.status,200);assert.equal(first.data.stage,"upsell2");assert.equal(first.data.totalCents,11700);
-  const second=await invoke(e,"/api/demo/decision",{token,accept:true});
+  const second=await invoke(e,"/api/demo/decision",{token,stage:"upsell2",accept:true});
   assert.equal(second.data.stage,"done");assert.equal(second.data.totalCents,22200);
   assert.equal(e.DB.events.length,2);
-  const duplicated=await invoke(e,"/api/demo/decision",{token,accept:true});
+  const duplicated=await invoke(e,"/api/demo/decision",{token,stage:"upsell2",accept:true});
   assert.equal(duplicated.status,409);
 });
 test("Upsell rifiutato -> downsell facoltativo -> 94 euro", async () => {
   const e=env(),start=await invoke(e,"/api/demo/start",{funnel:"mental"});
   const token=start.data.token;
-  const refuse=await invoke(e,"/api/demo/decision",{token,accept:false});
+  const refuse=await invoke(e,"/api/demo/decision",{token,stage:"upsell1",accept:false});
   assert.equal(refuse.data.stage,"downsell");assert.equal(refuse.data.totalCents,4700);
-  const accept=await invoke(e,"/api/demo/decision",{token,accept:true});
+  const accept=await invoke(e,"/api/demo/decision",{token,stage:"downsell",accept:true});
   assert.equal(accept.data.totalCents,9400);
 });
 test("Blocco prezzi sconosciuti, input ambiguo e sessione scaduta", async () => {
@@ -112,8 +112,8 @@ test("due click quasi simultanei non ripetono lo stesso upsell", async () => {
   const e=env(),started=await invoke(e,"/api/demo/start",{funnel:"mental"});
   const token=started.data.token;
   const [a,b]=await Promise.all([
-    invoke(e,"/api/demo/decision",{token,accept:true}),
-    invoke(e,"/api/demo/decision",{token,accept:true})
+    invoke(e,"/api/demo/decision",{token,stage:"upsell1",accept:true}),
+    invoke(e,"/api/demo/decision",{token,stage:"upsell1",accept:true})
   ]);
   assert.deepEqual([a.status,b.status].sort((x,y)=>x-y),[200,409]);
   assert.equal(e.DB.orders[0].total_cents,11700);

@@ -107,3 +107,15 @@ test("Blocco prezzi sconosciuti, input ambiguo e sessione scaduta", async () => 
   e.DB.orders[0].expires_at=Date.now()-1;
   assert.equal((await invoke(e,"/api/demo/state",{token})).status,404);
 });
+
+test("due click quasi simultanei non ripetono lo stesso upsell", async () => {
+  const e=env(),started=await invoke(e,"/api/demo/start",{funnel:"mental"});
+  const token=started.data.token;
+  const [a,b]=await Promise.all([
+    invoke(e,"/api/demo/decision",{token,accept:true}),
+    invoke(e,"/api/demo/decision",{token,accept:true})
+  ]);
+  assert.deepEqual([a.status,b.status].sort((x,y)=>x-y),[200,409]);
+  assert.equal(e.DB.orders[0].total_cents,11700);
+  assert.equal(e.DB.events.length,1);
+});

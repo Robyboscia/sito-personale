@@ -1,4 +1,4 @@
-import html from "./test-return.html";
+import html from "./test-return.js";
 import { FUNNELS } from "./flow.js";
 import {
   createStripeTestSession, makeToken, sha256, paymentOffer,

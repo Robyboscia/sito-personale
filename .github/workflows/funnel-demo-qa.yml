@@ -29,6 +29,12 @@ jobs:
           node --check funnel-api/src/flow.js
       - name: Esegui test logica funnel
         run: node --test funnel-api/test/*.test.js
+      - name: Controlla compilazione Worker Stripe TEST (senza deploy)
+        working-directory: funnel-api
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund --no-package-lock
+          npx wrangler deploy --config wrangler.stripe-test.jsonc --dry-run --outdir dist-stripe-test
+
 
   browser:
     name: Verifica mobile dei tre funnel

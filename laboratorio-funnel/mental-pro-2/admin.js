@@ -30,7 +30,7 @@ for(const [key,title] of [["A","Upsell A"],["B","Upsell B"],["D","Downsell"]]){
  const section=h("section","admin-card");section.dataset.offer=key;
  section.append(h("span","kicker","04 · "+(key==="D"?"ALTERNATIVA":"UPSELL "+key)),h("h2","",title));
  const toggle=h("label","toggle");
- const enabled=h("input");enabled.type="checkbox";enabled.dataset.path="offers."+key+".enabled";
+ const enabled=h("input");enabled.type="checkbox";enabled.id="field-offers-"+key+"-enabled";enabled.dataset.path="offers."+key+".enabled";
  toggle.append(enabled,h("span","","Mostra questa offerta nella demo"));section.append(toggle);
  const grid=h("div","form-grid");
  const specs=[

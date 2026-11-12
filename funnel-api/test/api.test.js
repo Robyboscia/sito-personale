@@ -102,7 +102,7 @@ test("Blocco prezzi sconosciuti, input ambiguo e sessione scaduta", async () => 
   const start=await invoke(e,"/api/demo/start",{funnel:"formazione"});
   assert.equal(start.data.totalCents,null);
   const token=start.data.token;
-  assert.equal((await invoke(e,"/api/demo/decision",{token,accept:"true"})).status,400);
+  assert.equal((await invoke(e,"/api/demo/decision",{token,stage:"upsell1",accept:"true"})).status,400);
   assert.equal((await invoke(e,"/api/demo/state",{token:"nonvalido"})).status,404);
   e.DB.orders[0].expires_at=Date.now()-1;
   assert.equal((await invoke(e,"/api/demo/state",{token})).status,404);

@@ -1,0 +1,31 @@
+name: Test motore funnel (solo simulazione)
+
+on:
+  pull_request:
+    paths:
+      - 'funnel-api/**'
+      - 'laboratorio-funnel/**'
+      - '.github/workflows/funnel-demo-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Scarica i file
+        uses: actions/checkout@v4
+      - name: Configura Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verifica sintassi API
+        run: |
+          node --check funnel-api/src/index.js
+          node --check funnel-api/src/flow.js
+          node --check laboratorio-funnel/index.html || true
+      - name: Esegui test logica funnel
+        run: node --test funnel-api/test/*.test.js

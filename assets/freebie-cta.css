@@ -11,3 +11,7 @@
 .freebie-cta .freebie-main:focus-visible{outline:3px solid white;outline-offset:3px}
 .freebie-cta .freebie-note{font-size:12px;color:#b4cad8}
 @media(max-width:600px){.freebie-cta{padding:52px 18px}.freebie-cta p{font-size:16px}.freebie-cta .freebie-main{width:100%;max-width:390px}}
+
+.freebie-cta [hidden]{display:none!important}
+.freebie-cta .freebie-secondary{display:inline-block;border:1px solid #f8b077;color:#ffd1aa;text-decoration:none;font:800 14px/1.4 Arial,Helvetica,sans-serif;padding:14px 22px;border-radius:9px;margin:8px auto 18px}
+.freebie-cta .freebie-secondary:focus-visible{outline:3px solid white;outline-offset:3px}

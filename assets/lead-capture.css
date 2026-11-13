@@ -1,0 +1,21 @@
+/* Lead capture prototype: disabled by default until Brevo DOI is connected. */
+.lead-capture-overlay{position:fixed;inset:0;z-index:9990;overflow:auto;background:linear-gradient(140deg,#071827 0%,#123651 70%,#0b2639 100%);color:#f5f7f9;padding:28px 18px 48px;font-family:Arial,Helvetica,sans-serif}
+.lead-capture-inner{max-width:690px;margin:clamp(8px,6vh,56px) auto 0}
+.lead-capture-eyebrow{color:#ffaf60;letter-spacing:.13em;font-weight:900;font-size:12px;text-transform:uppercase}
+.lead-capture-inner h2{font:800 clamp(33px,6vw,59px)/1.07 Arial,Helvetica,sans-serif;letter-spacing:-.04em;margin:16px 0 22px;color:#fff}
+.lead-capture-inner h2 em{font-style:normal;color:#ff963e}
+.lead-capture-inner p{font-size:clamp(16px,2.5vw,19px);line-height:1.65;color:#edf3f7;margin:0 0 16px}
+.lead-capture-inner strong{color:#fff}
+.lead-capture-action{background:#fff;border-radius:17px;color:#172f42;padding:24px;margin:24px 0 0}
+.lead-capture-action label{display:block;color:#243f51;font-weight:700;margin-bottom:7px}
+.lead-capture-action input[type=email]{width:100%;padding:14px 16px;border:1px solid #96aabd;border-radius:8px;font-size:17px;background:#f6f8fa}
+.lead-capture-action button,.lead-capture-action .lead-capture-cta{display:block;text-decoration:none;text-align:center;width:100%;background:#f18a2e;color:#151e27;border:0;border-radius:9px;font-size:16px;font-weight:900;letter-spacing:.02em;line-height:1.3;padding:16px;cursor:pointer;margin-top:12px}
+.lead-capture-action button:disabled{opacity:.6;cursor:not-allowed}
+.lead-capture-consent{display:flex;gap:10px;margin-top:16px;font-size:13px;line-height:1.55;color:#30485a}
+.lead-capture-consent input{flex:0 0 auto;align-self:start;margin-top:4px}
+.lead-capture-action small{display:block;margin-top:14px;font-size:12px;line-height:1.6;color:#4b5e6b}
+.lead-capture-action a:not(.lead-capture-cta){color:#145f93;text-decoration:underline}
+.lead-capture-close{display:inline-block;margin-top:14px;border:1px solid #8fa2b3;background:transparent;color:white;padding:9px 14px;border-radius:9px;font:700 13px Arial;cursor:pointer}
+.lead-capture-preview{background:#ffe8cd;color:#492500;border-radius:8px;padding:11px 14px;font-weight:700;font-size:13px;line-height:1.5;margin:15px 0}
+.lead-capture-lock main{visibility:hidden}
+@media (max-width:560px){.lead-capture-overlay{padding:18px 15px 32px}.lead-capture-inner{margin:15px auto}.lead-capture-action{padding:18px}.lead-capture-inner p{font-size:16px}}

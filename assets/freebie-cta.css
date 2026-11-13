@@ -1,0 +1,17 @@
+/* Newsletter/freebie invitations — no forms, storage or tracking. */
+.freebie-cta{padding:clamp(52px,8vw,100px) 20px;background:#09283d;color:#fff;text-align:center;position:relative;overflow:hidden}
+.freebie-cta:before{content:"";position:absolute;inset:-50%;pointer-events:none;background:radial-gradient(circle at 72% 39%,rgba(248,139,53,.17),transparent 27%)}
+.freebie-cta .freebie-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.freebie-cta .freebie-eyebrow{color:#ffae70;text-transform:uppercase;letter-spacing:.17em;font-size:12px;font-weight:800}
+.freebie-cta h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(34px,5vw,56px);line-height:1.12;letter-spacing:-.035em;font-weight:500;margin:18px auto 22px;color:#fff}
+.freebie-cta h2 em{font-style:normal;color:#ffab67}
+.freebie-cta p{font:400 17px/1.67 Arial,Helvetica,sans-serif;color:#e0eaf2;max-width:680px;margin:0 auto 15px}
+.freebie-cta strong{color:#fff}
+.freebie-cta .freebie-main{display:inline-block;background:#ef8d39;color:#10283a;text-decoration:none;font:800 15px/1.35 Arial,Helvetica,sans-serif;padding:17px 25px;border-radius:9px;margin:15px auto 10px;box-shadow:0 6px 17px #0002}
+.freebie-cta .freebie-main:focus-visible{outline:3px solid white;outline-offset:3px}
+.freebie-cta .freebie-note{font-size:12px;color:#b4cad8}
+@media(max-width:600px){.freebie-cta{padding:52px 18px}.freebie-cta p{font-size:16px}.freebie-cta .freebie-main{width:100%;max-width:390px}}
+
+.freebie-cta [hidden]{display:none!important}
+.freebie-cta .freebie-secondary{display:inline-block;border:1px solid #f8b077;color:#ffd1aa;text-decoration:none;font:800 14px/1.4 Arial,Helvetica,sans-serif;padding:14px 22px;border-radius:9px;margin:8px auto 18px}
+.freebie-cta .freebie-secondary:focus-visible{outline:3px solid white;outline-offset:3px}

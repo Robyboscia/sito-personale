@@ -1,31 +1,33 @@
-# Acquisizione contatti — Laboratorio e Autovalutazione (configurazione di rilascio)
+# Newsletter e freebie – configurazione prudente (13 novembre 2026)
 
-## Stato
-Interfaccia pronta in **anteprima**, disabilitata nel traffico normale.
-Non pubblicare un modulo che simuli l'invio: nessun dato deve essere considerato raccolto prima dell'integrazione reale di Brevo.
+## Scelta attuale
+- **Autovalutazione:** i 15 questionari PDF rimangono accessibili senza registrazione; non si salvano risposte né dati sanitari sui server del sito/nel CRM.
+- **Laboratorio del Sonno:** strumenti aperti, senza email-gate.
+- **Guida «7 giorni per preparare il sonno»:** pagina HTML gratuita `/risorse/guida-sette-giorni-sonno/`, stampabile o salvabile come PDF sul dispositivo. Nessun form e nessuna raccolta di dati da quella pagina.
+- **Brevo:** SOLO eventuale iscrizione *volontaria* alla newsletter commerciale. Il link all'iscrizione è visibile soltanto dopo la configurazione di un modulo esterno HTTPS, così non compare un form finto.
+- Niente tag in CRM basati su sintomi, risposte, condizioni, risultati o identificatori sanitari; non inviare questionari a Brevo.
+- Il vecchio codice di email-gate non viene più utilizzato.
 
-## Obiettivo
-- Richiedere un indirizzo email per inviare il link alla risorsa gratuita.
-- Richiedere **separatamente**, in modo facoltativo e senza preselezione, il consenso a promozioni su libri, integratori, corsi e consulenze.
-- Conservare separatamente provenienza (Laboratorio/Autovalutazione) e prova del consenso. Chi non acconsente al marketing riceve il materiale, ma non email pubblicitarie.
-- Non registrare risposte ai questionari né informazioni sanitarie insieme al contatto.
+## Unico passaggio necessario in Brevo (controllare l'account reale)
+1. Marketing → Forms → Sign-up → Create sign-up form → Full page/embedded. Nome interno: `Newsletter Roberto Boscia`.
+2. Campo **Email** (niente campi medici, quiz, problemi del sonno, dati sanitari o telefono).
+3. Campo **Opt-in** per newsletter e promozioni, non preselezionato, con informativa GDPR collegata. Testo proposto:
+   «Desidero ricevere via email la newsletter del dott. Roberto Boscia, con contenuti informativi e comunicazioni promozionali su libri, integratori, corsi e consulenze. So che posso revocare il consenso in qualsiasi momento. Ho letto l'informativa privacy.»
+4. Lista separata `Newsletter - consenso confermato`; non aggiungere contatti provenienti da richieste di consulenza o download in assenza di consenso.
+5. Selezionare **Double confirmation** con email di verifica; conservare prova e versione del testo consenso, timestamp se disponibile. Assicurarsi che l'email di benvenuto/dopo conferma contenga il link alla guida:
+   `https://drrobertoboscia.com/risorse/guida-sette-giorni-sonno/`
+6. Impostare disiscrizione nelle comunicazioni e controllare frequenze e gestione della revoca. Disabilitare tracking email non necessario quando possibile e valutarne separatamente gli adempimenti.
+7. In **Share** copiare **URL pubblico HTTPS** del modulo (NON chiavi API, password o credenziali). Verificarne l'accessibilità da smartphone.
+8. Aggiornare Privacy Policy con informazioni verificate sul trattamento effettivo Brevo (destinatari/ruoli, conservazione, eventuali trasferimenti, diritti, base giuridica, contatti e revoca) prima dell'attivazione.
+9. Sostituire la stringa vuota `confirmedBrevoSignupUrl` in `assets/freebie-newsletter.js` con l'URL HTTPS verificato, pubblicare la modifica e testare con email di prova.
+10. Testare: modulo → richiesta conferma → conferma → lista newsletter → email con guida → disiscrizione. Nessun invio marketing prima della conferma.
 
-## Impostazione Brevo (form nativi senza chiave API sul browser)
-1. In Brevo > Marketing > Moduli, creare due moduli di iscrizione distinti, per tracciare la fonte.
-2. Campo email necessario per inviare link e conferme. Attributo consenso marketing facoltativo, non preselezionato; informativa privacy collegata e testo del consenso esplicito. Verificare che la piattaforma non aggiunga indiscriminatamente gli iscritti a liste promozionali.
-3. Attivare doppia conferma quando appropriata e configurare l'email di conferma. Per le risorse gratuite prevedere il link al contenuto anche a chi **non** accetta marketing; il DOI marketing non deve diventare un vincolo all'accesso.
-4. Impostare due redirect finali di accesso, dopo verifica dell'email:
-   - https://drrobertoboscia.com/laboratorio-del-sonno/?accesso=confermato
-   - https://drrobertoboscia.com/autovalutazione/?accesso=confermato
-5. Verificare iscrizione, lista, campo marketing, revoca, testi privacy, tempi di conservazione e gestione cancellazioni. Aggiornare privacy policy prima della messa online.
-6. Solo dopo un test completo, inserire gli URL HTTPS dei moduli in assets/lead-capture.js e impostare config.enabled=true.
-7. ATTENZIONE: ?accesso=confermato e sessionStorage sono solo una **barriera di marketing** su sito statico, non autenticazione sicura. Link diretti ai PDF o agli strumenti restano accessibili. Se è necessario impedire davvero accessi senza email verificata, serve verifica server-side con token firmato a scadenza e hosting delle risorse non pubblico. Non dichiarare che questa versione sia un accesso protetto.
+## Come appare ora
+Sulle pagine Laboratorio e Autovalutazione c'è l'offerta **gratuita** della guida, con link diretto. Il collegamento all'iscrizione è nascosto finché Brevo non è stato configurato. Così non si promette la raccolta di email inesistente.
 
-## Anteprima
-In `assets/lead-capture.js` la funzione è OFF per i visitatori normali. Aggiungere `?anteprima-lead=1` al percorso delle due pagine. In modalità anteprima il campo email e il tasto sono disabilitati e nessun dato viene inviato.
+## Approccio operativo e privacy
+La disponibilità della guida non dipende dal consenso commerciale. Niente moduli che richiedono sintomi, nessun incrocio tra salute e marketing. Il double opt-in non sostituisce l'informativa né rende automaticamente conformi tutti i trattamenti; verificare le configurazioni.
 
-## Contenuti e GDPR
-Il Garante distingue l'email necessaria a fornire il servizio dal consenso per invii pubblicitari. Il consenso promozionale non può essere obbligatorio come condizione per accedere agli strumenti. Al momento, per conformità all'informativa, le funzionalità di acquisizione non sono abilitate.
-
-Fonti: https://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2542348
-https://help.brevo.com/hc/it/articles/208771869-Creazione-di-un-modulo-di-sottoscrizione-in-Brevo
+Fonti Brevo:
+- https://help.brevo.com/hc/en-us/articles/208771869-Create-a-sign-up-form-in-Brevo
+- https://help.brevo.com/hc/en-us/articles/27353832123026-Set-up-a-double-opt-in-process-for-a-sign-up-form-created-outside-of-Brevo

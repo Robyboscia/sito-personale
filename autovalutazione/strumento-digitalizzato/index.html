@@ -42,6 +42,11 @@ small,.minor{font-size:13px;color:#5a747c;line-height:1.7}
 @media(max-width:460px){.quick-results{gap:7px;padding:10px}.quick-results strong{font-size:12px}.quick-results .btn{padding:11px 10px;font-size:12px}}
 #report .section{padding:22px 0;border-top:1px solid #cddbdc;break-inside:avoid}
 #report .section h3{font:600 22px Georgia,serif;color:#234854;margin:0 0 8px}
+.result-summary{background:#f5fbf8;border:1px solid #b5d5c8;border-radius:12px;padding:18px 20px;margin:17px 0;line-height:1.7}
+.result-summary strong{color:#14513e}.result-actions{background:#fff8ed;border-left:4px solid #dc8a35;padding:16px 20px;border-radius:0 10px 10px 0;margin:15px 0;line-height:1.65}
+.result-actions h4{font-size:17px;margin:0 0 8px}.result-actions ol{margin:8px 0 3px;padding-left:20px}.result-actions li{margin:8px 0!important}
+.result-positive{background:#f7f9f9;border:1px solid #e0e8e7;border-radius:9px;padding:16px 18px;margin:17px 0}.result-positive li{line-height:1.55}
+.report-feedback{font-weight:800;color:#244c48;font-size:17px;margin:16px 0}
 #report ol{padding-left:24px}#report li{margin:9px 0;line-height:1.45}
 .report-meta{color:#4e6974;margin:12px 0 18px;font-size:14px}
 .report-note{background:#f2f7f6;border-left:4px solid #4d8177;padding:14px 16px;margin:18px 0;line-height:1.6;font-size:14px}
@@ -80,7 +85,7 @@ main{padding:0}.wrap{max-width:none;padding:0}
 </div>
 <div class="controls"><button class="btn" type="button" id="reportFromQuestions">VEDI I RISULTATI</button><button class="btn light" type="button" id="nextArea">AREA SUCCESSIVA</button></div></section>
 <section id="report" class="panel" hidden aria-labelledby="reportTitle"><h2 id="reportTitle">Il tuo riepilogo personale</h2><p class="report-meta" id="reportMeta"></p>
-<div class="report-note"><strong>Come leggere il risultato:</strong> mostriamo quante affermazioni hai riconosciuto in ciascun questionario. I conteggi e le percentuali sono <strong>solo descrittivi</strong>. Non rappresentano gravità, salute di organi, carenze, diagnosi o probabilità di malattia. Non esistono soglie clinicamente validate per queste 15 sezioni.</div>
+<div class="report-note"><strong>Che cosa ti dice questo report?</strong> Individua le affermazioni per le quali hai risposto Sì e propone passi pratici per approfondirle. <strong>Non stabilisce diagnosi, carenze, gravità o probabilità di malattia.</strong> I 15 questionari non hanno soglie cliniche validate; un No non esclude condizioni mediche.</div>
 <div id="reportDetails"></div>
 <div class="report-note">Se hai sintomi importanti, persistenti o in peggioramento, confrontati con un professionista sanitario. Non modificare terapie e non richiedere esami soltanto sulla base di queste risposte. L'appendice ACE non è inclusa in questo strumento digitale.</div>
 <div id="reportButtons" class="controls"><button class="btn" id="savePDF" type="button">STAMPA / SALVA COME PDF</button><button class="btn secondary" id="goBack" type="button">TORNA ALLE DOMANDE</button></div>
@@ -111,10 +116,86 @@ document.getElementById('quickReport').hidden=c.answered===0;
 document.getElementById('quickReportCount').textContent='Area '+sec.id+' · '+c.answered+' / '+c.total+' risposte';
 }
 function showQuestions(){const sec=getCurrent(),values=state.get(sec.id);document.getElementById('questionsTitle').textContent=String(sec.id).padStart(2,'0')+' · '+sec.title;list.replaceChildren();sec.questions.forEach(function(question,i){const field=mk('fieldset');const legend=mk('legend',(i+1)+'. '+question);const choices=mk('div',null,'answer');[['si','Sì'],['no','No'],['skip','Non rispondo']].forEach(function(opt){const l=document.createElement('label'),radio=document.createElement('input');radio.type='radio';radio.name='domanda-'+sec.id+'-'+i;radio.value=opt[0];radio.checked=values[i]===opt[0];radio.addEventListener('change',function(){values[i]=opt[0];progress();const c=stats(sec);if(c.answered===c.total&&!autoOpenedFor.has(sec.id)){autoOpenedFor.add(sec.id);showReport()}});l.append(radio,mk('span',opt[1]));choices.append(l)});field.append(legend,choices);list.append(field)});questionsPanel.hidden=false;reportPanel.hidden=true;progress()}
-function showReport(){const active=sections.filter(function(sec){return stats(sec).answered>0});if(!active.length){window.alert('Seleziona almeno una risposta per visualizzare il riepilogo.');return}
-const details=document.getElementById('reportDetails');details.replaceChildren();const total=active.reduce(function(n,s){return n+stats(s).answered},0);document.getElementById('reportMeta').textContent=active.length+' aree esplorate · '+total+' risposte compilate · elaborazione esclusivamente sul dispositivo';
-active.forEach(function(sec){const c=stats(sec),values=state.get(sec.id),block=mk('section',null,'section');block.append(mk('h3',String(sec.id).padStart(2,'0')+' · '+sec.title));block.append(mk('p','Affermazioni riconosciute (Sì): '+c.yes+' / '+c.total+' · Frequenza descrittiva: '+(100*c.yes/c.total).toFixed(1).replace('.',',')+'% · No: '+c.no+' · Non rispondo: '+c.skip+' · Vuote: '+c.empty));const yesItems=sec.questions.map(function(q,i){return values[i]==='si'?q:null}).filter(Boolean);if(yesItems.length){block.append(mk('p','Affermazioni alle quali hai risposto Sì:'));const ol=document.createElement('ol');yesItems.forEach(function(q){ol.append(mk('li',q))});block.append(ol)}else block.append(mk('p','Nessuna affermazione selezionata con Sì.'));details.append(block)});
-reportPanel.hidden=false;questionsPanel.hidden=true;reportPanel.setAttribute('tabindex','-1');reportPanel.focus({preventScroll:true});reportPanel.scrollIntoView({behavior:'auto',block:'start'})}
+const guidance={
+1:{topic:'digestione e abitudini gastrointestinali',limits:'Le risposte non permettono di identificare la causa dei sintomi né di dedurre problemi di microbioma, intolleranze o infezioni.',
+steps:['Se hai indicato sintomi ricorrenti, annota quando compaiono, quanto durano e se interferiscono con le attività quotidiane.','Se utilizzi farmaci, antiacidi o integratori, prepara un elenco da rivedere con medico o farmacista, senza sospenderli autonomamente.','Porta le risposte Sì al tuo curante se i disturbi persistono, peggiorano o sono importanti.']},
+2:{topic:'esperienze immunitarie, infiammatorie e familiari',limits:'Un insieme di sintomi o di storie familiari non misura l’infiammazione né dimostra una malattia immunitaria.',
+steps:['Distingui disturbi che riguardano te dalle sole condizioni presenti in famiglia.','Annota frequenza e durata delle manifestazioni ricorrenti.','Se le manifestazioni persistono, portale a un professionista per una valutazione mirata.']},
+3:{topic:'energia, stanchezza e abitudini',limits:'Le risposte non misurano il funzionamento dei mitocondri e non spiegano da sole l’origine della stanchezza.',
+steps:['Annota quando compare la stanchezza e come si modifica durante la giornata.','Considera sonno, ritmi di vita, lavoro, attività e alimentazione come contesto da riferire.','Una stanchezza persistente o limitante merita un confronto clinico, non una diagnosi fatta con il questionario.']},
+4:{topic:'sintomi ed esposizioni ambientali',limits:'Questo elenco non misura una capacità di “disintossicazione” né documenta un accumulo di tossine.',
+steps:['Distingui sintomi attuali da esposizioni ipotizzate o condizioni familiari.','Se hai segnalato esposizioni specifiche, annotane tipo, durata e contesto senza trarre conclusioni causali.','Evita protocolli “detox” basati sul punteggio: discuti eventuali problemi persistenti con un sanitario.']},
+5:{topic:'abitudini e segnalazioni metaboliche',limits:'Il questionario non diagnostica insulino-resistenza, prediabete o diabete e non sostituisce misurazioni cliniche.',
+steps:['Seleziona quali risposte descrivono abitudini, quali sintomi e quali familiarità.','Porta le informazioni pertinenti al medico se desideri valutare il rischio metabolico individuale.','Non usare il conteggio per decidere autonomamente esami, diete restrittive o integratori.']},
+6:{topic:'salute circolatoria e familiarità',limits:'Un conteggio non stima il rischio cardiovascolare e non distingue condizioni note da sintomi nuovi.',
+steps:['Se una risposta riguarda una diagnosi già ricevuta, segui il piano di cura concordato e segnala le novità al curante.','Se riferisci sintomi nuovi o ricorrenti, annotane caratteristiche e durata e richiedi una valutazione.','Per dolore toracico improvviso, marcata difficoltà a respirare o segni improvvisi di ictus, cerca assistenza urgente.']},
+7:{topic:'muscoli, articolazioni e movimento',limits:'Le risposte non individuano una specifica malattia muscoloscheletrica.',
+steps:['Segna in quali sedi avverti problemi e come influenzano le tue attività.','Annota la durata e se il disturbo varia con il movimento o il riposo.','Confrontati con un professionista per dolore persistente, debolezza o perdita di funzione.']},
+8:{topic:'segnali non specifici e tiroide',limits:'Sintomi generici non dimostrano un’alterazione tiroidea: servono valutazione clinica e, se indicato, esami appropriati.',
+steps:['Individua quali segnali sono nuovi e da quanto tempo sono presenti.','Se sono persistenti o associati a familiarità, parlane con il medico.','Evita di iniziare iodio, ormoni o altri prodotti sulla base delle risposte.']},
+9:{topic:'alimentazione e caratteristiche generali',limits:'Queste risposte non misurano gli omega-3 né dimostrano una carenza di acidi grassi essenziali.',
+steps:['Rivedi con calma gli aspetti alimentari effettivamente indicati.','Distingui la dieta da sintomi o caratteristiche personali non specifiche.','Se desideri una valutazione nutrizionale individuale, confrontati con un professionista qualificato.']},
+10:{topic:'abitudini, esposizione solare e vitamina D',limits:'Questo questionario non permette di stimare i livelli ematici di vitamina D.',
+steps:['Distingui informazioni su età, abitudini e storia familiare da sintomi attuali.','Parla con il medico se esistono ragioni concrete per una valutazione individuale.','Non attribuire a una carenza di vitamina D eventuali sintomi soltanto per il numero dei Sì.']},
+11:{topic:'alimentazione, storia personale e vitamine B',limits:'Le risposte non diagnosticano carenze di vitamine B e non valutano direttamente la metilazione.',
+steps:['Individua eventuali abitudini alimentari, farmaci o condizioni personali rilevanti.','Se riferisci disturbi persistenti, discutine con il medico.','Non dedurre necessità di supplementazione dai risultati del questionario.']},
+12:{topic:'abitudini e sintomi talvolta attribuiti al magnesio',limits:'Il conteggio non misura il magnesio corporeo e i sintomi elencati hanno molte possibili spiegazioni.',
+steps:['Distingui ciò che riguarda la dieta dai sintomi che stai effettivamente avvertendo.','Considera quando compaiono i disturbi e se persistono.','Prima di attribuirli a una carenza o assumere dosi elevate di integratori, confrontati con un sanitario.']},
+13:{topic:'alimentazione e sintomi talvolta attribuiti allo zinco',limits:'Le risposte non dimostrano carenza di zinco né indicano automaticamente un bisogno di integratori.',
+steps:['Separa abitudini alimentari, sintomi e condizioni già diagnosticate.','Segnala al medico eventuali cambiamenti persistenti di gusto, pelle o altre funzioni.','Evita trattamenti basati sul solo conteggio dei Sì.']},
+14:{topic:'benessere maschile e sintomi ormonali aspecifici',limits:'Il questionario non misura testosterone o altri ormoni e non consente diagnosi di squilibrio ormonale.',
+steps:['Annota le variazioni che hai effettivamente osservato e da quanto tempo.','Considera l’eventuale presenza di farmaci, condizioni note e cambiamenti delle abitudini.','Se il problema è persistente o significativo, parlane con il medico per una valutazione individuale.']},
+15:{topic:'benessere femminile, ciclo e cambiamenti ormonali',limits:'Le risposte non misurano estrogeni o progesterone né identificano da sole problemi ormonali.',
+steps:['Se pertinente, annota quando i disturbi compaiono rispetto al ciclo e da quanto tempo.','Distingui sintomi, terapie e condizioni già diagnosticate.','Per disturbi importanti o persistenti, confrontati con un professionista sanitario.']}
+};
+function digestionHints(yesItems){
+const joined=yesItems.join(' ').toLowerCase();
+const hints=[];
+if(/gonfiore|pasti|nause|bruciore|carboidrati|dolor[ie] addominal/i.test(joined))hints.push('Hai selezionato uno o più disturbi legati a pasti o digestione: puoi annotare quando si presentano e quanto durano, senza dedurne la causa.');
+if(/diarrea|stitichezza|fec[ie]/i.test(joined))hints.push('Hai segnalato aspetti dell’evacuazione: osserva eventuali cambiamenti del transito nel tempo, senza usare il questionario come diagnosi.');
+if(/lieviti|funghi|micosi|candida|infezion/i.test(joined))hints.push('Hai citato infezioni o problemi simili: se sono ricorrenti, è utile parlarne con un sanitario per confermarne natura e gestione.');
+if(/gastroprotett|antiacid|farmac|antibiotic|cortisone|prednisone|integrator|pillola/i.test(joined))hints.push('Hai segnalato farmaci o prodotti: riporta quali usi e con quale frequenza al medico o farmacista, senza interrompere terapie da solo.');
+if(/storia familiare/i.test(joined))hints.push('Hai indicato una familiarità: non equivale a dire che tu abbia quella condizione; è un’informazione da contestualizzare.');
+return hints.slice(0,3);
+}
+function showReport(){
+ const active=sections.filter(function(sec){return stats(sec).answered>0});
+ if(!active.length){window.alert('Seleziona almeno una risposta per visualizzare il riepilogo.');return}
+ const details=document.getElementById('reportDetails');details.replaceChildren();
+ const total=active.reduce(function(n,s){return n+stats(s).answered},0);
+ document.getElementById('reportMeta').textContent=active.length+' aree esplorate · '+total+' risposte compilate · elaborazione esclusivamente sul tuo dispositivo';
+ active.forEach(function(sec){
+  const c=stats(sec),values=state.get(sec.id),guide=guidance[sec.id],block=mk('section',null,'section');
+  block.append(mk('h3',String(sec.id).padStart(2,'0')+' · '+sec.title));
+  const summary=mk('div',null,'result-summary');
+  summary.append(mk('strong','Che cosa emerge dalle tue risposte'));
+  let base;
+  if(c.yes>0){base='Hai indicato '+c.yes+' '+(c.yes===1?'affermazione':'affermazioni')+' che riconosci nella tua esperienza. Sono aspetti da osservare in tema di '+guide.topic+', non una diagnosi o un punteggio di rischio.';}
+  else {base='Non hai selezionato nessuna risposta Sì in questa area. Questo non significa che siano state escluse malattie o carenze.';}
+  summary.append(mk('p',base));
+  summary.append(mk('p','Il resto: '+c.no+' No, '+c.skip+' «Non rispondo», '+c.empty+' non compilate. Le risposte incerti o mancanti non vanno interpretate come No.'));
+  summary.append(mk('p',guide.limits));
+  block.append(summary);
+  const yesItems=sec.questions.filter(function(q,i){return values[i]==='si'});
+  if(yesItems.length){
+    const positives=mk('div',null,'result-positive');
+    positives.append(mk('strong','Ecco gli aspetti che hai segnalato:'));
+    const ol=document.createElement('ol');
+    yesItems.forEach(function(q){ol.append(mk('li',q))});
+    positives.append(ol);block.append(positives);
+  }
+  const actions=mk('div',null,'result-actions');
+  actions.append(mk('h4','E adesso? Ecco i prossimi passi.'));
+  const ol=document.createElement('ol');
+  const specific=sec.id===1?digestionHints(yesItems):[];
+  const suggested=c.yes>0? [...specific,...guide.steps].slice(0,4) : ['Se hai dubbi o sintomi che non compaiono nelle domande, considera che il questionario non può escludere problemi di salute.','Puoi rivedere le domande lasciate in sospeso o discutere eventuali disturbi con un sanitario.'];
+  suggested.forEach(function(t){ol.append(mk('li',t))});
+  actions.append(ol);
+  block.append(actions);
+  details.append(block);
+ });
+ reportPanel.hidden=false;questionsPanel.hidden=true;reportPanel.setAttribute('tabindex','-1');reportPanel.focus({preventScroll:true});reportPanel.scrollIntoView({behavior:'auto',block:'start'})
+}
 area.addEventListener('change',showQuestions);
 document.getElementById('showReport').addEventListener('click',showReport);
 document.getElementById('reportFromQuestions').addEventListener('click',showReport);

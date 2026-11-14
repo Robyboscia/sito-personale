@@ -158,6 +158,14 @@ if(/gastroprotett|antiacid|farmac|antibiotic|cortisone|prednisone|integrator|pil
 if(/storia familiare/i.test(joined))hints.push('Hai indicato una familiarità: non equivale a dire che tu abbia quella condizione; è un’informazione da contestualizzare.');
 return hints.slice(0,3);
 }
+function genericHints(yesItems){
+  const all=yesItems.join(' ').toLowerCase();
+  const list=[];
+  if(/storia familiare|familiari|familiarità|genitori|fratelli|sorelle/.test(all))list.push('Se uno dei Sì riguarda la storia familiare, annota a quale parente si riferisce: la familiarità non equivale a una diagnosi personale.');
+  if(/farmac|assumo|assunto|antibiotic|antiacid|gastroprotett|pillola|contraccettiv|cortisone|prednisone|terap/.test(all))list.push('Se uno dei Sì riguarda farmaci o prodotti, prepara nome e frequenza d’uso per discuterne con medico o farmacista: non sospendere nulla in autonomia.');
+  if(/mangio|bevo|consumo|alimentazion|attività fisica|esercizio|lavoro in|sedentar/.test(all))list.push('Se uno dei Sì riguarda abitudini o esposizioni, considera frequenza e contesto prima di attribuire loro un significato sanitario.');
+  return list.slice(0,2);
+}
 function showReport(){
  const active=sections.filter(function(sec){return stats(sec).answered>0});
  if(!active.length){window.alert('Seleziona almeno una risposta per visualizzare il riepilogo.');return}
@@ -170,10 +178,11 @@ function showReport(){
   const summary=mk('div',null,'result-summary');
   summary.append(mk('strong','Che cosa emerge dalle tue risposte'));
   let base;
-  if(c.yes>0){base='Hai indicato '+c.yes+' '+(c.yes===1?'affermazione':'affermazioni')+' che riconosci nella tua esperienza. Sono aspetti da osservare in tema di '+guide.topic+', non una diagnosi o un punteggio di rischio.';}
-  else {base='Non hai selezionato nessuna risposta Sì in questa area. Questo non significa che siano state escluse malattie o carenze.';}
+  if(c.yes>0){base='Hai risposto Sì a '+c.yes+' '+(c.yes===1?'affermazione':'affermazioni')+'. Il dato utile non è il numero in sé: sono le situazioni che hai riconosciuto, nell’area '+guide.topic+'. Vanno considerate una per una, senza trarne diagnosi o punteggi di rischio.';}
+  else {base='Non hai selezionato risposte Sì in quest’area. È soltanto ciò che emerge dalle affermazioni compilate: non significa che siano state escluse malattie o carenze.';}
   summary.append(mk('p',base));
-  summary.append(mk('p','Il resto: '+c.no+' No, '+c.skip+' «Non rispondo», '+c.empty+' non compilate. Le risposte incerti o mancanti non vanno interpretate come No.'));
+  summary.append(mk('p','Il resto: '+c.no+' No, '+c.skip+' «Non rispondo», '+c.empty+' non compilate. Le risposte incerte o mancanti non vanno interpretate come No.'));
+  if(c.skip+c.empty>0){summary.append(mk('p','Hai lasciato '+(c.skip+c.empty)+' '+(c.skip+c.empty===1?'domanda':'domande')+' senza una risposta Sì/No: il riepilogo non può considerarle come negative.'))}
   summary.append(mk('p',guide.limits));
   block.append(summary);
   const yesItems=sec.questions.filter(function(q,i){return values[i]==='si'});
@@ -188,7 +197,10 @@ function showReport(){
   actions.append(mk('h4','E adesso? Ecco i prossimi passi.'));
   const ol=document.createElement('ol');
   const specific=sec.id===1?digestionHints(yesItems):[];
-  const suggested=c.yes>0? [...specific,...guide.steps].slice(0,4) : ['Se hai dubbi o sintomi che non compaiono nelle domande, considera che il questionario non può escludere problemi di salute.','Puoi rivedere le domande lasciate in sospeso o discutere eventuali disturbi con un sanitario.'];
+  const contextual=genericHints(yesItems);
+  const suggested=c.yes>0
+    ? [...specific,...contextual,...guide.steps].slice(0,4)
+    : ['Se non hai selezionato Sì, non c’è un significato clinico da dedurre: il questionario non può escludere problemi di salute.',...(c.skip+c.empty>0?['Se vuoi, torna alle domande in sospeso e valuta se riesci a rispondere, senza forzare risposte che non conosci.']:[]),'Se hai sintomi o dubbi non coperti dalle domande, portali direttamente a un professionista.'];
   suggested.forEach(function(t){ol.append(mk('li',t))});
   actions.append(ol);
   block.append(actions);

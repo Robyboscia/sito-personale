@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>DocBoscia — collaudo invio guida</title>
+<style>
+*{box-sizing:border-box}body{font:16px/1.5 system-ui,sans-serif;background:#f1f5f9;color:#142c48;margin:0;padding:24px}main{max-width:520px;margin:40px auto;padding:24px;background:white;border-radius:12px}h1{font-size:25px}label,input,button{display:block;width:100%;margin:12px 0}input,button{font:inherit;padding:12px;border-radius:6px;border:1px solid #64748b}button{background:#142c48;color:white;font-weight:700}button:disabled{opacity:.5}#status{min-height:3em}.warning{color:#854d0e;background:#fef3c7;padding:12px}
+</style>
+</head>
+<body>
+<main>
+<h1>Collaudo invio guida</h1>
+<p class="warning">Ambiente di prova riservato: usare esclusivamente la casella autorizzata. Non inserire dati sanitari.</p>
+<p>Il test non iscrive alla newsletter e non modifica i consensi marketing.</p>
+<form id="guide-form">
+<label for="email">Indirizzo email di prova</label>
+<input type="email" id="email" name="email" maxlength="254" required autocomplete="off">
+<div id="turnstile"></div>
+<button type="submit" id="send" disabled>Invia guida di prova</button>
+</form>
+<p id="status" role="status" aria-live="polite">Modulo non configurato.</p>
+</main>
+<script>
+(() => {
+  // Sostituire solo i due segnaposto pubblici in una copia di staging separata.
+  const endpoint = '__STAGING_WORKER_ENDPOINT__';
+  const sitekey = '__TURNSTILE_PUBLIC_SITE_KEY__';
+  const form = document.getElementById('guide-form');
+  const email = document.getElementById('email');
+  const button = document.getElementById('send');
+  const status = document.getElementById('status');
+  let token = '', widget, pending = false;
+  function update() { button.disabled = pending || !token; }
+  function clearToken(message) { token = ''; update(); status.textContent = message; }
+  let url;
+  try { url = new URL(endpoint); } catch { return; }
+  if (url.protocol !== 'https:' || url.pathname !== '/invia-guida' || url.search || url.hash ||
+      url.username || url.password || sitekey.startsWith('__') || !sitekey) return;
+  if (location.protocol !== 'https:') return;
+  status.textContent = 'Caricamento protezione antispam…';
+  window.crmTurnstileReady = () => {
+    widget = window.turnstile.render('#turnstile', {
+      sitekey, action:'invia-guida',
+      callback(value) { token = value; update(); status.textContent = 'Verifica completata.'; },
+      'expired-callback'() { clearToken('Verifica scaduta: riprova.'); },
+      'error-callback'() { clearToken('Verifica non riuscita: riprova.'); },
+    });
+  };
+  const script = document.createElement('script');
+  script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=crmTurnstileReady&render=explicit';
+  script.async = true;
+  script.onerror = () => clearToken('Protezione non disponibile. Ricarica la pagina.');
+  document.head.appendChild(script);
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (pending || !token || !form.reportValidity()) return;
+    pending = true; update(); status.textContent = 'Invio in corso…';
+    try {
+      const response = await fetch(url.href, {
+        method:'POST', credentials:'omit', cache:'no-store', referrerPolicy:'no-referrer',
+        body:new URLSearchParams({email:email.value.trim(),'cf-turnstile-response':token}),
+        signal:AbortSignal.timeout(20000),
+      });
+      const messages = {202:'Richiesta accettata. Controlla la casella di prova.',400:'Controlla l’indirizzo e la verifica.',403:'Richiesta non autorizzata.',429:'Troppe richieste: riprova più tardi.',502:'Invio non riuscito.',503:'Servizio non configurato.'};
+      status.textContent = messages[response.status] || 'Richiesta non riuscita.';
+      if (response.status === 202) email.value = '';
+    } catch { status.textContent = 'Connessione non riuscita. Riprova.'; }
+    finally { pending = false; token = ''; update(); if (widget !== undefined) window.turnstile.reset(widget); }
+  });
+})();
+</script>
+</body>
+</html>

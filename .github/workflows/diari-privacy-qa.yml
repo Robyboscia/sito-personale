@@ -1,0 +1,24 @@
+name: QA Diari privacy
+on:
+  pull_request:
+    paths:
+      - 'laboratorio-del-sonno/**'
+      - 'scripts/test-diari-privacy.cjs'
+      - '.github/workflows/diari-privacy-qa.yml'
+permissions:
+  contents: read
+jobs:
+  browser-privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock playwright
+      - run: npx playwright install --with-deps chromium webkit
+      - run: |
+          python3 -m http.server 9876 --bind 127.0.0.1 > /tmp/diari-qa-server.log 2>&1 &
+          for i in $(seq 1 20); do curl --fail --silent http://127.0.0.1:9876/ >/dev/null && break; sleep 1; done
+          node scripts/test-diari-privacy.cjs

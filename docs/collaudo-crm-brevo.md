@@ -34,5 +34,10 @@ Usare l’ultima conferma per richieste generiche su Mental Pro o BioSignal Slee
 
 - Conferma di iscrizione in italiano ricevuta in Zoho. Dopo il clic, il contatto figura nella lista 6 e Brevo registra il modulo e la conferma nella cronologia.
 - Benvenuto ricevuto tramite la modalità Test di Brevo. Il link apre il modulo di revoca dedicato. Il modulo ha bloccato le campagne lasciando attivo il canale transazionale per il contatto di prova.
-- Sulla pagina pubblica del questionario, tre risposte sintetiche compaiono nel riepilogo e sono azzerate dopo il ricaricamento. Il controllo di rete a runtime e il test mobile restano aperti.
-- I campi aggiuntivi di consenso sono configurati nel workflow inattivo. La data dinamica corrisponde all’esecuzione dell’azione. Il test dei messaggi invia le email di prova senza eseguire le azioni di aggiornamento del contatto.
+- Il [collaudo GitHub Actions](https://github.com/Robyboscia/sito-personale/actions/runs/46022293189) ha verificato su Chromium desktop, Chromium con profilo iPhone SE e WebKit con profilo iPhone 13 che compilazione e riepilogo non generano richieste di rete, cookie o salvataggi persistenti. Le risposte si azzerano al ricaricamento.
+- Nel workflow inattivo sono stati riscontrati data e versione dell’informativa. Va verificata la persistenza del passaggio che registra la fonte. La data dinamica corrisponde all’esecuzione dell’azione. Il test dei messaggi invia le email di prova senza eseguire le azioni di aggiornamento del contatto.
+
+## Flussi di servizio e dipendenze
+
+- Conferma delle richieste: modello Brevo «Conferma richiesta – DocBoscia» salvato come inattivo. Il ramo del sito offre una richiesta diretta via Zoho. Il collegamento a una risposta automatica resta da configurare.
+- Guida: download diretto disponibile senza email. Il Worker `integrations/crm/service-email.mjs` per l’invio facoltativo ha superato il test con risposte simulate. Per il collaudo reale servono staging Cloudflare, chiave Brevo e segreto Turnstile lato server, nonché il modulo collegato.

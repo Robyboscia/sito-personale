@@ -15,9 +15,9 @@
 <h1>Collaudo invio guida</h1>
 <p class="warning">Ambiente di prova riservato: usare esclusivamente la casella autorizzata. Non inserire dati sanitari.</p>
 <p>Il test non iscrive alla newsletter e non modifica i consensi marketing.</p>
-<form id="guide-form">
+<form id="guide-form" method="post">
 <label for="email">Indirizzo email di prova</label>
-<input type="email" id="email" name="email" maxlength="254" required autocomplete="off">
+<input type="email" id="email" maxlength="254" required autocomplete="off">
 <div id="turnstile"></div>
 <button type="submit" id="send" disabled>Invia guida di prova</button>
 </form>
@@ -32,6 +32,8 @@
   const email = document.getElementById('email');
   const button = document.getElementById('send');
   const status = document.getElementById('status');
+  // Even an unconfigured form must never trigger a native navigation or submission.
+  form.addEventListener('submit', event => event.preventDefault());
   let token = '', widget, pending = false;
   function update() { button.disabled = pending || !token; }
   function clearToken(message) { token = ''; update(); status.textContent = message; }

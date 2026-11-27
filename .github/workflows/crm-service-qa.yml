@@ -1,0 +1,19 @@
+name: QA CRM service
+on:
+  pull_request:
+    paths:
+      - 'integrations/crm/**'
+      - 'scripts/test-crm-service.mjs'
+      - '.github/workflows/crm-service-qa.yml'
+permissions:
+  contents: read
+jobs:
+  offline-worker-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/test-crm-service.mjs

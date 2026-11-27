@@ -4,6 +4,7 @@ on:
     paths:
       - 'integrations/crm/**'
       - 'scripts/test-crm-service.mjs'
+      - 'scripts/test-crm-staging-form.mjs'
       - '.github/workflows/crm-service-qa.yml'
 permissions:
   contents: read
@@ -16,4 +17,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test scripts/test-crm-service.mjs
+      - run: node --test scripts/test-crm-service.mjs scripts/test-crm-staging-form.mjs

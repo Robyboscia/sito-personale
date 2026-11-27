@@ -50,6 +50,27 @@ async function exercise(browserType,profile){
   ok(await page.locator('#nav-items').evaluate(x=>x.classList.contains('open')),'mobile menu opens');
   ok(await page.locator('#nav-items a[href="autovalutazione/index.html"]').isVisible(),'mobile autovalutazione link visible');
  }
+ const requests=[];
+ page.on('request',request=>requests.push(request.url()));
+ const tool=await page.goto(path+'strumento-digitalizzato/',{waitUntil:'networkidle'});
+ ok(tool.status()===200,'questionnaire responds 200');
+ ok((await page.evaluate(()=>document.documentElement.scrollWidth))<=device.viewport.width+4,'questionnaire width');
+ const csp=await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content');
+ ok(csp.includes("connect-src 'none'")&&csp.includes("form-action 'none'"),'questionnaire network restrictions');
+ const initialCookies=await context.cookies();
+ const initialStorage=await page.evaluate(()=>[JSON.stringify(localStorage),JSON.stringify(sessionStorage)]);
+ requests.length=0;
+ for(const [index,value] of ['si','no','skip'].entries()){
+  await page.locator('#questionList fieldset').nth(index).locator('input[value="'+value+'"]').check();
+ }
+ await page.locator('#quickReportBtn').click();
+ ok((await page.locator('#reportMeta').innerText()).includes('3 risposte'),'local summary');
+ await page.waitForLoadState('networkidle');
+ assert.deepEqual(requests,[],profile+': no requests while answering or showing results');
+ assert.deepEqual(await context.cookies(),initialCookies);
+ assert.deepEqual(await page.evaluate(()=>[JSON.stringify(localStorage),JSON.stringify(sessionStorage)]),initialStorage);
+ await page.reload({waitUntil:'domcontentloaded'});
+ ok((await page.locator('#progressText').innerText()).includes('0 risposte'),'answers reset on reload');
  await context.close();await browser.close();
  return {profile,engine:browserType.name(),checks};
 }

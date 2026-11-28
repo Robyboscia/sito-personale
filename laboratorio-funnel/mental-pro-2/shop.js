@@ -53,11 +53,31 @@ function addSaving(m,context){
  const text="Risparmio rispetto a "+m.quantity+" confezioni singole: "+api.money(m.savingCents)+".";
  return p(context ? "✓ "+text : text,"proof");
 }
+// Commercial terms recovered from the October proposal; not a live offer.
+function terms(qty,productCents){
+ const panel=h("div","notice");
+ const tiers={
+  1:["Reset Iniziale · 60 giorni previsti","Guida Rituale di Spegnimento; Protocollo Anti-Risveglio; Checklist Svuota-Mente."],
+  3:["Stabilizzazione · 180 giorni previsti","Bonus Reset Iniziale; 3 protocolli avanzati; videocorso Protocollo 3:30."],
+  6:["Protocollo Completo · 360 giorni previsti","Bonus Stabilizzazione; ebook Social Jet Lag; libro cartaceo Dormire è facile se sai come farlo."]
+ };
+ const tier=tiers[qty];
+ panel.append(h("strong","",tier?tier[0]:"Formato personalizzato · condizioni da confermare"));
+ if(tier)panel.append(p("Materiali previsti: "+tier[1],"small"));
+ const ship=qty===1?800:qty===3||qty===6?0:null;
+ if(ship===null)panel.append(p("Spedizione e bonus per questo formato: da definire; totale consegnato non disponibile.","small"));
+ else {
+  panel.append(p(ship===0?"Spedizione prevista gratuita.":"Spedizione stimata: circa "+api.money(ship)+".","small"));
+  panel.append(summaryRow("Totale con spedizione stimata",api.money(productCents+ship)));
+ }
+ panel.append(p("Garanzia commerciale proposta: soddisfatti o rimborsati entro 60 giorni, limitata alla prima confezione anche nei bundle. Condizioni dettagliate e disponibilità materiali da verificare prima della vendita.","small"));
+ return panel;
+}
 function orderSnapshot(opts={}){
  const m=api.metrics(config,quantity,total);
  const summary=sec("Totale dell'ordine simulato");
  summary.append(h("div","card-heading",opts.heading||"LA TUA SCELTA"),summaryRow("Confezioni totali",String(quantity)),
-   summaryRow("Prezzo medio per confezione",api.money(m.unitCents)),h("hr","divider"),summaryRow("Totale simulato",api.money(total),true));
+   summaryRow("Prezzo medio per confezione",api.money(m.unitCents)),h("hr","divider"),summaryRow("Totale simulato · solo prodotti",api.money(total),true),terms(quantity,total));
  if(m.savingCents>0)summary.append(addSaving(m));
  return summary;
 }
@@ -92,7 +112,7 @@ function decision(yes){
  }else api.logEvent("offer_declined",{offer:key,totalCents:total});
  if(key==="D"){finish();return;}
  if(!yes){
-   if(config.offers.D.enabled){showOffer("D");return;}
+   if(position===0&&config.offers.D.enabled){showOffer("D");return;}
    finish();return;
  }
  position++;
@@ -125,7 +145,7 @@ function renderLanding(){
  ));
  const right=sec("Acquisto di prova");
  right.append(h("div","card-heading","IL PUNTO DI PARTENZA"),h("h3","",config.base.label),p(config.base.intro,"small"),
- h("div","price",api.money(baseCents)),p("Prezzo della confezione iniziale.","small"),
+ h("div","price",api.money(baseCents)),p("Prezzo della confezione iniziale, spedizione esclusa.","small"),terms(config.base.qty,baseCents),
  box("action-stack",btn("Scopri l'offerta iniziale  →","primary full",goCheckout)),disclaimer());
  grid.append(left,right);return grid;
 }
@@ -150,12 +170,12 @@ function renderOffer(){
    box("offerbox",
      box("offerhead",h("div","offer-symbol","✦"),box("",h("h3","",offer.label),p("Da aggiungere solo se accetti.","small"))),
      h("hr","divider"),summaryRow("Importo aggiuntivo",api.money(api.cents(offer.price)),true),
-     summaryRow("Nuovo totale se accetti",api.money(m.totalCents)),
+     summaryRow("Nuovo totale prodotti se accetti",api.money(m.totalCents)),
      box("compare",
        box("",h("small","","Confezioni"),h("b","",String(m.quantity))),
        box("",h("small","","€/confezione"),h("b","",api.money(m.unitCents))),
        box("save",h("small","","Risparmio vs singole"),h("b","",api.money(m.savingCents)))
-     ),addSaving(m,true)));
+     ),addSaving(m,true),terms(m.quantity,m.totalCents)));
  pane.append(box("action-stack",
    btn(offer.yes+" · +"+api.money(api.cents(offer.price)),"primary full",()=>decision(true)),
    btn(offer.no,"secondary full",()=>decision(false))),
@@ -170,7 +190,7 @@ function renderDone(){
  h("hr","divider"),h("div","card-heading","DETTAGLIO DELLA SIMULAZIONE"));
  for(const line of history)main.append(summaryRow(line.label+" · "+line.qty+" conf.",api.money(line.cents)));
  const met=api.metrics(config,quantity,total);
- main.append(h("hr","divider"),summaryRow("Totale simulato",api.money(total),true));
+ main.append(h("hr","divider"),summaryRow("Totale simulato · solo prodotti",api.money(total),true));
  if(met.savingCents>0)main.append(addSaving(met));
  main.append(box("action-stack",btn("Ricomincia la simulazione ↻","primary full",restart),
   btn("Apri la dashboard demo ⚙","secondary full",()=>{location.href="./admin.html";})),disclaimer());

@@ -13,7 +13,7 @@
 | Iniziale | 1 | 47 € | 47 € · 1 confezione |
 | Accetta upsell A | +2 | +70 € | 117 € · 3 confezioni |
 | Accetta upsell B dopo A | +3 | +105 € | 222 € · 6 confezioni |
-| Rifiuta A, accetta downsell D | +1 | +47 € | 94 € · 2 confezioni |
+| Rifiuta A, accetta downsell D | +1 | +37 € | 84 € · 2 confezioni |
 | Rifiuta entrambi | 0 | 0 € | 47 € · 1 confezione |
 
 Prezzi **esclusivamente simulati**. Se l'ordine degli upsell è invertito, la simulazione calcola nuovamente i prezzi medi e i risparmi in modo dinamico. Il risparmio rispetto all'acquisto delle stesse confezioni al prezzo unitario di partenza appare solo quando è realmente maggiore di zero. I supplementi sono incrementali, non sostituiscono il prezzo già presente nel riepilogo.
@@ -38,9 +38,11 @@ Prezzi **esclusivamente simulati**. Se l'ordine degli upsell è invertito, la si
 ## Collaudo
 Test automatico browser in `scripts/mental-pro-2-qa.cjs`, eseguito dal workflow PR:
 - 390 px mobile (funnel e dashboard), oltre a screenshot desktop;
-- 47→117→222 €, rifiuto primo upsell→downsell 94 €;
+- 47→117→222 €, rifiuto primo upsell→downsell 84 €;
 - salvataggio e riapertura tra pagine, inversione A/B, disattivazione downsell;
 - esportazione/importazione, validazione input, statistiche demo e nessuna chiamata a servizi esterni.
 
 ## Consolidamento commerciale — 28 novembre 2026
-Offerte di ottobre recuperate: Reset Iniziale (1 confezione, 47 €), Stabilizzazione (3, 117 €), Protocollo Completo (6, 222 €). Il riepilogo distingue il subtotale prodotti dal totale con spedizione stimata: circa 8 € per il singolo, gratuita per 3 e 6; per 2 e altri formati non standard la spedizione e i bonus restano da definire. I materiali previsti sono mostrati per quantità, come proposta da verificare, non come offerta disponibile. La garanzia commerciale proposta di 60 giorni riguarda solo la prima confezione anche nei bundle; termini, procedura di rimborso e diritti di legge devono essere verificati prima del lancio. Non presentare il nome di un bonus come promessa terapeutica. Il downsell appare soltanto dopo il rifiuto del primo upsell attivo, non dopo il secondo. Se si inverte o modifica la sequenza dalla dashboard, quantità/prezzi restano dinamici e i formati non standard non ricevono condizioni inventate. Nessun cambiamento a checkout, DNS, Cloudflare, Stripe o sito pubblico.
+Offerte di ottobre recuperate: Reset Iniziale (1 confezione, 47 €), Stabilizzazione (3, 117 €), Protocollo Completo (6, 222 €). Il riepilogo distingue il subtotale prodotti dal totale con spedizione stimata: circa 8 € per il singolo, gratuita per 3 e 6; per 2 confezioni la spedizione resta da definire; il downsell a 84 € complessivi (+37 €) mantiene i bonus Reset Iniziale e l’audio Spegni la Mente previsto in precedenza. Per gli altri formati non standard bonus e spedizione restano da definire. I materiali previsti sono mostrati per quantità, come proposta da verificare, non come offerta disponibile. La garanzia commerciale proposta di 60 giorni riguarda solo la prima confezione anche nei bundle; termini, procedura di rimborso e diritti di legge devono essere verificati prima del lancio. Non presentare il nome di un bonus come promessa terapeutica. Il downsell appare soltanto dopo il rifiuto del primo upsell attivo, non dopo il secondo. Se si inverte o modifica la sequenza dalla dashboard, quantità/prezzi restano dinamici e i formati non standard non ricevono condizioni inventate. Nessun cambiamento a checkout, DNS, Cloudflare, Stripe o sito pubblico.
+
+28 novembre 2026: utente conferma downsell 84 € e bonus; nessuna revisione del copy commerciale autorizzata. Prezzi delle altre offerte invariati.

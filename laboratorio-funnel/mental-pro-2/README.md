@@ -41,3 +41,6 @@ Test automatico browser in `scripts/mental-pro-2-qa.cjs`, eseguito dal workflow 
 - 47→117→222 €, rifiuto primo upsell→downsell 94 €;
 - salvataggio e riapertura tra pagine, inversione A/B, disattivazione downsell;
 - esportazione/importazione, validazione input, statistiche demo e nessuna chiamata a servizi esterni.
+
+## Consolidamento commerciale — 28 novembre 2026
+Offerte di ottobre recuperate: Reset Iniziale (1 confezione, 47 €), Stabilizzazione (3, 117 €), Protocollo Completo (6, 222 €). Il riepilogo distingue il subtotale prodotti dal totale con spedizione stimata: circa 8 € per il singolo, gratuita per 3 e 6; per 2 e altri formati non standard la spedizione e i bonus restano da definire. I materiali previsti sono mostrati per quantità, come proposta da verificare, non come offerta disponibile. La garanzia commerciale proposta di 60 giorni riguarda solo la prima confezione anche nei bundle; termini, procedura di rimborso e diritti di legge devono essere verificati prima del lancio. Non presentare il nome di un bonus come promessa terapeutica. Il downsell appare soltanto dopo il rifiuto del primo upsell attivo, non dopo il secondo. Se si inverte o modifica la sequenza dalla dashboard, quantità/prezzi restano dinamici e i formati non standard non ricevono condizioni inventate. Nessun cambiamento a checkout, DNS, Cloudflare, Stripe o sito pubblico.

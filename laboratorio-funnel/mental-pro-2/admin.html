@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0c293e">
+<title>Dashboard demo · Mental Pro 2.0</title>
+<link rel="stylesheet" href="./style.css">
+</head><body>
+<header class="top"><div class="shell topinner">
+<a href="./index.html" class="logo"><span class="moon" aria-hidden="true">☾</span><span>MENTAL <span style="color:#ffa057">pro</span><small>Funnel Studio · Dashboard</small></span></a>
+<nav class="navlinks"><a href="./index.html">↗ Anteprima cliente</a></nav>
+</div></header>
+<div class="ribbon">DASHBOARD DIMOSTRATIVA · NON È UN PANNELLO PER VENDITE REALI</div>
+<main class="shell dashboard-wrap">
+<div class="admin-header"><div>
+<span class="kicker">IL TUO LABORATORIO · VERSIONE 2.0</span>
+<h1>Decidi tu come vendere.</h1>
+<p class="lede">Modifica la proposta, riorganizza gli upsell e prova subito il risultato. Tutto senza toccare i siti pubblici.</p>
+</div></div>
+<div class="admin-banner"><span style="font-size:21px" aria-hidden="true">⚠</span>
+<span><strong>Nessun account amministratore, nessun backend e nessuna vendita.</strong> Questo pannello è una demo locale: le modifiche e i conteggi delle prove sono conservati soltanto nel browser in uso. Non inserire dati personali o credenziali.</span></div>
+<div class="admin-layout">
+<div>
+<form id="editor" novalidate>
+<section class="admin-card">
+<span class="kicker">01 · PAGINA DI VENDITA</span><h2>Identità e messaggio</h2>
+<div class="form-grid">
+<div class="field wide"><label for="brand-eyebrow">Etichetta superiore</label><input id="brand-eyebrow" data-path="brand.eyebrow" maxlength="120" required></div>
+<div class="field wide"><label for="brand-headline">Titolo principale</label><textarea id="brand-headline" data-path="brand.headline" maxlength="230" required></textarea></div>
+<div class="field wide"><label for="brand-intro">Testo di apertura</label><textarea id="brand-intro" data-path="brand.intro" maxlength="500" required></textarea></div>
+<div class="field wide"><label for="brand-badge">Punto di forza evidenziato</label><input id="brand-badge" data-path="brand.badge" maxlength="120" required></div>
+</div>
+</section>
+<section class="admin-card">
+<span class="kicker">02 · PRODOTTO PRINCIPALE</span><h2>La prima confezione</h2>
+<div class="form-grid">
+<div class="field"><label for="base-label">Nome dell'offerta</label><input id="base-label" data-path="base.label" maxlength="100" required></div>
+<div class="field"><label for="base-price">Prezzo singolo (€)</label><input id="base-price" data-path="base.price" inputmode="decimal" type="number" min="1" max="1000" step="0.01" required><small class="field-tip">Il prezzo viene usato per calcolare i confronti.</small></div>
+<div class="field wide"><label for="base-headline">Titolo della conferma d'ordine</label><input id="base-headline" data-path="base.headline" maxlength="180" required></div>
+<div class="field wide"><label for="base-intro">Testo della conferma</label><textarea id="base-intro" data-path="base.intro" maxlength="280" required></textarea></div>
+</div>
+</section>
+<section class="admin-card">
+<span class="kicker">03 · SEQUENZA OFFERTE</span><h2>In quale ordine mostrarle?</h2>
+<p class="small">Se il cliente accetta la prima proposta, vede la seconda. Se rifiuta la prima, può vedere il downsell. Puoi disattivare singole offerte.</p>
+<div class="field"><label for="offer-order">Ordine degli upsell</label>
+<select id="offer-order" data-order><option value="A,B">Prima offerta A, poi B</option><option value="B,A">Prima offerta B, poi A</option></select></div>
+<div class="legend">Per ogni offerta puoi scegliere quantità e <strong>importo aggiuntivo</strong>. Prezzo medio per confezione e risparmio vengono calcolati automaticamente: nessuno sconto inventato.</div>
+</section>
+<div id="offer-fields"></div>
+<div class="admin-card">
+<span class="kicker">SALVATAGGIO LOCALE</span><h2>Applica la configurazione</h2>
+<p class="small">Le modifiche valgono solo nella demo di questo browser. Non pubblicano alcuna pagina e non aggiornano Cloudflare o Stripe.</p>
+<div class="toolbar">
+<button class="btn primary" type="submit">Salva le modifiche</button>
+<button class="btn secondary" type="button" id="save-preview">Salva e apri la prova ↗</button>
+<button class="btn ghost" type="button" id="reset-config">Ripristina i valori iniziali</button>
+</div>
+<div id="form-status" class="status" role="status" aria-live="polite"></div>
+</div>
+</form>
+</div>
+<div>
+<div class="admin-tools">
+<section class="admin-card">
+<span class="kicker">RIEPILOGO DELLE OFFERTE</span><h2>La configurazione attuale</h2>
+<div id="offer-summary" aria-live="polite"></div>
+<hr class="divider">
+<a href="./index.html" class="btn dark full">Apri la prova cliente ↗</a>
+<p class="fine">Per vedere modifiche ancora non salvate, salva prima la configurazione.</p>
+</section>
+<section class="admin-card">
+<span class="kicker">DATI SOLO DA QUESTA DEMO</span><h2>Le tue simulazioni</h2>
+<div class="statgrid" id="statistics"></div>
+<p class="small" id="stat-note">Nessuna vendita né conversione reale.</p>
+<div class="toolbar">
+<button type="button" class="btn ghost" id="refresh-stats">Aggiorna dati ↻</button>
+<button type="button" class="btn danger" id="clear-stats">Azzera simulazioni</button>
+</div>
+</section>
+<section class="admin-card">
+<span class="kicker">COPIA DI SICUREZZA</span><h2>Esporta / importa</h2>
+<p class="small">Puoi copiare il JSON e conservarlo. Per riutilizzarlo su un altro dispositivo, incollalo nel campo e premi Importa.</p>
+<textarea id="json-box" class="code-area" aria-label="Configurazione JSON esportata o da importare" spellcheck="false" placeholder="Incolla qui una configurazione JSON..."></textarea>
+<div class="toolbar" style="margin-top:11px">
+<button type="button" class="btn ghost" id="export-json">Mostra JSON</button>
+<button type="button" class="btn ghost" id="copy-json">Copia JSON</button>
+<button type="button" class="btn dark" id="import-json">Importa JSON</button>
+</div>
+<p class="fine">I conteggi delle simulazioni non vengono inclusi nel JSON.</p>
+</section>
+</div>
+</div>
+</div>
+</main>
+<footer class="shell footer">Prototipo isolato nel ramo di sviluppo GitHub. Nessun addebito, nessuna API Stripe, nessun database cliente, nessun dato personale.</footer>
+<script src="./shared.js"></script><script src="./admin.js"></script>
+</body></html>

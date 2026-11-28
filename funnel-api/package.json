@@ -1,0 +1,11 @@
+{
+  "name": "boscia-funnel-demo-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "dev": "wrangler dev --local",
+    "db:local": "wrangler d1 migrations apply boscia-funnel-demo --local"
+  },
+  "devDependencies": { "wrangler": "^4.0.0" }
+}

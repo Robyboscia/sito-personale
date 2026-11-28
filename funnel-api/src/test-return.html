@@ -1,0 +1,81 @@
+<!doctype html><html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>Checkout in modalità test · Roberto Boscia</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;background:#f1f5fa;color:#142c3e}*{box-sizing:border-box}body{margin:0}
+header{padding:22px;background:#102e43;color:white}header div{max-width:540px;margin:auto}header strong{letter-spacing:.08em}
+main{max-width:540px;margin:auto;padding:20px 16px 45px}article{background:white;border-radius:18px;padding:24px 21px;border:1px solid #e1e8ef;box-shadow:0 9px 28px #0b2f4210}
+h1{font-size:clamp(22px,6vw,31px);letter-spacing:-.04em;line-height:1.12}h2{font-size:20px;margin:10px 0}p{line-height:1.5;color:#637b89}
+.tag{color:#a65416;font-size:12px;letter-spacing:.1em;font-weight:800}.price{font-size:30px;color:#153d55;font-weight:800}
+button{border:0;border-radius:11px;padding:14px 16px;min-height:52px;width:100%;font:700 15px system-ui;cursor:pointer;margin:6px 0}
+.primary{background:linear-gradient(135deg,#f19e57,#e67f30);color:#132d3f}.secondary{background:#ecf1f5;color:#2b4a5e}
+button:disabled{opacity:.55;cursor:wait}.note{background:#fff5e9;border-left:4px solid #eb8538;border-radius:6px;padding:12px;font-size:13px}
+#log{font-size:13px;color:#667b89}.hidden{display:none}
+</style></head><body>
+<header><div><strong>ROBERTO BOSCIA · TEST CHECKOUT</strong><p style="color:#d3e0e8">Ambiente tecnico, pagamenti di prova Stripe</p></div></header>
+<main><article>
+<span class="tag">PAGAMENTI TEST · NESSUNA VENDITA</span>
+<h1 id="headline">Verifico la sessione…</h1>
+<p id="message">Controllo l'esito del pagamento di prova. Il riepilogo verrà aggiornato solo dopo la conferma di Stripe.</p>
+<div id="offer" class="hidden"><h2 id="offerName"></h2><p id="offerInfo"></p><div class="price" id="offerPrice"></div><button id="yes" class="primary">Aggiungi con pagamento test</button><button id="no" class="secondary">No grazie, continua</button></div>
+<button id="reload" class="secondary">Aggiorna lo stato</button>
+<p class="note">Non usare carte vere né dati personali reali. Eventuali pagamenti di test vengono elaborati nel solo ambiente Stripe di prova. Ogni offerta richiede una conferma separata.</p>
+<p id="log" role="status"></p>
+</article></main>
+<script>
+(function(){
+"use strict";
+const params=new URLSearchParams(location.search);
+const token=params.get("token");
+const headline=document.querySelector("#headline");
+const msg=document.querySelector("#message");
+const offer=document.querySelector("#offer");
+const yes=document.querySelector("#yes");
+const no=document.querySelector("#no");
+const reload=document.querySelector("#reload");
+const status=document.querySelector("#log");
+const euro=n=>new Intl.NumberFormat("it-IT",{style:"currency",currency:"EUR"}).format(n/100);
+let current=null;
+async function api(path,payload){
+ const response=await fetch(path,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload),credentials:"same-origin",cache:"no-store"});
+ const data=await response.json().catch(()=>({}));
+ if(!response.ok)throw new Error(data.error||"Errore di connessione");
+ return data;
+}
+async function refresh(){
+ offer.classList.add("hidden");
+ if(!token||!/^[a-f0-9]{64}$/.test(token)){headline.textContent="Link di prova non valido";return;}
+ try{
+  const data=await api("/api/stripe-test/state",{token});
+  current=data;
+  status.textContent="Totale pagamenti test confermati: "+euro(data.totalCents)+".";
+  if(data.stage==="primary_pending"){headline.textContent="In attesa del primo pagamento test";msg.textContent="Il ritorno dal checkout non prova il pagamento. Se hai appena completato la simulazione, premi Aggiorna lo stato.";return;}
+  if(data.stage==="done"){headline.textContent="Percorso concluso";msg.textContent="Tutte le offerte sono state gestite. Nessun ordine reale è stato effettuato.";return;}
+  if(data.pendingUrl){headline.textContent="Pagamento aggiuntivo da completare";msg.textContent="Hai già accettato questa offerta. Completa la sessione Stripe esistente, senza crearne un'altra.";offer.classList.remove("hidden");document.querySelector("#offerName").textContent=data.offer.label;document.querySelector("#offerInfo").textContent="Sessione già creata";document.querySelector("#offerPrice").textContent=euro(data.offer.cents);yes.textContent="Vai al checkout di prova";no.style.display="none";return;}
+  no.style.display="block";yes.textContent="Sì, aggiungi al mio ordine (test)";
+  const heading=data.stage==="upsell1"?"Puoi aggiungere un'offerta":data.stage==="upsell2"?"Un'ultima proposta": "Preferisci una soluzione più semplice?";
+  headline.textContent=heading;
+  msg.textContent="Offerta facoltativa. Se accetti, Stripe aprirà un nuovo pagamento esclusivamente di prova.";
+  document.querySelector("#offerName").textContent=data.offer.label;
+  document.querySelector("#offerPrice").textContent=euro(data.offer.cents);
+  document.querySelector("#offerInfo").textContent="Questo è il costo aggiuntivo, separato dal pagamento precedente.";
+  offer.classList.remove("hidden");
+ }catch(e){headline.textContent="Impossibile verificare il test";msg.textContent=e.message;}
+}
+async function decision(accept){
+ if(!current)return;
+ yes.disabled=no.disabled=true;
+ try{
+  const data=await api("/api/stripe-test/decide",{token,stage:current.stage,accept});
+  if(data.checkoutUrl){location.assign(data.checkoutUrl);return;}
+  await refresh();
+ }catch(e){status.textContent=e.message;await refresh();}
+ finally{yes.disabled=no.disabled=false;}
+}
+yes.addEventListener("click",()=>{if(current?.pendingUrl)location.assign(current.pendingUrl);else decision(true);});
+no.addEventListener("click",()=>decision(false));
+reload.addEventListener("click",refresh);
+refresh();
+})();
+</script></body></html>

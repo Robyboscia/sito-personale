@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "boscia-stripe-test-only",
+  "main": "src/stripe-test-worker.js",
+  "compatibility_date": "2026-11-12",
+  "workers_dev": false,
+  "vars": {
+    "STRIPE_TEST_ENABLED": "false",
+    "STRIPE_TEST_RETURN_BASE": "https://checkout-test.example.invalid"
+  },
+  "secrets": {
+    "required": ["STRIPE_SECRET_KEY","STRIPE_WEBHOOK_SECRET","DEMO_API_KEY"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "boscia-funnel-demo",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

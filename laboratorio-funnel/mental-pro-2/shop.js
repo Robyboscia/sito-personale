@@ -58,6 +58,7 @@ function terms(qty,productCents){
  const panel=h("div","notice");
  const tiers={
   1:["Reset Iniziale · 60 giorni previsti","Guida Rituale di Spegnimento; Protocollo Anti-Risveglio; Checklist Svuota-Mente."],
+  2:["2 confezioni","Bonus Reset Iniziale: Guida Rituale di Spegnimento; Protocollo Anti-Risveglio; Checklist Svuota-Mente; audio Spegni la Mente."],
   3:["Stabilizzazione · 180 giorni previsti","Bonus Reset Iniziale; 3 protocolli avanzati; videocorso Protocollo 3:30."],
   6:["Protocollo Completo · 360 giorni previsti","Bonus Stabilizzazione; ebook Social Jet Lag; libro cartaceo Dormire è facile se sai come farlo."]
  };
@@ -65,7 +66,7 @@ function terms(qty,productCents){
  panel.append(h("strong","",tier?tier[0]:"Formato personalizzato · condizioni da confermare"));
  if(tier)panel.append(p("Materiali previsti: "+tier[1],"small"));
  const ship=qty===1?800:qty===3||qty===6?0:null;
- if(ship===null)panel.append(p("Spedizione e bonus per questo formato: da definire; totale consegnato non disponibile.","small"));
+ if(ship===null)panel.append(p("Spedizione per questo formato: da definire; totale consegnato non disponibile.","small"));
  else {
   panel.append(p(ship===0?"Spedizione prevista gratuita.":"Spedizione stimata: circa "+api.money(ship)+".","small"));
   panel.append(summaryRow("Totale con spedizione stimata",api.money(productCents+ship)));

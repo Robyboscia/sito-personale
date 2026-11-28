@@ -31,7 +31,7 @@ const defaults=Object.freeze({
       headline:"Vuoi completare la scorta?",
       body:"Un'ultima possibilità per aggiungere confezioni al tuo ordine, senza obblighi.",
       yes:"Sì, aggiungo altre 3 confezioni",no:"No, concludo così"},
-    D:{enabled:true,label:"Aggiungi 1 confezione",qty:1,price:47,
+    D:{enabled:true,label:"Aggiungi 1 confezione",qty:1,price:37,
       headline:"Preferisci iniziare con una quantità più piccola?",
       body:"Nessuna forzatura: puoi aggiungere una sola confezione oppure concludere l'ordine di prova.",
       yes:"Sì, aggiungo 1 confezione",no:"No, resto con la scelta iniziale"}

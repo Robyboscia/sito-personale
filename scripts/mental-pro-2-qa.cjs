@@ -34,16 +34,22 @@ const {chromium}=require("playwright");
     await go("/index.html");
     assert.match(await text(),/La sera non ha bisogno di un'altra promessa/);
     assert.match(await text(),/47,00/);
+    assert.match(await text(),/55,00/); // shipping estimate for single
+    assert.match(await text(),/Guida Rituale di Spegnimento/);
+    assert.match(await text(),/limitata alla prima confezione/);
     await page.screenshot({path:"mental2-funnel-landing-mobile.png",fullPage:true});
     await tap(/Scopri l'offerta iniziale/);
     await tap(/Simula l'acquisto da/);
     assert.match(await text(),/70,00/);
     assert.match(await text(),/39,00/); // 3 confezioni / 117 € con A
     assert.match(await text(),/24,00/); // risparmio effettivo
+    assert.match(await text(),/Protocollo 3:30/);
+    assert.match(await text(),/Spedizione prevista gratuita/);
     await page.screenshot({path:"mental2-funnel-upsell-mobile.png",fullPage:true});
     await tap(/Sì, aggiungo 2 confezioni/);
     assert.match(await text(),/105,00/);
     assert.match(await text(),/37,00/);
+    assert.match(await text(),/ebook Social Jet Lag/);
     await tap(/Sì, aggiungo altre 3 confezioni/);
     assert.match(await text(),/222,00/);
     assert.match(await text(),/Confezioni totali\s*6/);
@@ -56,6 +62,15 @@ const {chromium}=require("playwright");
     assert.match(await text(),/94,00/);
     await tap(/Sì, aggiungo 1 confezione/);
     assert.match(await text(),/94,00/);
+    assert.match(await text(),/totale consegnato non disponibile/);
+    await tap(/Ricomincia la simulazione/);
+    await tap(/Scopri l\x27offerta iniziale/);
+    await tap(/Simula l\x27acquisto da/);
+    await tap(/Sì, aggiungo 2 confezioni/);
+    await tap(/No, concludo così/);
+    assert.match(await text(),/Hai completato la prova/);
+    assert.match(await text(),/Confezioni totali\s*3/);
+    assert.match(await text(),/117,00/);
 
     await go("/admin.html");
     assert.match(await page.locator("main").innerText(),/Decidi tu come vendere/);
@@ -76,6 +91,8 @@ const {chromium}=require("playwright");
     assert.match(await text(),/72,00/);  // A now second
     await tap(/No, preferisco meno confezioni/); // A reject = down if enabled? second reject -> done
     assert.match(await text(),/154,00/); // base + B only
+    assert.match(await text(),/Hai completato la prova/);
+    assert.match(await text(),/Confezioni totali\s*4/);
 
     await go("/admin.html");
     assert.equal(await page.locator("#base-price").inputValue(),"49");
